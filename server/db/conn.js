@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const config = {
-  database: 'cap_db',
-  dialect: 'postgres',
-  logging: false,
-  password: 'password',
-  username: 'postgres',
+  // database: 'cap_db',
+  // dialect: 'postgres',
+  // logging: false,
+  // password: 'password',
+  // username: 'postgres',
 };
 
 if (process.env.QUIET) {
