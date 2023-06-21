@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { League } = require('../../db/models/League.js');
 
+
+// GET ALL LEAGUES
 router.get('/', async (req, res, next) => {
     try {
         const league = await League.findAll();
@@ -11,7 +13,9 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+// GET LEAGUES BY ID
 router.get('/:id', async (req, res, next) => {
+
     try {
         const league = await League.findByPk(req.params.id);
         res.send(league);
@@ -20,6 +24,17 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+// GET PLAYERS/USERS BY LEAGUE ID
+router.get('/:id/players', async (req, res, next) => {
+    try {
+        const players = await League.findByPk(req.params.id);
+        res.send(players);
+    } catch(ex) {
+        next(ex);
+    }
+})
+
+// POST TO ALL LEAGUES
 router.post('/', async (req, res, next) => {
     try {
         res.status(201).send(await League.create(req.body));
