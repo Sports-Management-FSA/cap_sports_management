@@ -15,7 +15,7 @@ export const addTeam = createAsyncThunk('addTeam', async(team, { rejectWithValue
     try {
         console.log('adding team')
         const token = window.localStorage.getItem('token');
-        const response = await axios.post('/api/teams', {
+        const response = await axios.post('/api/teams', team, {
             headers: {
                 authorization: token
             }
@@ -47,7 +47,7 @@ export const deleteTeam = createAsyncThunk('deleteTeam', async(teamId, {rejectWi
 })
 
 
-const teamSlice = createSlice({
+const teamsSlice = createSlice({
     name: "teams",
     initialState: {
         teamsList: [],
