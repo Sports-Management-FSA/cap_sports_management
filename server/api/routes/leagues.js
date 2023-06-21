@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { User } = require('../../db/index.js');
 const { League } = require('../../db/models/League.js');
 
 
@@ -9,7 +10,7 @@ router.get('/', async (req, res, next) => {
         res.send(league);
     } catch(ex) {
         res.send('no data yet, next(ex) prompted')
-        // next(ex);
+        next(ex);
     }
 })
 
@@ -24,25 +25,21 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-// GET PLAYERS/USERS BY LEAGUE ID
-router.get('/:id/players', async (req, res, next) => {
-    try {
-        const players = await League.findByPk(req.params.id);
-        res.send(players);
-    } catch(ex) {
-        next(ex);
-    }
-})
-
-// POST TO ALL LEAGUES
+// POST ALL LEAGUES
 router.post('/', async (req, res, next) => {
     try {
-        res.status(201).send(await League.create(req.body));
+        const user = await User.findByToken(req.headers.authorization);
+        if (!user){
+            return res.status(401).send('Unauthorized to add league');
+        }
+        const league = await League.create(req.body);
+        res.status(201)
     } catch(ex) {
         next(ex);
     }
 })
 
+// UPDATE LEAGUE BASED ON ID
 router.put('/:id', async (req, res, next) => {
     try {
         const league = await League.findByPk(req.params.id);
@@ -52,11 +49,26 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
+// DELETE LEAGUE ON ID
 router.delete('/:id', async (req, res, next) => {
     try {
+        const user = await User.findByToken(req.headers.authorization);
+        if (!user) {
+            return res.status(401).send('Unauthorized to delete league');
+        }
         await League.destroy({where: { id: req.params.id}});
         res.sendStatus(204);
     } catch(ex){
+        next(ex);
+    }
+})
+
+// GET TEAMS BY LEAGUE ID
+router.get('/:id/teams', async (req, res, next) => {
+    try {
+        const team = await League.findByPk(req.params.id);
+        res.send(team);
+    } catch(ex) {
         next(ex);
     }
 })

@@ -35,13 +35,14 @@ export const updateTeam = createAsyncThunk("updateTeam", async (formData, { reje
    }
 });
 
-export const deleteTeam = createAsyncThunk("deleteTeam", async (teamId, { rejectWithValue }) => {
-   try {
-      await axios.delete(`/api/teams/${teamId}`);
-   } catch (err) {
-      return rejectWithValue;
-   }
-});
+export const deleteTeam = createAsyncThunk('deleteTeam', async(teamId, {rejectWithValue}) => {
+    try{
+        await axios.delete(`/api/teams/${teamId}`);
+    }catch(err){
+        return rejectWithValue;
+    }
+})
+
 
 const teamsSlice = createSlice({
    name: "teams",
