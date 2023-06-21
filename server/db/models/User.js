@@ -1,16 +1,16 @@
 const conn = require('../conn');
-const { TEXT, STRING, UUID, UUIDV4 } = conn.Sequelize;
+const { TEXT, STRING, UUID, UUIDV4, BOOLEAN, INTEGER  } = conn.Sequelize;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT = process.env.JWT;
 
 
 const User = conn.define('user', {
-  id: {
-    type: UUID,
-    primaryKey: true,
-    defaultValue: UUIDV4
-  },
+  // id: {
+  //   type: UUID,
+  //   primaryKey: true,
+  //   defaultValue: UUIDV4
+  // },
   username: {
     type: STRING,
     allowNull: false,
@@ -26,44 +26,107 @@ const User = conn.define('user', {
       notEmpty: true
     }
   },
+  firstName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  email: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      isEmail: true
+    },
+    unique: true
+  },
   avatar: {
     type: TEXT
+  },
+  isAdmin: {
+    type: BOOLEAN,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+    default: false,
+  },
+  isPlayer: {
+    type: BOOLEAN,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+    default: false,
+  },
+  isManager: {
+    type: BOOLEAN,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+    default: false,
+  },
+  isDirector: {
+    type: BOOLEAN,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+    default: false,
+  },
+  teamId: {
+    type: INTEGER,
+    allowNull: true
+  },
+  leagueId: {
+    type: INTEGER,
+    allowNull: true
   }
 });
 
-User.addHook('beforeSave', async(user)=> {
-  if(user.changed('password')){
+User.addHook('beforeSave', async (user) => {
+  if (user.changed('password')) {
     user.password = await bcrypt.hash(user.password, 5);
   }
 });
 
-User.findByToken = async function(token){
+User.findByToken = async function (token) {
   try {
     const { id } = jwt.verify(token, process.env.JWT);
     const user = await this.findByPk(id);
-    if(user){
+    if (user) {
       return user;
     }
     throw 'user not found';
   }
-  catch(ex){
+  catch (ex) {
     const error = new Error('bad credentials');
     error.status = 401;
     throw error;
   }
 }
 
-User.prototype.generateToken = function(){
+User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, JWT);
 };
 
-User.authenticate = async function({ username, password }){
+User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({
     where: {
       username
     }
   });
-  if(user && await bcrypt.compare(password, user.password)){
+  if (user && await bcrypt.compare(password, user.password)) {
     return jwt.sign({ id: user.id }, JWT);
   }
   const error = new Error('bad credentials');
