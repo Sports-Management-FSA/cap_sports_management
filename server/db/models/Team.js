@@ -3,11 +3,13 @@ const conn = require("../conn");
 const { TEXT, UUIDV4, STRING, UUID } = conn.Sequelize;
 
 const Team = conn.define("team", {
+   /*
+   leaving in case we want to switch back to uuid
    id: {
-      type: INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-   },
+      type: UUID,
+      primaryKey: true,
+      defaultValue: UUIDV4
+    },*/
    name: {
       type: STRING,
       allowNull: false,
@@ -30,10 +32,6 @@ const Team = conn.define("team", {
          isEmail: true
       },
       unique: true
-   },
-   leagueId: {
-      type: UUID,
-      allowNull: false
    },
    gamesWon: {
       type: INTEGER
