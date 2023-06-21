@@ -2,10 +2,10 @@ const conn = require('../conn');
 const {TEXT, STRING, INTEGER, UUID, DATEONLY, TIME, BOOLEAN} = conn.Sequelize;
 
 const Match = conn.define('match', {
-    id: {
+    /*id: {
         type: UUID,
         primaryKey: true,
-    },
+    },*/
     name: {
         type: STRING,
         allowNull: false,
@@ -39,14 +39,14 @@ const Match = conn.define('match', {
         }
     },
     teamAid:{
-        type: STRING,
+        type: INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true,
         }
     },
     teamBid:{
-        type: STRING,
+        type: INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true,

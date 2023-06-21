@@ -3,13 +3,16 @@ import logger from 'redux-logger';
 import auth from './auth';
 import teamsSlice from './teamsSlice';
 import matchesSlice from "./matchesSlice";
+import leaguesSlice from "./leaguesSlice";
+
 
 const store = configureStore({
   middleware: (defaultMiddleware)=> defaultMiddleware().concat(logger),
   reducer:{
     auth,
     teams: teamsSlice,
-    matches: matchesSlice
+    matches: matchesSlice,
+    leagues: leaguesSlice
   }
 });
 
@@ -17,4 +20,6 @@ export default store;
 export * from './auth';
 export * from './teamsSlice';
 export * from './matchesSlice';
+export * from './leaguesSlice';
+
 

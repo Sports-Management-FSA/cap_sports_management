@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { Team } = require("../../db/models/Team.js");
-const { User } = require("../../db/models/User.js");
+const { Team } = require("../../db");
+const { User } = require("../../db");
 
 // Get All Team
 router.get("/", async (req, res, next) => {
