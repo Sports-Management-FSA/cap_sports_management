@@ -1,4 +1,4 @@
-const conn = require('./conn');
+const conn = require('../conn');
 const { STRING, UUID, UUIDV4 } = conn.Sequelize;
 
 const League = conn.define('league', {
@@ -19,13 +19,11 @@ const League = conn.define('league', {
     season: {
         type: STRING,
         allowNull: false
-
     },
     email: {
         type: STRING,
         allowNull: true
     },
-
 })
 
 module.exports = League;
