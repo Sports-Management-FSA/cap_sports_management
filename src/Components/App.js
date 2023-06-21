@@ -10,7 +10,7 @@ const App = ()=> {
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
   useEffect(()=> {
-    dispatch(loginWithToken());
+   // dispatch(loginWithToken());
   }, []);
 
   return (
