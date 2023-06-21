@@ -54,43 +54,41 @@ const User = conn.define('user', {
   },
   isAdmin: {
     type: BOOLEAN,
+    defaultValue: false,
     allowNull: false,
     validate: {
       notEmpty: true
     },
-    default: false,
   },
   isPlayer: {
     type: BOOLEAN,
+    defaultValue: false,
     allowNull: false,
     validate: {
       notEmpty: true
     },
-    default: false,
   },
   isManager: {
     type: BOOLEAN,
+    defaultValue: false,
     allowNull: false,
     validate: {
       notEmpty: true
     },
-    default: false,
   },
   isDirector: {
     type: BOOLEAN,
+    defaultValue: false,
     allowNull: false,
     validate: {
       notEmpty: true
     },
-    default: false,
   },
   teamId: {
     type: INTEGER,
-    allowNull: true
   },
   leagueId: {
     type: INTEGER,
-    allowNull: true
   }
 });
 

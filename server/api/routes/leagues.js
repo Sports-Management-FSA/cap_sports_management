@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../../db/index.js');
-const { League } = require('../../db/models/League.js');
+const { User } = require('../../db');
+const { League } = require('../../db');
 
 
 // GET ALL LEAGUES

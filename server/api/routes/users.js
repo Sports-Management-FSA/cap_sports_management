@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Player } = require('../../db/models/Player.js');
+const { User } = require('../../db');
 
 router.get('/', async (req, res, next) => {
     try {
-        const players = await Player.findAll()
-        res.send(players)
+        const user = await User.findAll()
+        res.send(user)
     } catch(ex) {
         next(ex);
     }
@@ -12,8 +12,8 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const player = await Player.findByPk(req.params.id)
-        res.send(player);
+        const user = await User.findByPk(req.params.id)
+        res.send(user);
     } catch (err) {
         next(err);
     }
@@ -21,8 +21,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const player = await Player.create(req.body)
-        res.send(player);
+        const user = await User.create(req.body)
+        res.send(user);
     } catch (err) {
         next(err)
     }
@@ -30,9 +30,9 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const player = await Player.findByPk(req.params.id);
-        player.destroy();
-        res.send(player);
+        const user = await User.findByPk(req.params.id);
+        user.destroy();
+        res.send(user);
     } catch (err) {
         next();
     }
@@ -40,9 +40,9 @@ router.delete('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const player = await Player.findByPk(req.params.id)
-        player.update(req.body)
-        res.send(player);
+        const user = await User.findByPk(req.params.id)
+        user.update(req.body)
+        res.send(user);
     } catch (err) {
         next(err);
     }

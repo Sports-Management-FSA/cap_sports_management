@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Match } = require('../../db/models/Match');
-const { User } = require('../../db/models/User');
+const { Match } = require('../../db');
+const { User } = require('../../db');
 
 //get all matches
 router.get('/', async (req, res, next) => {

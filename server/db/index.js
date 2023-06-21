@@ -1,8 +1,8 @@
 const conn = require('./conn');
 const User = require('./models/User');
-const League = require('./models/League.js');
-const Match = require('./models/Match.js');
-const Team = require('./models/Team.js');
+const League = require('./models/League');
+const Match = require('./models/Match');
+const Team = require('./models/Team');
 
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
@@ -72,7 +72,7 @@ const syncAndSeed = async()=> {
     await Match.create({
       name:'Finals', 
       description: 'final round', 
-      date: '011/01/2023', 
+      date: 2023-11-11, 
       time: '10:05', 
       location: 'Barts Stadium', 
       teamAid: 2, 
@@ -82,7 +82,7 @@ const syncAndSeed = async()=> {
     await Match.create({
       name:'Semi Finals', 
       description: 'semi final round', 
-      date: '10/02/2023', 
+      date: 2023-8-10, 
       time: '1:05', 
       location: 'Barts Stadium', 
       teamAid: 4, 
@@ -92,7 +92,7 @@ const syncAndSeed = async()=> {
     await Match.create({
       name:'Beginning', 
       description: 'beginning round', 
-      date: '9/01/2023', 
+      date: 2023-10-09, 
       time: '12:05', 
       location: 'Barts Stadium', 
       teamAid: 8, 
@@ -295,10 +295,14 @@ const syncAndSeed = async()=> {
       lastName: 'smith',
       email: 'har@g.com',
     });
-    conn.close();
+  
     console.log('\n\nSeeding Successful!\n\n')
 };
 
 module.exports = {
   syncAndSeed,
+  User,
+  Match,
+  Team,
+  League,
 };
