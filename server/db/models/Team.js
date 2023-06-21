@@ -1,4 +1,4 @@
-const conn = require("./conn");
+const conn = require("../conn");
 const { TEXT, UUIDV4, STRING, UUID } = conn.Sequelize;
 
 const Team = conn.define("team", {
