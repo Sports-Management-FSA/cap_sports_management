@@ -80,7 +80,7 @@ const teamsSlice = createSlice({
          })
          .addCase(updateTeam.fulfilled, (state, action) => {
             state.loading = false;
-            state.teamsList.map((team) => (team.id !== action.payload.id ? team : action.payload));
+            state.teamsList = state.teamsList.map((team) => (team.id !== action.payload.id ? team : action.payload));
          })
          .addCase(updateTeam.rejected, (state, action) => {
             state.error = action.error.message;
