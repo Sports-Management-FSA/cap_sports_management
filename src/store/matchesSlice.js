@@ -62,7 +62,7 @@ const matchesSlice = createSlice({
             .addCase(fetchAllMatches.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchAllMatches.fullfilled, (action, state) => {
+            .addCase(fetchAllMatches.fulfilled, (action, state) => {
                 state.loading = false;
                 state.matchesList.push(action.payload);
             })
@@ -73,7 +73,7 @@ const matchesSlice = createSlice({
             .addCase(fetchMatchById.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchMatchById.fullfilled, (action, state) => {
+            .addCase(fetchMatchById.fulfilled, (action, state) => {
                 state.loading = false;
                 return action.payload;
             })
@@ -84,7 +84,7 @@ const matchesSlice = createSlice({
             .addCase(addMatch.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(addMatch.fullfilled, (action, state) => {
+            .addCase(addMatch.fulfilled, (action, state) => {
                 state.loading = false;
                 state.matchesList.push(action.payload);
             })
@@ -95,7 +95,7 @@ const matchesSlice = createSlice({
             .addCase(updateMatch.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(updateMatch.fullfilled, (action, state) => {
+            .addCase(updateMatch.fulfilled, (action, state) => {
                 state.loading = false;
                 state.matchesList.map(match => match.id !== action.payload.id ? match : action.payload);
             })
