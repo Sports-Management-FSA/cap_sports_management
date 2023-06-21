@@ -40,7 +40,7 @@ export const updateTeam = createAsyncThunk("updateTeam", async (formData, { reje
 
 export const deleteTeam = createAsyncThunk('deleteTeam', async(teamId, {rejectWithValue}) => {
     try{
-        await axios.delete(`/api/teams/${id}`);
+        await axios.delete(`/api/teams/${teamId}`);
     }catch(err){
         return rejectWithValue;
     }
