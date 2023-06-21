@@ -1,5 +1,5 @@
 const router = require('express').Router();
-//const { Match } = require('../../db/models/Match.js');
+const { Match } = require('../../db/models/Match.js');
 
 router.get('/', async (req, res, next) => {
     try {

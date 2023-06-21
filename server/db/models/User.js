@@ -1,4 +1,4 @@
-const conn = require('./conn');
+const conn = require('../conn');
 const { TEXT, STRING, UUID, UUIDV4 } = conn.Sequelize;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');

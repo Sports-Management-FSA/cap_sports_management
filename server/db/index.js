@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const User = require('./User');
+const User = require('./models/User');
 const League = require('./models/League.js');
 
 const syncAndSeed = async()=> {
