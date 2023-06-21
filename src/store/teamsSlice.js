@@ -92,4 +92,4 @@ const teamsSlice = createSlice({
     }
 })
 
-export default teamSlice.reducer;
+export default teamsSlice.reducer;
