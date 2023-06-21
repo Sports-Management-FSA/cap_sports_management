@@ -10,6 +10,23 @@ export const fetchAllTeams = createAsyncThunk("getTeams", async (_, { rejectWith
     }
     }
 );
+
+export const addTeam = createAsyncThunk('addTeam', async(team, { rejectWithValue}) => {
+    try {
+        console.log('adding team')
+        const token = window.localStorage.getItem('token');
+        const response = await axios.post('/api/teams', {
+            headers: {
+                authorization: token
+            }
+        })
+        return response.data;
+    } catch(err){
+        return rejectWithValue;
+    }
+})
+
+
 export const updateTeam = createAsyncThunk("updateTeam", async (formData, { rejectWithValue }) => {
     const { id } = formData;
     try {
@@ -20,6 +37,14 @@ export const updateTeam = createAsyncThunk("updateTeam", async (formData, { reje
     }
     }
 );
+
+export const deleteTeam = createAsyncThunk('deleteTeam', async(teamId, {rejectWithValue}) => {
+    try{
+        await axios.delete(`/api/teams/${id}`);
+    }catch(err){
+        return rejectWithValue;
+    }
+})
 
 
 const teamSlice = createSlice({
@@ -41,6 +66,27 @@ const teamSlice = createSlice({
         })
         .addCase(fetchAllTeams.rejected, (action, state) => {
             state.loading = false;
+            state.error = action.error.message;
+        })
+        .addCase(addTeam.pending, (state) => {
+            state.loading = true
+        })
+        .addCase(addTeam.fulfilled, (state, action) => {
+            state.loading = false;
+            state.teamsList.push(action.payload);
+        })
+        .addCase(addTeam.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        .addCase(updateTeam.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(updateTeam.fulfilled, (state, action) => {
+            state.loading = false;
+            state.teamsList.map(team => team.id !== action.payload.id ? team : action.payload);
+        })
+        .addCase(updateTeam.rejected, (state, action) => {
             state.error = action.error.message;
         })
     }
