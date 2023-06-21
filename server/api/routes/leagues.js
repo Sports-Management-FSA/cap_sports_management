@@ -6,7 +6,8 @@ router.get('/', async (req, res, next) => {
         const league = await League.findAll();
         res.send(league);
     } catch(ex) {
-        next(ex);
+        res.send('no data yet, next(ex) prompted')
+        // next(ex);
     }
 })
 
