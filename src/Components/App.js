@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
+import Player from "./Player";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues } from "../store";
 import { fetchAllPlayers } from "../store";
@@ -25,6 +26,7 @@ const App = () => {
          <div>
             <Routes>
                <Route path="/" element={<Home />} />
+               <Route path="/players/:id" element={<Player />} />
             </Routes>
          </div>
       </div>
