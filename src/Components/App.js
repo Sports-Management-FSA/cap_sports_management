@@ -6,6 +6,7 @@ import { fetchAllLeagues } from "../store";
 import { fetchAllPlayers } from "../store";
 import { fetchAllMatches } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
+import Nav from "./Nav";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -18,6 +19,7 @@ const App = () => {
 
    return (
       <div>
+         <Nav />
          <h1>Sports Management</h1>
          {/* {
         auth.id ? <Home /> : <Login />
@@ -25,6 +27,7 @@ const App = () => {
          <div>
             <Routes>
                <Route path="/" element={<Home />} />
+               <Route path="/login" element={<Login />} />
             </Routes>
          </div>
       </div>
