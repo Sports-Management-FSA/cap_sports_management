@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchAllPlayers = createAsyncThunk("getPlayers", async (_, { rejectWithValue }) => {
    try {
-      const response = await axios.get("/api/players");
+      const response = await axios.get("/api/users");
       return response.data;
    } catch (ex) {
       return rejectWithValue(ex.response.data);
