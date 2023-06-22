@@ -62,44 +62,44 @@ const matchesSlice = createSlice({
             .addCase(fetchAllMatches.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchAllMatches.fulfilled, (action, state) => {
+            .addCase(fetchAllMatches.fulfilled, (state, action) => {
                 state.loading = false;
                 state.matchesList.push(action.payload);
             })
-            .addCase(fetchAllMatches.rejected, (action, state) => {
+            .addCase(fetchAllMatches.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
             .addCase(fetchMatchById.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchMatchById.fulfilled, (action, state) => {
+            .addCase(fetchMatchById.fulfilled, (state, action) => {
                 state.loading = false;
                 return action.payload;
             })
-            .addCase(fetchMatchById.rejected, (action, state) => {
+            .addCase(fetchMatchById.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
             .addCase(addMatch.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(addMatch.fulfilled, (action, state) => {
+            .addCase(addMatch.fulfilled, (state, action) => {
                 state.loading = false;
                 state.matchesList.push(action.payload);
             })
-            .addCase(addMatch.rejected, (action, state) => {
+            .addCase(addMatch.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
             .addCase(updateMatch.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(updateMatch.fulfilled, (action, state) => {
+            .addCase(updateMatch.fulfilled, (state, action) => {
                 state.loading = false;
                 state.matchesList.map(match => match.id !== action.payload.id ? match : action.payload);
             })
-            .addCase(updateMatch.rejected, (action, state) => {
+            .addCase(updateMatch.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

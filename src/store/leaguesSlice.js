@@ -69,11 +69,12 @@ const leagueSlice = createSlice({
         .addCase(fetchAllLeagues.pending, (state) => {
             state.loading = true;
         })
-        .addCase(fetchAllLeagues.fulfilled, (action, state) => {
+        .addCase(fetchAllLeagues.fulfilled, (state, action) => {
+            
             state.loading = false;
             state.leaguesList.push(action.payload);
         })
-        .addCase(fetchAllLeagues.rejected, (action, state) => {
+        .addCase(fetchAllLeagues.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
         })
