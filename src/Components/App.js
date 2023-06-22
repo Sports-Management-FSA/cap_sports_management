@@ -1,30 +1,34 @@
-import React, { useEffect } from 'react';
-import Home from './Home';
-import Login from './Login';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllLeagues } from '../store';
-import { fetchAllPlayers } from '../store';
-import { fetchAllMatches } from '../store';
-import { Link, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import Home from "./Home";
+import Login from "./Login";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllLeagues } from "../store";
+import { fetchAllPlayers } from "../store";
+import { fetchAllMatches } from "../store";
+import { Link, Routes, Route } from "react-router-dom";
 
+const App = () => {
+   const { auth } = useSelector((state) => state);
+   const dispatch = useDispatch();
+   useEffect(() => {
+      dispatch(fetchAllLeagues());
+      dispatch(fetchAllMatches());
+      dispatch(fetchAllPlayers());
+   }, []);
 
-const App = ()=> {
-  const { auth } = useSelector(state => state);
-  const dispatch = useDispatch();
-  useEffect(()=> {
-   dispatch(fetchAllLeagues());
-   dispatch(fetchAllMatches());
-   dispatch(fetchAllPlayers());
-  }, []);
-
-  return (
-    <div>
-      <h1>Sports Management</h1>
-      {
+   return (
+      <div>
+         <h1>Sports Management</h1>
+         {/* {
         auth.id ? <Home /> : <Login />
-      }
-    </div>
-  );
+      } */}
+         <div>
+            <Routes>
+               <Route path="/" element={<Home />} />
+            </Routes>
+         </div>
+      </div>
+   );
 };
 
 export default App;
