@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store";
+import { Link } from "react-router-dom";
 
 const Home = () => {
    const { auth, leagues } = useSelector((state) => state);
@@ -24,11 +25,14 @@ const Home = () => {
             )}
          </div>
          <div>
+            <Link to='/createleague'>Create League</Link>
             {leagues.leaguesList?.map((league, idx) => (
-               <div key={idx}>
-                  <h3>{league.name}</h3>
-                  <p>Season: {league.season}</p>
-               </div>
+                  <div key={idx}>
+                     <Link to={`/league/${league.id}`} >
+                        <h3>{league.name}</h3>
+                     </Link>
+                     <p>Season: {league.season}</p>
+                  </div>
             ))}
          </div>
       </div>

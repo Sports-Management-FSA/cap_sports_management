@@ -13,10 +13,11 @@ const League = () => {
         <div>
             <h2>{league.logo}{league.name}</h2>
             <h2>{league.season}</h2>
+            <Link to='/createteam'>Create Team</Link>
             {
                 filteredTeams.map((team) => {
                     return (
-                        <div>
+                        <div key={team.id}>
                             <Link to={`/teams/${team.id}`}>{team.name}</Link>
                             <p>{team.email}</p>
                         </div>

@@ -1,6 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addPlayer } from '../store';
 
 const CreatePlayer = (props) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {teamId} = props;
 
     const create = async(ev)=>{
@@ -12,8 +17,8 @@ const CreatePlayer = (props) => {
             isPlayer: true,
             teamId: teamId,
         };
-       dispatch(addUser(player));
-       navigate(`/team/${teamId}`);
+       dispatch(addPlayer(player));
+       navigate(`/teams/${teamId}`);
     }
 
     return(
@@ -31,6 +36,7 @@ const CreatePlayer = (props) => {
                     <label>Email: </label>
                     <input name='email' placeholder='required' required/>
                 </div>
+                <button type="submit">Submit</button>
           </form>
         </div>
     )

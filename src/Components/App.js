@@ -5,6 +5,7 @@ import Team from './Team';
 import Player from "./Player";
 import CreateLeague from "./CreateLeague";
 import CreateTeam from "./CreateTeam";
+import CreatePlayer from './CreatePlayer';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams } from "../store";
 import { fetchAllPlayers } from "../store";
@@ -39,7 +40,7 @@ const App = () => {
                <Route path="/login" element={<Login />} />
                <Route path="/createteam" element={<CreateTeam />} />
                <Route path="/createleague" element={<CreateLeague />} />
-
+               <Route path="/createplayer" element={<CreatePlayer />} />
             </Routes>
          </div>
       </div>

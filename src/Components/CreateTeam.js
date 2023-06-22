@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { addTeam } from '../store';
 
-const CreateTeam = () => {
+const CreateTeam = (props) => {
+  const {leagueId} = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +18,8 @@ const CreateTeam = () => {
     e.preventDefault();
     const newTeamData = {
       name: teamName,
-      email: teamEmail
+      email: teamEmail,
+      leagueId: leagueId,
     };
     dispatch(addTeam(newTeamData));
     setTeamName('');

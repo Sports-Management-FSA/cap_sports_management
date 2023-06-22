@@ -14,10 +14,11 @@ const Team = () => {
             <h2>{team.name}</h2>
             <p>{team.email}</p>
             <h3>Player Roster</h3>
+            <Link to='/createplayer'>Create Player</Link>
             {
                 players.map((player, idx)=>{
                     return(
-                    <Link to={`/player/${player.id}`} key={player.id}>
+                    <Link to={`/players/${player.id}`} key={player.id}>
                         <div>
                             <span> {idx+1} - </span>
                             <span> {player.firstName} </span>
