@@ -1,11 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Team = () => {
     const {id} = useParams();
-    const team = useSelector(state=>state.teams.teamsList.find(team=>team.id==id));
-    const players = useSelector(state=>state.players.playersList.filter(player=>player.teamId == team));
+    const teams = useSelector(state=>state.teams.teamsList);
+    const team = teams.find(team=> team.id == id);
+    const users = useSelector(state=>state.players.playerList);
+    const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
+
     return(
         <div>
             <h2>{team.name}</h2>
@@ -13,13 +16,15 @@ const Team = () => {
             <h3>Player Roster</h3>
             {
                 players.map((player, idx)=>{
-                    <Link to={`/player/${player.id}`}>
-                        <div key={player.id}>
-                            <span> {idx+1} </span>
+                    return(
+                    <Link to={`/player/${player.id}`} key={player.id}>
+                        <div>
+                            <span> {idx+1} - </span>
                             <span> {player.firstName} </span>
                             <span> {player.lastName} </span>
                         </div>
                     </Link>
+                    )
                 })
             }
         </div>
