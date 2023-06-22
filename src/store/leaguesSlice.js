@@ -72,7 +72,7 @@ const leagueSlice = createSlice({
         .addCase(fetchAllLeagues.fulfilled, (state, action) => {
             
             state.loading = false;
-            state.leaguesList.push(action.payload);
+            state.leaguesList.push(...action.payload);
         })
         .addCase(fetchAllLeagues.rejected, (state, action) => {
             state.loading = false;
