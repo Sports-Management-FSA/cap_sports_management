@@ -24,13 +24,10 @@ router.get("/:id", async (req, res, next) => {
 
 // Create A Team
 router.post("/", async (req, res, next) => {
+   console.log(req.body)
    try {
       const user = await User.findByToken(req.headers.authorization);
-
-      const team = await Team.create({
-         name: req.body.name,
-         userId: user.id
-      });
+      const team = await Team.create(req.body);
 
       res.send(team);
    } catch (ex) {

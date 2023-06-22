@@ -2,11 +2,16 @@ import React, { useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
 import Player from "./Player";
+import CreateLeague from "./CreateLeague";
+import CreateTeam from "./CreateTeam";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues } from "../store";
+import { fetchAllLeagues, fetchAllTeams } from "../store";
 import { fetchAllPlayers } from "../store";
 import { fetchAllMatches } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
+import League from "./League";
+import Nav from "./Nav";
+
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -15,10 +20,12 @@ const App = () => {
       dispatch(fetchAllLeagues());
       dispatch(fetchAllMatches());
       dispatch(fetchAllPlayers());
+      dispatch(fetchAllTeams());
    }, []);
 
    return (
       <div>
+         <Nav />
          <h1>Sports Management</h1>
          {/* {
         auth.id ? <Home /> : <Login />
@@ -27,6 +34,11 @@ const App = () => {
             <Routes>
                <Route path="/" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
+               <Route path='/league/:id' element={<League />} />
+               <Route path="/login" element={<Login />} />
+               <Route path="/createteam" element={<CreateTeam />} />
+               <Route path="/createleague" element={<CreateLeague />} />
+
             </Routes>
          </div>
       </div>
