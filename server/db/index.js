@@ -11,7 +11,6 @@ League.hasMany(Team);
 League.hasMany(Match);
 Match.belongsTo(League);
 
-
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
   
