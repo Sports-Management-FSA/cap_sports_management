@@ -7,7 +7,9 @@ const Nav = () => {
             backgroundColor: "palegoldenrod"
          }}>
          <div>
-            <p>Logo</p>
+            <p>
+               <Link to="/">Logo</Link>
+            </p>
          </div>
          <div>
             <p>
