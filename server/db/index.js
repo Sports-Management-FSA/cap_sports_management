@@ -4,6 +4,14 @@ const League = require('./models/League');
 const Match = require('./models/Match');
 const Team = require('./models/Team');
 
+User.belongsTo(Team);
+Team.hasMany(User);
+Team.belongsTo(League);
+League.hasMany(Team);
+League.hasMany(Match);
+Match.belongsTo(League);
+
+
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
   
