@@ -27,7 +27,6 @@ const App = () => {
    return (
       <div>
          <Nav />
-         <h1>Sports Management</h1>
          {/* {
         auth.id ? <Home /> : <Login />
       } */}
