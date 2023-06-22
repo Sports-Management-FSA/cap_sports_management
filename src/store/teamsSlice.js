@@ -59,7 +59,9 @@ const teamsSlice = createSlice({
          })
          .addCase(fetchAllTeams.fulfilled, (state, action) => {
             state.loading = false;
-            state.teamsList.push(action.payload);
+            console.log('teamslice result of fetch all')
+            console.log(action.payload)
+            state.teamsList.push(...action.payload);
          })
          .addCase(fetchAllTeams.rejected, (state, action) => {
             state.loading = false;

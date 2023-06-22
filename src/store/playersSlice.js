@@ -57,7 +57,7 @@ const playersSlice = createSlice({
          })
          .addCase(fetchAllPlayers.fulfilled, (state, action) => {
             state.loading = false;
-            state.playerList.push(action.payload);
+            state.playerList.push(...action.payload);
          })
          .addCase(fetchAllPlayers.rejected, (state, action) => {
             state.loading = false;

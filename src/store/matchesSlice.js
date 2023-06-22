@@ -64,7 +64,7 @@ const matchesSlice = createSlice({
             })
             .addCase(fetchAllMatches.fulfilled, (state, action) => {
                 state.loading = false;
-                state.matchesList.push(action.payload);
+                state.matchesList.push(...action.payload);
             })
             .addCase(fetchAllMatches.rejected, (state, action) => {
                 state.loading = false;
