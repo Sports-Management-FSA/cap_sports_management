@@ -13,7 +13,7 @@ export const fetchAllPlayers = createAsyncThunk("getPlayers", async (_, { reject
 export const addPlayer = createAsyncThunk("addPlayer", async (player, { rejectWithValue }) => {
    try {
       const token = window.localStorage.getItem("token");
-      const response = await axios.post("/api/players", player, {
+      const response = await axios.post("/api/users", player, {
          headers: {
             authorization: token
          }
@@ -27,7 +27,7 @@ export const addPlayer = createAsyncThunk("addPlayer", async (player, { rejectWi
 export const updatePlayer = createAsyncThunk("updatePlayer", async (formData, { rejectWithValue }) => {
    const { id } = formData;
    try {
-      const response = await axios.put(`/api/players/${id}`, formData);
+      const response = await axios.put(`/api/users/${id}`, formData);
       return response.data;
    } catch (ex) {
       return rejectWithValue(ex.response.data);
@@ -36,7 +36,7 @@ export const updatePlayer = createAsyncThunk("updatePlayer", async (formData, { 
 
 export const deletePlayer = createAsyncThunk("deletePlayer", async (playerId, { rejectWithValue }) => {
    try {
-      await axios.delete(`/api/players/${playerId}`);
+      await axios.delete(`/api/users/${playerId}`);
    } catch (ex) {
       return rejectWithValue(ex.response.data);
    }
