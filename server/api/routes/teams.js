@@ -5,8 +5,8 @@ const { User } = require("../../db");
 // Get All Team
 router.get("/", async (req, res, next) => {
    try {
-      const Teams = await Team.findAll();
-      res.send(Teams);
+      const teams = await Team.findAll();
+      res.send(teams);
    } catch (ex) {
       next(ex);
    }
@@ -15,8 +15,8 @@ router.get("/", async (req, res, next) => {
 // Get One Team
 router.get("/:id", async (req, res, next) => {
    try {
-      const Team = await Team.findByPk(req.params.id);
-      res.send(Team);
+      const team = await Team.findByPk(req.params.id);
+      res.send(team);
    } catch (ex) {
       next(ex);
    }
