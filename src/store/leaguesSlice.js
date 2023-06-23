@@ -20,9 +20,12 @@ export const addLeague = createAsyncThunk('addLeague', async(league, { rejectWit
                 authorization: token
             }
         })
+        console.log(response.data)
         return response.data;
     } catch(err){
-        return rejectWithValue;
+        console.log('rejecting with value');
+        //adding reject with value to list of leagues need to resolve
+        return rejectWithValue('Not authorized to create league.');
     }
 })
 
@@ -38,7 +41,7 @@ export const updateLeague = createAsyncThunk("updateLeague", async (formData, { 
     });
       return response.data;
     } catch(err){
-        return rejectWithValue
+        return rejectWithValue('Not authorized to update league.');
     }
     }
 );
@@ -51,7 +54,7 @@ export const deleteLeague = createAsyncThunk('deleteLeague', async(leagueId, {re
             }
         });
     }catch(err){
-        return rejectWithValue;
+        return rejectWithValue('Not authorized to delete league.');;
     }
 })
 

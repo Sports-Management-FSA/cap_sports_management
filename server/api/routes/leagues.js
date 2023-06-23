@@ -29,11 +29,11 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
-        if (!user){
+        if (!user || !user.isDirector){
             return res.status(401).send('Unauthorized to add league');
-        }
+        } 
         const league = await League.create(req.body);
-        res.status(201)
+        res.send(league);
     } catch(ex) {
         next(ex);
     }
@@ -42,6 +42,10 @@ router.post('/', async (req, res, next) => {
 // UPDATE LEAGUE BASED ON ID
 router.put('/:id', async (req, res, next) => {
     try {
+        const user = await User.findByToken(req.headers.authorization);
+        if (!user || !user.isDirector){
+            return res.status(401).send('Unauthorized to update league');
+        } 
         const league = await League.findByPk(req.params.id);
         await league.update(req.body);
     } catch(ex) {
@@ -53,7 +57,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
-        if (!user) {
+        if (!user || !user.isDirector) {
             return res.status(401).send('Unauthorized to delete league');
         }
         await League.destroy({where: { id: req.params.id}});
