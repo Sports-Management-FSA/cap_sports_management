@@ -20,12 +20,15 @@ const CreateLeague = () => {
     const newLeagueData = {
       name: leagueName,
       season: leagueSeason,
-      email: leagueEmail
+      email: leagueEmail,
+      public: e.target.visibility.value
     };
+    console.log(newLeagueData)
     dispatch(addLeague(newLeagueData));
     setLeagueName('');
     setLeagueSeason('');
-    setLeagueEmail('')
+    setLeagueEmail('');
+    navigate('/');
   };
 
   return (
@@ -50,6 +53,13 @@ const CreateLeague = () => {
           value={leagueEmail}
           onChange={handleLeagueEmailChange}
         />
+        <p>Visibility</p>
+        <fieldset data-role="controlgroup fieldcontain" data-type="horizontal">
+        <input type="radio"  name="visibility" value='true'/>
+        <label htmlFor="public">Public  </label>
+        <input type="radio"  name="visibility" value='false'/>
+        <label htmlFor="private">Private </label>
+        </fieldset>
         <button type="submit">Submit</button>
       </form>
     </div>
