@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, Link  } from 'react-redux';
 
 const DashboardManager = () => {
 
@@ -25,7 +25,9 @@ const DashboardManager = () => {
                 <tbody>
                     {teams.map(team => (
                         <tr key={team.id}>
-                            <td>{team.id}</td>
+                            <td><Link to=""></Link>
+                                {team.id}
+                                </td>
                             <td>{team.name}</td>
                             <td>{team.gamesWon || 'null'}</td>
                             <td>{team.gamesLost || 'no data'}</td>

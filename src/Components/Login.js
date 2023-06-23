@@ -33,6 +33,7 @@ const Login = () => {
          console.error("Error during login:", error);
          setLoginError("An error occurred during login. Please try again.");
       }
+      navigate('/leagues')
    };
 
    const invalidCredentials = credentials.username === "" || credentials.password === "";
