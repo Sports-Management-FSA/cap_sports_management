@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { attemptLogin } from "../store";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
    const dispatch = useDispatch();
@@ -31,6 +31,7 @@ const Login = () => {
          }
       } catch (error) {
          console.error("Error during login:", error);
+         setLoginError("An error occurred during login. Please try again.");
       }
    };
 
@@ -48,8 +49,17 @@ const Login = () => {
                value={credentials.password}
                onChange={onChange}
             />
-            <button disabled={invalidCredentials}>Login</button>
          </form>
+         <div>
+            <button disabled={invalidCredentials} onClick={login}>
+               Login
+            </button>
+         </div>
+         <div>
+            <button>
+               <Link to="/register">Register</Link>
+            </button>
+         </div>
          {loginError && <div>{loginError}</div>}
       </div>
    );

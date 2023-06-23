@@ -7,7 +7,7 @@ const Home = () => {
    const { auth, leagues } = useSelector((state) => state);
    const dispatch = useDispatch();
 
-   console.log(leagues.leaguesList);
+   console.log(auth);
 
    return (
       <div>
@@ -20,19 +20,21 @@ const Home = () => {
                </div>
             ) : (
                <div>
-                  <button>Login</button>
+                  <button>
+                     <Link to="/login">Login</Link>
+                  </button>
                </div>
             )}
          </div>
          <div>
-            <Link to='/createleague'>Create League</Link>
+            <Link to="/createleague">Create League</Link>
             {leagues.leaguesList?.map((league, idx) => (
-                  <div key={idx}>
-                     <Link to={`/league/${league.id}`} >
-                        <h3>{league.name}</h3>
-                     </Link>
-                     <p>Season: {league.season}</p>
-                  </div>
+               <div key={idx}>
+                  <Link to={`/league/${league.id}`}>
+                     <h3>{league.name}</h3>
+                  </Link>
+                  <p>Season: {league.season}</p>
+               </div>
             ))}
          </div>
       </div>
