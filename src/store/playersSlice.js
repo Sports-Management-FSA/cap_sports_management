@@ -12,6 +12,7 @@ export const fetchAllPlayers = createAsyncThunk("getPlayers", async (_, { reject
 
 export const addPlayer = createAsyncThunk("addPlayer", async (player, { rejectWithValue }) => {
    try {
+      console.log(player);
       const token = window.localStorage.getItem("token");
       const response = await axios.post("/api/users", player, {
          headers: {

@@ -1,16 +1,19 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { addPlayer } from '../store';
 
-const CreatePlayer = (props) => {
+const CreatePlayer = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {teamId} = props;
+    const location = useLocation();
+    const {teamId} = location.state;
 
     const create = async(ev)=>{
         ev.preventDefault();
         const player={
+            username: ev.target.username.value,
+            password: ev.target.password.value,
             firstName: ev.target.firstName.value,
             lastName: ev.target.lastName.value,
             email: ev.target.email.value,
@@ -24,6 +27,14 @@ const CreatePlayer = (props) => {
     return(
         <div>
              <form onSubmit={create}>
+             <div className='form-inputs'>
+                    <label>Username: </label>
+                    <input name='username' placeholder='required' required/>
+                </div>
+                <div className='form-inputs'>
+                    <label>Password: </label>
+                    <input name='password' placeholder='required' required/>
+                </div>
              <div className='form-inputs'>
                     <label>First Name: </label>
                     <input name='firstName' placeholder='required' required/>

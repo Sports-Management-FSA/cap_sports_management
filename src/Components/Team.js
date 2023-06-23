@@ -8,13 +8,14 @@ const Team = () => {
     const team = teams.find(team=> team.id == id);
     const users = useSelector(state=>state.players.playerList);
     const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
+    const teamId = team.id
 
     return(
         <div>
             <h2>{team.name}</h2>
             <p>{team.email}</p>
             <h3>Player Roster</h3>
-            <Link to='/createplayer'>Create Player</Link>
+            <Link to={`/createplayer`} state={{ teamId: teamId}}>Create Player</Link>
             {
                 players.map((player, idx)=>{
                     return(
