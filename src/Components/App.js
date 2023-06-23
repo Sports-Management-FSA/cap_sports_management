@@ -9,6 +9,7 @@ import Register from "./Register";
 import CreateLeague from "./CreateLeague";
 import CreateTeam from "./CreateTeam";
 import CreatePlayer from "./CreatePlayer";
+import DashboardManager from "./DashboardManager";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
@@ -41,6 +42,7 @@ const App = () => {
                <Route path="/createleague" element={<CreateLeague />} />
                <Route path="/createplayer" element={<CreatePlayer />} />
                <Route path="/register" element={<Register />} />
+               <Route path="/managerdashboard" element={<DashboardManager />} />
             </Routes>
          </div>
       </div>
