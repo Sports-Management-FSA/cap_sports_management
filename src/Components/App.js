@@ -9,9 +9,12 @@ import Register from "./Register";
 import CreateLeague from "./CreateLeague";
 import CreateTeam from "./CreateTeam";
 import CreatePlayer from "./CreatePlayer";
+import DashboardManager from "./DashboardManager";
+import Landing from "./Landing";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
+
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -32,6 +35,7 @@ const App = () => {
       } */}
          <div>
             <Routes>
+               <Route path="/leagues" element={<Landing />} />
                <Route path="/" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
@@ -41,6 +45,7 @@ const App = () => {
                <Route path="/createleague" element={<CreateLeague />} />
                <Route path="/createplayer" element={<CreatePlayer />} />
                <Route path="/register" element={<Register />} />
+               <Route path="/managerdashboard" element={<DashboardManager />} />
             </Routes>
          </div>
       </div>

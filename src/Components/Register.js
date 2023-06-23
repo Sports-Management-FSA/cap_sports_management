@@ -41,6 +41,7 @@ const Register = () => {
          console.error("Error during registration:", error);
          setRegisterError("An error occurred during registration. Please try again.");
       }
+      navigate('/leagues');
    };
 
    const invalidCredentials =

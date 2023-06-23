@@ -1,5 +1,5 @@
 const conn = require('../conn');
-const { STRING, UUID, UUIDV4 } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, BOOLEAN } = conn.Sequelize;
 
 const League = conn.define('league', {
    /* id: {
@@ -24,6 +24,14 @@ const League = conn.define('league', {
         type: STRING,
         allowNull: true
     },
+    public: {
+        type: BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
+    }
 })
 
 module.exports = League;
