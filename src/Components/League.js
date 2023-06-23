@@ -8,12 +8,13 @@ const League = () => {
     const league = leagues.find(league => league.id == id);
     const teams = useSelector(state => state.teams.teamsList);
     const filteredTeams = teams.filter(team => team.leagueId == league.id);
+    const leagueId = league.id;
 
     return (
         <div className="league-container">
             <h2>{league.logo}{league.name}</h2>
             <h2>{league.season}</h2>
-            <Link to='/createteam'>Create Team</Link>
+            <Link to='/createteam' state={{ leagueId: leagueId}}>Create Team</Link>
             {
                 filteredTeams.map((team) => {
                     return (

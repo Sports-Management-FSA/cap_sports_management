@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { addTeam } from '../store';
 
-const CreateTeam = (props) => {
-  const {leagueId} = props;
+const CreateTeam = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const {leagueId} = location.state;
 
   const [teamName, setTeamName] = useState('');
   const [teamEmail, setTeamEmail] = useState('');
@@ -24,6 +25,7 @@ const CreateTeam = (props) => {
     dispatch(addTeam(newTeamData));
     setTeamName('');
     setTeamEmail('');
+    navigate(`/league/${leagueId}`);
   };
 
   return (

@@ -10,6 +10,8 @@ const config = {
 if (process.env.QUIET) {
   config.logging = false;
 }
-const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/cap_db', config);
+const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/cap_db', {
+  logging: false,
+});
 
 module.exports = conn;
