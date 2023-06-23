@@ -39,7 +39,7 @@ const Login = () => {
    const invalidCredentials = credentials.username === "" || credentials.password === "";
 
    return (
-      <div>
+      <div className="login-container">
          <h2>Login</h2>
          <form onSubmit={login}>
             <input placeholder="username" value={credentials.username} name="username" onChange={onChange} />

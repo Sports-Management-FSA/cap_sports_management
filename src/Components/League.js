@@ -10,7 +10,7 @@ const League = () => {
     const filteredTeams = teams.filter(team => team.leagueId == league.id);
 
     return (
-        <div>
+        <div className="league-container">
             <h2>{league.logo}{league.name}</h2>
             <h2>{league.season}</h2>
             <Link to='/createteam'>Create Team</Link>
