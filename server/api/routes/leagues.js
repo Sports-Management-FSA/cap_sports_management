@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../db');
+const { User, Team } = require('../../db');
 const { League } = require('../../db');
 
 
@@ -70,11 +70,13 @@ router.delete('/:id', async (req, res, next) => {
 // GET TEAMS BY LEAGUE ID
 router.get('/:id/teams', async (req, res, next) => {
     try {
-        const team = await League.findByPk(req.params.id);
-        res.send(team);
+        const leagueId = req.params.id;
+        const teams = await Team.findAll({where: {leagueId}})
+        res.send(teams);
     } catch(ex) {
         next(ex);
     }
 })
+
 
 module.exports = router;

@@ -10,7 +10,18 @@ export const fetchAllTeams = createAsyncThunk("getTeams", async (_, { rejectWith
    }
 });
 
+export const fetchTeamsByLeague = createAsyncThunk("fetchTeamsByLeague", async (leagueId, { rejectWithValue }) => {
+   try {
+
+      const response = await axios.get(`/api/leagues/${leagueId}/teams`);
+      return response.data;
+   } catch (err) {
+      return rejectWithValue;
+   }
+});
+
 export const addTeam = createAsyncThunk("addTeam", async (team, { rejectWithValue }) => {
+   console.log(team)
    try {
       console.log("adding team");
       const token = window.localStorage.getItem("token");
@@ -64,6 +75,17 @@ const teamsSlice = createSlice({
             state.teamsList.push(...action.payload);
          })
          .addCase(fetchAllTeams.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+         })
+         .addCase(fetchTeamsByLeague.pending, (state) => {
+            state.loading = true;
+         })
+         .addCase(fetchTeamsByLeague.fulfilled, (state, action) => {
+            state.loading = false;
+            state.teamsList.push(action.payload);
+         })
+         .addCase(fetchTeamsByLeague.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
          })
