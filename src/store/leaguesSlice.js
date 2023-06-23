@@ -23,8 +23,6 @@ export const addLeague = createAsyncThunk('addLeague', async(league, { rejectWit
         console.log(response.data)
         return response.data;
     } catch(err){
-        console.log('rejecting with value');
-        //adding reject with value to list of leagues need to resolve
         return rejectWithValue('Not authorized to create league.');
     }
 })

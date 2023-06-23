@@ -27,8 +27,10 @@ router.post("/", async (req, res, next) => {
    console.log(req.body)
    try {
       const user = await User.findByToken(req.headers.authorization);
+      if (!user || !user.isDirector){
+            return res.status(401).send('Unauthorized to add team');
+        } 
       const team = await Team.create(req.body);
-
       res.send(team);
    } catch (ex) {
       next(ex);
@@ -39,6 +41,9 @@ router.post("/", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
    try {
       const user = await User.findByToken(req.headers.authorization);
+      if (!user || !user.isDirector){
+            return res.status(401).send('Unauthorized to delete team');
+        } 
       const team = await Team.findOne({
          where: {
             id: req.params.id,
@@ -58,8 +63,13 @@ router.delete("/:id", async (req, res, next) => {
 // Update Team based on ID
 router.put("/:id", async (req, res, next) => {
    try {
+      const user = await User.findByToken(req.headers.authorization);
+      if (!user || !user.isDirector){
+            return res.status(401).send('Unauthorized to update team');
+        } 
       const team = await Team.findByPk(req.params.id);
       await team.update(req.body);
+      return(team);
    } catch (ex) {
       next(ex);
    }

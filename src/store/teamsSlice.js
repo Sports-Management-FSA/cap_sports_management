@@ -32,7 +32,7 @@ export const addTeam = createAsyncThunk("addTeam", async (team, { rejectWithValu
       });
       return response.data;
    } catch (err) {
-      return rejectWithValue;
+      return rejectWithValue('Not authorized to create team.');
    }
 });
 
@@ -42,15 +42,16 @@ export const updateTeam = createAsyncThunk("updateTeam", async (formData, { reje
       const response = await axios.put(`/api/teams/${id}`, formData);
       return response.data;
    } catch (err) {
-      return rejectWithValue;
+      return rejectWithValue('Not authorized to update league.');
    }
 });
 
 export const deleteTeam = createAsyncThunk('deleteTeam', async(teamId, {rejectWithValue}) => {
     try{
         await axios.delete(`/api/teams/${teamId}`);
+        return(teamId);
     }catch(err){
-        return rejectWithValue;
+        return rejectWithValue('Not authorized to delete league.');
     }
 })
 
@@ -108,6 +109,16 @@ const teamsSlice = createSlice({
             state.teamsList = state.teamsList.map((team) => (team.id !== action.payload.id ? team : action.payload));
          })
          .addCase(updateTeam.rejected, (state, action) => {
+            state.error = action.error.message;
+         })
+         .addCase(deleteTeam.pending, (state) => {
+            state.loading = true;
+         })
+         .addCase(deleteTeam.fulfilled, (state, action) => {
+            state.loading = false;
+            state.teamsList = state.teamsList.filter((team) => (team.id !== action.payload.id));
+         })
+         .addCase(deleteTeam.rejected, (state, action) => {
             state.error = action.error.message;
          });
    }
