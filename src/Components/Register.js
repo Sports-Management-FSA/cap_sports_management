@@ -22,8 +22,8 @@ const Register = () => {
       setRegisterError("");
    };
 
-   const handleRegister = async (ev) => {
-      ev.preventDefault();
+   const handleRegister = async (event) => {
+      event.preventDefault();
       try {
          const registrationResult = await dispatch(registerUser(credentials));
          if (registrationResult.payload.error) {
