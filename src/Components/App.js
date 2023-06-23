@@ -35,8 +35,8 @@ const App = () => {
       } */}
          <div>
             <Routes>
-               <Route path="/" element={<Landing />} />
-               <Route path="/leagues" element={<Home />} />
+               <Route path="/leagues" element={<Landing />} />
+               <Route path="/" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
                <Route path="/teams/:id" element={<Team />} />
