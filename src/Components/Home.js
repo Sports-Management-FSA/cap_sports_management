@@ -30,12 +30,6 @@ const Home = () => {
             <div>
                <Link to="/createleague">Create League</Link>
             </div>
-            <div>
-               <Link to="/createteam">Create Team</Link>
-            </div>
-            <div>
-               <Link to="/createplayer">Add Players</Link>
-            </div>
             {leagues.leaguesList?.map((league, idx) => (
                <div key={idx}>
                   <Link to={`/league/${league.id}`}>
