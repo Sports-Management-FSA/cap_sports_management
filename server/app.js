@@ -5,7 +5,9 @@ const routes = require("./api");
 const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
+const { access } = require("fs");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const User = require("./db/models/User");
 require("dotenv").config();
 
 // Middleware
@@ -37,18 +39,48 @@ passport.use(
       {
          clientID: process.env.GOOGLE_CLIENT_ID,
          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-         callbackURL: "http://www.example.com/auth/google/callback"
+         callbackURL: "http://localhost:3000/auth/google/callback",
+         passReqToCallback: true
       },
-      function (accessToken, refreshToken, profile, cb) {
-         // Called On Sucessful Authentication
-         // Insert Into Database
-         console.log(profile);
-         cb(null, profile);
+      async (req, accessToken, refreshToken, profile, cb) => {
+         const defaultUser = {
+            username: `${profile.name.givenName.toLowerCase()}${profile.name.familyName.toLowerCase()}`,
+            firstName: profile.name.givenName,
+            lastName: profile.name.familyName,
+            email: profile.emails[0].value,
+            googleId: profile.id
+         };
+
+         const user = await User.findOrCreate({
+            where: { googleId: profile.id },
+            defaults: defaultUser
+         }).catch((err) => {
+            console.log("Error signing up", err);
+            cb(err, null);
+         });
+
+         if (user && user[0]) return cb(null, user && user[0]);
       }
    )
 );
 
-app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
+passport.serializeUser((user, cb) => {
+   console.log("Serializing user:", user);
+   cb(null, user.id);
+});
+
+passport.deserializeUser(async (id, cb) => {
+   const user = await User.findOne({ where: { id } }).catch((err) => {
+      console.log("Error deserializing", err);
+      cb(err, null);
+   });
+
+   console.log("DeSerialized user", user);
+
+   if (user) cb(null, user);
+});
+
+app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), function (req, res) {
    // Successful authentication, redirect home
