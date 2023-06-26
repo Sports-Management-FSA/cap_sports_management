@@ -35,7 +35,7 @@ const Nav = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                  {user?.username ? (
+                  {user?.id ? (
                      <>
                         <li className="nav-item dropdown">
                            <a
