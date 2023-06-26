@@ -41,7 +41,7 @@ const Landing = () => {
                         <a href="/">get started now</a>
                     </div>
                 </div>
-                <dialog >what is this doing</dialog>
+                <dialog>What is this doing</dialog>
             </section>
         </div>
     )
