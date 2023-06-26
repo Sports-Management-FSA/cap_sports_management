@@ -15,10 +15,10 @@ const Dashboard = () => {
                 <div className='dashboard-profile-container'>
                     <PlayerProfile />
                 </div>
-                <div>
+                <div className='dashboard-director-container'>
                     <DashboardDirector />
                 </div>
-                <div>
+                <div className='dashboard-manager-container'>
                     <DashboardManager />
                 </div>
             </div>

@@ -9,7 +9,7 @@ const DashboardManager = () => {
     return (
         <div>
             <h2> Manager Dashboard</h2>
-            <table>
+            <table className='dashboard-manager-table'>
                 <thead>
                     <tr><th>ID</th><th>Name</th><th>Wins</th><th>Losses</th><th>Email</th></tr>
                 </thead>

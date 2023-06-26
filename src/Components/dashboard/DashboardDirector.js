@@ -11,7 +11,7 @@ const DashboardDirector = () => {
     return (
         <div>
             <h2>Director Dashboard</h2>
-            <table>
+            <table className='dashboard-director-table'>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -22,9 +22,10 @@ const DashboardDirector = () => {
                         <th>Team Manager</th>
                     </tr>
                 </thead>
+                <hr />
                 <tbody>
                     {teams.map(team => (
-                        <tr key={team.id}>
+                        <tr  key={team.id}>
                             <td>  {team.id} </td>
                             <td>{team.name}</td>
                             <td>{team.gamesWon || 'null'}</td>
