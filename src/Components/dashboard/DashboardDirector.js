@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const DashboardDirector = () => {
 
@@ -9,7 +10,7 @@ const DashboardDirector = () => {
 
     return (
         <div>
-            <h1>Director Dashboard</h1>
+            <h2>Director Dashboard</h2>
             <table>
                 <thead>
                     <tr>

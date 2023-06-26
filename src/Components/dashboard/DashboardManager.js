@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch, Link  } from 'react-redux';
+import { useSelector, useDispatch, Link } from 'react-redux';
 
 const DashboardManager = () => {
     const auth = useSelector(state => state.auth);
@@ -8,7 +8,7 @@ const DashboardManager = () => {
 
     return (
         <div>
-            <h1> Manager Dashboard</h1>
+            <h2> Manager Dashboard</h2>
             <table>
                 <thead>
                     <tr><th>ID</th><th>Name</th><th>Wins</th><th>Losses</th><th>Email</th></tr>
