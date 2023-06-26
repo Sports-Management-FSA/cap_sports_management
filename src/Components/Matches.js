@@ -17,25 +17,29 @@ const Matches = () => {
             <div className='matches-header'>
              <h1>Matches</h1>
              </div>
-        <h2>Previous Matches</h2>
+        <h5>Previous Matches</h5>
         {
         matches.map((match) => {
             if (date > match.date) {
             return (
-                <div className='single-match-container'>
-                    <div className="match-name">
+                <div className='matches--match-container'>
+                    <div className="matches--match" key={match.id}>
+                    <div className="matches--match-upper-name">
                         {match.name}
-                    </div>
-<div className="matches-dates">
-<p>{match.date}</p>
-       <p>{match.time}</p>
+                    
+<div className="matches--match-upper-dates">
+<p>{match.date} @ {match.time}</p>
        </div>
-    <div className='matches-vs'>
+       </div>
+    <div className='matches--match-vs'>
+        <div className="matches-match-vs-team">
        <p>{teams.find(team => team.id === match.teamAid)?.name || ""} vs {teams.find(team => team.id === match.teamBid)?.name || ""}</p>
-       <div className='matches-location'>
+       </div>
+       <div className='matches--match-lower'>
        <p>{match.location}</p>
        <p>{match.description}</p>
        </div>
+        </div>
         </div>
         </div>
 )}}

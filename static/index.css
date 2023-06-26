@@ -290,9 +290,6 @@ a {
   font-size: 0.7rem;
   margin: 0;
 }
-
-.single-match-container {
-
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -334,41 +331,63 @@ a {
   color: #fbfbfb;
   padding: 1rem;
 }
-.matches-container {
-
+.matches--match-container {
+  background-color: #212529;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   height: 25%;
   border: 1px grey solid;
   border-radius: 20px;
+  max-width: 75%;
 }
-.matches-name {
+.matches--match-container h5 {
   color: #fbfbfb;
 }
-.matches-dates {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-}
-.matches-vs {
+.matches--match {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  width: 100vh;
+}
+.matches--match p {
+  color: #fbfbfb;
+}
+.matches--match h5 {
+  color: #fbfbfb;
+}
+.matches--match-upper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.matches--match-vs {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+  margin: 1rem;
+}
+.matches--match-vs p {
+  margin: 0 10px 0 10px;
+}
+.matches-vs-team {
+  display: flex;
+  flex-direction: column;
   margin-top: 1px;
 }
-.matches-vs p {
+.matches-vs-team p:nth-child(2) {
   margin-top: 1px;
   font-size: smaller;
   font-style: italic;
   color: grey;
 }
-.matches-location {
+.matches--match-lower {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  width: 100%;
 }
