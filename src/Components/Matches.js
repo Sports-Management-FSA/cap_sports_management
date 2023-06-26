@@ -22,16 +22,22 @@ const Matches = () => {
         matches.map((match) => {
             if (date > match.date) {
             return (
-                <section className='matches-features-center' key={match.id}>
-    <div className='matches-feature'>
-       <h4>{match.name}</h4>
-       <h3>{teams.find(team => team.id === match.teamAid)?.name || ""} VS {match.teamBid}</h3>
-       <p>{match.date}</p>
+                <div className='single-match-container'>
+                    <div className="match-name">
+                        {match.name}
+                    </div>
+<div className="matches-dates">
+<p>{match.date}</p>
        <p>{match.time}</p>
+       </div>
+    <div className='matches-vs'>
+       <p>{teams.find(team => team.id === match.teamAid)?.name || ""} vs {teams.find(team => team.id === match.teamBid)?.name || ""}</p>
+       <div className='matches-location'>
        <p>{match.location}</p>
-       <a href='/matches/;id'>{match.description}</a>
+       <p>{match.description}</p>
+       </div>
         </div>
-        </section>
+        </div>
 )}}
 )}
  <h2>Current Matches</h2>

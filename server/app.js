@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const routes = require("./api");
-const session = require("express-session");
-const cors = require("cors");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-require("dotenv").config();
+// const session = require("express-session");
+// const cors = require("cors");
+// const passport = require("passport");
+// const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// require("dotenv").config();
 
 // Middleware
 app.use(express.json());
