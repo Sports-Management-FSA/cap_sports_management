@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { fetchAllMatches } from "../store";
 
 const Matches = () => {
-    const matches = useSelector(state => state.matches.matchesList)
+    const matches = useSelector(state => state.matches.matchesList);
     console.log(matches);
+    const teams = useSelector(state => state.teams.teamsList);
+    console.log(teams);
 
     var today = new Date(),
 
@@ -20,13 +22,16 @@ const Matches = () => {
         matches.map((match) => {
             if (date > match.date) {
             return (
-    <div key={match.id}>
-       <p>{match.name}</p>
+                <section className='matches-features-center' key={match.id}>
+    <div className='matches-feature'>
+       <h4>{match.name}</h4>
+       <h3>{teams.find(team => team.id === match.teamAid)?.name || ""} VS {match.teamBid}</h3>
        <p>{match.date}</p>
        <p>{match.time}</p>
        <p>{match.location}</p>
-       <p>{match.description}</p>
+       <a href='/matches/;id'>{match.description}</a>
         </div>
+        </section>
 )}}
 )}
  <h2>Current Matches</h2>
@@ -34,13 +39,15 @@ const Matches = () => {
         matches.map((match) => {
             if (date === match.date) {
             return (
-    <div key={match.id}>
-       <p>{match.name}</p>
+                <section className='matches-features-center' key={match.id}>
+    <div className='matches-feature'>
+       <h4>{match.name}</h4>
        <p>{match.date}</p>
        <p>{match.time}</p>
        <p>{match.location}</p>
        <p>{match.description}</p>
         </div>
+        </section>
 )}}
 )}
         <h2>Upcoming Matches</h2>
@@ -48,13 +55,15 @@ const Matches = () => {
         matches.map((match) => {
             if (date < match.date) {
             return (
-    <div key={match.id}>
+                <section className='matches-features-center' key={match.id}>
+    <div className='matches-feature'>
        <p>{match.name}</p>
        <p>{match.date}</p>
        <p>{match.time}</p>
        <p>{match.location}</p>
        <p>{match.description}</p>
         </div>
+        </section>
 )}}
 )}
     </div>
