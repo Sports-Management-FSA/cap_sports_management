@@ -93,8 +93,8 @@ const Login = () => {
                         <div>
                            <p className="mb-0">
                               Don't have an account?{" "}
-                              <Link to="/register" className="text-decoration-none">
-                                 <a className="text-white-50 fw-bold">Sign Up</a>
+                              <Link to="/register" className="text-decoration-none text-white-50 fw-bold">
+                                 Sign Up
                               </Link>
                            </p>
                         </div>
@@ -108,28 +108,3 @@ const Login = () => {
 };
 
 export default Login;
-
-//   <div>
-//      <h2>Login</h2>
-//      <form onSubmit={login}>
-//         <input placeholder="username" value={credentials.username} name="username" onChange={onChange} />
-//         <input
-//            placeholder="password"
-//            type="password"
-//            name="password"
-//            value={credentials.password}
-//            onChange={onChange}
-//         />
-//      </form>
-//      <div>
-//         <button disabled={invalidCredentials} onClick={login}>
-//            Login
-//         </button>
-//      </div>
-//      <div>
-//         <button>
-//            <Link to="/register">Register</Link>
-//         </button>
-//      </div>
-//      {loginError && <div>{loginError}</div>}
-//   </div>
