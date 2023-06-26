@@ -27,16 +27,59 @@
   color: #acacac;
   font-size: 0.75rem;
 }
-.league__info--match {
+.league__info--match-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 5rem;
   height: 25%;
   border: 1px grey solid;
   border-radius: 20px;
 }
+.league__info--match-container h5 {
+  color: #fbfbfb;
+}
+.league__info--match {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vh;
+}
+.league__info--match p {
+  color: #fbfbfb;
+}
 .league__info--match h5 {
   color: #fbfbfb;
+}
+.league__info--match-upper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.league__info--match-vs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.league__info--match-vs p {
+  margin: 0 10px 0 10px;
+}
+.league__match-vs-team {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1px;
+}
+.league__match-vs-team p:nth-child(2) {
+  margin-top: 1px;
+  font-size: smaller;
+  font-style: italic;
+  color: grey;
+}
+.league__info--match-lower {
+  display: flex;
+  justify-content: space-between;
 }
 .league__content {
   display: flex;
