@@ -290,6 +290,47 @@ a {
   font-size: 0.7rem;
   margin: 0;
 }
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 5rem;
+  color: #fbfbfb;
+}
+.dashboard-profile-container {
+  border-style: solid;
+  width: 60%;
+  background-color: #252424;
+  padding: 1rem;
+}
+.dashboard-player {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-director-container {
+  border-style: solid;
+  width: 60%;
+  background-color: #252424;
+  padding: 1rem;
+}
+.dashboard-director-table th,
+.dashboard-director-table td {
+  color: #fbfbfb;
+  padding: 1rem;
+}
+.dashboard-manager-container {
+  border-style: solid;
+  width: 60%;
+  background-color: #252424;
+  padding: 1rem;
+}
+.dashboard-manager-table th,
+.dashboard-manager-table td {
+  color: #fbfbfb;
+  padding: 1rem;
+}
 .matches-container {
   display: flex;
   flex-direction: column;
