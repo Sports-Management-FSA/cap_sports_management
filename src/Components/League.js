@@ -24,9 +24,33 @@ const League = () => {
         <div className="league-container">
             <div className="league__head">
                 <h2>{league.logo}{league.name}</h2>
-                <h2>{league.season}</h2>
+                <h5>{league.season}</h5>
             </div>
-            <Link to='/createteam' state={{ leagueId: leagueId}}>Create Team</Link>
+            <div className="league__info">
+                <div className="league__info--description">
+                    <h5>About this League</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <Link to='/createteam' state={{ leagueId: leagueId}}>Create Team</Link>
+                </div>
+                <div className="league__info--match">
+                    <h5>Upcoming Match</h5>
+                    {/* INSERT MATCH DATA */}
+                </div>
+            </div>
+            <div className="league__content">
+                <div className="league__content--body">
+                    <h1>Body of content</h1>
+                </div>
+                <div className="league__content--sidebar">
+                    <h1>SIDEBAR</h1>
+                    <ul className="league--sidebar">
+                        <li><button>Players</button></li>
+                        <li><button>Standings</button></li>
+                        <li><button>Matches</button></li>
+                        <li><button>Team Info</button></li>
+                    </ul>
+                </div>
+            </div>
             {
                 filteredTeams.map((team) => {
                     return (

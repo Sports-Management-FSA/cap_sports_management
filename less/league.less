@@ -1,3 +1,103 @@
+.league__head {
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+    // flex-direction: column;
+}
+
 .league__head h2{
     color: @font-primary;
+    margin-left: 30px;
+    
+}
+
+.league__head h5{
+    color: @font-secondary;
+    font-size: .9rem;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.league__info--description {
+    margin: 5rem;
+}
+
+
+.league__info--description h5{
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    color: @font-primary;
+}
+.league__info--description p{
+    font-weight: 100;
+    color: @font-secondary;
+    font-size: .75rem;
+}
+
+.league__info--match {
+    display: flex;
+    justify-content: center;
+    margin: 5rem;
+    height: 25%;
+    border: 1px grey solid;
+    border-radius: 20px;
+}
+
+.league__info--match h5{
+    color: @font-primary;
+}
+
+
+.league__content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.league__content--body {
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    border: 1px grey solid;
+    height: 50vh;
+    flex-basis: 85%;
+}
+
+.league__content--sidebar {
+    flex-basis: 15%;
+    background-color: aliceblue;
+    height: 50vh;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+
+.league--sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.league--sidebar li {
+    margin-bottom: 1rem;
+}
+
+.league--sidebar button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.league--sidebar button:hover {
+    background-color: #ddd;
 }
