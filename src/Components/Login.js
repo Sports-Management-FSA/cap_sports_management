@@ -37,6 +37,10 @@ const Login = () => {
 
    const invalidCredentials = credentials.username === "" || credentials.password === "";
 
+   const googleLogin = () => {
+      window.open("http://localhost:3000/auth/google", "_self");
+   };
+
    return (
       <section className="vh-100 login-custom">
          <div className="container py-5 h-100">
@@ -85,7 +89,7 @@ const Login = () => {
                               <a className="text-white">
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
-                              <a className="text-white">
+                              <a className="text-white" onClick={googleLogin}>
                                  <i className="fab fa-google fa-lg"></i>
                               </a>
                            </div>
