@@ -1,7 +1,8 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchAllLeagues } from "../store";
+import { fetchAllMatches } from "../store";
+import Matches from './Matches';
 
 const League = () => {
     const { id } = useParams();
@@ -11,6 +12,8 @@ const League = () => {
     const teams = useSelector(state => state.teams.teamsList);
     const filteredTeams = teams.filter(team => team.leagueId == league.id);
     const leagueId = league ? league.id : null;
+    const matches = useSelector(state => state.matches.matchesList);
+    const today = new Date();
 
     // useEffect(()=> {
     //     dispatch(fetchAllLeagues())
@@ -35,6 +38,21 @@ const League = () => {
                 <div className="league__info--match">
                     <h5>Upcoming Match</h5>
                     {/* INSERT MATCH DATA */}
+                    {matches.map((match) => {
+                        const matchDate = new Date(match.date);
+                        if (matchDate > today) {
+                        return (
+                            <div key={match.id}>
+                            <p>{match.name}</p>
+                            <p>{match.date}</p>
+                            <p>{match.time}</p>
+                            <p>{match.location}</p>
+                            <p>{match.description}</p>
+                            </div>
+                        );
+                        }
+                        return null;
+                    })}
                 </div>
             </div>
             <div className="league__content">

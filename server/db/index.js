@@ -76,11 +76,10 @@ const syncAndSeed = async()=> {
       email: 'doves@gmail.com',
       leagueId: 3,
     }),
-
     await Match.create({
       name:'Finals', 
       description: 'final round', 
-      date: 2023-11-11, 
+      date: "2023-11-11", 
       time: '10:05', 
       location: 'Barts Stadium', 
       teamAid: 2, 
@@ -90,7 +89,7 @@ const syncAndSeed = async()=> {
     await Match.create({
       name:'Semi Finals', 
       description: 'semi final round', 
-      date: 2023-8-10, 
+      date: "2023-8-10", 
       time: '1:05', 
       location: 'Barts Stadium', 
       teamAid: 4, 
@@ -100,14 +99,23 @@ const syncAndSeed = async()=> {
     await Match.create({
       name:'Beginning', 
       description: 'beginning round', 
-      date: 2023-10-9, 
+      date: "2023-10-9", 
       time: '12:05', 
       location: 'Barts Stadium', 
       teamAid: 8, 
       teamBid: 7,
       leagueId: 3,
     }),
-
+    await Match.create({
+      name:'Wildcard', 
+      description: 'wildcard round', 
+      date: "2023-06-01", 
+      time: '12:15', 
+      location: 'Mission Stadium', 
+      teamAid: 8, 
+      teamBid: 7,
+      leagueId: 3,
+    }),
     await User.create({ 
       username: 'jen', 
       password: '123', 
