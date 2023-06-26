@@ -1,9 +1,12 @@
-body {
+* {
   font-family: verdana;
 }
 form {
   display: flex;
   flex-direction: column;
+}
+body {
+  background-color: #2f3030;
 }
 form > * {
   margin: 1rem;
@@ -14,4 +17,123 @@ nav {
 }
 a {
   text-decoration: none;
+}
+.team-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+}
+.landing-header h1 {
+  color: #fbfbfb;
+  margin-top: 1rem;
+}
+.landing-features-center {
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+}
+.landing-features-center h4 {
+  color: #fbfbfb;
+}
+.landing-features-center p {
+  color: #acacac;
+}
+.landing-features-center a {
+  color: #00ffc8;
+}
+.landing-feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0.5px #acacac solid;
+  border-radius: 5px;
+  padding: 20px;
+}
+.home-container h1 {
+  color: #fbfbfb;
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.home-popular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.home-popular h3 {
+  color: #fbfbfb;
+  margin-bottom: 2px;
+  text-decoration: underline;
+  text-decoration-color: #00ffc8;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 2px;
+}
+.home-popular-cards {
+  display: flex;
+  gap: 10rem;
+  margin: 2rem;
+}
+.home-popular-cards a {
+  border: 1px grey solid;
+  border-radius: 10px;
+  padding: 15px 50px 15px 50px;
+  color: #acacac;
+}
+.home-leagues {
+  display: flex;
+  flex-direction: column;
+}
+.home-leagues-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20 15 30 15;
+}
+.home-leagues-cards {
+  display: flex;
+  margin-left: 40px;
+  flex-direction: row;
+  flex-flow: wrap;
+  gap: 10rem;
+}
+.home-leagues-cards h4 {
+  color: #00ffc8;
+}
+.home-leagues-cards p {
+  color: #acacac;
+}
+.home-league-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0.05px grey solid;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  align-items: flex-start;
+}
+.home-league-card h2 {
+  height: 125px;
+}
+.home-league-card-text {
+  width: 100%;
+}
+.home-card-text-subtext {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.home-card-text-subtext p {
+  font-size: 0.7rem;
+  margin: 0;
 }
