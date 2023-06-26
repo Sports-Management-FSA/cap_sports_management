@@ -1,7 +1,7 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchAllMatches } from "../store";
+import { fetchAllLeagues } from "../store";
 import Matches from './Matches';
 
 const League = () => {
@@ -21,9 +21,9 @@ const League = () => {
         return matchDate > today;
       });
 
-    // useEffect(()=> {
-    //     dispatch(fetchAllLeagues())
-    // }, [dispatch, id])
+    useEffect(()=> {
+        dispatch(fetchAllLeagues())
+    }, [dispatch, id])
 
     if (!league){
         return <div>...loading</div>
@@ -39,7 +39,8 @@ const League = () => {
                 <div className="league__info--description">
                     <h5>About this League</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <Link to='/createteam' state={{ leagueId: leagueId}}>Create Team</Link>
+                    {/* <Link to='/createteam' state={{ leagueId: leagueId}}>Create Team</Link> */}
+                    <a href="">Request to join this league</a>
                 </div>
             </div>
             <div className="league__info--match-container">
@@ -55,24 +56,24 @@ const League = () => {
                                     <p>{upcomingMatch.name}</p>
                                 </div>
                                 <div className="league__info--match-upper-dates">
-                                    <p>{upcomingMatch.date}</p>
-                                    <p>{upcomingMatch.time}</p>
+                                    <p>{upcomingMatch.date} @ {upcomingMatch.time}</p>
+                                    
                                 </div>
                             </div>
                             <div className="league__info--match-vs">
                                 <div className="league__match-vs-team">
-                                    <p>{teams.find(team => team.id === upcomingMatch.teamAid)?.name ||  ""}</p>
+                                    <p><Link to={`/teams/${upcomingMatch.teamAid}`}>{teams.find(team => team.id === upcomingMatch.teamAid)?.name ||  ""}</Link></p>
                                     <p>team id: {upcomingMatch.teamAid}</p>
                                 </div>
                                 <p> vs </p>
                                 <div className="league__match-vs-team">
-                                    <p>{teams.find(team => team.id === upcomingMatch.teamBid)?.name ||  ""}</p>
+                                    <p><Link to={`/teams/${upcomingMatch.teamBid}`}>{teams.find(team => team.id === upcomingMatch.teamBid)?.name ||  ""}</Link></p>
                                     <p>team id: {upcomingMatch.teamBid}</p>
                                 </div>
                             </div>
                             <div className="league__info--match-lower">
                                 <p>{upcomingMatch.location}</p>
-                                <p>{upcomingMatch.description}</p>
+                                <p><Link to="/matches">View all matches</Link></p>
                             </div>
                      
                         </div>
@@ -82,9 +83,9 @@ const League = () => {
             <div className="league__content">
                 <div className="league__content--body">
                     <h1>Body of content</h1>
+                    <Matches />
                 </div>
                 <div className="league__content--sidebar">
-                    <h1>SIDEBAR</h1>
                     <ul className="league--sidebar">
                         <li><button>Players</button></li>
                         <li><button>Standings</button></li>
@@ -93,16 +94,6 @@ const League = () => {
                     </ul>
                 </div>
             </div>
-            {
-                filteredTeams.map((team) => {
-                    return (
-                        <div key={team.id}>
-                            <Link to={`/teams/${team.id}`}>{team.name}</Link>
-                            <p>{team.email}</p>
-                        </div>
-                    )
-                })
-            }
         </div>
     )
 }

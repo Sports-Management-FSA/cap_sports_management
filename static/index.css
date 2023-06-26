@@ -14,7 +14,18 @@
   margin-bottom: 10px;
 }
 .league__info--description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 5rem;
+  padding: 1rem;
+  background-color: #212529;
+  border: 1px grey solid;
+  border-radius: 20px;
+}
+.league__info--description a {
+  display: flex;
+  justify-content: flex-end;
 }
 .league__info--description h5 {
   display: flex;
@@ -23,19 +34,26 @@
   color: #fbfbfb;
 }
 .league__info--description p {
+  border-bottom: 0.5px solid grey;
+  padding-bottom: 15px;
   font-weight: 100;
   color: #acacac;
   font-size: 0.75rem;
 }
 .league__info--match-container {
+  background-color: #212529;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   height: 25%;
   border: 1px grey solid;
   border-radius: 20px;
+  max-width: 75%;
 }
 .league__info--match-container h5 {
   color: #fbfbfb;
@@ -43,7 +61,7 @@
 .league__info--match {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   width: 100vh;
 }
 .league__info--match p {
@@ -62,6 +80,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 1rem;
 }
 .league__info--match-vs p {
   margin: 0 10px 0 10px;
@@ -87,44 +106,50 @@
   gap: 10px;
 }
 .league__content--body {
-  margin-left: 20px;
+  margin-left: 200px !important;
   margin-right: 20px;
   border-radius: 20px;
   border: 1px grey solid;
-  height: 50vh;
+  height: 100vh;
   flex-basis: 85%;
 }
 .league__content--sidebar {
+  background-color: #45586c;
   flex-basis: 15%;
-  background-color: aliceblue;
   height: 50vh;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 0.5px grey solid;
 }
 .league--sidebar {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  border-top-left-radius: 20px;
 }
 .league--sidebar li {
-  margin-bottom: 1rem;
+  width: 100%;
 }
 .league--sidebar button {
   width: 100%;
-  padding: 0.5rem;
-  background-color: #eee;
+  height: 3rem;
+  color: #fbfbfb;
+  background-color: #212529;
   border: none;
-  border-radius: 5px;
   font-size: 1rem;
   text-align: left;
+  padding: 0;
+  margin: 0;
 }
 .league--sidebar button:hover {
-  background-color: #ddd;
+  background-color: blue;
+  border-top-left-radius: 20px;
 }
 * {
   font-family: verdana;
