@@ -16,7 +16,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
 
-
 const App = () => {
    const { auth } = useSelector((state) => state);
    const dispatch = useDispatch();
@@ -27,7 +26,7 @@ const App = () => {
       dispatch(fetchAllTeams());
       dispatch(loginWithToken());
    }, []);
-
+   console.log(auth);
    return (
       <div>
          <Nav />
