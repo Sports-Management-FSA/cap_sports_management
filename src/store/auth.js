@@ -32,17 +32,14 @@ export const loginWithToken = createAsyncThunk("loginWithToken", async (_, { rej
 
 export const attemptLogin = createAsyncThunk("attemptLogin", async (cred, { rejectWithValue }) => {
    try {
-      const token = window.localStorage.getItem("token");
-      if (token) {
-         const response = await axios.get("/api/auth", {
-            headers: {
-               authorization: token
-            }
-         });
-         return response.data;
-      } else {
-         return {}; // Return an empty user object when no token is available
-      }
+      let response = await axios.post("/api/auth", cred);
+      window.localStorage.setItem("token", response.data);
+      response = await axios.get("/api/auth", {
+         headers: {
+            authorization: response.data
+         }
+      });
+      return response.data;
    } catch (ex) {
       return rejectWithValue(ex.response.data);
    }
@@ -70,9 +67,6 @@ const authSlice = createSlice({
       logout: (state) => {
          window.localStorage.removeItem("token");
          return {};
-      },
-      setUserData: (state, action) => {
-         return action.payload;
       }
    },
    extraReducers: (builder) => {
