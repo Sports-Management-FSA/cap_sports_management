@@ -26,18 +26,18 @@ const Home = () => {
                </div>
             )}
          </div>
-         <div className='home-popular'>
+         <div className="home-popular">
             <div className="section-titles">
                <h3>Popular League Categories</h3>
             </div>
-            <div class="home-popular-cards">
+            <div className="home-popular-cards">
                <a href="/">Esports</a>
                <a href="/">Baseball</a>
                <a href="/">Soccer</a>
                <a href="/">Football</a>
                <a href="/">Cricket</a>
             </div>
-         </div>   
+         </div>
          <div className="home-leagues">
             <div className="home-leagues-header">
                <div>
@@ -47,26 +47,26 @@ const Home = () => {
                   <Link to="/createleague">Create League</Link>
                </div>
             </div>
-               <div className="home-leagues-cards">
-                  {leagues.leaguesList?.map((league, idx) => (
-                     <div className="home-league-card" key={idx}>
-                        <div>
-                           <h2>IMAGE HERE</h2>
+            <div className="home-leagues-cards">
+               {leagues.leaguesList?.map((league, idx) => (
+                  <div className="home-league-card" key={idx}>
+                     <div>
+                        <h2>IMAGE HERE</h2>
+                     </div>
+                     <div className="home-league-card-text">
+                        <div className="home-card-text-name">
+                           <Link to={`/league/${league.id}`}>
+                              <h4>{league.name}</h4>
+                           </Link>
                         </div>
-                        <div className="home-league-card-text">
-                           <div className="home-card-text-name">
-                              <Link to={`/league/${league.id}`}>
-                                 <h4>{league.name}</h4>
-                              </Link>
-                           </div>
-                           <div className="home-card-text-subtext">
-                              <p>Season: {league.season}</p>
-                              <p>{leagues.leaguesList.length} Teams</p>
-                           </div>
+                        <div className="home-card-text-subtext">
+                           <p>Season: {league.season}</p>
+                           <p>{leagues.leaguesList.length} Teams</p>
                         </div>
                      </div>
-                  ))}
-               </div>
+                  </div>
+               ))}
+            </div>
          </div>
       </div>
    );
