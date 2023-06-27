@@ -84,7 +84,7 @@ const syncAndSeed = async()=> {
       location: 'Barts Stadium', 
       teamAid: 2, 
       teamBid: 3,
-      leagueId: 1,
+      leagueId: 2,
     }),
     await Match.create({
       name:'Semi Finals', 
@@ -96,6 +96,7 @@ const syncAndSeed = async()=> {
       teamBid: 5,
       leagueId: 2,
     }),
+
     await Match.create({
       name:'Beginning', 
       description: 'beginning round', 
@@ -104,7 +105,7 @@ const syncAndSeed = async()=> {
       location: 'Barts Stadium', 
       teamAid: 8, 
       teamBid: 7,
-      leagueId: 3,
+      leagueId: 2,
     }),
     await Match.create({
       name:'Wildcard', 

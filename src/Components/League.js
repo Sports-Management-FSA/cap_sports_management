@@ -1,36 +1,30 @@
-import React, { useEffect, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState} from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchAllLeagues } from "../store";
 import Matches from './Matches';
 import Standings from "./Standings";
 
 const League = () => {
     const { id } = useParams();
-    const dispatch = useDispatch();
+    const [currentComponent, setCurrentComponent] = useState(null);
     const leagues = useSelector(state => state.leagues.leaguesList)
     const league = leagues.find(league => league.id == id);
     const teams = useSelector(state => state.teams.teamsList);
-    const [currentComponent, setCurrentComponent] = useState(null);
-
-    
-    const today = new Date();
     const matches = useSelector(state => state.matches.matchesList);
-    const upcomingMatch = matches.find((match) => {
+    const matchesByLeague = matches.filter(match => match.leagueId == id);
+
+    const today = new Date();
+    const upcomingMatch = matchesByLeague.find((match) => {
         const matchDate = new Date(match.date);
         return matchDate > today;
       });
-
-    useEffect(()=> {
-        dispatch(fetchAllLeagues())
-    }, [dispatch, id])
 
     const handleClick= (component) => {
         setCurrentComponent(component)
     }
 
     if (!league){
-        return <div>...loading</div>
+        return <div>...loading</div>;
     }
 
     return (
@@ -43,7 +37,6 @@ const League = () => {
                 <div className="league__info--description">
                     <h5>About this League</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    {/* <Link to='/createteam' state={{ leagueId: leagueId}}>Create Team</Link> */}
                     <a href="">Request to join this league</a>
                 </div>
             </div>
@@ -51,8 +44,7 @@ const League = () => {
                 <div>
                     <h5>Upcoming Match</h5>
                 </div>
-                {/* INSERT MATCH DATA */}
-                    {upcomingMatch && (
+                    {upcomingMatch ? (
                         <div className="league__info--match" key={upcomingMatch.id}>
                             <div className="league__info--match-upper">
                                 <div className="league__info--match-upper-name">
@@ -80,7 +72,12 @@ const League = () => {
                             </div>
                      
                         </div>
-                    )}
+                    ) : ( 
+                    <div className="league__match--nomatches">
+                        <p >no upcoming matches</p>
+                    </div>
+                    )
+                }
             </div>
             
             <div className="league__content">
