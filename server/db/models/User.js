@@ -54,31 +54,63 @@ const User = conn.define('user', {
   },
 });
 
-User.prototype.getUserActions = async function(match){
+//pass string option of filtering, pass parameter 
+User.prototype.getUserActions = async function(option, ref){
   let actions = [];
-  if(match){
-    actions = await conn.models.scorekeeper.findAll({
-      where: {
-        userId: this.id,
-        matchId: match.id,
-      },
-      include: [
-        {
-          model: conn.models.actions,
-        }
-      ]
-    })
-  } else {
-    actions = await conn.models.scorekeeper.findAll({
-      where: {
-        userId: this.id,
-      },
-      include: [
-        {
-          model: conn.models.actions,
-        }
-      ]
-    })
+
+  switch(option){
+    case 'match':
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+          matchId: ref.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+      break;
+    case 'league':
+      //grab all matches from leagues check scorekeeper for matches
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+          matchId: ref.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+      break;
+    case 'team':
+      //grab team matches and check scorekeeper for matches
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+          matchId: ref.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+      break;
+    default:
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
   }
   return actions;
 }
