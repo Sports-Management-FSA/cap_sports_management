@@ -82,7 +82,6 @@ const League = () => {
             
             <div className="league__content">
                 <div className="league__content--body">
-                    <h1>Body of content</h1>
                     {currentComponent === 'Matches' && <Matches />}
                     {currentComponent === 'Standings' && <Standings id={id}/>}
                     {currentComponent === 'Players' && "Players Component here"}

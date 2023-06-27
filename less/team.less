@@ -4,21 +4,44 @@
     justify-content: flex-start;
     color: @font-primary;
     margin: 3rem;
+    padding: 1rem;
+    border: 1px red solid;
+    border-radius: 20px;
+    height: 100vh;
+
 }
 
 .team__content {
-    background-color: dodgerblue;
+    margin-top: 5rem;
+    height: 50vh;
+    border: .5px red solid;
+    border-radius: 20px;
 }
 
 .team__content-nav ul {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     list-style: none;
-    
+    border-bottom: 1px grey solid;
 }
 
-.team__content-nav li {
+.team__content-nav li  {
    margin: 5px;
 }
+
+.team__content-nav li button {
+    margin: 5px;
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+ }
+
+ .team__content-nav li button.active {
+    background-color: red;
+ }

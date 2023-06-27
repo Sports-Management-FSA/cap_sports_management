@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  box-shadow: 2px 2px 4px #000, -2px -2px 4px #fff;
+  box-shadow: 0 0 10px #C40112;
 }
 .league__head h2 {
   color: #fbfbfb;
@@ -20,10 +20,10 @@
   justify-content: center;
   margin: 5rem;
   padding: 1rem;
-  background-color: #212529;
+  background-color: #1a1a1a;
   border: 0.5px grey solid;
   border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px #C40112;
 }
 .league__info--description a {
   display: flex;
@@ -43,8 +43,8 @@
   font-size: 0.75rem;
 }
 .league__info--match-container {
-  background-color: #212529;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  background-color: #1a1a1a;
+  box-shadow: 0 0 15px #C40112;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +94,7 @@
 }
 .league__info--match-vs p {
   margin: 0 10px 0 10px;
-  color: #00ffc8;
+  color: white;
 }
 .league__match-vs-team {
   display: flex;
@@ -135,6 +135,7 @@
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   border: 0.5px grey solid;
+  box-shadow: 0 0 10px #C40112;
 }
 .league--sidebar {
   display: flex;
@@ -153,7 +154,7 @@
   width: 100%;
   height: 3rem;
   color: #fbfbfb;
-  background-color: #212529;
+  background-color: #1a1a1a;
   border: 0.5px grey solid;
   font-size: 1rem;
   text-align: left;
@@ -171,7 +172,7 @@ form {
   flex-direction: column;
 }
 body {
-  background-color: #2f3030;
+  background-color: #1F1F1F;
 }
 form > * {
   margin: 1rem;
@@ -189,19 +190,40 @@ a {
   justify-content: flex-start;
   color: #fbfbfb;
   margin: 3rem;
+  padding: 1rem;
+  border: 1px red solid;
+  border-radius: 20px;
+  height: 100vh;
 }
 .team__content {
-  background-color: dodgerblue;
+  margin-top: 5rem;
+  height: 50vh;
+  border: 0.5px red solid;
+  border-radius: 20px;
 }
 .team__content-nav ul {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   list-style: none;
+  border-bottom: 1px grey solid;
 }
 .team__content-nav li {
   margin: 5px;
+}
+.team__content-nav li button {
+  margin: 5px;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+.team__content-nav li button.active {
+  background-color: red;
 }
 .landing-container {
   display: flex;
@@ -226,7 +248,7 @@ a {
   color: #acacac;
 }
 .landing-features-center a {
-  color: #00ffc8;
+  color: white;
 }
 .landing-feature {
   display: flex;
@@ -254,7 +276,7 @@ a {
   color: #fbfbfb;
   margin-bottom: 2px;
   text-decoration: underline;
-  text-decoration-color: #00ffc8;
+  text-decoration-color: white;
   text-decoration-skip-ink: none;
   text-decoration-thickness: 2px;
 }
@@ -287,7 +309,7 @@ a {
   gap: 10rem;
 }
 .home-leagues-cards h4 {
-  color: #00ffc8;
+  color: white;
 }
 .home-leagues-cards p {
   color: #acacac;
@@ -333,7 +355,7 @@ a {
   margin-bottom: 10px;
 }
 .matches--match-container {
-  background-color: #212529;
+  background-color: #1a1a1a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -351,10 +373,34 @@ a {
   color: #fbfbfb;
 }
 .matches--match {
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100vh;
+}
+@media (max-width: 1190px) {
+  .matches--match {
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .matches--match-upper {
+    display: flex;
+    flex-direction: column;
+  }
+  .matches--match-vs {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 1190px) {
+  .matches--match-vs-team {
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .matches--match p {
   color: #fbfbfb;
@@ -402,7 +448,6 @@ a {
 .table {
   background-color: blue;
   width: 100%;
-  border-collapse: collapse;
   color: blue;
 }
 .table__header {
@@ -415,6 +460,7 @@ a {
   background-color: blue;
 }
 .table__cell {
+  background-color: blue;
   padding: 0.5rem;
   border-bottom: 1px solid #dee2e6;
 }
