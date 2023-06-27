@@ -331,6 +331,21 @@ a {
   color: #fbfbfb;
   padding: 1rem;
 }
+.matches-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.matches-header h2 {
+  color: #fbfbfb;
+  margin-left: 30px;
+}
+.matches-header h5 {
+  color: #acacac;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
 .matches--match-container {
   background-color: #212529;
   display: flex;
