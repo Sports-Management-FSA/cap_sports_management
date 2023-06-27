@@ -18,24 +18,6 @@ League.hasMany(Team);
 League.hasMany(Match);
 Match.belongsTo(League);
 
-/*User.belongsToMany(TeamRoles, {through: User_TeamRoles});
-TeamRoles.belongsToMany(User, {through: User_TeamRoles});
-User.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(User);
-TeamRoles.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(TeamRoles);
-Team.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(Team);
-*/
-/*User.belongsToMany(LeagueRoles, {through: User_LeagueRoles});
-LeagueRoles.belongsToMany(User, {through: User_LeagueRoles});
-User.hasMany(User_LeagueRoles);
-User_LeagueRoles.belongsTo(User);
-TeamRoles.hasMany(User_LeagueRoles);
-User_LeagueRoles.belongsTo(TeamRoles);
-League.hasMany(User_LeagueRoles);
-User_LeagueRoles.belongsTo(League);
-*/
 User_LeagueRoles.belongsTo(League);
 League.hasMany(User_LeagueRoles);
 User_LeagueRoles.belongsTo(User);
