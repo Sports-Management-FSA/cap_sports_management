@@ -372,7 +372,7 @@ const syncAndSeed = async()=> {
     await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
     await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
 
-    await mike.addTeamRole(player, {teamId: 1})
+    await mike.addTeamRole(player, {through: {teamId: 1}})
     await tina.addTeamRole(player, {through: {teamId: 2}})
     await joe.addTeamRole(player, {through: {teamId: 3}})
     await lucy.addTeamRole(player, {through: {teamId: 4}})
