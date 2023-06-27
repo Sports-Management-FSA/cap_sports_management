@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const DashboardDirector = () => {
 
@@ -9,8 +10,8 @@ const DashboardDirector = () => {
 
     return (
         <div>
-            <h1>Director Dashboard</h1>
-            <table>
+            <h2>Director Dashboard</h2>
+            <table className='dashboard-director-table'>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -21,9 +22,10 @@ const DashboardDirector = () => {
                         <th>Team Manager</th>
                     </tr>
                 </thead>
+                <hr />
                 <tbody>
                     {teams.map(team => (
-                        <tr key={team.id}>
+                        <tr  key={team.id}>
                             <td>  {team.id} </td>
                             <td>{team.name}</td>
                             <td>{team.gamesWon || 'null'}</td>

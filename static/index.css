@@ -314,16 +314,121 @@ a {
   font-size: 0.7rem;
   margin: 0;
 }
-.matches-container {
+.dashboard-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
-}
-.matches-header h1 {
+  margin-top: 3rem;
+  gap: 5rem;
   color: #fbfbfb;
+}
+.dashboard-profile-container {
+  border-style: solid;
+  width: 60%;
+  background-color: #252424;
+  padding: 1rem;
+}
+.dashboard-player {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-director-container {
+  border-style: solid;
+  width: 60%;
+  background-color: #252424;
+  padding: 1rem;
+}
+.dashboard-director-table th,
+.dashboard-director-table td {
+  color: #fbfbfb;
+  padding: 1rem;
+}
+.dashboard-manager-container {
+  border-style: solid;
+  width: 60%;
+  background-color: #252424;
+  padding: 1rem;
+}
+.dashboard-manager-table th,
+.dashboard-manager-table td {
+  color: #fbfbfb;
+  padding: 1rem;
+}
+.matches-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.matches-header h2 {
+  color: #fbfbfb;
+  margin-left: 30px;
+}
+.matches-header h5 {
+  color: #acacac;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.matches--match-container {
+  background-color: #212529;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  height: 25%;
+  border: 1px grey solid;
+  border-radius: 20px;
+  max-width: 75%;
+}
+.matches--match-container h5 {
+  color: #fbfbfb;
+}
+.matches--match {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vh;
+}
+.matches--match p {
+  color: #fbfbfb;
+}
+.matches--match h5 {
+  color: #fbfbfb;
+}
+.matches--match-upper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.matches--match-vs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem;
+}
+.matches--match-vs p {
+  margin: 0 10px 0 10px;
+}
+.matches-vs-team {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1px;
+}
+.matches-vs-team p:nth-child(2) {
+  margin-top: 1px;
+  font-size: smaller;
+  font-style: italic;
+  color: grey;
+}
+.matches--match-lower {
+  display: flex;
+  justify-content: space-between;
 }
 .standings__container {
   margin-top: 1rem;

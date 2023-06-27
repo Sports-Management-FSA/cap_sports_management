@@ -10,6 +10,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./db/models/User");
 require("dotenv").config();
 
+
 // Middleware
 app.use(express.json());
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
