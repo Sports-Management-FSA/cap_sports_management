@@ -391,10 +391,10 @@ const syncAndSeed = async()=> {
     const jenRoles = await jen.getRoles();
     console.log(jenRoles);
 
-    const jenActions = await jen.getActions();
+    const jenActions = await jen.getUserActions();
     console.log('all matches')
     console.log(jenActions);
-    const jenActionsGame = await jen.getActions(finals);
+    const jenActionsGame = await jen.getUserActions(finals);
     console.log('finals actions')
     console.log(jenActionsGame);
 
