@@ -11,24 +11,35 @@ const Team = () => {
     const teamId = team.id
 
     return(
-        <div>
+        <div className='team-container'>
+            <div className='team-sidebar'>
+                <ul>
+                    <li>Home</li>
+                    <li>Standings</li>
+                    <li>Schedule</li>
+                    <li>Roster</li>
+                    <li>Statistics</li>
+                </ul>
+            </div>
             <h2>{team.name}</h2>
             <p>{team.email}</p>
+            <div className='team-roster'>
             <h3>Player Roster</h3>
-            <Link to={`/createplayer`} state={{ teamId: teamId}}>Create Player</Link>
-            {
-                players.map((player, idx)=>{
-                    return(
-                    <Link to={`/players/${player.id}`} key={player.id}>
-                        <div>
-                            <span> {idx+1} - </span>
-                            <span> {player.firstName} </span>
-                            <span> {player.lastName} </span>
-                        </div>
-                    </Link>
-                    )
-                })
-            }
+                <Link to={`/createplayer`} state={{ teamId: teamId}}>Create Player</Link>
+                {
+                    players.map((player, idx)=>{
+                        return(
+                        <Link to={`/players/${player.id}`} key={player.id}>
+                            <div>
+                                <span> {idx+1} - </span>
+                                <span> {player.firstName} </span>
+                                <span> {player.lastName} </span>
+                            </div>
+                        </Link>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

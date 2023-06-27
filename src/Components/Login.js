@@ -33,10 +33,13 @@ const Login = () => {
          console.error("Error during login:", error);
          setLoginError("An error occurred during login. Please try again.");
       }
-      navigate('/leagues')
    };
 
    const invalidCredentials = credentials.username === "" || credentials.password === "";
+
+   const googleLogin = () => {
+      window.open("http://localhost:3000/auth/google", "_self");
+   };
 
    return (
       <section className="vh-100 login-custom">
@@ -72,6 +75,7 @@ const Login = () => {
                                  Forgot password?
                               </a>
                            </p>
+                           {loginError && <p>{loginError}</p>}
                            <button
                               className="btn btn-outline-light btn-lg px-5"
                               disabled={invalidCredentials}
@@ -85,7 +89,7 @@ const Login = () => {
                               <a className="text-white">
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
-                              <a className="text-white">
+                              <a className="text-white" onClick={googleLogin}>
                                  <i className="fab fa-google fa-lg"></i>
                               </a>
                            </div>
@@ -93,8 +97,8 @@ const Login = () => {
                         <div>
                            <p className="mb-0">
                               Don't have an account?{" "}
-                              <Link to="/register" className="text-decoration-none">
-                                 <a className="text-white-50 fw-bold">Sign Up</a>
+                              <Link to="/register" className="text-decoration-none text-white-50 fw-bold">
+                                 Sign Up
                               </Link>
                            </p>
                         </div>
@@ -108,28 +112,3 @@ const Login = () => {
 };
 
 export default Login;
-
-//   <div>
-//      <h2>Login</h2>
-//      <form onSubmit={login}>
-//         <input placeholder="username" value={credentials.username} name="username" onChange={onChange} />
-//         <input
-//            placeholder="password"
-//            type="password"
-//            name="password"
-//            value={credentials.password}
-//            onChange={onChange}
-//         />
-//      </form>
-//      <div>
-//         <button disabled={invalidCredentials} onClick={login}>
-//            Login
-//         </button>
-//      </div>
-//      <div>
-//         <button>
-//            <Link to="/register">Register</Link>
-//         </button>
-//      </div>
-//      {loginError && <div>{loginError}</div>}
-//   </div>

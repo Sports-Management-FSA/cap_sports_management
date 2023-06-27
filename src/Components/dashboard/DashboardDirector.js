@@ -1,17 +1,17 @@
 import React from 'react';
-import { useSelector, useDispatch, Link  } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const DashboardManager = () => {
+const DashboardDirector = () => {
 
     const teams = useSelector(state => state.teams.teamsList);
-    const users = useSelector(state => state)
-    console.log(teams);
-
+    const users = useSelector(state => state.players.playerList);
+    // const teamManager = users.find(user => user.teamId === )
+    console.log(users);
 
     return (
         <div>
-            <h1> Manager Dashboard</h1>
-            <table>
+            <h2>Director Dashboard</h2>
+            <table className='dashboard-director-table'>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -22,12 +22,11 @@ const DashboardManager = () => {
                         <th>Team Manager</th>
                     </tr>
                 </thead>
+                <hr />
                 <tbody>
                     {teams.map(team => (
-                        <tr key={team.id}>
-                            <td><Link to=""></Link>
-                                {team.id}
-                                </td>
+                        <tr  key={team.id}>
+                            <td>  {team.id} </td>
                             <td>{team.name}</td>
                             <td>{team.gamesWon || 'null'}</td>
                             <td>{team.gamesLost || 'no data'}</td>
@@ -41,4 +40,4 @@ const DashboardManager = () => {
     );
 };
 
-export default DashboardManager;
+export default DashboardDirector;
