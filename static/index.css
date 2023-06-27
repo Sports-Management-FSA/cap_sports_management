@@ -205,7 +205,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
+  gap: 6rem;
 }
 .landing-header h1 {
   color: #fbfbfb;
