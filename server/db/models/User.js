@@ -54,7 +54,7 @@ const User = conn.define('user', {
   },
 });
 
-User.prototype.getActions = async function(match){
+User.prototype.getUserActions = async function(match){
   let actions = [];
   if(match){
     actions = await conn.models.scorekeeper.findAll({
