@@ -6,11 +6,11 @@ const PlayerProfile = () => {
 
     return (
         <div className="dashboard-player">
-            <h2>{auth.firstName} {auth.lastName}</h2>
-            <hr />
             <div>
                 <img src="picture.jpg" alt='Player Profile' />
             </div>
+            <h2>{auth.firstName} {auth.lastName}</h2>
+            <hr />
             <div>
                 <h2>Player Info</h2>
             </div>

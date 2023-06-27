@@ -8,6 +8,7 @@ const DashboardDirector = () => {
     // const teamManager = users.find(user => user.teamId === )
     console.log(users);
 
+    
     return (
         <div>
             <h2>Director Dashboard</h2>

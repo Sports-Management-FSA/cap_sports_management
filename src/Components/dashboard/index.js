@@ -11,6 +11,14 @@ const Dashboard = () => {
 
     return (
         <>
+            <div className='dashboard-sidenav'>
+                <div>Profile</div>
+                <div>Leagues</div>
+                <div>Teams</div>
+                <div>Messages</div>
+                <div>Invites</div>
+                <div>Account</div>
+            </div>
             <div className='dashboard-container'>
                 <div className='dashboard-profile-container'>
                     <PlayerProfile />

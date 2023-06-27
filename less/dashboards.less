@@ -8,6 +8,33 @@
     color: @font-primary;
 }
 
+.dashboard-sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-sidenav div {
+    padding-left: 2rem;
+    margin-top: 2.5rem;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.dashboard-sidenav div:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
 .dashboard-profile-container {
     border-style: solid;
     width: 60%;
@@ -33,7 +60,7 @@
     padding: 1rem;
 }
 
-.dashboard-manager-container{
+.dashboard-manager-container {
     border-style: solid;
     width: 60%;
     background-color: rgb(37, 36, 36);
@@ -45,5 +72,3 @@
     color: @font-primary;
     padding: 1rem;
 }
-
-
