@@ -35,7 +35,7 @@ const Nav = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                  {user?.id ? (
+                  {user?.username ? (
                      <>
                         <li className="nav-item dropdown">
                            <a
@@ -51,7 +51,7 @@ const Nav = () => {
                               className="dropdown-menu dropdown-menu-dark dropdown-menu-end justify-cotent-start"
                               aria-labelledby="navbarDropdown">
                               <li>
-                                 <a className="dropdown-item" href="#">
+                                 <a className="dropdown-item" href="#/dashboard">
                                     Dashboard
                                  </a>
                               </li>

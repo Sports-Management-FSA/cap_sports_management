@@ -8,7 +8,7 @@ const PlayerProfile = () => {
         <div className="dashboard-player">
             <h2>{auth.firstName} {auth.lastName}</h2>
             <hr />
-            <div className>
+            <div>
                 <img src="picture.jpg" alt='Player Profile' />
             </div>
             <div>

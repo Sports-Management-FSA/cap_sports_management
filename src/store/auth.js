@@ -34,7 +34,7 @@ export const attemptLogin = createAsyncThunk("attemptLogin", async (cred, { reje
    try {
       const token = window.localStorage.getItem("token");
       if (token) {
-         const response = await axios.get("/api/auth", {
+         const response = await axios.post("/api/auth", cred,{
             headers: {
                authorization: token
             }

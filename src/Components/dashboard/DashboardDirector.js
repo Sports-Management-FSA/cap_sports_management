@@ -22,7 +22,6 @@ const DashboardDirector = () => {
                         <th>Team Manager</th>
                     </tr>
                 </thead>
-                <hr />
                 <tbody>
                     {teams.map(team => (
                         <tr  key={team.id}>
