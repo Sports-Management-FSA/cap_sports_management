@@ -382,14 +382,12 @@ const syncAndSeed = async()=> {
     await hunt.addTeamRole(player, {through: {teamId: 8}})
     await har.addTeamRole(player, {through: {teamId: 9}})
 
-    await match1.addTeam(team1);
-    await match1.addTeam(team2);
-    await match2.addTeam(team3);
-    await match2.addTeam(team4);
-    await match3.addTeam(team5);
-    await match3.addTeam(team6);
-    await match4.addTeam(team8);
-    await match4.addTeam(team9);
+    //await match1.addTeam(team1);
+    //await match1.addTeam(team2);
+    await match1.addTeam([team1, team2]);
+    await match2.addTeam([team3, team4]);
+    await match3.addTeam([team5, team6]);
+    await match4.addTeam([team8, team9]);
 
     const team1matches = await team1.getMatches();
     console.log('\n\nTeam 1s matches')
