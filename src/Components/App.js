@@ -15,6 +15,7 @@ import Matches from "./Matches";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
+import Standings from "./Standings";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -47,6 +48,7 @@ const App = () => {
                <Route path="/register" element={<Register />} />
                <Route path="/dashboard" element={<DashboardManager />} />
                <Route path="/matches" element={<Matches />} />
+               <Route path="/standings" element={<Standings />} />
             </Routes>
          </div>
       </div>
