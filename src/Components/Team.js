@@ -1,18 +1,52 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
+import { fetchAllTeams, fetchAllLeagues} from '../store';
 
 const Team = () => {
     const {id} = useParams();
+    const dispatch = useDispatch();
     const teams = useSelector(state=>state.teams.teamsList);
+    const loading = useSelector(state=>state.teams)
+    console.log("Loading from Teams.js", loading)
     const team = teams.find(team=> team.id == id);
-    const users = useSelector(state=>state.players.playerList);
-    const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
-    const teamId = team.id
+    //const users = useSelector(state=>state.players.playerList);
+    // const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
+    // const teamId = team.id
+
+    // useEffect(() => {
+    //     dispatch(fetchAllTeams())
+    //     dispatch(fetchAllLeagues())
+    // }, [dispatch])
+
+    if(!team || !id) {
+        return <div>loading</div>
+    }
 
     return(
-        <div className='team-container'>
-            <div className='team-sidebar'>
+        <div className='team__container'>
+            <div className="team__header">
+                <div className="team__header-image">
+                    <h1>IMAGE</h1>
+                </div>
+                <div className="team__header-info">
+                    <h5>team name: {team.name}</h5>
+                    <p>team id: {team.id}</p>
+                    <p>team email: {team.email}</p>
+                </div>
+            </div>
+            <div className='team__content'>
+                <div className="team__content-nav">
+                    <ul>
+                        <li>Home</li>
+                        <li>Standings</li>
+                        <li>Schedule</li>
+                        <li>Roster</li>
+                        <li>Statistics</li>
+                    </ul>
+                </div>
+            </div>
+            {/* <div className='team-sidebar'>
                 <ul>
                     <li>Home</li>
                     <li>Standings</li>
@@ -39,7 +73,7 @@ const Team = () => {
                         )
                     })
                 }
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -17,11 +17,11 @@ app.use("/dist", express.static(path.join(__dirname, "../dist")));
 app.use("/static", express.static(path.join(__dirname, "../static")));
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "../static/index.html")));
 
-
 app.use(
    cors({
       origin: "https://localhost:3000",
-      credentials: true
+      credentials: true,
+      allowedHeaders: ["set-cookie", "Content-type", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"]
    })
 );
 
@@ -88,7 +88,6 @@ app.get("/auth/google/callback", passport.authenticate("google", { failureRedire
    // Successful authentication, redirect home
    res.redirect("/");
 });
-
 
 // API configured at /api
 app.use("/api", routes);

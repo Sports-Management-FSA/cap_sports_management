@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: flex-end;
     // flex-direction: column;
+    box-shadow: 2px 2px 4px #000, -2px -2px 4px #fff;
 }
 
 .league__head h2{
@@ -25,8 +26,9 @@
     margin: 5rem;
     padding: 1rem;
     background-color: @background-secondary;
-    border: 1px grey solid;
+    border: .5px grey solid;
     border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 .league__info--description a{
     display: flex;
@@ -50,6 +52,7 @@
 
 .league__info--match-container {
     background-color: @background-secondary;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +62,7 @@
     margin-left: auto;
     margin-right: auto;
     height: 25%;
-    border: 1px grey solid;
+    border: .5px grey solid;
     border-radius: 20px;
     max-width: 75%;
 }
@@ -88,6 +91,11 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    color: @font-secondary;
+}
+
+.league__info--match-upper p {
+    color: @font-secondary;
 }
 
 .league__info--match-vs {
@@ -99,12 +107,14 @@
 
 .league__info--match-vs p {
     margin: 0 10px 0 10px;
+    color: @link-primary;
 }
 
 .league__match-vs-team {
     display: flex;
     flex-direction: column;
     margin-top: 1px;
+    color: @link-hover-primary;
 }
 .league__match-vs-team p:nth-child(2){
     margin-top: 1px;
@@ -125,6 +135,7 @@
 }
 
 .league__content--body {
+    color: white;
     margin-left: 200px !important;
     margin-right: 20px;
     border-radius: 20px;
@@ -165,20 +176,18 @@
   height: 3rem;
   color: @font-primary;
   background-color: @background-secondary;
-  border: none;
+  border: .5px grey solid;
   font-size: 1rem;
   text-align: left;
   padding: 0;
   margin: 0;
-
 }
 
 .league--sidebar button:first-child {
-    //border-top-left-radius: 20px;
-  }
+  //background-color: blue;
+}
 
 .league--sidebar button:hover {
-    // background-color: @link-hover-primary;
-    background-color: blue;
-    border-top-left-radius: 20px;
+    background-color: @link-hover-primary;
+    
 }

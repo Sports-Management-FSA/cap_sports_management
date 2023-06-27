@@ -7,9 +7,21 @@ const Matches = () => {
     const matches = useSelector(state => state.matches.matchesList);
     const teams = useSelector(state => state.teams.teamsList);
    
-    var today = new Date(),
+const today = new Date();
+    const upcomingMatches = matches.filter((match) => {
+        const matchDate = new Date(match.date);
+        return matchDate > today;
+    })
 
-    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const previousMatches = matches.filter((match) => {
+        const matchDate = new Date(match.date);
+        return matchDate < today;
+    })
+
+    const currentMatches = matches.filter((match) => {
+        const matchDate = new Date(match.date);
+        return matchDate === today;
+    })
 
     return(
         <div className='matches-container'>
@@ -18,97 +30,94 @@ const Matches = () => {
              </div>
         
         {
-        matches.map((match) => {
-            if (date > match.date) {
+        previousMatches.map((previousMatch) => {
             return (
                 <div className='matches--match-container'>
-                    <div className="matches--match" key={match.id}>
+                    <div className="matches--match" key={previousMatch.id}>
                         <div className="matches--match-upper">
                     <div className="matches--match-upper-name">
-                        <p>{match.name}</p>
+                        <p>{previousMatch.name}</p>
                         </div>
 <div className="matches--match-upper-dates">
-<p>{match.date} @ {match.time}</p>
+<p>{previousMatch.date} @ {previousMatch.time}</p>
        </div>
        </div>
        
     <div className='matches--match-vs'>
         <div className="matches-match-vs-team">
-       <p><Link to={`/teams/${match.teamAid}`}>{teams.find(team => team.id === match.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${match.teamBid}`}>{teams.find(team => team.id === match.teamBid)?.name || ""}</Link></p>
+       <p><Link to={`/teams/${previousMatch.teamAid}`}>{teams.find(team => team.id === previousMatch.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${previousMatch.teamBid}`}>{teams.find(team => team.id === previousMatch.teamBid)?.name || ""}</Link></p>
        </div>
        </div>
        <div className='matches--match-lower'>
-       <p>{match.location}</p>
-       <p>{match.description}</p>
+       <p>{previousMatch.location}</p>
+       <p>{previousMatch.description}</p>
        </div>
         
         </div>
         </div>
-)}}
+)}
 )}
 <div className='matches-header'>
  <h2>Current Matches</h2>
  </div>
  {
-        matches.map((match) => {
-            if (date === match.date) {
+        currentMatches.map((currentMatch) => {
             return (
                 <div className='matches--match-container'>
-                <div className="matches--match" key={match.id}>
+                <div className="matches--match" key={currentMatch.id}>
                     <div className="matches--match-upper">
                 <div className="matches--match-upper-name">
-                    <p>{match.name}</p>
+                    <p>{currentMatch.name}</p>
                     </div>
 <div className="matches--match-upper-dates">
-<p>{match.date} @ {match.time}</p>
+<p>{currentMatch.date} @ {currentMatch.time}</p>
    </div>
    </div>
    
 <div className='matches--match-vs'>
     <div className="matches-match-vs-team">
-   <p><Link to={`/teams/${match.teamAid}`}>{teams.find(team => team.id === match.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${match.teamBid}`}>{teams.find(team => team.id === match.teamBid)?.name || ""}</Link></p>
+   <p><Link to={`/teams/${currentMatch.teamAid}`}>{teams.find(team => team.id === currentMatch.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${currentMatch.teamBid}`}>{teams.find(team => team.id === currentMatch.teamBid)?.name || ""}</Link></p>
    </div>
    </div>
    <div className='matches--match-lower'>
-   <p>{match.location}</p>
-   <p>{match.description}</p>
+   <p>{currentMatch.location}</p>
+   <p>{currentMatch.description}</p>
    </div>
     
     </div>
     </div>
-)}}
+)}
 )}
 <div className='matches-header'>
         <h2>Upcoming Matches</h2>
         </div>
         {
-        matches.map((match) => {
-            if (date < match.date) {
+        upcomingMatches.map((upcomingMatch) => {
             return (
                 <div className='matches--match-container'>
-                <div className="matches--match" key={match.id}>
+                <div className="matches--match" key={upcomingMatch.id}>
                     <div className="matches--match-upper">
                 <div className="matches--match-upper-name">
-                    <p>{match.name}</p>
+                    <p>{upcomingMatch.name}</p>
                     </div>
 <div className="matches--match-upper-dates">
-<p>{match.date} @ {match.time}</p>
+<p>{upcomingMatch.date} @ {upcomingMatch.time}</p>
    </div>
    </div>
    
 <div className='matches--match-vs'>
     <div className="matches-match-vs-team">
-   <p><Link to={`/teams/${match.teamAid}`}>{teams.find(team => team.id === match.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${match.teamBid}`}>{teams.find(team => team.id === match.teamBid)?.name || ""}</Link></p>
+   <p><Link to={`/teams/${upcomingMatch.teamAid}`}>{teams.find(team => team.id === upcomingMatch.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${upcomingMatch.teamBid}`}>{teams.find(team => team.id === upcomingMatch.teamBid)?.name || ""}</Link></p>
    </div>
    </div>
    <div className='matches--match-lower'>
-   <p>{match.location}</p>
-   <p>{match.description}</p>
+   <p>{upcomingMatch.location}</p>
+   <p>{upcomingMatch.description}</p>
    </div>
     
     </div>
     </div>
-)}}
+)}
 )}
     </div>
     )
