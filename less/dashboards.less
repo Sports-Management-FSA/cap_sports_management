@@ -1,18 +1,7 @@
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-    gap: 5rem;
-    color: @font-primary;
-}
-
 .dashboard-sidenav {
     height: 100%;
     width: 200px;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
@@ -35,9 +24,20 @@
     cursor: pointer;
 }
 
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 5rem;
+    color: @font-primary;
+}
+
 .dashboard-profile-container {
     border-style: solid;
-    width: 60%;
+    width: 80%;
+    height: 1000px;
     background-color: rgb(37, 36, 36);
     padding: 1rem;
 }

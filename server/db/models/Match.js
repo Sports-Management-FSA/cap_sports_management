@@ -38,20 +38,6 @@ const Match = conn.define('match', {
             notEmpty: true,
         }
     },
-    teamAid:{
-        type: INTEGER,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-        }
-    },
-    teamBid:{
-        type: INTEGER,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-        }
-    },
     teamAscore:{    
         type: INTEGER,
     },

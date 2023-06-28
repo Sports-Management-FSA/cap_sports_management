@@ -6,7 +6,7 @@ const PlayerProfile = () => {
 
     return (
         <div className="dashboard-player">
-            <div>
+            <div className='dashboard-profile-picture'>
                 <img src="picture.jpg" alt='Player Profile' />
             </div>
             <h2>{auth.firstName} {auth.lastName}</h2>

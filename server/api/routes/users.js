@@ -1,9 +1,11 @@
 const router = require("express").Router();
-const { User } = require("../../db");
+const { User, Match, Team } = require("../../db");
+const LeagueRoles = require("../../db/models/LeagueRoles");
+const TeamRoles = require("../../db/models/TeamRoles");
 
 router.get("/", async (req, res, next) => {
    try {
-      const user = await User.findAll();
+      const user = await User.findAll({include:[LeagueRoles, TeamRoles]});
       res.send(user);
    } catch (ex) {
       next(ex);
@@ -12,7 +14,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
    try {
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.params.id,{include:[LeagueRoles, TeamRoles]});
       res.send(user);
    } catch (err) {
       next(err);
