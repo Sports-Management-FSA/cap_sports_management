@@ -10,7 +10,7 @@ import CreateLeague from "./CreateLeague";
 import CreateTeam from "./CreateTeam";
 import CreatePlayer from "./CreatePlayer";
 import Dashboard from "./dashboard"
-import Landing from "./Landing";
+//import Landing from "./Landing";
 import Matches from "./Matches";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
@@ -35,6 +35,7 @@ const App = () => {
          {/* {
         auth.id ? <Home /> : <Login />
       } */}
+
          <div>
             <Routes>
                <Route path="/" element={<Landing2 />} />
@@ -52,6 +53,7 @@ const App = () => {
                <Route path="/standings" element={<Standings />} />
             </Routes>
          </div>
+         <Nav />
       </div>
    );
 };
