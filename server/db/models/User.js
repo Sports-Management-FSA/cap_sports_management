@@ -13,10 +13,10 @@ const User = conn.define('user', {
   // },
   username: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    },
+   // allowNull: false,
+   // validate: {
+   //   notEmpty: true
+   // },
     unique: true
   },
   password: {
@@ -52,45 +52,101 @@ const User = conn.define('user', {
   avatar: {
     type: TEXT
   },
-  isAdmin: {
-    type: BOOLEAN,
-    defaultValue: false,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    },
-  },
-  isPlayer: {
-    type: BOOLEAN,
-    defaultValue: false,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    },
-  },
-  isManager: {
-    type: BOOLEAN,
-    defaultValue: false,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    },
-  },
-  isDirector: {
-    type: BOOLEAN,
-    defaultValue: false,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    },
-  },
-  teamId: {
-    type: INTEGER,
-  },
-  leagueId: {
-    type: INTEGER,
-  }
 });
+
+//pass string option of filtering, pass parameter 
+User.prototype.getUserActions = async function(option, ref){
+  let actions = [];
+
+  switch(option){
+    case 'match':
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+          matchId: ref.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+      break;
+    case 'league':
+      //grab all matches from leagues check scorekeeper for matches
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+          matchId: ref.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+      break;
+    case 'team':
+      //grab team matches and check scorekeeper for matches
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+          matchId: ref.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+      break;
+    default:
+      actions = await conn.models.scorekeeper.findAll({
+        where: {
+          userId: this.id,
+        },
+        include: [
+          {
+            model: conn.models.actions,
+          }
+        ]
+      })
+  }
+  return actions;
+}
+
+User.prototype.getRoles = async function(){
+  const teamRoles = await conn.models.user_teamRoles.findAll({
+    where:{
+      userId: this.id,
+    },
+    include: [
+      {
+        model: conn.models.teamRoles,
+      },
+      {
+        model: conn.models.team,
+      }
+    ]
+  })
+
+  const leagueRoles = await conn.models.user_leagueRoles.findAll({
+    where:{
+      userId: this.id,
+    },
+    include: [
+      {
+        model: conn.models.leagueRoles,
+      },
+      {
+        model: conn.models.league,
+      }
+    ]
+  })
+
+  const roles = [teamRoles, leagueRoles];
+  return roles;
+}
 
 User.addHook('beforeSave', async (user) => {
   if (user.changed('password')) {

@@ -1,5 +1,5 @@
 * {
-    font-family: verdana;
+    font-family: 'Oxygen', sans-serif;
 }
     
 form {
@@ -8,7 +8,8 @@ form {
 }
 
 body {
-    background-color: @background-primary;
+    background-color: @dark-background-primary;
+    font-family: @font-family;
 }
     
 form > * {
@@ -18,10 +19,17 @@ form > * {
 nav {
     display: flex;
     justify-content: space-around;
+    z-index: 99;
 }
 
+h1, h2, h3, h4, h5 ,h6 {
+    font-family: @font-family;
+    font-weight: @font-weight-bold;
+}
 
 a {
     text-decoration: none;
+    font-family: @font-family;
+    font-weight: @font-weight-regular
 }
 

@@ -1,9 +1,13 @@
+.league-container {
+    background-color: @background-primary;
+}
+
 .league__head {
     display:flex;
     justify-content: center;
     align-items: flex-end;
-    // flex-direction: column;
     box-shadow: 2px 2px 4px #000, -2px -2px 4px #fff;
+    box-shadow: 0 0px 50px rgb(42, 249, 249);
 }
 
 .league__head h2{
@@ -13,26 +17,35 @@
 }
 
 .league__head h5{
-    color: @font-secondary;
+    color: @font-primary;
     font-size: .9rem;
     margin-left: 10px;
     margin-bottom: 10px;
+}
+
+.league__container-upper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    height: 50vh;
 }
 
 .league__info--description {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 5rem;
-    padding: 1rem;
-    background-color: @background-secondary;
-    border: .5px grey solid;
+    margin: 0 2rem 0 2rem;
+    padding: 2rem;
+    background-color: @dark-background-secondary;
+    border: .5px black solid;
     border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 .league__info--description a{
     display: flex;
     justify-content: flex-end;
+    
 }
 
 
@@ -40,34 +53,41 @@
     display: flex;
     justify-content: center;
     font-weight: 500;
-    color: @font-primary;
+    color: @dark-font-primary;
 }
+
 .league__info--description p{
-    border-bottom: .5px solid grey;
+    border-bottom: 1px black solid;
     padding-bottom: 15px;
     font-weight: 100;
-    color: @font-secondary;
-    font-size: .75rem;
+    color: @dark-font-primary;
+    font-size: .8rem;
 }
 
 .league__info--match-container {
-    background-color: @background-secondary;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: @background-secondary;
+    //box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px @shadow-red;
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
+    padding: 5px;
     height: 25%;
-    border: .5px grey solid;
+    border: .5px black solid;
     border-radius: 20px;
     max-width: 75%;
 }
 
 .league__info--match-container h5 {
+    color: @dark-font-primary;
+}
+
+.league__match--nomatches p{
     color: @font-primary;
 }
 
@@ -79,11 +99,11 @@
 }
 
 .league__info--match p{
-    color: @font-primary
+    color: @dark-font-primary;
 }
 
 .league__info--match h5{
-    color: @font-primary;
+    color: @dark-font-primary;
 }
 
 .league__info--match-upper {
@@ -91,11 +111,11 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    color: @font-secondary;
+    color: @dark-font-primary;
 }
 
 .league__info--match-upper p {
-    color: @font-secondary;
+    color: @dark-font-primary;
 }
 
 .league__info--match-vs {
@@ -107,14 +127,14 @@
 
 .league__info--match-vs p {
     margin: 0 10px 0 10px;
-    color: @link-primary;
+    color: @dark-link-primary;
 }
 
 .league__match-vs-team {
     display: flex;
     flex-direction: column;
     margin-top: 1px;
-    color: @link-hover-primary;
+    color: @dark-link-primary;
 }
 .league__match-vs-team p:nth-child(2){
     margin-top: 1px;
@@ -128,6 +148,12 @@
     justify-content: space-between;
 }
 
+.league__container-main{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
 .league__content {
     display: flex;
     flex-direction: row;
@@ -135,59 +161,42 @@
 }
 
 .league__content--body {
-    color: white;
+    color: @font-primary;
     margin-left: 200px !important;
     margin-right: 20px;
     border-radius: 20px;
-    border: 1px grey solid;
     height: 100vh;
     flex-basis: 85%;
 }
 
-.league__content--sidebar {
-    background-color: @background-alt;
-    flex-basis: 15%;
-    height: 50vh;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border: .5px grey solid;
-}
-
-
 .league--sidebar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border-top-left-radius: 20px;
+    border-bottom: .5px lightblue solid;
+    margin-bottom: 0;
+
 }
   
-.league--sidebar li {
-    width: 100%;
-}
 
 .league--sidebar button {
   width: 100%;
   height: 3rem;
   color: @font-primary;
-  background-color: @background-secondary;
-  border: .5px grey solid;
+  background-color: @background-primary;
+  border: none;
   font-size: 1rem;
   text-align: left;
-  padding: 0;
-  margin: 0;
 }
 
-.league--sidebar button:first-child {
-  //background-color: blue;
+.league--sidebar li button.active {
+    border-bottom: 3px lightblue solid;
+    margin-bottom: 0;
 }
+
 
 .league--sidebar button:hover {
-    background-color: @link-hover-primary;
-    
+    //background-color: @link-hover-primary;
 }

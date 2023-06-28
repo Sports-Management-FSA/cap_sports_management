@@ -5,6 +5,7 @@ import { logout } from "../store";
 
 const Nav = () => {
    const user = useSelector((state) => state.auth);
+   const { auth, leagues } = useSelector((state) => state);
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const Nav = () => {
             <Link to="/">
                <i className="fa-solid fa-people-group" style={{ color: "#ffffff" }}>
                   {"  "}
-                  Sports Management
+                  Podium
                </i>
             </Link>
             <button
@@ -33,9 +34,23 @@ const Nav = () => {
                aria-label="Toggle navigation">
                <span className="navbar-toggler-icon"></span>
             </button>
+            <div>
+            {auth.username ? (
+               <div>
+                  Welcome {auth.username}!!
+                  <button onClick={() => dispatch(logout())}>Logout</button>
+               </div>
+            ) : (
+               <div>
+                  <button>
+                     <Link to="/login">Login</Link>
+                  </button>
+               </div>
+            )}
+         </div>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                  {user?.id ? (
+                  {user?.username ? (
                      <>
                         <li className="nav-item dropdown">
                            <a
@@ -51,7 +66,7 @@ const Nav = () => {
                               className="dropdown-menu dropdown-menu-dark dropdown-menu-end justify-cotent-start"
                               aria-labelledby="navbarDropdown">
                               <li>
-                                 <a className="dropdown-item" href="#">
+                                 <a className="dropdown-item" href="#/dashboard">
                                     Dashboard
                                  </a>
                               </li>

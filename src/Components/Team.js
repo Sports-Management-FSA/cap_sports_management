@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { fetchAllTeams, fetchAllLeagues} from '../store';
+import Standings from './Standings';
+import Roster from './Roster';
 
 const Team = () => {
     const {id} = useParams();
-    const dispatch = useDispatch();
+    const [currentComponent, setCurrentComponent] = useState('Home');
+    const [activeTab, setActiveTab] = useState('Standings');
+    
     const teams = useSelector(state=>state.teams.teamsList);
-    const loading = useSelector(state=>state.teams)
-    console.log("Loading from Teams.js", loading)
     const team = teams.find(team=> team.id == id);
-    //const users = useSelector(state=>state.players.playerList);
-    // const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
-    // const teamId = team.id
+    const users = useSelector(state=>state.players.playerList);
+    const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
 
-    // useEffect(() => {
-    //     dispatch(fetchAllTeams())
-    //     dispatch(fetchAllLeagues())
-    // }, [dispatch])
+    const handleClick = (componentAndTab) => {
+        setCurrentComponent(componentAndTab)
+        setActiveTab(componentAndTab);
+    }
 
     if(!team || !id) {
         return <div>loading</div>
@@ -27,53 +27,38 @@ const Team = () => {
         <div className='team__container'>
             <div className="team__header">
                 <div className="team__header-image">
-                    <h1>IMAGE</h1>
+                <img src={window.location.origin + `${team.logo}`} width="170" height="160" alt="Image"/>
                 </div>
                 <div className="team__header-info">
-                    <h5>team name: {team.name}</h5>
-                    <p>team id: {team.id}</p>
-                    <p>team email: {team.email}</p>
+                    <h5>{team.name}</h5>
+                    <p>id: {team.id}</p>
+                    <p>{team.email}</p>
+                    <i>league in progress</i>
                 </div>
             </div>
             <div className='team__content'>
                 <div className="team__content-nav">
                     <ul>
-                        <li>Home</li>
-                        <li>Standings</li>
-                        <li>Schedule</li>
-                        <li>Roster</li>
-                        <li>Statistics</li>
+                        <li><button onClick={() => handleClick('Standings') } className={activeTab === 'Standings' ? 'active' : ''}>Standings</button></li>
+                        <li><button onClick={() => handleClick('Roster')} className={activeTab === 'Roster' ? 'active' : ''}>Roster</button></li>
+                        <li><button onClick={() => handleClick('Schedule')} className={activeTab === 'Schedule' ? 'active' : ''}>Schedule</button></li>
+                        <li><button onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</button></li>
+                        <li><button onClick={() => handleClick('News Feed')} className={activeTab === 'News Feed' ? 'active' : ''}>News Feed</button></li>
+                        <li><button onClick={() => handleClick('Media')} className={activeTab === 'Media' ? 'active' : ''}>Media</button></li>
+                        <li><button onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</button></li>
+                        <li>Manage Team</li>
                     </ul>
                 </div>
+                <div className="team__content-body">
+                    {currentComponent === "Standings" && <Standings id={team.leagueId} />}
+                    {currentComponent === "Roster" && <Roster players={players}/>}
+                    {currentComponent === "Schedule" && "coming soon"}
+                    {currentComponent === "Stats" && "coming soon"}
+                    {currentComponent === "News Feed" && "coming soon"}
+                    {currentComponent === "Media" && "coming soon"}
+                    {currentComponent === "About" && "coming soon"}
+                </div>
             </div>
-            {/* <div className='team-sidebar'>
-                <ul>
-                    <li>Home</li>
-                    <li>Standings</li>
-                    <li>Schedule</li>
-                    <li>Roster</li>
-                    <li>Statistics</li>
-                </ul>
-            </div>
-            <h2>{team.name}</h2>
-            <p>{team.email}</p>
-            <div className='team-roster'>
-            <h3>Player Roster</h3>
-                <Link to={`/createplayer`} state={{ teamId: teamId}}>Create Player</Link>
-                {
-                    players.map((player, idx)=>{
-                        return(
-                        <Link to={`/players/${player.id}`} key={player.id}>
-                            <div>
-                                <span> {idx+1} - </span>
-                                <span> {player.firstName} </span>
-                                <span> {player.lastName} </span>
-                            </div>
-                        </Link>
-                        )
-                    })
-                }
-            </div> */}
         </div>
     )
 }
