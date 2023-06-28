@@ -80,65 +80,77 @@ const syncAndSeed = async()=> {
     await League.create({
       name:'Little League',
       season: 'Fall',
-      email: 'little01@gmail.com'
+      email: 'little01@gmail.com',
+      logo: '/static/images/nfl.png'
     }),
     await League.create({
       name:'Big League',
       season: 'Summer',
-      email: 'little01@gmail.com'
+      email: 'little01@gmail.com',
+      logo: '/static/images/nhl.png'
     }),
     await League.create({
       name:'Major League',
       season: 'Spring',
-      email: 'little01@gmail.com'
+      email: 'little01@gmail.com',
+      logo: '/static/images/nfl.png'
     })
 
     const team1 = await Team.create({
       name: 'The Ravens',
       email: 'theravens@gmail.com',
       leagueId: 1,
+      logo: '/static/images/team1.png'
     })
 
     const team2 = await Team.create({
       name: 'The Bulldogs',
       email: 'thebulldogs@gmail.com',
       leagueId: 1,
+      logo: '/static/images/team2.png'
     })
     const team3 = await Team.create({
       name: 'Dirt Devils',
       email: 'dirtdevils@gmail.com',
       leagueId: 1,
+      logo: '/static/images/team3.png'
     })
     const team4 = await Team.create({
       name: 'Sandlot',
       email: 'sandlot@gmail.com',
       leagueId: 2,
+      logo: '/static/images/team1.png'
     })
     const team5 = await Team.create({
       name: 'Hawks',
       email: 'hawks@gmail.com',
       leagueId: 2,
+      logo: '/static/images/team2.png'
     })
     const team6 = await Team.create({
       name: 'Eagles',
       email: 'eagles@gmail.com',
       leagueId: 2,
+      logo: '/static/images/team3.png'
     })
     const team7 = await Team.create({
       name: 'Angels',
       email: 'angels@gmail.com',
       leagueId: 2,
+      logo: '/static/images/team1.png'
     })
   
     const team8 = await Team.create({
       name: 'Pigeons',
       email: 'pigeons@gmail.com',
       leagueId: 3,
+      logo: '/static/images/team1.png'
     })
     const team9 = await Team.create({
       name: 'Doves',
       email: 'doves@gmail.com',
       leagueId: 3,
+      logo: '/static/images/team2.png'
     })
   
     const match1 = await Match.create({

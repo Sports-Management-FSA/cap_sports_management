@@ -27,7 +27,7 @@ const Team = () => {
         <div className='team__container'>
             <div className="team__header">
                 <div className="team__header-image">
-                    <h1>IMAGE</h1>
+                <img src={window.location.origin + `${team.logo}`} width="170" height="160" alt="Image"/>
                 </div>
                 <div className="team__header-info">
                     <h5>team name: {team.name}</h5>
