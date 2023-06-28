@@ -17,9 +17,9 @@ const Landing2 = () => {
     return (
         <div className="landing__container">
             <div className="landing__header">
-                <h1>Create.</h1>                
+                <h1>Build.</h1>                
                 <h1>Play.</h1>                
-                <h1>Analyze.</h1>
+                <h1>Connect.</h1>
                 <p>Unlock the realm of competitive sports and esports. Effortlessly create and manage leagues and teams, or seamlessly join existing ones. Engage in real-time communication, chat with fellow players, and stay connected to your community. Dive into comprehensive statistics and receive live updates on the latest game stats, keeping you at the forefront of every thrilling moment.</p>                
                 <button onClick={scrollToNextSection}>browse leagues</button>
             </div>
@@ -27,6 +27,7 @@ const Landing2 = () => {
             <div id="browse" className="landing__body-browse">
                 <div className="landing__body-browse-header">
                     <h1>Active leagues</h1>
+                    <p><Link to="/leagues">view all leagues</Link></p>
                 </div>
                 <div className="landing__body-browse-content">
                     <div className="pagination-arrows left">
@@ -51,6 +52,7 @@ const Landing2 = () => {
                                 </div>
                             </div>
                         ))} 
+                        
                     </div>
                     <div className="pagination-arrows right">
                         <button className="arrow right" onClick={scrollToRight}></button>

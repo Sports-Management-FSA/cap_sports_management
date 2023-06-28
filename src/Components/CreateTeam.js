@@ -30,7 +30,7 @@ const CreateTeam = () => {
   };
 
   return (
-    <div>
+    <div className="form__createteam">
       <h1>Create a team</h1>
       <form onSubmit={handleSubmit}>
         <label>Team Name</label>
@@ -38,12 +38,14 @@ const CreateTeam = () => {
           name="teamName"
           value={teamName}
           onChange={handleTeamNameChange}
+          placeholder="enter a team name"
         />
         <label>Email</label>
         <input
           name="teamEmail"
           value={teamEmail}
           onChange={handleEmailChange}
+          placeholder="email address"
         />
         <button type="submit">Submit</button>
       </form>

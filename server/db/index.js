@@ -46,12 +46,12 @@ const syncAndSeed = async()=> {
       email: 'little01@gmail.com'
     }),
     await League.create({
-      name:'Underwater Basket Weaving',
+      name:'asket Weaving',
       season: 'Fall',
       email: 'little01@gmail.com'
     }),
     await League.create({
-      name:'American Football SoCal',
+      name:'American Football',
       season: 'Summer',
       email: 'little01@gmail.com'
     }),

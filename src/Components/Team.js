@@ -8,7 +8,7 @@ const Team = () => {
     const {id} = useParams();
     const teams = useSelector(state=>state.teams.teamsList);
     const team = teams.find(team=> team.id == id);
-    const [currentComponent, setCurrentComponent] = useState('Standings');
+    const [currentComponent, setCurrentComponent] = useState('Home');
     const [activeTab, setActiveTab] = useState('Standings');
     const users = useSelector(state=>state.players.playerList);
     const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
@@ -26,27 +26,37 @@ const Team = () => {
         <div className='team__container'>
             <div className="team__header">
                 <div className="team__header-image">
-                    <h1>IMAGE</h1>
+                    <h1>TEAM IMAGE</h1>
                 </div>
                 <div className="team__header-info">
                     <h5>{team.name}</h5>
-                    <p>{team.id}</p>
+                    <p>id: {team.id}</p>
                     <p>{team.email}</p>
+                    <i>league in progress</i>
                 </div>
             </div>
             <div className='team__content'>
                 <div className="team__content-nav">
                     <ul>
-                        <li>Home</li>
+                        <li><button onClick={() => handleClick('Home') } className={activeTab === 'Home' ? 'active' : ''}>Home</button></li>
                         <li><button onClick={() => handleClick('Standings') } className={activeTab === 'Standings' ? 'active' : ''}>Standings</button></li>
                         <li><button onClick={() => handleClick('Roster')} className={activeTab === 'Roster' ? 'active' : ''}>Roster</button></li>
-                        <li>Schedule</li>
-                        <li>Statistics</li>
+                        <li><button onClick={() => handleClick('Schedule')} className={activeTab === 'Schedule' ? 'active' : ''}>Schedule</button></li>
+                        <li><button onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</button></li>
+                        <li><button onClick={() => handleClick('News Feed')} className={activeTab === 'News Feed' ? 'active' : ''}>News Feed</button></li>
+                        <li><button onClick={() => handleClick('Media')} className={activeTab === 'Media' ? 'active' : ''}>Media</button></li>
+                        <li><button onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</button></li>
+                        <li>Manage Team</li>
                     </ul>
                 </div>
                 <div className="team__content-body">
-                   { currentComponent === "Standings" && <Standings team={team} />}
+                    {currentComponent === "Standings" && <Standings team={team} />}
                     {currentComponent === "Roster" && <Roster players={players}/>}
+                    {currentComponent === "Schedule" && "coming soon"}
+                    {currentComponent === "Stats" && "coming soon"}
+                    {currentComponent === "News Feed" && "coming soon"}
+                    {currentComponent === "Media" && "coming soon"}
+                    {currentComponent === "About" && "coming soon"}
                 </div>
             </div>
         </div>

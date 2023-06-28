@@ -3,19 +3,54 @@
     flex-direction: column;
     justify-content: flex-start;
     color: @font-primary;
-    margin: 3rem;
+    background-color: white;
+    margin: 1rem 1rem 1rem 1rem;
     padding: 1rem;
-    border: 1px red solid;
-    border-radius: 20px;
+    border: none;
+    border-radius: 7px;
     height: 100vh;
+    box-shadow: 2px 2px 4px #888;
+    height: 200vh;
+}
 
+
+.team__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    margin-bottom: 1px;
+    border-bottom: .5px grey solid;
+}
+
+.team__header-image {
+    padding: 5px 20px 20px 5px;
+    margin: 50px;
+    border: 1px black solid;
+    border-radius: 15px;
 }
 
 .team__content {
-    margin-top: 5rem;
+    margin-top: .5rem;
     height: 50vh;
-    border: .5px red solid;
     border-radius: 20px;
+}
+
+
+.team__header-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.team__header-info h5{
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.team__header-info p{
+    margin-bottom: 9px;
 }
 
 .team__content-nav ul {
@@ -25,6 +60,11 @@
     justify-content: flex-start;
     list-style: none;
     border-bottom: 1px grey solid;
+}
+
+.team__content-nav ul > li:last-child {
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 .team__content-nav li  {
@@ -43,5 +83,6 @@
  }
 
  .team__content-nav li button.active {
-    background-color: red;
+    border-bottom: 5px lightblue solid;
+    margin-bottom: 0;
  }
