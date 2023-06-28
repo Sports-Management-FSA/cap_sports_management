@@ -178,11 +178,7 @@ body {
 form > * {
    margin: 1rem;
 }
-nav {
-   display: flex;
-   justify-content: space-around;
-   z-index: 99;
-}
+
 h1,
 h2,
 h3,
@@ -714,4 +710,7 @@ label {
 .form-control:focus {
    border-color: #dd3d3d;
    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(233, 15, 15, 0.6);
+}
+nav {
+   z-index: 99;
 }
