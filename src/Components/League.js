@@ -1,8 +1,9 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAllLeagues } from "../store";
 import Matches from './Matches';
+import Standings from "./Standings";
 
 const League = () => {
     const { id } = useParams();
@@ -10,8 +11,7 @@ const League = () => {
     const leagues = useSelector(state => state.leagues.leaguesList)
     const league = leagues.find(league => league.id == id);
     const teams = useSelector(state => state.teams.teamsList);
-    const filteredTeams = teams.filter(team => team.leagueId == league.id);
-    const leagueId = league ? league.id : null;
+    const [currentComponent, setCurrentComponent] = useState(null);
 
     
     const today = new Date();
@@ -24,6 +24,10 @@ const League = () => {
     useEffect(()=> {
         dispatch(fetchAllLeagues())
     }, [dispatch, id])
+
+    const handleClick= (component) => {
+        setCurrentComponent(component)
+    }
 
     if (!league){
         return <div>...loading</div>
@@ -50,7 +54,6 @@ const League = () => {
                 {/* INSERT MATCH DATA */}
                     {upcomingMatch && (
                         <div className="league__info--match" key={upcomingMatch.id}>
-                       
                             <div className="league__info--match-upper">
                                 <div className="league__info--match-upper-name">
                                     <p>{upcomingMatch.name}</p>
@@ -83,14 +86,17 @@ const League = () => {
             <div className="league__content">
                 <div className="league__content--body">
                     <h1>Body of content</h1>
-                    <Matches />
+                    {currentComponent === 'Matches' && <Matches />}
+                    {currentComponent === 'Standings' && <Standings id={id}/>}
+                    {currentComponent === 'Players' && "Players Component here"}
+                    {currentComponent === 'Team Info' && "Team Info Component here"}
                 </div>
                 <div className="league__content--sidebar">
                     <ul className="league--sidebar">
-                        <li><button>Players</button></li>
-                        <li><button>Standings</button></li>
-                        <li><button>Matches</button></li>
-                        <li><button>Team Info</button></li>
+                        <li><button onClick={() => handleClick('Players')}>Players</button></li>
+                        <li><button onClick={() => handleClick('Standings')}>Standings</button></li>
+                        <li><button onClick={() => handleClick('Matches')}>Matches</button></li>
+                        <li><button onClick={() => handleClick('Team Info')}>Team Info</button></li>
                     </ul>
                 </div>
             </div>
