@@ -89,10 +89,35 @@
 }
 
 .matches--match {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100vh;
+}
+@media (max-width: 1190px) {
+    .matches--match {
+        background-color: blue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .matches--match-upper {
+        display: flex;
+        flex-direction: column;
+    }
+    .matches--match-vs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1190px) {
+    .matches--match-vs-team {
+        background-color: yellow;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .matches--match p{

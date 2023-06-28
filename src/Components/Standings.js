@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 const Standings = (props) => {
     const id = props.id;
     const teams = useSelector(state => state.teams.teamsList);
     const teamsInLeague = teams.filter(team => team.leagueId == id);
-    
-    useEffect(()=> {
-
-    }, [props.id])
 
     return (
         <div className="standings__container">
@@ -27,7 +23,7 @@ const Standings = (props) => {
                 {teamsInLeague.map(team => (
                     <tr key={team.id}>    
                         <td className="table__cell">number</td>
-                        <td className="table__cell">{team.name}</td>
+                        <td className="table__cell"><Link to={`/teams/${team.id}`}> {team.name} </Link></td>
                         <td className="table__cell">{team.gamesWon || 'no data'}</td>
                         <td className="table__cell">{team.gamesLost || 'no data'}</td>
                     </tr>

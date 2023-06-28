@@ -115,6 +115,36 @@ const syncAndSeed = async()=> {
       categoryId: 2,
     }),
     await League.create({
+      name:'Just for fun',
+      season: 'Fall',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'CSGO Wild',
+      season: 'Summer',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'I love gaming',
+      season: 'Spring',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'asket Weaving',
+      season: 'Fall',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'American Football',
+      season: 'Summer',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'Soccer Fans',
+      season: 'Spring',
+      email: 'little01@gmail.com'
+    }),
+    await Team.create({
       name:'Regular League',
       season: 'Spring',
       email: 'regular01@gmail.com',
@@ -187,7 +217,7 @@ const syncAndSeed = async()=> {
       location: 'Barts Stadium', 
       leagueId: 1,
     })
-
+    
     const match2 = await Match.create({
       name:'Semi Finals', 
       description: 'semi final round',
@@ -195,8 +225,19 @@ const syncAndSeed = async()=> {
       time: '1:05', 
       location: 'Barts Stadium', 
       leagueId: 2,
-    })
-    
+    }),
+
+    await Match.create({
+      name:'Beginning', 
+      description: 'beginning round', 
+      date: "2023-10-9", 
+      time: '12:05', 
+      location: 'Barts Stadium', 
+      teamAid: 8, 
+      teamBid: 7,
+      leagueId: 2,
+    }),
+  
     const match3 = await Match.create({
       name:'Beginning',  
       description: 'beginning round', 

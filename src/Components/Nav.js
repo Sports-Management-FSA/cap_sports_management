@@ -20,7 +20,7 @@ const Nav = () => {
             <Link to="/">
                <i className="fa-solid fa-people-group" style={{ color: "#ffffff" }}>
                   {"  "}
-                  Sports Management
+                  Podium
                </i>
             </Link>
             <button
