@@ -19,7 +19,7 @@ const Nav = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
          <div className="container-fluid">
             <Link to="/">
-               <i className="fa-solid fa-people-group" style={{ color: "#ffffff" }}>
+               <i className="fa-solid fa-people-group ms-5" style={{ color: "#ffffff" }}>
                   {"  "}
                   Podium
                </i>
@@ -48,7 +48,7 @@ const Nav = () => {
                   </div>
                )} */}
             </div>
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div className="collapse navbar-collapse me-4" id="navbarTogglerDemo01">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
                   {auth?.username ? (
                      <>
