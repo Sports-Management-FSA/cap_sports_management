@@ -35,23 +35,26 @@ const Nav = () => {
                <span className="navbar-toggler-icon"></span>
             </button>
             <div>
-            {auth.username ? (
-               <div>
-                  Welcome {auth.username}!!
-                  <button onClick={() => dispatch(logout())}>Logout</button>
-               </div>
-            ) : (
-               <div>
-                  <button>
-                     <Link to="/login">Login</Link>
-                  </button>
-               </div>
-            )}
-         </div>
+               {/* {auth.username ? (
+                  <div>
+                     Welcome {auth.username}!!
+                     <button onClick={() => dispatch(logout())}>Logout</button>
+                  </div>
+               ) : (
+                  <div>
+                     <button>
+                        <Link to="/login">Login</Link>
+                     </button>
+                  </div>
+               )} */}
+            </div>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-               <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                  {user?.username ? (
+               <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
+                  {auth?.username ? (
                      <>
+                        <span className="text-white align-middle">
+                           Welcome! {`${auth.username[0].toUpperCase()}${auth.username.slice(1)}`}
+                        </span>
                         <li className="nav-item dropdown">
                            <a
                               className="nav-link dropdown-toggle"
@@ -65,20 +68,23 @@ const Nav = () => {
                            <ul
                               className="dropdown-menu dropdown-menu-dark dropdown-menu-end justify-cotent-start"
                               aria-labelledby="navbarDropdown">
-                              <li>
-                                 <a className="dropdown-item" href="#/dashboard">
+                              <li className="dropdown-item mb-2 mt-2" role="button">
+                                 <i className="bi  bi-layout-text-window"></i>
+                                 <a className="d-inline text-white ps-3" href="#/dashboard">
                                     Dashboard
                                  </a>
                               </li>
-                              <li>
-                                 <a className="dropdown-item" href="#">
+                              <li className="mb-2 dropdown-item" role="button">
+                                 <i className="bi bi-person-square"></i>
+                                 <a className="d-inline text-white ps-3" href="#">
                                     Profile
                                  </a>
                               </li>
-                              <li>
-                                 <button className="dropdown-item" onClick={handleLogout}>
+                              <li className="mb-2 dropdown-item" role="button">
+                                 <i className="bi bi-arrow-left-square"></i>
+                                 <a className="d-inline text-white ps-3" role="button" onClick={handleLogout}>
                                     Sign Out
-                                 </button>
+                                 </a>
                               </li>
                            </ul>
                         </li>
