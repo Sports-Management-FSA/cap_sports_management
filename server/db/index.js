@@ -225,19 +225,8 @@ const syncAndSeed = async()=> {
       time: '1:05', 
       location: 'Barts Stadium', 
       leagueId: 2,
-    }),
+    })
 
-    await Match.create({
-      name:'Beginning', 
-      description: 'beginning round', 
-      date: "2023-10-9", 
-      time: '12:05', 
-      location: 'Barts Stadium', 
-      teamAid: 8, 
-      teamBid: 7,
-      leagueId: 2,
-    }),
-  
     const match3 = await Match.create({
       name:'Beginning',  
       description: 'beginning round', 
