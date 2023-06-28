@@ -84,7 +84,7 @@ const Register = () => {
                            <form onSubmit={handleRegister}>
                               <div className="form-outline form-white mb-4">
                                  <input
-                                    className="form-control form-control-lg"
+                                    className="form-control"
                                     placeholder="Username"
                                     value={credentials.username}
                                     name="username"
@@ -93,7 +93,7 @@ const Register = () => {
                               </div>
                               <div className="form-outline form-white mb-4">
                                  <input
-                                    className="form-control form-control-lg"
+                                    className="form-control"
                                     placeholder="Password"
                                     type="password"
                                     name="password"
@@ -103,7 +103,7 @@ const Register = () => {
                               </div>
                               <div className="form-outline form-white mb-4">
                                  <input
-                                    className="form-control form-control-lg"
+                                    className="form-control"
                                     placeholder="Confirm Password"
                                     type="password"
                                     name="confirmPassword"
@@ -113,7 +113,7 @@ const Register = () => {
                               </div>
                               <div className="form-outline form-white mb-4">
                                  <input
-                                    className="form-control form-control-lg"
+                                    className="form-control"
                                     placeholder="FirstName"
                                     value={credentials.firstName}
                                     name="firstName"
@@ -122,7 +122,7 @@ const Register = () => {
                               </div>
                               <div className="form-outline form-white mb-4">
                                  <input
-                                    className="form-control form-control-lg"
+                                    className="form-control"
                                     placeholder="LastName"
                                     value={credentials.lastName}
                                     name="lastName"
@@ -131,7 +131,7 @@ const Register = () => {
                               </div>
                               <div className="form-outline form-white mb-4">
                                  <input
-                                    className="form-control form-control-lg"
+                                    className="form-control"
                                     placeholder="Email"
                                     type="email"
                                     name="email"
