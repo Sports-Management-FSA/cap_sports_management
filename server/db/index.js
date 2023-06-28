@@ -16,6 +16,8 @@ Team.belongsTo(League);
 League.hasMany(Team);
 League.hasMany(Match);
 Match.belongsTo(League);
+Category.hasMany(League);
+League.belongsTo(Category);
 
 User.belongsToMany(LeagueRoles, {through: {model: User_LeagueRoles, unique: false}});
 LeagueRoles.belongsToMany(User, {through: {model: User_LeagueRoles, unique: false}});
@@ -66,7 +68,7 @@ const syncAndSeed = async()=> {
   await conn.sync({ force: true });
 
     await Category.create({name: 'Football'})
-    await Category.create({name: 'Baseball'})
+    await Category.create({name: 'Hockey'})
     await Category.create({name: 'Basketball'})
 
     const touchdown = await Actions.create({name: 'Touchdown', value: 5, categoryId: 1})
@@ -81,19 +83,43 @@ const syncAndSeed = async()=> {
       name:'Little League',
       season: 'Fall',
       email: 'little01@gmail.com',
-      logo: '/static/images/nfl.png'
+      logo: '/static/images/nfl.png',
+      categoryId: 1,
     }),
     await League.create({
       name:'Big League',
       season: 'Summer',
       email: 'little01@gmail.com',
-      logo: '/static/images/nhl.png'
+      logo: '/static/images/league2.png',
+      categoryId: 2,
     }),
     await League.create({
       name:'Major League',
       season: 'Spring',
       email: 'little01@gmail.com',
-      logo: '/static/images/nfl.png'
+      logo: '/static/images/league3.png',
+      categoryId: 3,
+    })
+    await League.create({
+      name:'Hockey League',
+      season: 'Winter',
+      email: 'hockey01@gmail.com',
+      logo: '/static/images/nhl.png',
+      categoryId: 1,
+    }),
+    await League.create({
+      name:'Esports League',
+      season: 'All Year',
+      email: 'esports01@gmail.com',
+      logo: '/static/images/esports.jpeg',
+      categoryId: 2,
+    }),
+    await League.create({
+      name:'Regular League',
+      season: 'Spring',
+      email: 'regular01@gmail.com',
+      logo: '/static/images/mlb.png',
+      categoryId: 3,
     })
 
     const team1 = await Team.create({
