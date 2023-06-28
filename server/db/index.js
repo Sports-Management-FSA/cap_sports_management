@@ -30,7 +30,36 @@ const syncAndSeed = async()=> {
       season: 'Spring',
       email: 'little01@gmail.com'
     }),
-
+    await League.create({
+      name:'Just for fun',
+      season: 'Fall',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'CSGO Wild',
+      season: 'Summer',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'I love gaming',
+      season: 'Spring',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'Underwater Basket Weaving',
+      season: 'Fall',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'American Football SoCal',
+      season: 'Summer',
+      email: 'little01@gmail.com'
+    }),
+    await League.create({
+      name:'Soccer Fans',
+      season: 'Spring',
+      email: 'little01@gmail.com'
+    }),
     await Team.create({
       name: 'The Bulldogs',
       email: 'thebulldogs@gmail.com',

@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Standings";
+import Landing2 from "./Landing2";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -36,7 +37,7 @@ const App = () => {
       } */}
          <div>
             <Routes>
-               <Route path="/" element={<Landing />} />
+               <Route path="/" element={<Landing2 />} />
                <Route path="/leagues" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
