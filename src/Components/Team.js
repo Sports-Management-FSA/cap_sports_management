@@ -6,11 +6,11 @@ import Roster from './Roster';
 
 const Team = () => {
     const {id} = useParams();
-    const teams = useSelector(state=>state.teams.teamsList);
-    const team = teams.find(team=> team.id == id);
-    console.log(team)
     const [currentComponent, setCurrentComponent] = useState('Home');
     const [activeTab, setActiveTab] = useState('Standings');
+    
+    const teams = useSelector(state=>state.teams.teamsList);
+    const team = teams.find(team=> team.id == id);
     const users = useSelector(state=>state.players.playerList);
     const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
 

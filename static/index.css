@@ -274,18 +274,18 @@ a {
   color: white;
   height: 75vh;
   background: #1f1f1f;
-  background: linear-gradient(#1f1f1f 0%, #db4242 50%, rgba(26, 26, 26, 0) 100%);
-  animation: gradient 14s linear infinite;
+  background: linear-gradient(#1f1f1f 0%, #db4242 55%, rgba(26, 26, 26, 0) 98%);
+  animation: gradient 15s linear infinite;
 }
 @keyframes gradient {
   0% {
-    background-position: 0% 50%;
+    background-position: 50% 50%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 100% 5100%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 110% 50%;
   }
 }
 .landing__header {
