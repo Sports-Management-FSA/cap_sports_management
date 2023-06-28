@@ -12,19 +12,10 @@ const User_LeagueRoles = require('./models/User_LeagueRoles');
 const User_TeamRoles = require('./models/User_TeamRoles');
 const Team_Matches = require('./models/Team_Matches');
 
-User.belongsTo(Team);
-Team.hasMany(User);
 Team.belongsTo(League);
 League.hasMany(Team);
 League.hasMany(Match);
 Match.belongsTo(League);
-
-/*User_LeagueRoles.belongsTo(League);
-League.hasMany(User_LeagueRoles);
-User_LeagueRoles.belongsTo(User);
-User.hasMany(User_LeagueRoles);
-User_LeagueRoles.belongsTo(LeagueRoles);
-LeagueRoles.hasMany(User_LeagueRoles);*/
 
 User.belongsToMany(LeagueRoles, {through: {model: User_LeagueRoles, unique: false}});
 LeagueRoles.belongsToMany(User, {through: {model: User_LeagueRoles, unique: false}});
@@ -40,6 +31,14 @@ TeamRoles.belongsToMany(Team, {through: {model: User_TeamRoles, unique: false}})
 User.belongsToMany(Team, {through: {model: User_TeamRoles, unique:false}});
 Team.belongsToMany(User, {through: {model: User_TeamRoles, unique: false}});
 
+//kind of working??
+/*User_TeamRoles.belongsTo(Team);
+Team.hasMany(User_TeamRoles);
+User_TeamRoles.belongsTo(User);
+User.hasMany(User_TeamRoles)
+TeamRoles.hasMany(User_TeamRoles);
+User_TeamRoles.belongsTo(TeamRoles)*/
+
 /*Scorekeeper.belongsTo(Match);
 Match.hasMany(Scorekeeper);
 Scorekeeper.belongsTo(Actions);
@@ -47,19 +46,14 @@ Actions.hasMany(Scorekeeper);
 Scorekeeper.belongsTo(User);
 User.hasMany(Scorekeeper);*/
 
-/*User_TeamRoles.belongsTo(Team);
-Team.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(User);
-User.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(TeamRoles);
-TeamRoles.hasMany(User_TeamRoles);*/
-
 User.belongsToMany(Actions, {through: {model: Scorekeeper, unique: false}});
 Actions.belongsToMany(User, {through: {model: Scorekeeper, unique: false}});
 Match.belongsToMany(Actions, {through: {model: Scorekeeper, unique: false}});
 Actions.belongsToMany(Match, {through: {model: Scorekeeper, unique: false}});
 User.belongsToMany(Match, {through: {model: Scorekeeper, unique:false}});
 Match.belongsToMany(User, {through: {model: Scorekeeper, unique:false}});
+Team.belongsToMany(Actions, {through: {model: Scorekeeper, unique:false}});
+Actions.belongsToMany(Team, {through: {model: Scorekeeper, unique:false}});
 
 Match.belongsToMany(Team, {through: Team_Matches});
 Team.belongsToMany(Match, {through: Team_Matches});
@@ -75,13 +69,13 @@ const syncAndSeed = async()=> {
     await Category.create({name: 'Baseball'})
     await Category.create({name: 'Basketball'})
 
-    await Actions.create({name: 'Touchdown', value: 5, categoryId: 1})
-    await Actions.create({name: 'Homerun', value: 5, categoryId: 2})
-    await Actions.create({name: 'Field Goal', value: 5, categoryId: 3})
+    const touchdown = await Actions.create({name: 'Touchdown', value: 5, categoryId: 1})
+    const homerun = await Actions.create({name: 'Homerun', value: 5, categoryId: 2})
+    const fieldGoal = await Actions.create({name: 'Field Goal', value: 5, categoryId: 3})
 
-    const player = await TeamRoles.create({name: 'Player'})
-    const leagueDirector = await LeagueRoles.create({name: 'Director'})
-    const teamManager = await TeamRoles.create({name: 'Manager'})
+    const player = await TeamRoles.create({name: 'player'})
+    const leagueDirector = await LeagueRoles.create({name: 'director'})
+    const teamManager = await TeamRoles.create({name: 'manager'})
 
     await League.create({
       name:'Little League',
@@ -183,47 +177,7 @@ const syncAndSeed = async()=> {
       leagueId: 3,
     })
 
-    const jen = await User.create({ 
-      username: 'jen', 
-      password: '123', 
-      firstName: 'jen',
-      lastName: 'smith',
-      email: 'jen@g.com',
-    })
-
-    const moe = await User.create({ 
-      username: 'moe', 
-      password: '123', 
-      firstName: 'moe',
-      lastName: 'smith',
-      email: 'moe@g.com',
-
-    })
-
-    const jane = await User.create({ 
-      username: 'jane', 
-      password: '123', 
-      firstName: 'jane',
-      lastName: 'smith',
-      email: 'jane@g.com',
-    })
-
-    const jaura = await User.create({ 
-      username: 'jaura', 
-      password: '123', 
-      firstName: 'jaura',
-      lastName: 'smith',
-      email: 'jaura@g.com',
-    })
-
-    const jaylen = await User.create({ 
-      username: 'jaylen', 
-      password: '123', 
-      firstName: 'jaylen',
-      lastName: 'smith',
-      email: 'jaylen@g.com',
-    })
-
+   //team managers
     const jack = await User.create({ 
       username: 'jack', 
       password: '123', 
@@ -282,6 +236,47 @@ const syncAndSeed = async()=> {
     })
 
     //players
+    const jen = await User.create({ 
+      username: 'jen', 
+      password: '123', 
+      firstName: 'jen',
+      lastName: 'smith',
+      email: 'jen@g.com',
+    })
+
+    const moe = await User.create({ 
+      username: 'moe', 
+      password: '123', 
+      firstName: 'moe',
+      lastName: 'smith',
+      email: 'moe@g.com',
+
+    })
+
+    const jane = await User.create({ 
+      username: 'jane', 
+      password: '123', 
+      firstName: 'jane',
+      lastName: 'smith',
+      email: 'jane@g.com',
+    })
+
+    const jaura = await User.create({ 
+      username: 'jaura', 
+      password: '123', 
+      firstName: 'jaura',
+      lastName: 'smith',
+      email: 'jaura@g.com',
+    })
+
+    const jaylen = await User.create({ 
+      username: 'jaylen', 
+      password: '123', 
+      firstName: 'jaylen',
+      lastName: 'smith',
+      email: 'jaylen@g.com',
+    })
+
     const mike = await User.create({ 
       username: 'mike', 
       password: '123', 
@@ -326,7 +321,6 @@ const syncAndSeed = async()=> {
       username: 'hen', 
       password: '123', 
       isPlayer: true, 
-      teamId: 6,
       firstName: 'hen',
       lastName: 'smith',
       email: 'hen@g.com',
@@ -336,7 +330,6 @@ const syncAndSeed = async()=> {
       username: 'han', 
       password: '123', 
       isPlayer: true, 
-      teamId: 7,
       firstName: 'han',
       lastName: 'smith',
       email: 'han@g.com',
@@ -346,7 +339,6 @@ const syncAndSeed = async()=> {
       username: 'hunt', 
       password: '123', 
       isPlayer: true, 
-      teamId: 8,
       firstName: 'hunt',
       lastName: 'smith',
       email: 'hunt@g.com',
@@ -356,76 +348,55 @@ const syncAndSeed = async()=> {
       username: 'har', 
       password: '123', 
       isPlayer: true, 
-      teamId: 9,
       firstName: 'har',
       lastName: 'smith',
       email: 'har@g.com',
     });
     
+    //add director roles to users
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}})
+    await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
+    await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
+
+    //add team manager roles to users
     await jof.addTeamRole(teamManager, {through: {teamId: 1}})
     await jof.addTeamRole(player, {through: {teamId: 1}});
     await julia.addTeamRole(teamManager, {through: {teamId: 2}})
     await julissa.addTeamRole(teamManager, {through: {teamId: 2}})
     await jack.addTeamRole(teamManager, {through: {teamId: 3}})
 
-    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}})
-    await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
-    await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
-
+    //add team player role to users
     await mike.addTeamRole(player, {through: {teamId: 1}})
+    await jen.addTeamRole(player, {through: {teamId: 1}})
     await tina.addTeamRole(player, {through: {teamId: 2}})
+    await moe.addTeamRole(player, {through: {teamId: 2}})
     await joe.addTeamRole(player, {through: {teamId: 3}})
+    await jane.addTeamRole(player, {through: {teamId: 3}})
     await lucy.addTeamRole(player, {through: {teamId: 4}})
+    await jaura.addTeamRole(player, {through: {teamId: 4}})
     await homer.addTeamRole(player, {through: {teamId: 5}})
+    await jaylen.addTeamRole(player, {through: {teamId: 5}})
     await hen.addTeamRole(player, {through: {teamId: 6}})
     await han.addTeamRole(player, {through: {teamId: 7}})
     await hunt.addTeamRole(player, {through: {teamId: 8}})
     await har.addTeamRole(player, {through: {teamId: 9}})
+    
+    //add teams to matches
+    await match1.addTeam([team1, team2]); //league 1
+    await match2.addTeam([team4, team5]); //league 2
+    await match3.addTeam([team6, team7]); //league 2
+    await match4.addTeam([team8, team9]); //league 3
 
-    //await match1.addTeam(team1);
-    //await match1.addTeam(team2);
-    await match1.addTeam([team1, team2]);
-    await match2.addTeam([team3, team4]);
-    await match3.addTeam([team5, team6]);
-    await match4.addTeam([team8, team9]);
-
-    const team1matches = await team1.getMatches();
-    console.log('\n\nTeam 1s matches')
-    console.log(team1matches);
-
-    const team1MatchActions = await team1.getMatches({include:[{model:conn.models.actions}]});
-    console.log('\n\nTeam1 actions in each match');
-    console.log(team1MatchActions);
-
-    const team1allUsers = await team1.getTeamRoles({include:[{model:conn.models.user}]});
-    console.log('\n\nAll Team 1 Positions Users')
-    console.log(team1allUsers);
-
-    const team1players = await team1.getTeamRoles({where: {id:1},include:[{model:conn.models.user}]});
-    console.log('\n\nTeam 1 players:');
-    console.log(team1players);
-
-
-    await Scorekeeper.create({matchId: 1, userId: 18, actionId: 1});
-    await Scorekeeper.create({matchId: 1, userId: 20, actionId: 1});
-    await Scorekeeper.create({matchId: 2, userId: 18, actionId: 1});
-    await Scorekeeper.create({matchId: 2, userId: 20, actionId: 3});
-    await Scorekeeper.create({matchId: 2, userId: 17, actionId: 3});
-    await Scorekeeper.create({matchId: 3, userId: 15, actionId: 2});
-    await Scorekeeper.create({matchId: 3, userId: 13, actionId: 2});
-
-    const henRoles = await hen.getTeamRoles();
-    console.log('\n\nAll hens Team Roles')
-    console.log(henRoles);
-
-    //const jenActions = await jen.getUserActions();
-    const henActions = await hen.getActions();
-    console.log('\n\nAll hens actions')
-    console.log(henActions);
-
-    const henActionsGame = await hen.getMatches({include:[{model: conn.models.actions}]});
-    console.log('\n\nhens Actions Separated By Matches')
-    console.log(henActionsGame);
+    //add actions to scorekeeper
+    await Scorekeeper.create({matchId: 1, userId: 13, actionId: 1, teamId: 1});
+    await Scorekeeper.create({matchId: 1, userId: 9, actionId: 1, teamId: 2});
+    await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
+    await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
+    await Scorekeeper.create({matchId: 2, userId: 12, actionId: 1, teamId: 5});
+    await Scorekeeper.create({matchId: 3, userId: 18, actionId: 2, teamId: 6});
+    await Scorekeeper.create({matchId: 3, userId: 18, actionId: 2, teamId: 6});
+    await team8.addActions(fieldGoal, {through: {userId: 20, matchId:4}})
+    await team9.addActions(fieldGoal, {through: {userId: 21, matchId:4}})
 
     console.log('\n\nSeeding Successful!\n\n')
 };
