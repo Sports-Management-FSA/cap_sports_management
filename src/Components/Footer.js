@@ -11,7 +11,7 @@ const Footer = () => {
                   Podium
                </i>
             </a>
-            <small>&copy; Podium, {new Date().getFullYear()}. All rights reserved.</small>
+            <small className="text-white">&copy; Podium, {new Date().getFullYear()}. All rights reserved.</small>
             <div>
                <a href="/#" className="text-white">
                   About
