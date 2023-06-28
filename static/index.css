@@ -181,6 +181,7 @@ form > * {
 nav {
   display: flex;
   justify-content: space-around;
+  z-index: 99;
 }
 h1,
 h2,
@@ -634,6 +635,29 @@ a {
 .table__cell:last-child {
   border-top-right-radius: 0.25rem;
 }
+.dashboard-sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-sidenav div {
+  padding-left: 2rem;
+  margin-top: 2.5rem;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+.dashboard-sidenav div:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -645,7 +669,8 @@ a {
 }
 .dashboard-profile-container {
   border-style: solid;
-  width: 60%;
+  width: 80%;
+  height: 1000px;
   background-color: #252424;
   padding: 1rem;
 }
