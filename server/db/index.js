@@ -28,9 +28,66 @@ const syncAndSeed = async()=> {
     await League.create({
       name:'Major League',
       season: 'Spring',
-      email: 'little01@gmail.com'
+      email: 'little01@gmail.com',
+      logo: '/static/images/league3.png',
+      categoryId: 3,
+    })
+    await League.create({
+      name:'Hockey League',
+      season: 'Winter',
+      email: 'hockey01@gmail.com',
+      logo: '/static/images/nhl.png',
+      categoryId: 1,
     }),
-
+    await League.create({
+      name:'Esports League',
+      season: 'All Year',
+      email: 'esports01@gmail.com',
+      logo: '/static/images/esports.jpeg',
+      categoryId: 2,
+    }),
+    await League.create({
+      name:'Just for fun',
+      season: 'Fall',
+      email: 'little01@gmail.com',
+      logo: '/static/images/league3.png',
+      categoryId: 3,
+    }),
+    await League.create({
+      name:'CSGO Wild',
+      season: 'Summer',
+      email: 'little01@gmail.com',
+      logo: '/static/images/league2.png',
+      categoryId: 2,
+    }),
+    await League.create({
+      name:'I love gaming',
+      season: 'Spring',
+      email: 'little01@gmail.com',
+      logo: '/static/images/esports.jpeg',
+      categoryId: 2,
+    }),
+    await League.create({
+      name:'asket Weaving',
+      season: 'Fall',
+      email: 'little01@gmail.com',
+      logo: '/static/images/league3.png',
+      categoryId: 3,
+    }),
+    await League.create({
+      name:'American Football',
+      season: 'Summer',
+      email: 'little01@gmail.com',
+      logo: '/static/images/nfl.png',
+      categoryId: 1,
+    }),
+    await League.create({
+      name:'Soccer Fans',
+      season: 'Spring',
+      email: 'little01@gmail.com',
+      logo: '/static/images/league3.png',
+      categoryId: 3,
+    }),
     await Team.create({
       name: 'The Bulldogs',
       email: 'thebulldogs@gmail.com',
@@ -115,7 +172,7 @@ const syncAndSeed = async()=> {
       teamAid: 8, 
       teamBid: 7,
       leagueId: 3,
-    }),
+    })
     await User.create({ 
       username: 'jen', 
       password: '123', 
