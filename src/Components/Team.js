@@ -8,6 +8,7 @@ const Team = () => {
     const {id} = useParams();
     const teams = useSelector(state=>state.teams.teamsList);
     const team = teams.find(team=> team.id == id);
+    console.log(team)
     const [currentComponent, setCurrentComponent] = useState('Home');
     const [activeTab, setActiveTab] = useState('Standings');
     const users = useSelector(state=>state.players.playerList);
@@ -50,7 +51,7 @@ const Team = () => {
                     </ul>
                 </div>
                 <div className="team__content-body">
-                    {currentComponent === "Standings" && <Standings team={team} />}
+                    {currentComponent === "Standings" && <Standings id={team.leagueId} />}
                     {currentComponent === "Roster" && <Roster players={players}/>}
                     {currentComponent === "Schedule" && "coming soon"}
                     {currentComponent === "Stats" && "coming soon"}

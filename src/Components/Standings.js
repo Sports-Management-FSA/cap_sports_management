@@ -4,9 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 
 
 const Standings = (props) => {
-
-    const {team} = props;
-    console.log(team)
     const id = props.id;
     const teams = useSelector(state => state.teams.teamsList);
     const teamsInLeague = teams.filter(team => team.leagueId == id);
