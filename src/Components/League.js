@@ -7,7 +7,8 @@ import Standings from "./Standings";
 const League = () => {
     const { id } = useParams();
     const [currentComponent, setCurrentComponent] = useState(null);
-    const leagues = useSelector(state => state.leagues.leaguesList)
+    const [activeTab, setActiveTab] = useState('Standings');
+    const leagues = useSelector(state => state.leagues.leaguesList);
     const league = leagues.find(league => league.id == id);
     const teams = useSelector(state => state.teams.teamsList);
     const matches = useSelector(state => state.matches.matchesList);
@@ -21,6 +22,7 @@ const League = () => {
 
     const handleClick= (component) => {
         setCurrentComponent(component)
+        setActiveTab(component);
     }
 
     if (!league){
@@ -82,20 +84,23 @@ const League = () => {
                     }
                 </div>
             </div>
-            <div className="league__content">
-                <div className="league__content--body">
-                    {currentComponent === 'Matches' && <Matches />}
-                    {currentComponent === 'Standings' && <Standings id={id}/>}
-                    {currentComponent === 'Players' && "Players Component here"}
-                    {currentComponent === 'Team Info' && "Team Info Component here"}
-                </div>
-                <div className="league__content--sidebar">
-                    <ul className="league--sidebar">
-                        <li className="league--sidebar-firstChild"><button onClick={() => handleClick('Players')}>Players</button></li>
-                        <li><button onClick={() => handleClick('Standings')}>Standings</button></li>
-                        <li><button onClick={() => handleClick('Matches')}>Matches</button></li>
-                        <li><button onClick={() => handleClick('Team Info')}>Team Info</button></li>
-                    </ul>
+            <div className="league__container-main">
+                <ul className="league--sidebar">
+                    <li><button button onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</button></li>
+                    <li><button onClick={() => handleClick('Players')} className={activeTab === 'Players' ? 'active' : ''}>Players</button></li>
+                    <li><button onClick={() => handleClick('Standings')} className={activeTab === 'Standings' ? 'active' : ''}>Standings</button></li>
+                    <li><button onClick={() => handleClick('Matches')} className={activeTab === 'Matches' ? 'active' : ''} >Matches</button></li>
+                    <li><button onClick={() => handleClick('Team Info')} className={activeTab === 'Team Info' ? 'active' : ''}>Teams</button></li>
+                    <li><button onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</button></li>
+                </ul>   
+                <div className="league__content">
+                    <div className="league__content--body">
+                        {currentComponent === 'Announcements' && "Announcements coming soon"}
+                        {currentComponent === 'Matches' && <Matches />}
+                        {currentComponent === 'Standings' && <Standings id={id}/>}
+                        {currentComponent === 'Players' && "Players Component here"}
+                        {currentComponent === 'Team Info' && "Team Info Component here"}
+                    </div>        
                 </div>
             </div>
         </div>

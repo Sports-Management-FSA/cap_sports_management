@@ -11,21 +11,6 @@ const Home = () => {
 
    return (
       <div className="home-container">
-         <h1>Podium</h1>
-         <div>
-            {auth.username ? (
-               <div>
-                  Welcome {auth.username}!!
-                  <button onClick={() => dispatch(logout())}>Logout</button>
-               </div>
-            ) : (
-               <div>
-                  <button>
-                     <Link to="/login">Login</Link>
-                  </button>
-               </div>
-            )}
-         </div>
          <div className="home-popular">
             <div className="section-titles">
                <h3>Popular League Categories</h3>
@@ -40,12 +25,17 @@ const Home = () => {
          </div>
          <div className="home-leagues">
             <div className="home-leagues-header">
-               <div>
-                  <h1>Leagues</h1>
+               <div className="home-leagues-header-left">
+                  <div>
+                     <h1>Leagues</h1>
+                  </div>
+                  <div>
+                        <input 
+                           placeholder="Search Leagues"
+                        />
+                  </div>
                </div>
-               <div>
                   <Link to="/createleague">Create League</Link>
-               </div>
             </div>
             <div className="home-leagues-cards">
                {leagues.leaguesList?.map((league, idx) => (

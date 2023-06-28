@@ -1,16 +1,19 @@
+.league-container {
+  background-color: white;
+}
 .league__head {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   box-shadow: 2px 2px 4px #000, -2px -2px 4px #fff;
-  box-shadow: 0 9px 10px teal;
+  box-shadow: 0 0px 50px #2af9f9;
 }
 .league__head h2 {
-  color: white;
+  color: black;
   margin-left: 30px;
 }
 .league__head h5 {
-  color: white;
+  color: black;
   font-size: 0.9rem;
   margin-left: 10px;
   margin-bottom: 10px;
@@ -21,6 +24,7 @@
   justify-content: center;
   align-items: center;
   margin: 2rem;
+  height: 50vh;
 }
 .league__info--description {
   display: flex;
@@ -31,7 +35,6 @@
   background-color: #515b67;
   border: 0.5px black solid;
   border-radius: 20px;
-  box-shadow: 0 0 15px black;
 }
 .league__info--description a {
   display: flex;
@@ -55,7 +58,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #515b67;
+  background-color: #3c3e3f;
   box-shadow: 0 0 15px black;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -121,6 +124,11 @@
   display: flex;
   justify-content: space-between;
 }
+.league__container-main {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
 .league__content {
   display: flex;
   flex-direction: row;
@@ -134,49 +142,30 @@
   height: 100vh;
   flex-basis: 85%;
 }
-.league__content--sidebar {
-  background-color: #45586c;
-  flex-basis: 15%;
-  height: 50vh;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border: 0.5px grey solid;
-  box-shadow: 0 0 10px black;
-}
 .league--sidebar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   list-style-type: none;
-  padding: 0;
-  margin: 0;
-  border-top-left-radius: 20px;
-}
-.league--sidebar li {
-  width: 100%;
+  border-bottom: 0.5px lightblue solid;
+  margin-bottom: 0;
 }
 .league--sidebar button {
   width: 100%;
   height: 3rem;
   color: black;
-  background-color: grey;
-  border: 0.5px grey solid;
+  background-color: white;
+  border: none;
   font-size: 1rem;
   text-align: left;
-  padding: 0;
-  margin: 0;
 }
-.league--sidebar-firstChild {
-  background-color: blue;
-}
-.league--sidebar button:hover {
-  background-color: #394c5f;
+.league--sidebar li button.active {
+  border-bottom: 3px lightblue solid;
+  margin-bottom: 0;
 }
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 form {
   display: flex;
@@ -184,6 +173,7 @@ form {
 }
 body {
   background-color: #1F1F1F;
+  font-family: 'Oxygen', 'sans-serif';
 }
 form > * {
   margin: 1rem;
@@ -191,9 +181,21 @@ form > * {
 nav {
   display: flex;
   justify-content: space-around;
+  z-index: 99;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Oxygen', 'sans-serif';
+  font-weight: 700;
 }
 a {
   text-decoration: none;
+  font-family: 'Oxygen', 'sans-serif';
+  font-weight: 400;
 }
 .team__container {
   display: flex;
@@ -295,6 +297,7 @@ a {
 }
 .landing__header h1 {
   color: #fbfbfb;
+  font-weight: 300;
   font-size: 6rem;
 }
 .landing__body-browse-header {
@@ -461,6 +464,7 @@ a {
 .home-leagues {
   display: flex;
   flex-direction: column;
+  background-color: #3f5357;
 }
 .home-leagues-header {
   display: flex;
@@ -522,7 +526,7 @@ a {
   margin-bottom: 10px;
 }
 .matches--match-container {
-  background-color: grey;
+  background-color: #3c3e3f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -631,6 +635,29 @@ a {
 .table__cell:last-child {
   border-top-right-radius: 0.25rem;
 }
+.dashboard-sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-sidenav div {
+  padding-left: 2rem;
+  margin-top: 2.5rem;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+.dashboard-sidenav div:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -642,7 +669,8 @@ a {
 }
 .dashboard-profile-container {
   border-style: solid;
-  width: 60%;
+  width: 80%;
+  height: 1000px;
   background-color: #252424;
   padding: 1rem;
 }

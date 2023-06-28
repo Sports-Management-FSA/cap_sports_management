@@ -39,7 +39,6 @@ const Team = () => {
             <div className='team__content'>
                 <div className="team__content-nav">
                     <ul>
-                        <li><button onClick={() => handleClick('Home') } className={activeTab === 'Home' ? 'active' : ''}>Home</button></li>
                         <li><button onClick={() => handleClick('Standings') } className={activeTab === 'Standings' ? 'active' : ''}>Standings</button></li>
                         <li><button onClick={() => handleClick('Roster')} className={activeTab === 'Roster' ? 'active' : ''}>Roster</button></li>
                         <li><button onClick={() => handleClick('Schedule')} className={activeTab === 'Schedule' ? 'active' : ''}>Schedule</button></li>
