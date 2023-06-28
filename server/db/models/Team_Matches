@@ -1,0 +1,13 @@
+const conn = require("../conn");
+const { INTEGER } = conn.Sequelize;
+
+const Team_Matches = conn.define("team_matches", {
+   id:{
+      type: INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+  },
+});
+
+module.exports = Team_Matches;

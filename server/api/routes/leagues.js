@@ -1,12 +1,13 @@
 const router = require('express').Router();
-const { User, Team } = require('../../db');
+const { User, Team, Match } = require('../../db');
 const { League } = require('../../db');
+const LeagueRoles = require('../../db/models/LeagueRoles');
 
 
 // GET ALL LEAGUES
 router.get('/', async (req, res, next) => {
     try {
-        const league = await League.findAll();
+        const league = await League.findAll({include:[Team, Match, {model:User, include:[LeagueRoles]}]});
         res.send(league);
     } catch(ex) {
         res.send('no data yet, next(ex) prompted')
@@ -18,7 +19,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 
     try {
-        const league = await League.findByPk(req.params.id);
+        const league = await League.findByPk(req.params.id, {include:[Team, Match, {model:User, include:[LeagueRoles]}]});
         res.send(league);
     } catch(ex) {
         next(ex);

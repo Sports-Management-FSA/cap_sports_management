@@ -41,7 +41,7 @@ const Home = () => {
                {leagues.leaguesList?.map((league, idx) => (
                   <div className="home-league-card" key={idx}>
                      <div>
-                        <h2>IMAGE HERE</h2>
+                        <img src={window.location.origin + `${league.logo}`} width="170" height="160" alt="Image"/>
                      </div>
                      <div className="home-league-card-text">
                         <div className="home-card-text-name">

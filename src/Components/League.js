@@ -32,7 +32,8 @@ const League = () => {
     return (
         <div className="league-container">
             <div className="league__head">
-                <h2>{league.logo}{league.name}</h2>
+                <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
+                <h2>{league.name}</h2>
                 <h5>{league.season}</h5>
             </div>
             <div className="league__container-upper">
