@@ -9,7 +9,7 @@ const { access } = require("fs");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./db/models/User");
 require("dotenv").config();
-
+const Sequelize = require("sequelize");
 
 // Middleware
 app.use(express.json());
@@ -45,23 +45,30 @@ passport.use(
          passReqToCallback: true
       },
       async (req, accessToken, refreshToken, profile, cb) => {
-         const defaultUser = {
-            username: `${profile.name.givenName.toLowerCase()}${profile.name.familyName.toLowerCase()}`,
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
-            email: profile.emails[0].value,
-            googleId: profile.id
-         };
+         try {
+            const defaultUser = {
+               username: `${profile.name.givenName.toLowerCase()}${profile.name.familyName.toLowerCase()}`,
+               password: `random-${Math.random()}`,
+               firstName: profile.name.givenName,
+               lastName: profile.name.familyName,
+               email: profile.emails[0].value,
+               googleId: profile.id
+            };
 
-         const user = await User.findOrCreate({
-            where: { googleId: profile.id },
-            defaults: defaultUser
-         }).catch((err) => {
+            const [user, created] = await User.findOrCreate({
+               where: { googleId: profile.id },
+               defaults: defaultUser
+            });
+
+            if (created || user) {
+               return cb(null, user);
+            } else {
+               return cb(null, false);
+            }
+         } catch (err) {
             console.log("Error signing up", err);
-            cb(err, null);
-         });
-
-         if (user && user[0]) return cb(null, user && user[0]);
+            return cb(err, null);
+         }
       }
    )
 );
@@ -84,9 +91,26 @@ passport.deserializeUser(async (id, cb) => {
 
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
-app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), function (req, res) {
-   // Successful authentication, redirect home
-   res.redirect("/");
+app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), async (req, res) => {
+   try {
+      // Successful authentication, generate a token
+      const token = req.user.generateToken();
+
+      // Redirect or respond with the token
+      res.send(`
+        <html>
+          <body>
+            <script>
+              window.localStorage.setItem('token', '${token}');
+              window.location = '/';
+            </script>
+          </body>
+        </html>
+      `);
+   } catch (err) {
+      console.log("Error generating token", err);
+      res.status(500).send("Internal Server Error");
+   }
 });
 
 // API configured at /api

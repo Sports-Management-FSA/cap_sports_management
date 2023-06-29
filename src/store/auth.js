@@ -71,7 +71,6 @@ const authSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder.addCase(loginWithToken.fulfilled, (state, action) => {
-         console.log(action.payload);
          return action.payload;
       });
       builder.addCase(attemptLogin.fulfilled, (state, action) => {
