@@ -6,28 +6,31 @@ import Standings from "./Standings";
 
 const League = () => {
    const { id } = useParams();
-   const [currentComponent, setCurrentComponent] = useState(null);
+   const [currentComponent, setCurrentComponent] = useState('Standings');
    const [activeTab, setActiveTab] = useState("Standings");
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
-   const teams = useSelector((state) => state.teams.teamsList);
-   const matches = useSelector((state) => state.matches.matchesList);
-   const matchesByLeague = matches.filter((match) => match.leagueId == id);
-
    const today = new Date();
-   const upcomingMatch = matchesByLeague.find((match) => {
-      const matchDate = new Date(match.date);
-      return matchDate > today;
-   });
+
+   if (!league) {
+        return <div>...loading</div>;
+    }
+ 
+   const matches = league.matches;
+   const teams = league.teams;
+
+   const upcomingMatch = matches.find((match) => {
+       const matchDate = new Date(match.date);
+       return matchDate > today;
+    });
+
+    console.log(upcomingMatch);
 
    const handleClick = (component) => {
       setCurrentComponent(component);
       setActiveTab(component);
    };
 
-   if (!league) {
-      return <div>...loading</div>;
-   }
 
     return (
         <div className="league-container">
@@ -61,13 +64,12 @@ const League = () => {
                                 </div>
                                 <div className="league__info--match-vs">
                                     <div className="league__match-vs-team">
-                                        <p><Link to={`/teams/${upcomingMatch.teamAid}`}>{teams.find(team => team.id === upcomingMatch.teamAid)?.name ||  ""}</Link></p>
-                                        <p>team id: {upcomingMatch.teamAid}</p>
+                                        <Link to={`/teams/${upcomingMatch.teams[0].id}`}>{upcomingMatch.teams[0].name}</Link>
                                     </div>
                                     <p> vs </p>
                                     <div className="league__match-vs-team">
-                                        <p><Link to={`/teams/${upcomingMatch.teamBid}`}>{teams.find(team => team.id === upcomingMatch.teamBid)?.name ||  ""}</Link></p>
-                                        <p>team id: {upcomingMatch.teamBid}</p>
+                                        <p><Link to={`/teams/${upcomingMatch.teams[1].id}`}>{upcomingMatch.teams[1].name}</Link></p>
+                                        <p>team id: {upcomingMatch.teams[1].id}</p>
                                     </div>
                                 </div>
                                 <div className="league__info--match-lower">
@@ -96,8 +98,8 @@ const League = () => {
                 <div className="league__content">
                     <div className="league__content--body">
                         {currentComponent === 'Announcements' && "Announcements coming soon"}
-                        {currentComponent === 'Matches' && <Matches />}
-                        {currentComponent === 'Standings' && <Standings id={id}/>}
+                        {currentComponent === 'Matches' && <Matches matches={matches} />}
+                        {currentComponent === 'Standings' && <Standings teams={teams}/>}
                         {currentComponent === 'Players' && "Players Component here"}
                         {currentComponent === 'Team Info' && "Team Info Component here"}
                     </div>        
