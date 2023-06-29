@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Roster = (props) => {
-    const {players}  = props;
+    const {users}  = props;
+    //create obj with different roles as keys and save the users with those roles
+    const players = users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) !== null);
+    const staff = users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) == null);
+
     return (
         
             <table className="table">

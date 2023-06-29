@@ -13,17 +13,17 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className='dashboard-sidenav'>
+            {/* <div className='dashboard-sidenav'>
                 <div onClick={() => setCurrent('start')}>Profile</div>
                 <div onClick={() => setCurrent('leagues')}>Leagues</div>
                 <div onClick={() => setCurrent('teams')}>Teams</div>
                 <div>Messages</div>
                 <div>Invites</div>
                 <div>Account</div>
-            </div>
-            <div className='dashboard-container'>
+            </div> */}
+            <div>
                 {current === 'start' &&
-                    <div className='dashboard-profile-container'>
+                    <div>
                         <PlayerProfile />
                     </div>
                 }

@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { User, Match, Team } = require("../../db");
+const { User, Match, Team, Actions } = require("../../db");
 const LeagueRoles = require("../../db/models/LeagueRoles");
 const TeamRoles = require("../../db/models/TeamRoles");
 
 router.get("/", async (req, res, next) => {
    try {
-      const user = await User.findAll({include:[LeagueRoles, TeamRoles]});
+      const user = await User.findAll({include:[LeagueRoles, TeamRoles, Actions]});
       res.send(user);
    } catch (ex) {
       next(ex);

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Team, Match } = require('../../db');
 const { League } = require('../../db');
 const LeagueRoles = require('../../db/models/LeagueRoles');
+const TeamRoles = require('../../db/models/TeamRoles');
 
 
 // GET ALL LEAGUES
@@ -17,7 +18,6 @@ router.get('/', async (req, res, next) => {
 
 // GET LEAGUES BY ID
 router.get('/:id', async (req, res, next) => {
-
     try {
         const league = await League.findByPk(req.params.id, {include:[Team, Match, {model:User, include:[LeagueRoles]}]});
         res.send(league);
@@ -29,8 +29,9 @@ router.get('/:id', async (req, res, next) => {
 // POST ALL LEAGUES
 router.post('/', async (req, res, next) => {
     try {
-        const user = await User.findByToken(req.headers.authorization);
-        if (!user || !user.isDirector){
+        const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
+        console.log(user)
+        if (!user){
             return res.status(401).send('Unauthorized to add league');
         } 
         const league = await League.create(req.body);
