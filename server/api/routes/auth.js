@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express.Router();
 const { User } = require("../../db");
+const passport = require("passport");
 
-module.exports = app;
+/* Google login routes */
 
 app.post("/", async (req, res, next) => {
    try {
@@ -37,3 +38,5 @@ app.post("/register", async (req, res, next) => {
       next(ex);
    }
 });
+
+module.exports = app;
