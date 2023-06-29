@@ -11,12 +11,6 @@ const Team = () => {
     
     const teams = useSelector(state=>state.teams.teamsList);
     const team = teams.find(team=> team.id == id);
-    // const users = useSelector(state=>state.players.playerList);
-    // const players = users.filter(player=>player.teamId == id && player.isPlayer == true);
-   
-    
-   
-    
 
     const handleClick = (componentAndTab) => {
         setCurrentComponent(componentAndTab)
@@ -55,7 +49,7 @@ const Team = () => {
                 </div>
                 <div className="team__content-body">
                     {currentComponent === "Standings" && <Standings id={team.leagueId} />}
-                    {currentComponent === "Roster" && <Roster players={team.users}/>}
+                    {currentComponent === "Roster" && <Roster users={team.users}/>}
                     {currentComponent === "Schedule" && "coming soon"}
                     {currentComponent === "Stats" && "coming soon"}
                     {currentComponent === "News Feed" && "coming soon"}

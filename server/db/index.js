@@ -475,4 +475,12 @@ module.exports = {
   Match,
   Team,
   League,
+  TeamRoles,
+  Scorekeeper,
+  LeagueRoles,
+Actions,
+Category,
+User_LeagueRoles,
+User_TeamRoles,
+Team_Matches,
 };
