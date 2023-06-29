@@ -166,6 +166,9 @@ User.findByToken = async function (token) {
         },
         {
           model: conn.models.team,
+          include:[
+            conn.models.match
+         ]
         },
         {
           model: conn.models.leagueRoles,
