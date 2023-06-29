@@ -89,7 +89,10 @@ const Login = () => {
                               <a className="text-white" role="button">
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
-                              <a className="text-white" onClick={googleLogin} role="button">
+
+                              <a className="text-white" role="button" onClick={googleLogin}>
+
+
                                  <i className="fab fa-google fa-lg"></i>
                               </a>
                            </div>
