@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store";
+import { Avatar } from "@mui/material";
 
 const Nav = () => {
    const user = useSelector((state) => state.auth);
@@ -34,20 +35,6 @@ const Nav = () => {
                aria-label="Toggle navigation">
                <span className="navbar-toggler-icon"></span>
             </button>
-            <div>
-               {/* {auth.username ? (
-                  <div>
-                     Welcome {auth.username}!!
-                     <button onClick={() => dispatch(logout())}>Logout</button>
-                  </div>
-               ) : (
-                  <div>
-                     <button>
-                        <Link to="/login">Login</Link>
-                     </button>
-                  </div>
-               )} */}
-            </div>
             <div className="collapse navbar-collapse me-4" id="navbarTogglerDemo01">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
                   {auth?.username ? (
@@ -57,13 +44,21 @@ const Nav = () => {
                         </span>
                         <li className="nav-item dropdown">
                            <a
-                              className="nav-link dropdown-toggle"
+                              className="nav-link dropdown-toggle caret-off"
                               href="#"
                               id="navbarDropdown"
                               role="button"
                               data-bs-toggle="dropdown"
                               aria-expanded="false">
-                              <i className="fa-sharp fa-regular fa-circle-user fs-4" style={{ color: "white" }}></i>
+                              <Avatar
+                                 alt={auth.username}
+                                 src={user.firstName ? user.firstName.slice(0, 1) : null}
+                                 className="text-uppercase bg-white text-dark"
+                                 sx={{
+                                    height: "35px",
+                                    width: "35px"
+                                 }}
+                              />
                            </a>
                            <ul
                               className="dropdown-menu dropdown-menu-dark dropdown-menu-end justify-cotent-start"

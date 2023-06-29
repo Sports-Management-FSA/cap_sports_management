@@ -3,9 +3,15 @@ import { useSelector } from "react-redux";
 import { fetchAllMatches } from "../store";
 import { Link } from "react-router-dom";
 
-const Matches = () => {
-    const matches = useSelector(state => state.matches.matchesList);
-    const teams = useSelector(state => state.teams.teamsList);
+const Matches = (props) => {
+    let matches =[];
+
+    if(props.matches){
+        matches = props.matches;
+    } else {
+        matches = useSelector(state=> state.matches.matchesList)
+    }
+
    
 const today = new Date();
     const upcomingMatches = matches.filter((match) => {
@@ -32,8 +38,8 @@ const today = new Date();
         {
         previousMatches.map((previousMatch) => {
             return (
-                <div className='matches--match-container'>
-                    <div className="matches--match" key={previousMatch.id}>
+                <div className='matches--match-container' key={previousMatch.id}>
+                    <div className="matches--match">
                         <div className="matches--match-upper">
                     <div className="matches--match-upper-name">
                         <p>{previousMatch.name}</p>
@@ -45,7 +51,7 @@ const today = new Date();
        
     <div className='matches--match-vs'>
         <div className="matches-match-vs-team">
-       <p><Link to={`/teams/${previousMatch.teamAid}`}>{teams.find(team => team.id === previousMatch.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${previousMatch.teamBid}`}>{teams.find(team => team.id === previousMatch.teamBid)?.name || ""}</Link></p>
+       <p><Link to={`/teams/${previousMatch.teams[0].id}`}>{previousMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${previousMatch.teams[1].id}`}>{previousMatch.teams[1]?.name || ""}</Link></p>
        </div>
        </div>
        <div className='matches--match-lower'>
@@ -63,8 +69,8 @@ const today = new Date();
  {
         currentMatches.map((currentMatch) => {
             return (
-                <div className='matches--match-container'>
-                <div className="matches--match" key={currentMatch.id}>
+                <div className='matches--match-container' key={currentMatch.id}>
+                <div className="matches--match">
                     <div className="matches--match-upper">
                 <div className="matches--match-upper-name">
                     <p>{currentMatch.name}</p>
@@ -76,7 +82,7 @@ const today = new Date();
    
 <div className='matches--match-vs'>
     <div className="matches-match-vs-team">
-   <p><Link to={`/teams/${currentMatch.teamAid}`}>{teams.find(team => team.id === currentMatch.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${currentMatch.teamBid}`}>{teams.find(team => team.id === currentMatch.teamBid)?.name || ""}</Link></p>
+   <p><Link to={`/teams/${currentMatch.teams[0].id}`}>{currentMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${currentMatch.teams[1].id}`}>{currentMatch.teams[1]?.name || ""}</Link></p>
    </div>
    </div>
    <div className='matches--match-lower'>
@@ -94,8 +100,8 @@ const today = new Date();
         {
         upcomingMatches.map((upcomingMatch) => {
             return (
-                <div className='matches--match-container'>
-                <div className="matches--match" key={upcomingMatch.id}>
+                <div className='matches--match-container' key={upcomingMatch.id}>
+                <div className="matches--match">
                     <div className="matches--match-upper">
                 <div className="matches--match-upper-name">
                     <p>{upcomingMatch.name}</p>
@@ -107,7 +113,7 @@ const today = new Date();
    
 <div className='matches--match-vs'>
     <div className="matches-match-vs-team">
-   <p><Link to={`/teams/${upcomingMatch.teamAid}`}>{teams.find(team => team.id === upcomingMatch.teamAid)?.name || ""}</Link> vs <Link to={`/teams/${upcomingMatch.teamBid}`}>{teams.find(team => team.id === upcomingMatch.teamBid)?.name || ""}</Link></p>
+   <p><Link to={`/teams/${upcomingMatch.teams[0].id}`}>{upcomingMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${upcomingMatch.teams[1].id}`}>{upcomingMatch.teams[1]?.name || ""}</Link></p>
    </div>
    </div>
    <div className='matches--match-lower'>

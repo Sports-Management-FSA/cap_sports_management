@@ -4,9 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 
 const Standings = (props) => {
-    const id = props.id;
-    const teams = useSelector(state => state.teams.teamsList);
-    const teamsInLeague = teams.filter(team => team.leagueId == id);
+    const {teams} = props;
 
     return (
         <div className="standings__container">
@@ -20,7 +18,7 @@ const Standings = (props) => {
                 </tr>
                 </thead>
                 <tbody className="table__body-container">
-                {teamsInLeague.map(team => (
+                {teams.map(team => (
                     <tr key={team.id}>    
                         <td className="table__cell">number</td>
                         <td className="table__cell"><Link to={`/teams/${team.id}`}> {team.name} </Link></td>

@@ -83,13 +83,16 @@ const Login = () => {
                               Login
                            </button>
                            <div className="d-flex justify-content-center text-center mt-4 pt-1">
-                              <a className="text-white">
+                              <a className="text-white" role="button">
                                  <i className="fab fa-facebook-f fa-lg"></i>
                               </a>
-                              <a className="text-white">
+                              <a className="text-white" role="button">
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
-                              <a className="text-white" onClick={googleLogin}>
+
+                              <a className="text-white" role="button" onClick={googleLogin}>
+
+
                                  <i className="fab fa-google fa-lg"></i>
                               </a>
                            </div>
