@@ -5,13 +5,8 @@ const routes = require("./api");
 const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
-const { access } = require("fs");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const User = require("./db/models/User");
-require("dotenv").config();
-const Sequelize = require("sequelize");
 
-require("./google-auth");
+require("./passport");
 
 // Middleware
 app.use(express.json());
@@ -62,6 +57,35 @@ app.get("/auth/google/callback", passport.authenticate("google", { failureRedire
       res.status(500).send("Internal Server Error");
    }
 });
+
+// Facebook Login Route
+app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "public_profile"] }));
+
+app.get(
+   "/auth/facebook/callback",
+   passport.authenticate("facebook", { failureRedirect: "/login" }),
+   async (req, res) => {
+      try {
+         // Successful authentication, generate a token
+         const token = req.user.generateToken();
+
+         // Redirect or respond with the token
+         res.send(`
+            <html>
+               <body>
+                  <script>
+                     window.localStorage.setItem('token', '${token}');
+                     window.location = '/';
+                  </script>
+               </body>
+            </html>
+         `);
+      } catch (err) {
+         console.log("Error generating token", err);
+         res.status(500).send("Internal Server Error");
+      }
+   }
+);
 
 // API configured at /api
 app.use("/api", routes);
