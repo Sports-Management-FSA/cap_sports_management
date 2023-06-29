@@ -1,26 +1,12 @@
 .landing__container {
     color: @dark-font-primary;
-    height: 75vh;
-    background: rgb(31,31,31);
-    background: linear-gradient(rgba(31,31,31,1) 0%, rgb(219, 66, 66) 55%, rgba(26,26,26,0) 98%);
-    animation: gradient 15s linear infinite;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 50% 50%;
-	}
-	50% {
-		background-position: 100% 5100%;
-	}
-	100% {
-		background-position: 110% 50%;
-	}
 }
 
 .landing__header {
-    padding: 10rem 0rem 10rem 20rem;
     background-size: cover;
+    background: rgb(31,31,31);
+    background: linear-gradient(rgba(31,31,31,1) 0%, rgb(219, 66, 66) 35%, rgba(26,26,26,0) 98%);
+    padding: 10rem 0rem 10rem 20rem;
     height: 100vh;
 }
 
@@ -46,16 +32,14 @@
 
 .landing__header button {
     margin-left: auto;
-
 }
 
 .landing__body-browse {
-    height: 75vh;
-    margin: 2rem;
+    height: 100vh; // was 75vh before testing footer issue
+    margin: 0 2rem 0 2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 75vh; 
 }
 
 .landing__body-browse-leagues {

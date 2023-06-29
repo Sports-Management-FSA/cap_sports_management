@@ -1,33 +1,33 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Matches from './Matches';
+import Matches from "./Matches";
 import Standings from "./Standings";
 
 const League = () => {
-    const { id } = useParams();
-    const [currentComponent, setCurrentComponent] = useState(null);
-    const [activeTab, setActiveTab] = useState('Standings');
-    const leagues = useSelector(state => state.leagues.leaguesList);
-    const league = leagues.find(league => league.id == id);
-    const teams = useSelector(state => state.teams.teamsList);
-    const matches = useSelector(state => state.matches.matchesList);
-    const matchesByLeague = matches.filter(match => match.leagueId == id);
+   const { id } = useParams();
+   const [currentComponent, setCurrentComponent] = useState(null);
+   const [activeTab, setActiveTab] = useState("Standings");
+   const leagues = useSelector((state) => state.leagues.leaguesList);
+   const league = leagues.find((league) => league.id == id);
+   const teams = useSelector((state) => state.teams.teamsList);
+   const matches = useSelector((state) => state.matches.matchesList);
+   const matchesByLeague = matches.filter((match) => match.leagueId == id);
 
-    const today = new Date();
-    const upcomingMatch = matchesByLeague.find((match) => {
-        const matchDate = new Date(match.date);
-        return matchDate > today;
-      });
+   const today = new Date();
+   const upcomingMatch = matchesByLeague.find((match) => {
+      const matchDate = new Date(match.date);
+      return matchDate > today;
+   });
 
-    const handleClick= (component) => {
-        setCurrentComponent(component)
-        setActiveTab(component);
-    }
+   const handleClick = (component) => {
+      setCurrentComponent(component);
+      setActiveTab(component);
+   };
 
-    if (!league){
-        return <div>...loading</div>;
-    }
+   if (!league) {
+      return <div>...loading</div>;
+   }
 
     return (
         <div className="league-container">
@@ -86,7 +86,7 @@ const League = () => {
             </div>
             <div className="league__container-main">
                 <ul className="league--sidebar">
-                    <li><button button onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</button></li>
+                    <li><button onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</button></li>
                     <li><button onClick={() => handleClick('Players')} className={activeTab === 'Players' ? 'active' : ''}>Players</button></li>
                     <li><button onClick={() => handleClick('Standings')} className={activeTab === 'Standings' ? 'active' : ''}>Standings</button></li>
                     <li><button onClick={() => handleClick('Matches')} className={activeTab === 'Matches' ? 'active' : ''} >Matches</button></li>
@@ -103,8 +103,8 @@ const League = () => {
                     </div>        
                 </div>
             </div>
-        </div>
-    )
-}
+         </div>
+   );
+};
 
 export default League;

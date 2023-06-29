@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 const Home = () => {
    const { auth, leagues } = useSelector((state) => state);
@@ -30,18 +31,16 @@ const Home = () => {
                      <h1>Leagues</h1>
                   </div>
                   <div>
-                        <input 
-                           placeholder="Search Leagues"
-                        />
+                     <input placeholder="Search Leagues" />
                   </div>
                </div>
-                  <Link to="/createleague">Create League</Link>
+               <Link to="/createleague">Create League</Link>
             </div>
             <div className="home-leagues-cards">
                {leagues.leaguesList?.map((league, idx) => (
                   <div className="home-league-card" key={idx}>
                      <div>
-                        <img src={window.location.origin + `${league.logo}`} width="170" height="160" alt="Image"/>
+                        <img src={window.location.origin + `${league.logo}`} width="170" height="160" alt="Image" />
                      </div>
                      <div className="home-league-card-text">
                         <div className="home-card-text-name">
