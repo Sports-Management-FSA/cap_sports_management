@@ -47,15 +47,16 @@ passport.use(
       async (req, accessToken, refreshToken, profile, cb) => {
          try {
             const defaultUser = {
-               username: `${profile.name.givenName.toLowerCase()}${profile.name.familyName.toLowerCase()}`,
+               username:
+                  `${profile.name.givenName.toLowerCase()}${profile.name.familyName.toLowerCase()}` || profile.email,
                password: `random-${Math.random()}`,
-               firstName: profile.name.givenName,
+               firstName: profile.name.givenName || "",
                lastName: profile.name.familyName || "",
                email: profile.emails[0].value,
                googleId: profile.id,
                avatar: profile.pictures
             };
-
+            console.log(profile);
             const [user, created] = await User.findOrCreate({
                where: { googleId: profile.id },
                defaults: defaultUser
