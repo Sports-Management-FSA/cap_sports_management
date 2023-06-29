@@ -50,16 +50,16 @@ passport.use(
                username: `${profile.name.givenName.toLowerCase()}${profile.name.familyName.toLowerCase()}`,
                password: `random-${Math.random()}`,
                firstName: profile.name.givenName,
-               lastName: profile.name.familyName,
+               lastName: profile.name.familyName || "",
                email: profile.emails[0].value,
-               googleId: profile.id
+               googleId: profile.id,
+               avatar: profile.pictures
             };
 
             const [user, created] = await User.findOrCreate({
                where: { googleId: profile.id },
                defaults: defaultUser
             });
-
             if (created || user) {
                return cb(null, user);
             } else {
@@ -74,17 +74,13 @@ passport.use(
 );
 
 passport.serializeUser((user, cb) => {
-   console.log("Serializing user:", user);
    cb(null, user.id);
 });
 
 passport.deserializeUser(async (id, cb) => {
    const user = await User.findOne({ where: { id } }).catch((err) => {
-      console.log("Error deserializing", err);
       cb(err, null);
    });
-
-   console.log("DeSerialized user", user);
 
    if (user) cb(null, user);
 });
