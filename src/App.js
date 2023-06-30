@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
-import Home from "./Home";
-import Login from "./Login";
-import Team from "./Team";
-import Player from "./Player";
-import Nav from "./Nav";
-import League from "./League";
-import Register from "./Register";
-import CreateLeague from "./CreateLeague";
-import CreateTeam from "./CreateTeam";
-import CreatePlayer from "./CreatePlayer";
-import Dashboard from "./dashboard"
-import Landing from "./Landing";
-import Matches from "./Matches";
-import Footer from "./Footer";
+import Home from "./Components/Home";
+import Login from "./Components/Login";
+import Team from "./Components/Team";
+import Player from "./Components/Player";
+import Nav from "./Components/Nav";
+import League from "./Components/League";
+import Register from "./Components/Register";
+import CreateLeague from "./Components/CreateLeague";
+import CreateTeam from "./Components/CreateTeam";
+import CreatePlayer from "./Components/CreatePlayer";
+import Dashboard from "./Components/dashboard"
+import Matches from "./Components/Matches";
+import Footer from "./Components/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
+import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
-import Standings from "./Standings";
-import Landing2 from "./Landing2";
-
+import Standings from "./Components/Standings";
+import Landing2 from "./Components/Landing2";
+import Home2 from "./Components/Home2";
 const App = () => {
    const { auth } = useSelector((state) => state);
    const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const App = () => {
          <div>
             <Routes>
                <Route path="/" element={<Landing2 />} />
-               <Route path="/leagues" element={<Home />} />
+               <Route path="/home" element={<Home2 />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
                <Route path="/teams/:id" element={<Team />} />
