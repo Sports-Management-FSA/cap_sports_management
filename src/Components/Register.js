@@ -72,7 +72,11 @@ const Register = () => {
       credentials.password !== credentials.confirmPassword;
 
    return (
-      <div className="vh-100 signUp-custom">
+      <div
+         className="vh-100"
+         style={{
+            backgroundImage: "linear-gradient(to right, #434343 0%, black 100%)"
+         }}>
          <div className="mask d-flex align-items-center h-100">
             <div className="container h-100">
                <div className="row d-flex justify-content-center align-items-center h-100">
