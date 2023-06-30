@@ -164,58 +164,15 @@
   display: flex;
   justify-content: space-between;
 }
-
-.league__container-main {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem;
-}
-.league__content {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-.league__content--body {
-  color: black;
-  margin-left: 200px !important;
-  margin-right: 20px;
-  border-radius: 20px;
-  height: 100vh;
-  flex-basis: 85%;
-}
-.league--sidebar {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  list-style-type: none;
-  border-bottom: 0.5px lightblue solid;
-  margin-bottom: 0;
-}
-.league--sidebar button {
-  width: 100%;
-  height: 3rem;
-  color: black;
-  background-color: white;
-  border: none;
-  font-size: 1rem;
-  text-align: left;
-}
-.league--sidebar li button.active {
-  border-bottom: 3px lightblue solid;
-  margin-bottom: 0;
-}
-
 * {
-  font-family: 'Oxygen', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 form {
   display: flex;
   flex-direction: column;
 }
 body {
-  background-color: #1F1F1F;
-  font-family: 'Oxygen', 'sans-serif';
+  background-color: white;
 }
 form > * {
   margin: 1rem;
@@ -231,12 +188,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Oxygen', 'sans-serif';
   font-weight: 700;
 }
 a {
   text-decoration: none;
-  font-family: 'Oxygen', 'sans-serif';
   font-weight: 400;
 }
 .team__container {
@@ -457,7 +412,6 @@ a {
   gap: 50px;
   background-color: #515b67;
 }
-
 .home-container {
   display: flex;
   flex-direction: column;
@@ -482,29 +436,12 @@ a {
   text-decoration-skip-ink: none;
   text-decoration-thickness: 2px;
 }
-
-.home-popular {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.home-popular h3 {
-   color: white;
-   margin-bottom: 2px;
-   text-decoration: underline;
-   text-decoration-color: #008f99;
-   text-decoration-skip-ink: none;
-   text-decoration-thickness: 2px;
-
-}
 .home-popular-cards {
   display: flex;
   gap: 5rem;
   margin: 2rem;
 }
 .home-popular-cards a {
-
   border-radius: 10px;
   padding: 15px 50px 15px 50px;
   color: black;
@@ -515,15 +452,6 @@ a {
   flex-direction: column;
   background-color: #F5F7FB;
   margin: 5rem;
-   border-radius: 10px;
-   padding: 15px 50px 15px 50px;
-   color: white;
-   background-color: #515b67;
-}
-.home-leagues {
-  display: flex;
-  flex-direction: column;
-  background-color: #3f5357;
 }
 .home-leagues-header {
   display: flex;
@@ -533,8 +461,8 @@ a {
 }
 .home-leagues-cards {
   display: flex;
-  margin-left: 40px;
   flex-direction: row;
+  justify-content: center;
   flex-flow: wrap;
   gap: 2rem;
 }
@@ -544,30 +472,15 @@ a {
 .home-leagues-cards p {
   color: white;
 }
-.home-league-card {
-  background-color: #515b67;
+.home-league-card p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: black;
   border-radius: 5px;
   margin: 5px;
   padding: 5px;
   align-items: flex-start;
-}
-.home-league-card h2 {
-  height: 125px;
-}
-.home-league-card-text {
-  width: 100%;
-}
-.home-card-text-subtext {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.home-card-text-subtext p {
-  font-size: 0.7rem;
-  margin: 0;
 }
 .matches-header {
   display: flex;
