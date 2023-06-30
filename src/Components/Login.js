@@ -45,7 +45,11 @@ const Login = () => {
    };
 
    return (
-      <section className="vh-100 login-custom">
+      <section
+         className="vh-100"
+         style={{
+            backgroundImage: "linear-gradient(to right, #434343 0%, black 100%)"
+         }}>
          <div className="container py-5 h-100 ">
             <form className="row d-flex justify-content-center align-items-center h-100 opacity-80">
                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
