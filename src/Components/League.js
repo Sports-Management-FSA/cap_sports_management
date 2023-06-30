@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Matches from "./Matches";
 import Standings from "./Standings";
+import TeamInfo from "./TeamInfo";
 
 const League = () => {
    const { id } = useParams();
@@ -69,7 +70,6 @@ const League = () => {
                                     <p> vs </p>
                                     <div className="league__match-vs-team">
                                         <p><Link to={`/teams/${upcomingMatch.teams[1].id}`}>{upcomingMatch.teams[1].name}</Link></p>
-                                        <p>team id: {upcomingMatch.teams[1].id}</p>
                                     </div>
                                 </div>
                                 <div className="league__info--match-lower">
@@ -101,7 +101,7 @@ const League = () => {
                         {currentComponent === 'Matches' && <Matches matches={matches} />}
                         {currentComponent === 'Standings' && <Standings teams={teams}/>}
                         {currentComponent === 'Players' && "Players Component here"}
-                        {currentComponent === 'Team Info' && "Team Info Component here"}
+                        {currentComponent === 'Team Info' && <TeamInfo teams={teams}/>}
                     </div>        
                 </div>
             </div>
