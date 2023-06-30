@@ -9,7 +9,7 @@
         "test": "JWT=shhhhh mocha",
         "test:dev": "DATABASE_URL=postgres://localhost/acme_shopping_test_db npm run test -- --watch",
         "test:dev:quiet": "QUIET=true npm run test:dev",
-        "start:dev": "JWT=felix nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev"
+        "start:dev": "nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev"
     },
     "keywords": [],
     "author": "",
@@ -27,6 +27,7 @@
         "passport": "^0.6.0",
         "passport-facebook": "^3.0.0",
         "passport-google-oauth20": "^2.0.0",
+        "passport-twitter": "^1.0.4",
         "pg": "^8.8.0",
         "react-bootstrap": "^2.8.0",
         "sequelize": "^6.25.3",
