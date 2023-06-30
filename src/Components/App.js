@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
 import Team from "./Team";
+import Team2 from "./Team2";
 import Player from "./Player";
 import Nav from "./Nav";
 import League from "./League";
@@ -43,7 +44,7 @@ const App = () => {
                <Route path="/leagues" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
-               <Route path="/teams/:id" element={<Team />} />
+               <Route path="/teams/:id" element={<Team2 />} />
                <Route path="/login" element={<Login />} />
                <Route path="/league/:id/createteam" element={<CreateTeam />} />
                <Route path="/createleague" element={<CreateLeague />} />
