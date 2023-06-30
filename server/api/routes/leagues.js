@@ -8,7 +8,7 @@ const TeamRoles = require('../../db/models/TeamRoles');
 // GET ALL LEAGUES
 router.get('/', async (req, res, next) => {
     try {
-        const league = await League.findAll({include:[Team, Match, {model:User, include:[LeagueRoles]}]});
+        const league = await League.findAll({include:[Team, {model:Match, include:[Team]}, {model:User, include:[LeagueRoles]}]});
         res.send(league);
     } catch(ex) {
         res.send('no data yet, next(ex) prompted')
@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 // GET LEAGUES BY ID
 router.get('/:id', async (req, res, next) => {
     try {
-        const league = await League.findByPk(req.params.id, {include:[Team, Match, {model:User, include:[LeagueRoles]}]});
+        const league = await League.findByPk(req.params.id, {include:[Team, {model:Match, include:[Team]}, {model:User, include:[LeagueRoles]}]});
         res.send(league);
     } catch(ex) {
         next(ex);

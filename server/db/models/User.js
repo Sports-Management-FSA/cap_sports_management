@@ -53,6 +53,9 @@ const User = conn.define("user", {
    },
    googleId: {
       type: STRING
+   },
+   facebookId: {
+      type: STRING
    }
 });
 

@@ -1,22 +1,24 @@
-.home-container h1 {
-    color: @dark-font-primary;
-}
+
 .home-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    background-color: @background-primary;
 }
-
+.home-container h1 {
+    color: @font-primary;
+}
 
 .home-popular {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 1rem;
 }
 
 .home-popular h3 {
-    color: @dark-font-primary;
+    color: @font-primary;
     margin-bottom: 2px;
     text-decoration: underline;
     text-decoration-color: @link-primary;
@@ -34,14 +36,15 @@
     //border: 1px grey solid;
     border-radius: 10px;
     padding: 15px 50px 15px 50px;
-    color: @dark-font-primary;
-    background-color: @dark-background-secondary;
+    color: @font-primary;
+    background-color: white;
 }
 
 .home-leagues {
     display: flex;
     flex-direction: column;
-    background-color: rgb(63, 83, 87);
+    background-color: @background-primary;
+    margin: 5rem;
 }
 
 .home-leagues-header {
@@ -53,8 +56,9 @@
 
 .home-leagues-cards {
     display: flex;
-    margin-left: 40px;
+    //margin-left: 40px;
     flex-direction: row;
+    justify-content: center;
     flex-flow: wrap;
     gap: 2rem;
 }
@@ -68,32 +72,32 @@
 }
 
 
-.home-league-card {
-    background-color: @dark-background-secondary;
+.home-league-card p{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: black;
     //border: .05px grey solid;
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
     align-items: flex-start;
 }
-.home-league-card h2 {
-    height: 125px;
-}
+// .home-league-card h2 {
+//     height: 125px;
+// }
 
-.home-league-card-text {
-    width: 100%;
-}
+// .home-league-card-text {
+//     width: 100%;
+// }
 
-.home-card-text-subtext {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+// .home-card-text-subtext {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+// }
 
-.home-card-text-subtext p{
-    font-size: .7rem;
-    margin: 0;
-}
+// .home-card-text-subtext p{
+//     font-size: .7rem;
+//     margin: 0;
+// }
