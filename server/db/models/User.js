@@ -163,6 +163,7 @@ User.addHook("beforeSave", async (user) => {
 });
 
 User.findByToken = async function (token) {
+
    try {
       const { id } = jwt.verify(token, process.env.JWT_SECRET);
       const user = await this.findByPk(id, {
@@ -178,6 +179,7 @@ User.findByToken = async function (token) {
       throw error;
    }
 };
+
 
 User.prototype.generateToken = function () {
    return jwt.sign({ id: this.id }, process.env.JWT_SECRET);

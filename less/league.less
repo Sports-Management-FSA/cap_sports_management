@@ -32,6 +32,60 @@
     height: 50vh;
 }
 
+
+.league__container-main{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.league__content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.league__content--body {
+    color: @font-primary;
+    margin-left: 200px !important;
+    margin-right: 20px;
+    border-radius: 20px;
+    height: 100vh;
+    flex-basis: 85%;
+}
+
+.league--sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+    border-bottom: .5px lightblue solid;
+    margin-bottom: 0;
+
+}
+  
+
+.league--sidebar button {
+  width: 100%;
+  height: 3rem;
+  color: @font-primary;
+  background-color: @background-primary;
+  border: none;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.league--sidebar li button.active {
+    border-bottom: 3px lightblue solid;
+    margin-bottom: 0;
+}
+
+
+.league--sidebar button:hover {
+    //background-color: @link-hover-primary;
+}
+
 .league__info--description {
     display: flex;
     flex-direction: column;
@@ -148,55 +202,3 @@
     justify-content: space-between;
 }
 
-.league__container-main{
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-}
-
-.league__content {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.league__content--body {
-    color: @font-primary;
-    margin-left: 200px !important;
-    margin-right: 20px;
-    border-radius: 20px;
-    height: 100vh;
-    flex-basis: 85%;
-}
-
-.league--sidebar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    list-style-type: none;
-    border-bottom: .5px lightblue solid;
-    margin-bottom: 0;
-
-}
-  
-
-.league--sidebar button {
-  width: 100%;
-  height: 3rem;
-  color: @font-primary;
-  background-color: @background-primary;
-  border: none;
-  font-size: 1rem;
-  text-align: left;
-}
-
-.league--sidebar li button.active {
-    border-bottom: 3px lightblue solid;
-    margin-bottom: 0;
-}
-
-
-.league--sidebar button:hover {
-    //background-color: @link-hover-primary;
-}

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
 import Team from "./Team";
+import Team2 from "./Team2";
 import Player from "./Player";
 import Nav from "./Nav";
 import League from "./League";
@@ -14,7 +15,7 @@ import Landing from "./Landing";
 import Matches from "./Matches";
 import Footer from "./Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "../store";
+import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllCategories } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Standings";
 import Landing2 from "./Landing2";
@@ -23,6 +24,7 @@ const App = () => {
    const { auth } = useSelector((state) => state);
    const dispatch = useDispatch();
    useEffect(() => {
+      dispatch(fetchAllCategories());
       dispatch(fetchAllLeagues());
       dispatch(fetchAllMatches());
       dispatch(fetchAllPlayers());
@@ -43,7 +45,7 @@ const App = () => {
                <Route path="/leagues" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
-               <Route path="/teams/:id" element={<Team />} />
+               <Route path="/teams/:id" element={<Team2 />} />
                <Route path="/login" element={<Login />} />
                <Route path="/league/:id/createteam" element={<CreateTeam />} />
                <Route path="/createleague" element={<CreateLeague />} />
