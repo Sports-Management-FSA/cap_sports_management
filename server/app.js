@@ -25,8 +25,8 @@ app.use(
 app.use(
    session({
       secret: "secretcode",
-      resave: true,
-      saveUninitialized: true
+      resave: false,
+      saveUninitialized: false
    })
 );
 
@@ -86,6 +86,31 @@ app.get(
       }
    }
 );
+
+// Twitter Login Route
+app.get("/auth/twitter", passport.authenticate("twitter"));
+
+app.get("/auth/twitter/callback", passport.authenticate("twitter", { failureRedirect: "/login" }), async (req, res) => {
+   try {
+      // Successful authentication, generate a token
+      const token = req.user.generateToken();
+
+      // Redirect or respond with the token
+      res.send(`
+              <html>
+                 <body>
+                    <script>
+                       window.localStorage.setItem('token', '${token}');
+                       window.location = '/';
+                    </script>
+                 </body>
+              </html>
+           `);
+   } catch (err) {
+      console.log("Error generating token", err);
+      res.status(500).send("Internal Server Error");
+   }
+});
 
 // API configured at /api
 app.use("/api", routes);

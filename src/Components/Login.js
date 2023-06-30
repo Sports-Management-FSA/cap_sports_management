@@ -44,6 +44,10 @@ const Login = () => {
       window.open("http://localhost:3000/auth/facebook", "_self");
    };
 
+   const twitter = () => {
+      window.open("http://localhost:3000/auth/twitter", "_self");
+   };
+
    return (
       <section
          className="vh-100"
@@ -93,7 +97,7 @@ const Login = () => {
                               <a className="text-white" role="button" onClick={facebook}>
                                  <i className="fab fa-facebook-f fa-lg"></i>
                               </a>
-                              <a className="text-white" role="button">
+                              <a className="text-white" role="button" onClick={twitter}>
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
 

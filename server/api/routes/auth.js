@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express.Router();
 const { User } = require("../../db");
-const passport = require("passport");
 
 /* Google login routes */
 
