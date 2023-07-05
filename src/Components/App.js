@@ -4,18 +4,25 @@ import Login from "./Login";
 import Team from "./Team";
 import Team2 from "./Team2";
 import Player from "./Player";
-import Nav from "./Nav";
+import Nav from "./Global/Nav";
+import Footer from "./Global/Footer";
+import SideBar from "./Global/Sidebar";
 import League from "./League";
 import Register from "./Register";
 import CreateLeague from "./CreateLeague";
 import CreateTeam from "./CreateTeam";
 import CreatePlayer from "./CreatePlayer";
-import Dashboard from "./dashboard"
-import Landing from "./Landing";
+import Dashboard from "./dashboard";
 import Matches from "./Matches";
-import Footer from "./Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllCategories } from "../store";
+import {
+   fetchAllLeagues,
+   fetchAllTeams,
+   fetchAllPlayers,
+   fetchAllMatches,
+   loginWithToken,
+   fetchAllCategories
+} from "../store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Standings";
 import Landing2 from "./Landing2";
@@ -35,6 +42,7 @@ const App = () => {
    return (
       <div>
          <Nav />
+         <SideBar />
          {/* {
         auth.id ? <Home /> : <Login />
       } */}
