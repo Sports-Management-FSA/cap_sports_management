@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
 
 const Home = () => {
    const { auth, leagues } = useSelector((state) => state);
