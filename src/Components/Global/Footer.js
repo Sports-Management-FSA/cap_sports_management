@@ -13,10 +13,10 @@ const Footer = () => {
             </a>
             <small className="text-white">&copy; Podium, {new Date().getFullYear()}. All rights reserved.</small>
             <div>
-               <a href="/#" className="text-white">
+               <a href="/#" className="text-white text-decoration-none">
                   About
                </a>
-               <a href="/#" className="text-white ms-3">
+               <a href="/#" className="text-white ms-3 text-decoration-none">
                   Team
                </a>
             </div>
