@@ -46,9 +46,18 @@ const League = () => {
                 <div className="league-main-upper">
                     <div className="league-main-upperbox">
                         <div className="league-head">
-                            <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
-                            <h2>{league.name}</h2>
-                            <p>{league.season}</p>
+                            <div className="head-left">
+                                <div className="head-left-img">
+                                    <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
+                                </div>
+                                <div className="head-left-content">
+                                    <h2>{league.name}</h2>
+                                    <p>{league.season}</p>                                
+                                </div>
+                            </div>
+                            <div className="head-right">
+                                <p>Request to Join</p>
+                            </div>
                         </div>
                         <div className="league-navbar">
                             <ul className="league--navbar-items">
@@ -70,7 +79,6 @@ const League = () => {
                             </div>        
                         </div>   
                     </div>
-                
             </div>
             <RightNav />
             {/* <div className="league__head">

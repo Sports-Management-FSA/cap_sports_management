@@ -19,8 +19,14 @@
 .league-head {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-between;
   margin: 2rem;
+}
+.head-left {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.2rem;
 }
 .league-head img {
   margin-right: 1rem;
@@ -494,9 +500,8 @@ label {
   color: black;
   margin: 0;
   width: 15rem;
-}
-.sidebar__container {
   padding: 20px;
+  box-shadow: 1px 1px 5px grey;
 }
 .menu {
   display: flex;
@@ -625,6 +630,14 @@ nav {
   margin: 2rem 0 1rem 0;
   box-shadow: 0 0 7px grey;
 }
+.newsfeed__createpost input {
+  background-color: #f6f3f3;
+  border: none;
+  border-radius: 25px;
+}
+.newsfeed__createpost input::placeholder {
+  margin-left: 0.5rem;
+}
 .newfeed__posts {
   display: flex;
   flex-direction: column;
@@ -635,9 +648,38 @@ nav {
   padding: 1rem;
   box-shadow: 0 0 7px grey;
 }
+.newsfeed__post-upper {
+  display: flex;
+  flex-direction: column;
+}
 .newsfeed__post-upper span {
   font-weight: bold;
 }
 .newsfeed__post-content {
   margin: 0.5rem;
+}
+.newsfeed__post-lower {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  border-top: 0.5px solid #bcbcbc;
+  border-bottom: 0.5px solid #bcbcbc;
+}
+.newsfeed__post-lower span {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  border-radius: 25px;
+}
+.newsfeed__post-lower span:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+.forgot-password:hover {
+  font-size: 16px;
+  transition: 0.3s;
+}
+.sign-up:hover {
+  font-size: 18px;
+  transition: 0.3s;
 }

@@ -1,6 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Newsfeed = () => {
+
+const [currentDateTime, setCurrentDateTime] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const date = new Date();
+      setCurrentDateTime(date.toLocaleString());
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
     const data = [
         {
@@ -32,14 +45,14 @@ const Newsfeed = () => {
                     <div className="newsfeed__post" key={data.id}>
                         <div className="newsfeed__post-upper">
                             <span>{data.username}</span>
-                            <p>yesterday</p>
+                            <i>yesterday</i>
                         </div>
                         <div className="newsfeed__post-content">
                             <article>{data.desc}
                             </article>
                         </div>
                         <div className="newsfeed__post-lower">
-                            <span>likes</span>
+                            <span>Like</span>
                             <span>comments</span>
                         </div>
                 </div>            
