@@ -65,11 +65,11 @@ const Nav = () => {
                               aria-labelledby="navbarDropdown">
                               <Link to="/dashboard" className="dropdown-item mb-2 mt-2" role="button">
                                  <i className="bi  bi-layout-text-window"></i>
-                                 <a className="d-inline text-white ps-3 text-decoration-none">Dashboard</a>
+                                 <span className="d-inline text-white ps-3 text-decoration-none">Dashboard</span>
                               </Link>
                               <Link to="/profile" className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-person-square"></i>
-                                 <a className="d-inline text-white ps-3 text-decoration-none">Profile</a>
+                                 <span className="d-inline text-white ps-3 text-decoration-none">Profile</span>
                               </Link>
                               <li className="mb-2 dropdown-item" role="button" onClick={handleLogout}>
                                  <i className="bi bi-arrow-left-square"></i>
@@ -82,18 +82,15 @@ const Nav = () => {
                      </>
                   ) : (
                      <>
-                        <li className="nav-item">
-                           <Link to="/login" className="nav-link active me-1">
-                              LOGIN
-                           </Link>
-                        </li>
-                        <li className="nav-item">
-                           <Link to="/register">
-                              <button type="button" className="btn btn-primary me-3">
-                                 SIGN UP
-                              </button>
-                           </Link>
-                        </li>
+                        <Link to="/login" className="nav-link active me-1 nav-item">
+                           LOGIN
+                        </Link>
+
+                        <Link to="/register">
+                           <button type="button" className="btn btn-primary me-3 nav-item">
+                              SIGN UP
+                           </button>
+                        </Link>
                      </>
                   )}
                </ul>
