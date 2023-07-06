@@ -63,24 +63,17 @@ const Nav = () => {
                            <ul
                               className="dropdown-menu dropdown-menu-dark dropdown-menu-end justify-cotent-start"
                               aria-labelledby="navbarDropdown">
-                              <li className="dropdown-item mb-2 mt-2" role="button">
+                              <Link to="/dashboard" className="dropdown-item mb-2 mt-2" role="button">
                                  <i className="bi  bi-layout-text-window"></i>
-                                 <a className="d-inline text-white ps-3 text-decoration-none" href="#/dashboard">
-                                    Dashboard
-                                 </a>
-                              </li>
-                              <li className="mb-2 dropdown-item" role="button">
+                                 <a className="d-inline text-white ps-3 text-decoration-none">Dashboard</a>
+                              </Link>
+                              <Link to="/profile" className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-person-square"></i>
-                                 <a className="d-inline text-white ps-3 text-decoration-none" href="#">
-                                    Profile
-                                 </a>
-                              </li>
-                              <li className="mb-2 dropdown-item" role="button">
+                                 <a className="d-inline text-white ps-3 text-decoration-none">Profile</a>
+                              </Link>
+                              <li className="mb-2 dropdown-item" role="button" onClick={handleLogout}>
                                  <i className="bi bi-arrow-left-square"></i>
-                                 <a
-                                    className="d-inline text-white ps-3 text-decoration-none"
-                                    role="button"
-                                    onClick={handleLogout}>
+                                 <a className="d-inline text-white ps-3 text-decoration-none" role="button">
                                     Sign Out
                                  </a>
                               </li>
