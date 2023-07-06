@@ -67,26 +67,26 @@ const Landing2 = () => {
                <div className="landing__sports-header">
                   <h1>Sports Categories</h1>
                </div>
-               {categories.categoriesList.map((category) => (
-                  <div className="landing__sports-cards">
-                     <div className="landing__sports-card">
-                        <div className="card-image">
-                           <img
-                              src={window.location.origin + `${category.avatar}`}
-                              width="90"
-                              height="80"
-                              alt="Image"
-                           />
-                        </div>
-                        <div className="card-details">
-                           <h5>{category.name}</h5>
-                           <p>{category.leagues.length} leagues</p>
-                           <p>105 teams</p>
-                           <p>20 active players</p>
-                        </div>
+               {categories.categoriesList.map((category) => {
+               const numLeagues = category.leagues.length; 
+               const numTeams = category.leagues.reduce((accumulator, currentValue)=>
+                  accumulator+currentValue.teams.length, 0);
+               return (
+               <Link to={`/leagues/category/${category.id}`}>
+               <div className="landing__sports-cards" key={category.id}>
+                  <div className="landing__sports-card">
+                     <div className="card-image">
+                     <img src={window.location.origin + `${category.avatar}`} width="90" height="80" alt="Image"/>
+                     </div>
+                     <div className="card-details">
+                        <h5>{category.name}</h5>
+                        <p>{numLeagues == 1 ? numLeagues+' league':numLeagues+' leagues'}</p>
+                        <p> {numTeams == 1 ? numTeams+' team':numTeams+' teams'}</p>
                      </div>
                   </div>
-               ))}
+                  </div>
+                  </Link>
+                  )})}
             </div>
          </div>
       </div>

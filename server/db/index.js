@@ -145,28 +145,28 @@ const syncAndSeed = async()=> {
       categoryId: 6,
     }),
     await Team.create({
-      name:'Regular League',
+      name:'Regular Team',
       season: 'Spring',
       email: 'regular01@gmail.com',
       logo: '/static/images/mlb.png',
       leagueId: 3,
     })
     await Team.create({
-      name:'1 League',
+      name:'1 Team',
       season: 'Spring',
       email: 'regular02@gmail.com',
       logo: '/static/images/mlb.png',
       leagueId: 1,
     })
     await Team.create({
-      name:'2 League',
+      name:'2 Team',
       season: 'Spring',
       email: 'regular03@gmail.com',
       logo: '/static/images/mlb.png',
       leagueId: 2,
     })
     await Team.create({
-      name:'3 League',
+      name:'3 Team',
       season: 'Spring',
       email: 'regular04@gmail.com',
       logo: '/static/images/mlb.png',
