@@ -56,6 +56,9 @@ const User = conn.define("user", {
    },
    facebookId: {
       type: STRING
+   },
+   twitterId: {
+      type: STRING
    }
 });
 
@@ -155,46 +158,31 @@ User.prototype.getRoles = async function () {
 
 User.addHook("beforeSave", async (user) => {
    if (user.changed("password")) {
-      user.password = await bcrypt.hash(user.password, 5);
+      user.password = await bcrypt.hash(user.password, 10);
    }
 });
 
 User.findByToken = async function (token) {
-  try {
-    const { id } = jwt.verify(token, process.env.JWT);
-    const user = await this.findByPk(id, {
-      include: [
-        {
-          model: conn.models.teamRoles,
-        },
-        {
-          model: conn.models.team,
-          include:[
-            conn.models.match
-         ]
-        },
-        {
-          model: conn.models.leagueRoles,
-        },
-        {
-          model: conn.models.league,
-        }
-      ]
-    });
-    if (user) {
-      return user;
-    }
-    throw 'user not found';
-  }
-  catch (ex) {
-    const error = new Error('bad credentials');
-    error.status = 401;
-    throw error;
-  }
-}
+
+   try {
+      const { id } = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await this.findByPk(id, {
+         include: [conn.models.teamRoles, conn.models.team, conn.models.leagueRoles, conn.models.league]
+      });
+      if (user) {
+         return user;
+      }
+      throw new Error("User not found");
+   } catch (ex) {
+      const error = new Error("bad credentials");
+      error.status = 401;
+      throw error;
+   }
+};
+
 
 User.prototype.generateToken = function () {
-   return jwt.sign({ id: this.id }, JWT);
+   return jwt.sign({ id: this.id }, process.env.JWT_SECRET);
 };
 
 User.authenticate = async function ({ username, password }) {
@@ -204,9 +192,9 @@ User.authenticate = async function ({ username, password }) {
       }
    });
    if (user && (await bcrypt.compare(password, user.password))) {
-      return jwt.sign({ id: user.id }, JWT);
+      return jwt.sign({ id: user.id }, process.env.JWT_SECRET);
    }
-   const error = new Error("bad credentials");
+   const error = new Error("Bad credentials");
    error.status = 401;
    throw error;
 };

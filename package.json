@@ -9,7 +9,7 @@
         "test": "JWT=shhhhh mocha",
         "test:dev": "DATABASE_URL=postgres://localhost/acme_shopping_test_db npm run test -- --watch",
         "test:dev:quiet": "QUIET=true npm run test:dev",
-        "start:dev": "JWT=felix nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev"
+        "start:dev": "nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev"
     },
     "keywords": [],
     "author": "",
@@ -19,8 +19,6 @@
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.11.16",
         "@mui/material": "^5.13.6",
-        "@mui/x-date-pickers": "^6.9.0",
-        "@mui/x-date-pickers-pro": "^6.9.0",
         "@reduxjs/toolkit": "^1.9.5",
         "bcrypt": "^5.1.0",
         "bootstrap": "^5.3.0",
@@ -31,6 +29,7 @@
         "passport": "^0.6.0",
         "passport-facebook": "^3.0.0",
         "passport-google-oauth20": "^2.0.0",
+        "passport-twitter": "^1.0.4",
         "pg": "^8.8.0",
         "react-bootstrap": "^2.8.0",
         "sequelize": "^6.25.3",
