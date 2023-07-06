@@ -77,6 +77,10 @@ form {
 }
 body {
   background-color: white;
+  min-height: 400px;
+  margin-bottom: 100px;
+  clear: both;
+  margin: 0;
 }
 form > * {
   margin: 1rem;
@@ -487,11 +491,6 @@ label {
   color: white;
 }
 .createleague {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
   background-color: #F5F7FB;
 }
 .createleague label {
@@ -683,6 +682,7 @@ nav {
   background-color: #eaeaea;
   cursor: pointer;
 }
+/* ---------- Login Customization ---------- */
 .forgot-password {
   text-decoration: none;
 }
@@ -703,6 +703,7 @@ nav {
   font-size: 20px;
   transition: 0.3s;
 }
+/* ---------- Register Customization ---------- */
 .register-login {
   text-decoration: none;
 }
@@ -710,4 +711,114 @@ nav {
   text-decoration: underline;
   font-size: 18px;
   transition: 0.3s;
+}
+/* ---------- Staff Customization ---------- */
+.staff-list img {
+  width: 50%;
+}
+.staff-list .content {
+  width: 50%;
+}
+.staff-list .content .follow {
+  position: absolute;
+  bottom: 24px;
+}
+.staff-list:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+.staff,
+.staff-list {
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+}
+.staff .content .title,
+.staff-list .content .title {
+  font-size: 18px;
+}
+.staff .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.staff .member-position,
+.staff .staff-social {
+  position: absolute;
+  bottom: -35px;
+  right: 0;
+  left: 0;
+  margin: auto 10%;
+  z-index: 99;
+}
+.staff-title {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+.staff .staff-social {
+  bottom: 40px;
+  opacity: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+}
+.staff:hover {
+  -webkit-transform: translateY(-7px);
+  transform: translateY(-7px);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.staff:hover .overlay {
+  opacity: 0.6;
+}
+.staff:hover .staff-social {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .staff-list img,
+  .staff-list .content {
+    width: 100%;
+    float: none !important;
+  }
+  .staff-list img .follow,
+  .staff-list .content .follow {
+    position: relative;
+    bottom: 0;
+  }
+}
+.social-icon.social li a {
+  color: #707070;
+  border-color: #707070;
+}
+.social-icon li a {
+  color: #35404e;
+  border: 1px solid #35404e;
+  display: inline-block;
+  height: 32px;
+  text-align: center;
+  font-size: 15px;
+  width: 32px;
+  line-height: 30px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  position: relative;
+}
+.rounded {
+  border-radius: 5px !important;
+}
+.para-desc {
+  max-width: 600px;
+}
+.text-muted {
+  color: #8492a6 !important;
+}
+.section-title .title {
+  letter-spacing: 0.5px;
+  font-size: 3rem;
 }

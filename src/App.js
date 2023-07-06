@@ -9,7 +9,7 @@ import Register from "./Components/Register";
 import CreateLeague from "./Components/CreateLeague";
 import CreateTeam from "./Components/CreateTeam";
 import CreatePlayer from "./Components/CreatePlayer";
-import Dashboard from "./Components/dashboard"
+import Dashboard from "./Components/dashboard";
 import Matches from "./Components/Matches";
 import Footer from "./Components/Global/Footer";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +17,8 @@ import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, login
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";
+import Staff from "./Components/Global/Staff";
+import NotFound from "./Components/Global/NotFound";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -32,6 +34,7 @@ const App = () => {
    return (
       <div className="app">
          <Nav />
+
          {/* {
         auth.id ? <Home /> : <Login />
       } */}
@@ -50,6 +53,8 @@ const App = () => {
                <Route path="/dashboard" element={<Dashboard />} />
                <Route path="/matches" element={<Matches />} />
                <Route path="/standings" element={<Standings />} />
+               <Route path="/staff" element={<Staff />} />
+               <Route path="*" element={<NotFound />} />
             </Routes>
          </div>
          <Footer />
