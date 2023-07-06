@@ -52,17 +52,16 @@ const Login = () => {
       <section
          className="vh-100"
          style={{
-            backgroundColor: "#e7ecef"
+            backgroundColor: "#f6f3f3"
          }}>
-         <div className="container py-5 h-100 ">
-            <form className="row d-flex justify-content-center align-items-center h-100 opacity-90">
+         <div className="container py-5 h-100">
+            <form className="row d-flex justify-content-center align-items-center opacity-90 h-100">
                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                   <div
                      className="card text-white"
                      style={{
                         borderRadius: "1rem",
-                        backgroundColor: "#fdfffc",
-                        border: "none"
+                        backgroundColor: "#fdfffc"
                      }}>
                      <div className="card-body p-5 text-center">
                         <div className="mb-md-5 mt-md-4 pb-5">
@@ -70,7 +69,7 @@ const Login = () => {
                            <p className="text-dark mb-5">Please enter your username and password!</p>
                            <div className="form-outline form-white mb-4">
                               <input
-                                 className="form-control form-control-lg"
+                                 className="form-control form-control-md"
                                  placeholder="Username"
                                  value={credentials.username}
                                  name="username"
@@ -79,7 +78,7 @@ const Login = () => {
                            </div>
                            <div className="form-outline form-white mb-4">
                               <input
-                                 className="form-control form-control-lg"
+                                 className="form-control form-control-md"
                                  placeholder="Password"
                                  type="password"
                                  name="password"
@@ -88,7 +87,7 @@ const Login = () => {
                               />
                            </div>
                            <p className="small mb-5 pb-lg-2">
-                              <a className="text-dark text-decoration-none forgot-password" href="#!">
+                              <a className="text-dark forgot-password" href="#!">
                                  Forgot password?
                               </a>
                            </p>
@@ -100,14 +99,14 @@ const Login = () => {
                               Login
                            </button>
                            <div className="d-flex justify-content-center text-center mt-4 pt-1">
-                              <a className="text-dark" role="button" onClick={facebook}>
+                              <a className="text-dark social-icon" role="button" onClick={facebook}>
                                  <i className="fab fa-facebook-f fa-lg"></i>
                               </a>
-                              <a className="text-dark" role="button" onClick={twitter}>
+                              <a className="text-dark social-icon" role="button" onClick={twitter}>
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
 
-                              <a className="text-dark" role="button" onClick={google}>
+                              <a className="text-dark social-icon" role="button" onClick={google}>
                                  <i className="fab fa-google fa-lg"></i>
                               </a>
                            </div>
@@ -115,7 +114,7 @@ const Login = () => {
                         <div>
                            <p className="mb-0 text-dark">
                               Don't have an account?{" "}
-                              <Link to="/register" className="text-decoration-none text-dark fw-bold sign-up">
+                              <Link to="/register" className="text-dark fw-bold sign-up">
                                  Sign Up
                               </Link>
                            </p>

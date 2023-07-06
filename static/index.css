@@ -80,6 +80,14 @@ form > * {
   flex-direction: column;
   justify-content: space-between;
 }
+@media (max-width: 900px) {
+  footer {
+    font-size: 12px;
+  }
+  footer a {
+    font-size: 10px;
+  }
+}
 .team-container {
   display: flex;
   flex-direction: row;
@@ -616,6 +624,35 @@ nav {
 .caret-off::after {
   display: none;
 }
+
+.forgot-password {
+  text-decoration: none;
+}
+.forgot-password:hover {
+  font-size: 16px;
+  transition: 0.3s;
+  text-decoration: underline;
+}
+.sign-up {
+  text-decoration: none;
+}
+.sign-up:hover {
+  font-size: 18px;
+  transition: 0.3s;
+  text-decoration: underline;
+}
+.social-icon:hover {
+  font-size: 20px;
+  transition: 0.3s;
+}
+.register-login {
+  text-decoration: none;
+}
+.register-login:hover {
+  text-decoration: underline;
+  font-size: 18px;
+  transition: 0.3s;
+=======
 .newsfeed-container {
   display: flex;
   justify-content: column;
@@ -640,4 +677,4 @@ nav {
 }
 .newsfeed__post-content {
   margin: 0.5rem;
-}
+

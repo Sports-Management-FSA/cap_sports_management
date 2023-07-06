@@ -2,17 +2,17 @@ import React from "react";
 
 const Footer = () => {
    return (
-      <footer className="bg-dark ">
+      <footer className="bg-dark fixed-bottom">
          <div
             className="d-flex justify-content-between align-items-center mx-auto py-4 flex-wrap"
-            style={{ width: "80%" }}>
+            style={{ width: "90%" }}>
             <a href="/#" className="d-flex align-items-center text-decoration-none">
                <i className="fa-solid fa-people-group fs-6 text-decoration-none" style={{ color: "#ffffff" }}>
                   Podium
                </i>
             </a>
             <small className="text-white">&copy; Podium, {new Date().getFullYear()}. All rights reserved.</small>
-            <div>
+            <div className="d-flex flex-wrap">
                <a href="/#" className="text-white text-decoration-none">
                   About
                </a>
