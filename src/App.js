@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Home from "./Components/Home";
-import Login from "./Components/Login";
+import Login from "./Components/User/Login";
 import Team from "./Components/Team";
 import Player from "./Components/Player";
 import Nav from "./Components/Global/Nav";
 import League from "./Components/League";
-import Register from "./Components/Register";
+import Register from "./Components/User/Register";
 import CreateLeague from "./Components/CreateLeague";
 import CreateTeam from "./Components/CreateTeam";
 import CreatePlayer from "./Components/CreatePlayer";
