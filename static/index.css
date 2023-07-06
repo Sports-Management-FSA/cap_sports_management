@@ -171,9 +171,7 @@ form {
    display: flex;
    flex-direction: column;
 }
-body {
-   background-color: white;
-}
+
 form > * {
    margin: 1rem;
 }
@@ -717,4 +715,11 @@ label {
 }
 .offcanvas {
    width: 15% !important;
+}
+.bg-img {
+   background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+.error-header {
+   font-size: 7.5rem;
+   color: rgb(190, 190, 190);
 }

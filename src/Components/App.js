@@ -26,6 +26,7 @@ import {
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Standings";
 import Landing2 from "./Landing2";
+import NotFound from "./Global/NotFound";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -62,6 +63,7 @@ const App = () => {
                <Route path="/dashboard" element={<Dashboard />} />
                <Route path="/matches" element={<Matches />} />
                <Route path="/standings" element={<Standings />} />
+               <Route path="*" element={<NotFound />} />
             </Routes>
          </div>
          <Footer />

@@ -112,6 +112,13 @@ app.get("/auth/twitter/callback", passport.authenticate("twitter", { failureRedi
    }
 });
 
+// Error Handling
+app.use((err, req, res, next) => {
+   console.log(err);
+
+   res.status(err.status || 500).send({ error: err, message: err.message });
+});
+
 // API configured at /api
 app.use("/api", routes);
 
