@@ -4,7 +4,7 @@ const { User, Team, League, Category } = require("../../db");
 // Get All Team
 router.get("/", async (req, res, next) => {
    try {
-      const categories = await Category.findAll({include:[League]});
+      const categories = await Category.findAll({include:[{model: League, include:[Team]}]});
       res.send(categories);
    } catch (ex) {
       next(ex);

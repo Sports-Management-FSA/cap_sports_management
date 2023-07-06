@@ -19,6 +19,7 @@ import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, login
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Standings";
 import Landing2 from "./Landing2";
+import Category from "./Category";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -45,6 +46,7 @@ const App = () => {
                <Route path="/leagues" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
+               <Route path='/leagues/category/:id' element={<Category />} />
                <Route path="/teams/:id" element={<Team2 />} />
                <Route path="/login" element={<Login />} />
                <Route path="/league/:id/createteam" element={<CreateTeam />} />
