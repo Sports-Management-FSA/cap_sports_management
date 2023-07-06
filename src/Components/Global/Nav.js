@@ -77,7 +77,10 @@ const Nav = () => {
                               </li>
                               <li className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-arrow-left-square"></i>
-                                 <a className="d-inline text-white ps-3 text-decoration-none" role="button" onClick={handleLogout}>
+                                 <a
+                                    className="d-inline text-white ps-3 text-decoration-none"
+                                    role="button"
+                                    onClick={handleLogout}>
                                     Sign Out
                                  </a>
                               </li>

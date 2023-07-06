@@ -8,6 +8,7 @@ import RightNav from "./RightNav";
 import Announcements from "./Announcements";
 import Stats from "./Stats";
 import TeamInfo from "./TeamInfo";
+import Newsfeed from "./Newsfeed";
 
 const League = () => {
    const { id } = useParams();
@@ -43,30 +44,33 @@ const League = () => {
             </div>
             <div className="league-main">
                 <div className="league-main-upper">
-                    <div className="league-head">
-                        <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
-                        <h2>{league.name}</h2>
-                        <p>{league.season}</p>
-                    </div>
-                    <div className="league-navbar">
-                        <ul className="league--navbar-items">
-                            <a onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</a>
-                            <a onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</a>
-                            <a onClick={() => handleClick('Newsfeed')} className={activeTab === 'Newsfeed' ? 'active' : ''}>Newsfeed</a>
-                            <a onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</a>
-                            <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
-                        </ul>
+                    <div className="league-main-upperbox">
+                        <div className="league-head">
+                            <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
+                            <h2>{league.name}</h2>
+                            <p>{league.season}</p>
+                        </div>
+                        <div className="league-navbar">
+                            <ul className="league--navbar-items">
+                                <a onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</a>
+                                <a onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</a>
+                                <a onClick={() => handleClick('Newsfeed')} className={activeTab === 'Newsfeed' ? 'active' : ''}>Newsfeed</a>
+                                <a onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</a>
+                                <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
+                            </ul>
+                        </div>
+                        </div>
                         <div className="league__content">
                             <div className="league__content--body">
                                 {currentComponent === 'Announcements' && <Announcements />}
                                 {currentComponent === 'Stats' && <Stats />}
-                                {currentComponent === 'Newsfeed' && "Newsfeed coming soon"}
+                                {currentComponent === 'Newsfeed' && <Newsfeed />}
                                 {currentComponent === 'About' && "About coming soon"}
                                 {currentComponent === 'Chat' && "Chat coming soon"}
                             </div>        
                         </div>   
                     </div>
-                </div>
+                
             </div>
             <RightNav />
             {/* <div className="league__head">

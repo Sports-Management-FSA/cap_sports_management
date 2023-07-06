@@ -6,8 +6,8 @@ const Footer = () => {
          <div
             className="d-flex justify-content-between align-items-center mx-auto py-4 flex-wrap"
             style={{ width: "80%" }}>
-            <a href="/#" className="d-flex align-items-center">
-               <i className="fa-solid fa-people-group fs-6" style={{ color: "#ffffff" }}>
+            <a href="/#" className="d-flex align-items-center text-decoration-none">
+               <i className="fa-solid fa-people-group fs-6 text-decoration-none" style={{ color: "#ffffff" }}>
                   Podium
                </i>
             </a>
