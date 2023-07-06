@@ -2,19 +2,6 @@ import React, {useEffect, useState} from 'react';
 
 const Newsfeed = () => {
 
-const [currentDateTime, setCurrentDateTime] = useState('');
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const date = new Date();
-      setCurrentDateTime(date.toLocaleString());
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
     const data = [
         {
             id: 1,
@@ -22,7 +9,28 @@ const [currentDateTime, setCurrentDateTime] = useState('');
             username: "Larry David",
             desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
             molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-        }
+        },
+        {
+            id: 1,
+            userId: 1,
+            username: "Larry David",
+            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
+            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
+        },
+        {
+            id: 1,
+            userId: 1,
+            username: "Larry David",
+            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
+            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
+        },
+        {
+            id: 1,
+            userId: 1,
+            username: "Larry David",
+            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
+            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
+        },
     ]
 
     const handlePostSubmit = () => {
