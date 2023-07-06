@@ -9,11 +9,23 @@ import Announcements from "./Announcements";
 import Stats from "./Stats";
 import TeamInfo from "./TeamInfo";
 import Newsfeed from "./Newsfeed";
+import RequestJoin from "./Modals/RequestJoin";
+import Modal from 'react-modal';
+
 
 const League = () => {
    const { id } = useParams();
    const [currentComponent, setCurrentComponent] = useState('Announcements');
    const [activeTab, setActiveTab] = useState("Announcements");
+   const [modalIsOpen, setModalIsOpen] = useState(false);
+   const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
    const today = new Date();
@@ -56,8 +68,24 @@ const League = () => {
                                 </div>
                             </div>
                             <div className="head-right">
-                                <p>Request to Join</p>
+                            <button
+                                className="open-modal-button"
+                                onClick={openModal}
+                            >Request to Join</button>
                             </div>
+                            <Modal
+                                className="request-modal-container"
+                                overlayClassName="request-modal-overlay"
+                                isOpen={modalIsOpen}
+                                onRequestClose={closeModal}
+                                contentLabel="Example Modal"
+                                ariaHideApp={false}
+                                >
+                                <h2>Send a Request</h2>
+                                <p>Please write a quick summary describing yourself and/or your team and the league manager respond with their decision</p>
+                                <button onClick={closeModal}>Close</button>  
+                                <button onClick={closeModal}>Submit</button>  
+                            </Modal>
                         </div>
                         <div className="league-navbar">
                             <ul className="league--navbar-items">
@@ -68,17 +96,17 @@ const League = () => {
                                 <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
                             </ul>
                         </div>
-                        </div>
-                        <div className="league__content">
-                            <div className="league__content--body">
-                                {currentComponent === 'Announcements' && <Announcements />}
-                                {currentComponent === 'Stats' && <Stats />}
-                                {currentComponent === 'Newsfeed' && <Newsfeed />}
-                                {currentComponent === 'About' && "About coming soon"}
-                                {currentComponent === 'Chat' && "Chat coming soon"}
-                            </div>        
-                        </div>   
                     </div>
+                    <div className="league__content">
+                        <div className="league__content--body">
+                            {currentComponent === 'Announcements' && <Announcements />}
+                            {currentComponent === 'Stats' && <Stats />}
+                            {currentComponent === 'Newsfeed' && <Newsfeed />}
+                            {currentComponent === 'About' && "About coming soon"}
+                            {currentComponent === 'Chat' && "Chat coming soon"}
+                        </div>        
+                    </div>   
+                </div>
             </div>
             <RightNav />
             {/* <div className="league__head">
