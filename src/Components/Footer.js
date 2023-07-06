@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
    return (
-      <footer className="bg-dark">
+      <footer className="bg-dark ">
          <div
             className="d-flex justify-content-between align-items-center mx-auto py-4 flex-wrap"
             style={{ width: "80%" }}>

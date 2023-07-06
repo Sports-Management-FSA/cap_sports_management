@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Matches from "./Matches";
 import Standings from "./Standings";
+import Sidebar from "./Sidebar";
+import RightNav from "./RightNav";
+import Announcements from "./Announcements";
+import Stats from "./Stats";
 
 const League = () => {
    const { id } = useParams();
-   const [currentComponent, setCurrentComponent] = useState('Standings');
-   const [activeTab, setActiveTab] = useState("Standings");
+   const [currentComponent, setCurrentComponent] = useState('Announcements');
+   const [activeTab, setActiveTab] = useState("Announcements");
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
    const today = new Date();
@@ -24,7 +28,6 @@ const League = () => {
        return matchDate > today;
     });
 
-    console.log(upcomingMatch);
 
    const handleClick = (component) => {
       setCurrentComponent(component);
@@ -34,57 +37,44 @@ const League = () => {
 
     return (
         <div className="league-container">
-            <div className="league__head">
+            <div className="sidebar">
+                <Sidebar />
+            </div>
+            <div className="league-main">
+                <div className="league-main-upper">
+                    <div className="league-head">
+                        <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
+                        <h2>{league.name}</h2>
+                        <p>{league.season}</p>
+                    </div>
+                    <div className="league-navbar">
+                        <ul className="league--navbar-items">
+                            <a onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</a>
+                            <a onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</a>
+                            <a onClick={() => handleClick('Newsfeed')} className={activeTab === 'Newsfeed' ? 'active' : ''}>Newsfeed</a>
+                            <a onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</a>
+                            <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
+                        </ul>   
+                    </div>
+                </div>
+                    <div className="league__content">
+                        <div className="league__content--body">
+                            {currentComponent === 'Announcements' && <Announcements />}
+                            {/* {currentComponent === 'Stats' && <Standings teams={teams}/>} */}
+                            {currentComponent === 'Stats' && <Stats />}
+                            {currentComponent === 'Newsfeed' && "Newsfeed coming soon"}
+                            {currentComponent === 'About' && "About coming soon"}
+                            {currentComponent === 'Chat' && "Chat coming soon"}
+                        </div>        
+                </div>  
+            </div>
+            <div >
+                    <RightNav />
+                </div>
+            {/* <div className="league__head">
                 <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
                 <h2>{league.name}</h2>
                 <h5>{league.season}</h5>
-            </div>
-            <div className="league__container-upper">
-                <div className="league__info">
-                    <div className="league__info--description">
-                        <h5>About this League</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                        <a href="">Request to join this league</a>
-                    </div>
-                </div>
-                <div className="league__info--match-container">
-                    <div>
-                        <h5>Upcoming Match</h5>
-                    </div>
-                        {upcomingMatch ? (
-                            <div className="league__info--match" key={upcomingMatch.id}>
-                                <div className="league__info--match-upper">
-                                    <div className="league__info--match-upper-name">
-                                        <p>{upcomingMatch.name}</p>
-                                    </div>
-                                    <div className="league__info--match-upper-dates">
-                                        <p>{upcomingMatch.date} @ {upcomingMatch.time}</p>
-                                        
-                                    </div>
-                                </div>
-                                <div className="league__info--match-vs">
-                                    <div className="league__match-vs-team">
-                                        <Link to={`/teams/${upcomingMatch.teams[0].id}`}>{upcomingMatch.teams[0].name}</Link>
-                                    </div>
-                                    <p> vs </p>
-                                    <div className="league__match-vs-team">
-                                        <p><Link to={`/teams/${upcomingMatch.teams[1].id}`}>{upcomingMatch.teams[1].name}</Link></p>
-                                        <p>team id: {upcomingMatch.teams[1].id}</p>
-                                    </div>
-                                </div>
-                                <div className="league__info--match-lower">
-                                    <p>{upcomingMatch.location}</p>
-                                    <p><Link to="/matches">View all matches</Link></p>
-                                </div>
-                        
-                            </div>
-                        ) : ( 
-                        <div className="league__match--nomatches">
-                            <p >no upcoming matches</p>
-                        </div>
-                        )
-                    }
-                </div>
             </div>
             <div className="league__container-main">
                 <ul className="league--sidebar">
@@ -104,7 +94,7 @@ const League = () => {
                         {currentComponent === 'Team Info' && "Team Info Component here"}
                     </div>        
                 </div>
-            </div>
+            </div> */}
          </div>
    );
 };

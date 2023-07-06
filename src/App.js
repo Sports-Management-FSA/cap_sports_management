@@ -17,7 +17,7 @@ import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, login
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";
-import Home2 from "./Components/Home2";
+
 const App = () => {
    const { auth } = useSelector((state) => state);
    const dispatch = useDispatch();
@@ -30,16 +30,15 @@ const App = () => {
    }, []);
    console.log(auth);
    return (
-      <div>
+      <div className="app">
          <Nav />
          {/* {
         auth.id ? <Home /> : <Login />
       } */}
-
          <div>
             <Routes>
                <Route path="/" element={<Landing2 />} />
-               <Route path="/home" element={<Home2 />} />
+               <Route path="/home" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
                <Route path="/teams/:id" element={<Team />} />
