@@ -2,15 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { addLeague } from '../store';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-// Radio buttons
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-// Date Picker
 
 const CreateLeague = () => {
   
@@ -20,10 +11,7 @@ const CreateLeague = () => {
   const [leagueName, setLeagueName] = useState('');
   const [leagueSeason, setLeagueSeason] = useState('');
   const [leagueEmail, setLeagueEmail] = useState('');
-  const [value, setValue] = useState([
-    dayjs('2022-04-17'),
-    dayjs('2022-04-21'),
-  ]);
+ 
 
   const handleLeagueNameChange = (e) => setLeagueName(e.target.value);
   const handleLeagueSeasonChange = (e) => setLeagueSeason(e.target.value);
@@ -50,7 +38,6 @@ const CreateLeague = () => {
       <div className="createleague__header">
         <h1>Create your league</h1>
       </div>
-      <h1>Create a League</h1>
       <form onSubmit={handleSubmit}>
         <label>League Name</label>
         <input
