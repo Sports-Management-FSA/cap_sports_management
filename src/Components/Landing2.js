@@ -32,7 +32,7 @@ const Landing2 = () => {
             <div className="landing__body-browse-header">
                <h1>Active leagues</h1>
                <p>
-                  <Link to="/leagues">view all leagues</Link>
+                  <Link to="/home">view all leagues</Link>
                </p>
             </div>
             <div className="landing__body-browse-content">
