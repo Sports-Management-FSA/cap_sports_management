@@ -3,7 +3,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Team from "./Components/Team";
 import Player from "./Components/Player";
-import Nav from "./Components/Nav";
+import Nav from "./Components/Global/Nav";
 import League from "./Components/League";
 import Register from "./Components/Register";
 import CreateLeague from "./Components/CreateLeague";
@@ -11,7 +11,7 @@ import CreateTeam from "./Components/CreateTeam";
 import CreatePlayer from "./Components/CreatePlayer";
 import Dashboard from "./Components/dashboard"
 import Matches from "./Components/Matches";
-import Footer from "./Components/Footer";
+import Footer from "./Components/Global/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "./store";
 import { Link, Routes, Route } from "react-router-dom";

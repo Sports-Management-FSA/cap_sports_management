@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../store";
+import { logout } from "../../store";
 import { Avatar } from "@mui/material";
 
 const Nav = () => {
@@ -29,13 +29,13 @@ const Nav = () => {
                className="navbar-toggler"
                type="button"
                data-bs-toggle="collapse"
-               data-bs-target="#navbarTogglerDemo01"
-               aria-controls="navbarTogglerDemo01"
+               data-bs-target="#navbarToggler"
+               aria-controls="navbarToggler"
                aria-expanded="false"
                aria-label="Toggle navigation">
                <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse me-4" id="navbarTogglerDemo01">
+            <div className="collapse navbar-collapse me-4" id="navbarToggler">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
                   {auth?.username ? (
                      <>

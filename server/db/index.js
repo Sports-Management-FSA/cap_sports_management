@@ -33,21 +33,6 @@ TeamRoles.belongsToMany(Team, {through: {model: User_TeamRoles, unique: false}})
 User.belongsToMany(Team, {through: {model: User_TeamRoles, unique:false}});
 Team.belongsToMany(User, {through: {model: User_TeamRoles, unique: false}});
 
-//kind of working??
-/*User_TeamRoles.belongsTo(Team);
-Team.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(User);
-User.hasMany(User_TeamRoles)
-TeamRoles.hasMany(User_TeamRoles);
-User_TeamRoles.belongsTo(TeamRoles)*/
-
-/*Scorekeeper.belongsTo(Match);
-Match.hasMany(Scorekeeper);
-Scorekeeper.belongsTo(Actions);
-Actions.hasMany(Scorekeeper);
-Scorekeeper.belongsTo(User);
-User.hasMany(Scorekeeper);*/
-
 User.belongsToMany(Actions, {through: {model: Scorekeeper, unique: false}});
 Actions.belongsToMany(User, {through: {model: Scorekeeper, unique: false}});
 Match.belongsToMany(Actions, {through: {model: Scorekeeper, unique: false}});
@@ -67,9 +52,12 @@ Category.hasMany(Actions);
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
 
-    await Category.create({name: 'Football'})
-    await Category.create({name: 'Hockey'})
-    await Category.create({name: 'Basketball'})
+    await Category.create({name: 'Football', avatar:'/static/images/football.png'})
+    await Category.create({name: 'Hockey', avatar:'/static/images/hockey.png'})
+    await Category.create({name: 'Basketball', avatar:'/static/images/basketball.png'})
+    await Category.create({name: 'Baseball', avatar:'/static/images/baseball.png'})
+    await Category.create({name: 'Esports', avatar:'/static/images/esports.png'})
+    await Category.create({name: 'Soccer', avatar:'/static/images/soccer.png'})
 
     const touchdown = await Actions.create({name: 'Touchdown', value: 5, categoryId: 1})
     const homerun = await Actions.create({name: 'Homerun', value: 5, categoryId: 2})
@@ -84,72 +72,105 @@ const syncAndSeed = async()=> {
       season: 'Fall',
       email: 'little01@gmail.com',
       logo: '/static/images/nfl.png',
-      categoryId: 1,
+      categoryId: 4,
     }),
     await League.create({
       name:'Big League',
       season: 'Summer',
-      email: 'little01@gmail.com',
+      email: 'little02@gmail.com',
       logo: '/static/images/league2.png',
-      categoryId: 2,
+      categoryId: 4,
     }),
     await League.create({
       name:'Major League',
       season: 'Spring',
-      email: 'little01@gmail.com',
+      email: 'little03@gmail.com',
       logo: '/static/images/league3.png',
-      categoryId: 3,
+      categoryId: 1,
     })
     await League.create({
       name:'Hockey League',
       season: 'Winter',
       email: 'hockey01@gmail.com',
       logo: '/static/images/nhl.png',
-      categoryId: 1,
+      categoryId: 2,
     }),
     await League.create({
       name:'Esports League',
       season: 'All Year',
       email: 'esports01@gmail.com',
       logo: '/static/images/esports.jpeg',
-      categoryId: 2,
+      categoryId: 5,
     }),
     await League.create({
       name:'Just for fun',
       season: 'Fall',
-      email: 'little01@gmail.com'
+      email: 'little04@gmail.com',
+      logo: '/static/images/esports.jpeg',
+      categoryId: 3,
     }),
     await League.create({
       name:'CSGO Wild',
       season: 'Summer',
-      email: 'little01@gmail.com'
+      email: 'little05@gmail.com',
+      logo: '/static/images/nhl.png',
+      categoryId: 3,
     }),
     await League.create({
       name:'I love gaming',
       season: 'Spring',
-      email: 'little01@gmail.com'
+      email: 'little06@gmail.com',
+      logo: '/static/images/esports.jpeg',
+      categoryId: 5,
     }),
     await League.create({
-      name:'asket Weaving',
+      name:'Basket Weaving',
       season: 'Fall',
-      email: 'little01@gmail.com'
+      email: 'little07@gmail.com',
+      logo: '/static/images/nhl.png',
+      categoryId: 5,
     }),
     await League.create({
       name:'American Football',
       season: 'Summer',
-      email: 'little01@gmail.com'
+      email: 'little08@gmail.com',
+      logo: '/static/images/nhl.png',
+      categoryId: 1,
     }),
     await League.create({
       name:'Soccer Fans',
       season: 'Spring',
-      email: 'little01@gmail.com'
+      email: 'little09@gmail.com',
+      logo: '/static/images/nhl.png',
+      categoryId: 6,
     }),
     await Team.create({
       name:'Regular League',
       season: 'Spring',
       email: 'regular01@gmail.com',
       logo: '/static/images/mlb.png',
-      categoryId: 3,
+      leagueId: 3,
+    })
+    await Team.create({
+      name:'1 League',
+      season: 'Spring',
+      email: 'regular02@gmail.com',
+      logo: '/static/images/mlb.png',
+      leagueId: 1,
+    })
+    await Team.create({
+      name:'2 League',
+      season: 'Spring',
+      email: 'regular03@gmail.com',
+      logo: '/static/images/mlb.png',
+      leagueId: 2,
+    })
+    await Team.create({
+      name:'3 League',
+      season: 'Spring',
+      email: 'regular04@gmail.com',
+      logo: '/static/images/mlb.png',
+      leagueId: 4,
     })
 
     const team1 = await Team.create({

@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import RightNav from "./RightNav";
 import Announcements from "./Announcements";
 import Stats from "./Stats";
+import TeamInfo from "./TeamInfo";
 
 const League = () => {
    const { id } = useParams();
@@ -54,23 +55,20 @@ const League = () => {
                             <a onClick={() => handleClick('Newsfeed')} className={activeTab === 'Newsfeed' ? 'active' : ''}>Newsfeed</a>
                             <a onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</a>
                             <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
-                        </ul>   
+                        </ul>
+                        <div className="league__content">
+                            <div className="league__content--body">
+                                {currentComponent === 'Announcements' && <Announcements />}
+                                {currentComponent === 'Stats' && <Stats />}
+                                {currentComponent === 'Newsfeed' && "Newsfeed coming soon"}
+                                {currentComponent === 'About' && "About coming soon"}
+                                {currentComponent === 'Chat' && "Chat coming soon"}
+                            </div>        
+                        </div>   
                     </div>
                 </div>
-                    <div className="league__content">
-                        <div className="league__content--body">
-                            {currentComponent === 'Announcements' && <Announcements />}
-                            {/* {currentComponent === 'Stats' && <Standings teams={teams}/>} */}
-                            {currentComponent === 'Stats' && <Stats />}
-                            {currentComponent === 'Newsfeed' && "Newsfeed coming soon"}
-                            {currentComponent === 'About' && "About coming soon"}
-                            {currentComponent === 'Chat' && "Chat coming soon"}
-                        </div>        
-                </div>  
             </div>
-            <div >
-                    <RightNav />
-                </div>
+            <RightNav />
             {/* <div className="league__head">
                 <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
                 <h2>{league.name}</h2>
@@ -91,7 +89,7 @@ const League = () => {
                         {currentComponent === 'Matches' && <Matches matches={matches} />}
                         {currentComponent === 'Standings' && <Standings teams={teams}/>}
                         {currentComponent === 'Players' && "Players Component here"}
-                        {currentComponent === 'Team Info' && "Team Info Component here"}
+                        {currentComponent === 'Team Info' && <TeamInfo teams={teams}/>}
                     </div>        
                 </div>
             </div> */}

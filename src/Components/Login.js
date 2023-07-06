@@ -44,8 +44,16 @@ const Login = () => {
       window.open("http://localhost:3000/auth/facebook", "_self");
    };
 
+   const twitter = () => {
+      window.open("http://localhost:3000/auth/twitter", "_self");
+   };
+
    return (
-      <section className="vh-100 login-custom">
+      <section
+         className="vh-100"
+         style={{
+            backgroundImage: "linear-gradient(to right, #434343 0%, black 100%)"
+         }}>
          <div className="container py-5 h-100 ">
             <form className="row d-flex justify-content-center align-items-center h-100 opacity-80">
                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -89,7 +97,7 @@ const Login = () => {
                               <a className="text-white" role="button" onClick={facebook}>
                                  <i className="fab fa-facebook-f fa-lg"></i>
                               </a>
-                              <a className="text-white" role="button">
+                              <a className="text-white" role="button" onClick={twitter}>
                                  <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
                               </a>
 

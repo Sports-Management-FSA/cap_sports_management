@@ -1,7 +1,5 @@
 const router = require("express").Router();
-const { Team, Match } = require("../../db");
-const { User } = require("../../db");
-const TeamRoles = require("../../db/models/TeamRoles");
+const { User, Team, Match, LeagueRoles, TeamRoles } = require("../../db");
 
 // Get All Team
 router.get("/", async (req, res, next) => {
@@ -25,12 +23,17 @@ router.get("/:id", async (req, res, next) => {
 
 // Create A Team
 router.post("/", async (req, res, next) => {
-   console.log(req.body)
    try {
-      const user = await User.findByToken(req.headers.authorization);
-      if (!user || !user.isDirector){
-            return res.status(401).send('Unauthorized to add team');
-        } 
+      const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
+      
+      if (!user){
+            return res.status(401).send('Unauthorized to create team');
+      } 
+      const director = user.leagueRoles.find(role=>role.name == 'director');
+
+      if( !director || director.user_leagueRoles.leagueId != req.body.id){
+            return res.status(401).send('Unauthorized to create team');
+      }
       const team = await Team.create(req.body);
       res.send(team);
    } catch (ex) {
@@ -41,18 +44,14 @@ router.post("/", async (req, res, next) => {
 // Delete A Team
 router.delete("/:id", async (req, res, next) => {
    try {
-      const user = await User.findByToken(req.headers.authorization);
-      if (!user || !user.isDirector){
-            return res.status(401).send('Unauthorized to delete team');
-        } 
-      const team = await Team.findOne({
-         where: {
-            id: req.params.id,
-            userId: user.id
-         }
-      });
-      if (!team) {
-         return res.status(404).send("Team not found");
+      const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
+      if (!user){
+         return res.status(401).send('Unauthorized to delete team');
+      }
+      const director = user.leagueRoles.find(role=>role.name == 'director');
+      const team = await Team.findByPk(req.params.id);
+      if( !director || director.user_leagueRoles.leagueId != team.leagueId){
+         return res.status(401).send('Unauthorized to delete team');
       }
       await team.destroy();
       res.send("Team deleted successfully");
@@ -64,11 +63,16 @@ router.delete("/:id", async (req, res, next) => {
 // Update Team based on ID
 router.put("/:id", async (req, res, next) => {
    try {
-      const user = await User.findByToken(req.headers.authorization);
-      if (!user || !user.isDirector){
-            return res.status(401).send('Unauthorized to update team');
-        } 
+      const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
+        
+      if (!user){
+          return res.status(401).send('Unauthorized to update team');
+      } 
+      const director = user.leagueRoles.find(role=>role.name == 'director');
       const team = await Team.findByPk(req.params.id);
+      if( !director || director.user_leagueRoles.leagueId != team.leagueId){
+          return res.status(401).send('Unauthorized to update team');
+      }
       await team.update(req.body);
       return(team);
    } catch (ex) {

@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
 const Landing2 = () => {
-   const { leagues } = useSelector((state) => state);
+   const { leagues, categories } = useSelector((state) => state);
    const leagueCardsRef = useRef(null);
    const scrollToNextSection = () => {
       document.getElementById("browse").scrollIntoView({ behavior: "smooth" });
@@ -44,7 +43,7 @@ const Landing2 = () => {
                   {leagues.leaguesList.map((league) => (
                      <div className="landing__browse-league-card" key={league.id}>
                         <div className="landing__card-image">
-                           <h2>IMAGE HERE</h2>
+                           <img src={window.location.origin + `${league.logo}`} width="90" height="80" alt="Image" />
                         </div>
                         <div className="landing__league-card-name">
                            <div className="home-card-text-name">
@@ -68,52 +67,26 @@ const Landing2 = () => {
                <div className="landing__sports-header">
                   <h1>Sports Categories</h1>
                </div>
-               <div className="landing__sports-cards">
-                  <div className="landing__sports-card">
-                     <div className="card-image">
-                        <h1>IMAGE</h1>
-                     </div>
-                     <div className="card-details">
-                        <h5>Soccer</h5>
-                        <p>15 leagues</p>
-                        <p>105 teams</p>
-                        <p>20 active players</p>
-                     </div>
-                  </div>
-                  <div className="landing__sports-card">
-                     <div className="card-image">
-                        <h1>IMAGE</h1>
-                     </div>
-                     <div className="card-details">
-                        <h5>Soccer</h5>
-                        <p>15 leagues</p>
-                        <p>105 teams</p>
-                        <p>20 active players</p>
+               {categories.categoriesList.map((category) => (
+                  <div className="landing__sports-cards">
+                     <div className="landing__sports-card">
+                        <div className="card-image">
+                           <img
+                              src={window.location.origin + `${category.avatar}`}
+                              width="90"
+                              height="80"
+                              alt="Image"
+                           />
+                        </div>
+                        <div className="card-details">
+                           <h5>{category.name}</h5>
+                           <p>{category.leagues.length} leagues</p>
+                           <p>105 teams</p>
+                           <p>20 active players</p>
+                        </div>
                      </div>
                   </div>
-                  <div className="landing__sports-card">
-                     <div className="card-image">
-                        <h1>IMAGE</h1>
-                     </div>
-                     <div className="card-details">
-                        <h5>Soccer</h5>
-                        <p>15 leagues</p>
-                        <p>105 teams</p>
-                        <p>20 active players</p>
-                     </div>
-                  </div>
-                  <div className="landing__sports-card">
-                     <div className="card-image">
-                        <h1>IMAGE</h1>
-                     </div>
-                     <div className="card-details">
-                        <h5>Soccer</h5>
-                        <p>15 leagues</p>
-                        <p>105 teams</p>
-                        <p>20 active players</p>
-                     </div>
-                  </div>
-               </div>
+               ))}
             </div>
          </div>
       </div>

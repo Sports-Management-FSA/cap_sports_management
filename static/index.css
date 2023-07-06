@@ -68,6 +68,9 @@ form {
   display: flex;
   flex-direction: column;
 }
+body {
+  background-color: white;
+}
 form > * {
   margin: 1rem;
 }
@@ -477,6 +480,9 @@ nav {
 .dashboard-manager-table td {
   color: black;
   padding: 1rem;
+}
+.dashboard-team-logos {
+  width: 30%;
 }
 .form__createteam h1,
 label {

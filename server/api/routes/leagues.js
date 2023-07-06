@@ -30,11 +30,15 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
-        console.log(user)
         if (!user){
-            return res.status(401).send('Unauthorized to add league');
+            return res.status(401).send('Login or Register');
         } 
+        const director = user.leagueRoles.find(role=>role.name == 'director');
         const league = await League.create(req.body);
+        if(!director){
+            const leagueDirector = LeagueRoles.findOne({where: {name: 'director'}});
+            await user.addLeagueRole(leagueDirector, {through: {leagueId: league.id}})
+        }
         res.send(league);
     } catch(ex) {
         next(ex);
@@ -44,10 +48,16 @@ router.post('/', async (req, res, next) => {
 // UPDATE LEAGUE BASED ON ID
 router.put('/:id', async (req, res, next) => {
     try {
-        const user = await User.findByToken(req.headers.authorization);
-        if (!user || !user.isDirector){
+        const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
+        
+        if (!user){
             return res.status(401).send('Unauthorized to update league');
         } 
+        const director = user.leagueRoles.find(role=>role.name == 'director');
+
+        if( !director || director.user_leagueRoles.leagueId != req.params.id){
+            return res.status(401).send('Unauthorized to update league');
+        }
         const league = await League.findByPk(req.params.id);
         await league.update(req.body);
     } catch(ex) {
@@ -58,8 +68,14 @@ router.put('/:id', async (req, res, next) => {
 // DELETE LEAGUE ON ID
 router.delete('/:id', async (req, res, next) => {
     try {
-        const user = await User.findByToken(req.headers.authorization);
-        if (!user || !user.isDirector) {
+        const user = await User.findByToken(req.headers.authorization, {include:[LeagueRoles]});
+        
+        if (!user){
+            return res.status(401).send('Unauthorized to delete league');
+        }
+        const director = user.leagueRoles.find(role=>role.name == 'director');
+
+        if( !director || director.user_leagueRoles.leagueId != req.params.id){
             return res.status(401).send('Unauthorized to delete league');
         }
         await League.destroy({where: { id: req.params.id}});
