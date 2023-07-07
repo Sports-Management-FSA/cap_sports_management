@@ -822,3 +822,12 @@ nav {
   letter-spacing: 0.5px;
   font-size: 3rem;
 }
+.profile-icon {
+  font-size: 20px;
+  margin-right: 7px;
+}
+@media (max-width: 900px) {
+  .profile-tabs {
+    font-size: 13px;
+  }
+}
