@@ -1,15 +1,16 @@
-const router = require("express").Router();
-const { User, Team, Match, Post, Comment } = require("../../db");
-const { League } = require("../../db");
-const LeagueRoles = require("../../db/models/LeagueRoles");
-const TeamRoles = require("../../db/models/TeamRoles");
+
+const router = require('express').Router();
+const { User, Team, Match, Post, Comment } = require('../../db');
+const { League, Announcements } = require('../../db');
+const LeagueRoles = require('../../db/models/LeagueRoles');
+const TeamRoles = require('../../db/models/TeamRoles');
 
 // GET ALL LEAGUES
 router.get("/", async (req, res, next) => {
   try {
     const league = await League.findAll({
       include: [
-        Team,
+        Team, Announcements,
         { model: Post, include: [Comment] },
         { model: Match, include: [Team] },
         { model: User, include: [LeagueRoles] },
@@ -21,6 +22,7 @@ router.get("/", async (req, res, next) => {
     next(ex);
   }
 });
+
 
 // GET LEAGUES BY ID
 router.get("/:id", async (req, res, next) => {

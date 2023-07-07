@@ -25,14 +25,15 @@ const Landing2 = () => {
                connected to your community. Dive into comprehensive statistics and receive live updates on the latest
                game stats, keeping you at the forefront of every thrilling moment.
             </p>
-            <button onClick={scrollToNextSection}>browse leagues</button>
+           { //<button onClick={scrollToNextSection}>browse leagues</button>
+           }
          </div>
 
          <div id="browse" className="landing__body-browse">
             <div className="landing__body-browse-header">
                <h1>Active leagues</h1>
                <p>
-                  <Link to="/leagues">view all leagues</Link>
+                  <Link to="/home">view all leagues</Link>
                </p>
             </div>
             <div className="landing__body-browse-content">
@@ -72,8 +73,8 @@ const Landing2 = () => {
                const numTeams = category.leagues.reduce((accumulator, currentValue)=>
                   accumulator+currentValue.teams.length, 0);
                return (
-               <Link to={`/leagues/category/${category.id}`}>
-               <div className="landing__sports-cards" key={category.id}>
+               <Link to={`/leagues/category/${category.id}`} key={category.id}>
+               <div className="landing__sports-cards" >
                   <div className="landing__sports-card">
                      <div className="card-image">
                      <img src={window.location.origin + `${category.avatar}`} width="90" height="80" alt="Image"/>
