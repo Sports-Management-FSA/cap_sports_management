@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import Matches from "./Matches";
 import Announcements from "./Announcements";
 import RightNav from "./RightNav";
+import Stats from './Stats';
 
 const Team = () => {
    const { id } = useParams();
