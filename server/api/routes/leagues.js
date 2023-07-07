@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Team, Match } = require('../../db');
-const { League } = require('../../db');
+const { League, Announcements } = require('../../db');
 const LeagueRoles = require('../../db/models/LeagueRoles');
 const TeamRoles = require('../../db/models/TeamRoles');
 
@@ -8,7 +8,7 @@ const TeamRoles = require('../../db/models/TeamRoles');
 // GET ALL LEAGUES
 router.get('/', async (req, res, next) => {
     try {
-        const league = await League.findAll({include:[Team, {model:Match, include:[Team]}, {model:User, include:[LeagueRoles]}]});
+        const league = await League.findAll({include:[Team, Announcements, {model:Match, include:[Team]}, {model:User, include:[LeagueRoles]}]});
         res.send(league);
     } catch(ex) {
         res.send('no data yet, next(ex) prompted')

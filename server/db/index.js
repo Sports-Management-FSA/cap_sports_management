@@ -11,6 +11,7 @@ const Category = require('./models/Category');
 const User_LeagueRoles = require('./models/User_LeagueRoles');
 const User_TeamRoles = require('./models/User_TeamRoles');
 const Team_Matches = require('./models/Team_Matches');
+const Announcements = require('./models/Announcements');
 
 Team.belongsTo(League);
 League.hasMany(Team);
@@ -48,6 +49,9 @@ Team.belongsToMany(Match, {through: Team_Matches});
 Actions.belongsTo(Category);
 Category.hasMany(Actions);
 
+Announcements.belongsTo(League);
+League.hasMany(Announcements);
+
 
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
@@ -67,20 +71,22 @@ const syncAndSeed = async()=> {
     const leagueDirector = await LeagueRoles.create({name: 'director'})
     const teamManager = await TeamRoles.create({name: 'manager'})
 
-    await League.create({
+    const league1 = await League.create({
       name:'Little League',
       season: 'Fall',
       email: 'little01@gmail.com',
       logo: '/static/images/nfl.png',
       categoryId: 4,
-    }),
+    })
+    const league2 =
     await League.create({
       name:'Big League',
       season: 'Summer',
       email: 'little02@gmail.com',
       logo: '/static/images/league2.png',
       categoryId: 4,
-    }),
+    })
+    const league3 =
     await League.create({
       name:'Major League',
       season: 'Spring',
@@ -487,6 +493,11 @@ const syncAndSeed = async()=> {
     await team8.addActions(fieldGoal, {through: {userId: 20, matchId:4}})
     await team9.addActions(fieldGoal, {through: {userId: 21, matchId:4}})
 
+    //add announcements to leagues
+    await Announcements.create({name: "Sean" , description: "Testing!", leagueId: 1});
+    await Announcements.create({name: "Kim" , description: "Testing!", leagueId: 2});
+    await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
+
     console.log('\n\nSeeding Successful!\n\n')
 };
 
@@ -504,4 +515,5 @@ Category,
 User_LeagueRoles,
 User_TeamRoles,
 Team_Matches,
+Announcements,
 };
