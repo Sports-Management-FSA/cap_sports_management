@@ -31,7 +31,7 @@ router.post('/', async (req, res, next) => {
             const match = await Match.create(req.body)
             res.send(match)
         }
-        res.status(401).send('Unauthorizated Access')
+        res.status(401).send('Unauthorized Access')
     } catch (ex) {
         next(ex);
     }
@@ -42,10 +42,10 @@ router.delete('/:id', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
         if (user) {
-            await Product.destroy({ where: { id: req.params.id } });
+            await Match.destroy({ where: { id: req.params.id } });
             res.sendStatus(204);
         }
-        res.status(401).send('Unauthorizated Access')
+        res.status(401).send('Unauthorized Access')
     } catch (ex) {
         next(ex);
     }
@@ -61,7 +61,7 @@ router.put('/:id', async (req, res, next) => {
             await match.update(req.body);
             res.send(match);
         }
-        res.status(401).send('Unauthorizated Access')
+        res.status(401).send('Unauthorized Access')
     } catch (ex) {
         next(ex);
     }

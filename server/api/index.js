@@ -6,6 +6,7 @@ const usersRouter = require("./routes/users.js");
 const teamsRouter = require("./routes/teams.js");
 const matchesRouter = require("./routes/matches.js");
 const categoryRouter = require("./routes/category.js");
+const postRouter = require("./routes/post.js");
 
 // Setting endpoints AFTER /api/
 router.use("/auth", authRouter);
@@ -14,6 +15,7 @@ router.use("/users", usersRouter);
 router.use("/teams", teamsRouter);
 router.use("/matches", matchesRouter);
 router.use("/categories", categoryRouter);
+router.use("/posts", postRouter);
 
 router.get("/", (req, res, next) => {
    res.send("at /api");
