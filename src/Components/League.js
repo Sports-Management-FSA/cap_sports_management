@@ -26,6 +26,7 @@ const League = () => {
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
    const today = new Date();
+   
 
    if (!league) {
         return <div>...loading</div>;
@@ -44,7 +45,6 @@ const League = () => {
       setCurrentComponent(component);
       setActiveTab(component);
    };
-
 
     return (
         <div className="league-container">

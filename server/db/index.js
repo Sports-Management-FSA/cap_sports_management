@@ -11,8 +11,11 @@ const Category = require('./models/Category');
 const User_LeagueRoles = require('./models/User_LeagueRoles');
 const User_TeamRoles = require('./models/User_TeamRoles');
 const Team_Matches = require('./models/Team_Matches');
+const Announcements = require('./models/Announcements');
 const Post = require('./models/Post');
-const Comment = require('./models/Comment')
+const Comment = require('./models/Comment');
+const Messages = require('./models/Mesages');
+
 
 Team.belongsTo(League);
 League.hasMany(Team);
@@ -50,6 +53,11 @@ Team.belongsToMany(Match, {through: Team_Matches});
 Actions.belongsTo(Category);
 Category.hasMany(Actions);
 
+
+Announcements.belongsTo(League);
+League.hasMany(Announcements);
+
+
 Post.belongsTo(User);
 Post.belongsTo(League);
 Post.belongsTo(Team);
@@ -60,7 +68,12 @@ League.hasMany(Post);
 User.hasMany(Comment)
 Post.hasMany(Comment);
 Comment.belongsTo(Post);
-Comment.belongsTo(User)
+Comment.belongsTo(User);
+
+Messages.belongsTo(League);
+League.hasMany(Messages);
+
+
 
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
@@ -80,20 +93,22 @@ const syncAndSeed = async()=> {
     const leagueDirector = await LeagueRoles.create({name: 'director'})
     const teamManager = await TeamRoles.create({name: 'manager'})
 
-    await League.create({
+    const league1 = await League.create({
       name:'Little League',
       season: 'Fall',
       email: 'little01@gmail.com',
       logo: '/static/images/nfl.png',
       categoryId: 4,
-    }),
+    })
+    const league2 =
     await League.create({
       name:'Big League',
       season: 'Summer',
       email: 'little02@gmail.com',
       logo: '/static/images/league2.png',
       categoryId: 4,
-    }),
+    })
+    const league3 =
     await League.create({
       name:'Major League',
       season: 'Spring',
@@ -523,6 +538,15 @@ const syncAndSeed = async()=> {
     await Comment.create({message:"YEAH!!!", likes: 4, userId:15, postId: 3});
     await Comment.create({message:"YEAH!!!", likes: 4, userId:16, postId: 8});
 
+    //add announcements to leagues
+    await Announcements.create({name: "Sean" , description: "Testing!", leagueId: 1});
+    await Announcements.create({name: "Kim" , description: "Testing!", leagueId: 2});
+    await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
+
+    //add messages to leagues
+    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 1});
+    
+
     console.log('\n\nSeeding Successful!\n\n')
 };
 
@@ -535,11 +559,13 @@ module.exports = {
   TeamRoles,
   Scorekeeper,
   LeagueRoles,
+Announcements,
   Actions,
   Category,
   User_LeagueRoles,
   User_TeamRoles,
   Team_Matches,
   Post,
-  Comment
+  Comment,
+  Messages
 };

@@ -77,7 +77,7 @@ form {
   flex-direction: column;
 }
 body {
-  background-color: white;
+  background-color: #f6f3f3;
   min-height: 400px;
   margin-bottom: 100px;
   clear: both;
@@ -329,9 +329,9 @@ form > * {
   gap: 5rem;
   margin: 2rem;
 }
-.home-popular-cards a {
+.home-popular-cards button {
   border-radius: 10px;
-  padding: 15px 50px 15px 50px;
+  padding: 8px 20px 8px 20px;
   color: black;
   background-color: white;
 }
@@ -354,6 +354,9 @@ form > * {
   flex-flow: wrap;
   gap: 2rem;
 }
+.home-leagues-cards a {
+  text-decoration: none;
+}
 .home-leagues-cards h4 {
   color: white;
 }
@@ -369,6 +372,14 @@ form > * {
   margin: 5px;
   padding: 5px;
   align-items: flex-start;
+}
+.card-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar {
+  margin-bottom: 1rem;
 }
 .matches--match-container {
   display: flex;
@@ -841,4 +852,13 @@ nav {
 .requestform__summary {
   display: flex;
   flex-direction: column;
+}
+.profile-icon {
+  font-size: 20px;
+  margin-right: 7px;
+}
+@media (max-width: 900px) {
+  .profile-tabs {
+    font-size: 13px;
+  }
 }
