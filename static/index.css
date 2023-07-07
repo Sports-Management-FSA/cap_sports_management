@@ -86,11 +86,6 @@ body {
 form > * {
   margin: 1rem;
 }
-.app {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 @media (max-width: 900px) {
   footer {
     font-size: 12px;
@@ -831,4 +826,19 @@ nav {
 .section-title .title {
   letter-spacing: 0.5px;
   font-size: 3rem;
+}
+.requestform__container {
+  height: 100vh;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.requestform__container label {
+  color: black;
+}
+.requestform__summary {
+  display: flex;
+  flex-direction: column;
 }

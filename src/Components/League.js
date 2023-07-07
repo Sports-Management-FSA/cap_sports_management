@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Matches from "./Matches";
 import Standings from "./Standings";
 import Sidebar from "./Sidebar";
@@ -9,15 +9,12 @@ import Announcements from "./Announcements";
 import Stats from "./Stats";
 import TeamInfo from "./TeamInfo";
 import Newsfeed from "./Newsfeed";
-import RequestJoin from "./Modals/RequestJoin";
-import Modal from 'react-modal';
 
 
 const League = () => {
    const { id } = useParams();
    const [currentComponent, setCurrentComponent] = useState('Announcements');
    const [activeTab, setActiveTab] = useState("Announcements");
-   const [modalIsOpen, setModalIsOpen] = useState(false);
    const openModal = () => {
     setModalIsOpen(true);
   };
@@ -68,24 +65,11 @@ const League = () => {
                                 </div>
                             </div>
                             <div className="head-right">
-                            <button
+                            <Link to={`/league/${id}/request`}
                                 className="open-modal-button"
                                 onClick={openModal}
-                            >Request to Join</button>
+                            >Request to Join</Link>
                             </div>
-                            <Modal
-                                className="request-modal-container"
-                                overlayClassName="request-modal-overlay"
-                                isOpen={modalIsOpen}
-                                onRequestClose={closeModal}
-                                contentLabel="Example Modal"
-                                ariaHideApp={false}
-                                >
-                                <h2>Send a Request</h2>
-                                <p>Please write a quick summary describing yourself and/or your team and the league manager respond with their decision</p>
-                                <button onClick={closeModal}>Close</button>  
-                                <button onClick={closeModal}>Submit</button>  
-                            </Modal>
                         </div>
                         <div className="league-navbar">
                             <ul className="league--navbar-items">

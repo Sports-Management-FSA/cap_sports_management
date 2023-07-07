@@ -19,6 +19,7 @@ import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";
 import Staff from "./Components/Global/Staff";
 import NotFound from "./Components/Global/NotFound";
+import RequestJoin from "./Forms/RequestJoin";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -55,6 +56,7 @@ const App = () => {
                <Route path="/standings" element={<Standings />} />
                <Route path="/staff" element={<Staff />} />
                <Route path="*" element={<NotFound />} />
+               <Route path="/league/:id/request" element={<RequestJoin />} />
             </Routes>
          </div>
          <Footer />

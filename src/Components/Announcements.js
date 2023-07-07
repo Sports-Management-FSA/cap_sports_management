@@ -68,8 +68,8 @@ const Announcements = () => {
                     <p>{post.username}</p>
                     <p>{post.desc}</p>
                     <div className="post-bottom">
-                        <span><i class="bi bi-heart"></i>likes</span>
-                        <span><i class="bi bi-chat-left-dots"></i>comments</span>
+                        <span><i className="bi bi-heart"></i>likes</span>
+                        <span><i className="bi bi-chat-left-dots"></i>comments</span>
                     </div>
                 </div>
             ))}
