@@ -1,67 +1,66 @@
 const router = require('express').Router();
-const { Match, Team } = require('../../db');
-const { User } = require('../../db');
-const Actions = require('../../db/models/Actions');
+const { User, Messages } = require('../../db');
+const { League } = require('../../db');
 
-//get all matches
+//get all messages
 router.get('/', async (req, res, next) => {
     try {
-        const matches = await Match.findAll({include:[Team, Actions]});
-        res.send(matches);
+        const messages = await Messages.findAll({include:[League]});
+        res.send(messages);
     } catch (ex) {
         next(ex);
     }
 })
 
-//get match by id
+//get messages by id
 router.get('/:id', async (req, res, next) => {
     try {
-        const match = await Match.findByPk(req.params.id, {include:[Team, Actions]});
-        res.send(match);
+        const message = await Messages.findByPk(req.params.id, {include:[League]});
+        res.send(message);
     } catch (ex) {
         next(ex);
     }
 })
 
-//create match
+//create message
 router.post('/', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
         if (user) {
-            const match = await Match.create(req.body)
-            res.send(match)
+            const message = await Messages.create(req.body)
+            res.send(message)
         }
-        res.status(401).send('Unauthorized Access')
+        res.status(401).send('Unauthorizated Access')
     } catch (ex) {
         next(ex);
     }
 })
 
-//delete match
+//delete messages
 router.delete('/:id', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
         if (user) {
-            await Match.destroy({ where: { id: req.params.id } });
+            await Product.destroy({ where: { id: req.params.id } });
             res.sendStatus(204);
         }
-        res.status(401).send('Unauthorized Access')
+        res.status(401).send('Unauthorizated Access')
     } catch (ex) {
         next(ex);
     }
 })
 
-//update match
+//update messages
 router.put('/:id', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
 
         if (user) {
-            const match = await Match.findByPk(req.params.id);
-            await match.update(req.body);
-            res.send(match);
+            const message = await Messages.findByPk(req.params.id);
+            await message.update(req.body);
+            res.send(message);
         }
-        res.status(401).send('Unauthorized Access')
+        res.status(401).send('Unauthorizated Access')
     } catch (ex) {
         next(ex);
     }

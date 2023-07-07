@@ -6,6 +6,8 @@ import matchesSlice from "./matchesSlice";
 import leaguesSlice from "./leaguesSlice";
 import playersSlice from "./playersSlice";
 import categoriesSlice from "./categoriesSlice";
+import joinRequestSlice from "./joinRequestSlice";
+import announcementsSlice from "./announcementsSlice";
 
 const store = configureStore({
    middleware: (defaultMiddleware) => defaultMiddleware().concat(logger),
@@ -16,6 +18,8 @@ const store = configureStore({
       leagues: leaguesSlice,
       players: playersSlice,
       categories: categoriesSlice,
+      joinRequests: joinRequestSlice,
+      announcements: announcementsSlice,
    }
 });
 
@@ -26,3 +30,5 @@ export * from "./matchesSlice";
 export * from "./leaguesSlice";
 export * from "./playersSlice";
 export * from "./categoriesSlice";
+export * from './joinRequestSlice';
+export * from "./announcementsSlice";

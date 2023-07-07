@@ -13,12 +13,13 @@ import Dashboard from "./Components/dashboard";
 import Matches from "./Components/Matches";
 import Footer from "./Components/Global/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllCategories } from "./store";
+import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllAnnouncements, fetchAllCategories } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";
 import Staff from "./Components/Global/Staff";
 import NotFound from "./Components/Global/NotFound";
+import RequestJoin from "./Forms/RequestJoin";
 import UserProfile from "./Components/User/UserProfile";
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
       dispatch(fetchAllPlayers());
       dispatch(fetchAllTeams());
       dispatch(loginWithToken());
+      dispatch(fetchAllAnnouncements());
    }, []);
    console.log(auth);
    return (
@@ -58,6 +60,7 @@ const App = () => {
                <Route path="/staff" element={<Staff />} />
                <Route path="/profile" element={<UserProfile />} />
                <Route path="*" element={<NotFound />} />
+               <Route path="/league/:id/request" element={<RequestJoin />} />
             </Routes>
          </div>
          <Footer />
