@@ -13,7 +13,7 @@ import Dashboard from "./Components/dashboard"
 import Matches from "./Components/Matches";
 import Footer from "./Components/Global/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken } from "./store";
+import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllCategories } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";
@@ -22,6 +22,7 @@ const App = () => {
    const { auth } = useSelector((state) => state);
    const dispatch = useDispatch();
    useEffect(() => {
+      dispatch(fetchAllCategories());
       dispatch(fetchAllLeagues());
       dispatch(fetchAllMatches());
       dispatch(fetchAllPlayers());
