@@ -8,7 +8,11 @@ form {
 }
 
 body {
-   background-color: white;
+   background-color: #f6f3f3;
+   min-height: 400px;
+   margin-bottom: 100px;
+   clear: both;
+   margin: 0;
 }
 
 form > * {
@@ -19,4 +23,14 @@ form > * {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+   footer {
+      font-size: 12px;
+   }
+
+   footer a {
+      font-size: 10px;
+   }
 }

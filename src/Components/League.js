@@ -8,11 +8,24 @@ import RightNav from "./RightNav";
 import Announcements from "./Announcements";
 import Stats from "./Stats";
 import TeamInfo from "./TeamInfo";
+import Newsfeed from "./Newsfeed";
+import RequestJoin from "./Modals/RequestJoin";
+import Modal from 'react-modal';
+
 
 const League = () => {
    const { id } = useParams();
    const [currentComponent, setCurrentComponent] = useState('Announcements');
    const [activeTab, setActiveTab] = useState("Announcements");
+   const [modalIsOpen, setModalIsOpen] = useState(false);
+   const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
    const today = new Date();
@@ -43,29 +56,56 @@ const League = () => {
             </div>
             <div className="league-main">
                 <div className="league-main-upper">
-                    <div className="league-head">
-                        <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
-                        <h2>{league.name}</h2>
-                        <p>{league.season}</p>
+                    <div className="league-main-upperbox">
+                        <div className="league-head">
+                            <div className="head-left">
+                                <div className="head-left-img">
+                                    <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image"/>
+                                </div>
+                                <div className="head-left-content">
+                                    <h2>{league.name}</h2>
+                                    <p>{league.season}</p>                                
+                                </div>
+                            </div>
+                            <div className="head-right">
+                            <button
+                                className="open-modal-button"
+                                onClick={openModal}
+                            >Request to Join</button>
+                            </div>
+                            <Modal
+                                className="request-modal-container"
+                                overlayClassName="request-modal-overlay"
+                                isOpen={modalIsOpen}
+                                onRequestClose={closeModal}
+                                contentLabel="Example Modal"
+                                ariaHideApp={false}
+                                >
+                                <h2>Send a Request</h2>
+                                <p>Please write a quick summary describing yourself and/or your team and the league manager respond with their decision</p>
+                                <button onClick={closeModal}>Close</button>  
+                                <button onClick={closeModal}>Submit</button>  
+                            </Modal>
+                        </div>
+                        <div className="league-navbar">
+                            <ul className="league--navbar-items">
+                                <a onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</a>
+                                <a onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</a>
+                                <a onClick={() => handleClick('Newsfeed')} className={activeTab === 'Newsfeed' ? 'active' : ''}>Newsfeed</a>
+                                <a onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</a>
+                                <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="league-navbar">
-                        <ul className="league--navbar-items">
-                            <a onClick={() => handleClick('Announcements')} className={activeTab === 'Announcements' ? 'active' : ''}>Announcements</a>
-                            <a onClick={() => handleClick('Stats')} className={activeTab === 'Stats' ? 'active' : ''}>Stats</a>
-                            <a onClick={() => handleClick('Newsfeed')} className={activeTab === 'Newsfeed' ? 'active' : ''}>Newsfeed</a>
-                            <a onClick={() => handleClick('About')} className={activeTab === 'About' ? 'active' : ''}>About</a>
-                            <a onClick={() => handleClick('Chat')} className={activeTab === 'Chat' ? 'active' : ''}>Chat</a>
-                        </ul>
-                        <div className="league__content">
-                            <div className="league__content--body">
-                                {currentComponent === 'Announcements' && <Announcements />}
-                                {currentComponent === 'Stats' && <Stats />}
-                                {currentComponent === 'Newsfeed' && "Newsfeed coming soon"}
-                                {currentComponent === 'About' && "About coming soon"}
-                                {currentComponent === 'Chat' && "Chat coming soon"}
-                            </div>        
-                        </div>   
-                    </div>
+                    <div className="league__content">
+                        <div className="league__content--body">
+                            {currentComponent === 'Announcements' && <Announcements />}
+                            {currentComponent === 'Stats' && <Stats />}
+                            {currentComponent === 'Newsfeed' && <Newsfeed />}
+                            {currentComponent === 'About' && "About coming soon"}
+                            {currentComponent === 'Chat' && "Chat coming soon"}
+                        </div>        
+                    </div>   
                 </div>
             </div>
             <RightNav />
