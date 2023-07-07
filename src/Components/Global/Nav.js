@@ -63,21 +63,17 @@ const Nav = () => {
                            <ul
                               className="dropdown-menu dropdown-menu-dark dropdown-menu-end justify-cotent-start"
                               aria-labelledby="navbarDropdown">
-                              <li className="dropdown-item mb-2 mt-2" role="button">
+                              <Link to="/dashboard" className="dropdown-item mb-2 mt-2" role="button">
                                  <i className="bi  bi-layout-text-window"></i>
-                                 <a className="d-inline text-white ps-3" href="#/dashboard">
-                                    Dashboard
-                                 </a>
-                              </li>
-                              <li className="mb-2 dropdown-item" role="button">
+                                 <span className="d-inline text-white ps-3 text-decoration-none">Dashboard</span>
+                              </Link>
+                              <Link to="/profile" className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-person-square"></i>
-                                 <a className="d-inline text-white ps-3" href="#">
-                                    Profile
-                                 </a>
-                              </li>
-                              <li className="mb-2 dropdown-item" role="button">
+                                 <span className="d-inline text-white ps-3 text-decoration-none">Profile</span>
+                              </Link>
+                              <li className="mb-2 dropdown-item" role="button" onClick={handleLogout}>
                                  <i className="bi bi-arrow-left-square"></i>
-                                 <a className="d-inline text-white ps-3" role="button" onClick={handleLogout}>
+                                 <a className="d-inline text-white ps-3 text-decoration-none" role="button">
                                     Sign Out
                                  </a>
                               </li>
@@ -86,18 +82,15 @@ const Nav = () => {
                      </>
                   ) : (
                      <>
-                        <li className="nav-item">
-                           <Link to="/login" className="nav-link active me-1">
-                              LOGIN
-                           </Link>
-                        </li>
-                        <li className="nav-item">
-                           <Link to="/register">
-                              <button type="button" className="btn btn-primary me-3">
-                                 SIGN UP
-                              </button>
-                           </Link>
-                        </li>
+                        <Link to="/login" className="nav-link active me-1 nav-item">
+                           LOGIN
+                        </Link>
+
+                        <Link to="/register">
+                           <button type="button" className="btn btn-primary me-3 nav-item">
+                              SIGN UP
+                           </button>
+                        </Link>
                      </>
                   )}
                </ul>

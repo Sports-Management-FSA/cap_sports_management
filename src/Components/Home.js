@@ -1,14 +1,23 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store";
+import React, { useState } from "react";
+import { useSelector} from "react-redux";
 import { Link } from "react-router-dom";
 
 const Home = () => {
    const { auth, leagues } = useSelector((state) => state);
-   const dispatch = useDispatch();
+   let leaguesList = leagues.leaguesList;
+   const {categories} = useSelector((state) => state);
+   const [category, setCategory] = useState('');
+   const topCategories = categories.categoriesList.toSorted((a, b) => a.leagues.length > b.leagues.length ? -1: 0).slice(0, 5);
+  
+   if(category !== ''){
+      leaguesList = categories.categoriesList.find(el=>el.name === category).leagues;
+   }
 
-   console.log(auth);
-
+   const handleClick = (ev) => {
+      ev.preventDefault();
+      setCategory(ev.target.value);
+   };
+   
    return (
       <div className="home-container">
          <div className="home-popular">
@@ -16,11 +25,9 @@ const Home = () => {
                <h3>Popular League Categories</h3>
             </div>
             <div className="home-popular-cards">
-               <a href="/">Esports</a>
-               <a href="/">Baseball</a>
-               <a href="/">Soccer</a>
-               <a href="/">Football</a>
-               <a href="/">Cricket</a>
+               {topCategories.map((category)=>(
+                  <button onClick={handleClick} value={category.name} key={category.id}>{category.name}</button>
+               ))}
             </div>
          </div>
          <div className="home-leagues">
@@ -29,39 +36,26 @@ const Home = () => {
                   <div>
                      <h1>Leagues</h1>
                   </div>
-                  <div>
+                  <div className="search-bar">
                      <input placeholder="Search Leagues" />
                   </div>
                </div>
-               <Link to="/createleague">Create League</Link>
+               <Link to="/createleague" style={{ textDecoration: 'none' }}>Create League</Link>
             </div>
             <div className="home-leagues-cards">
-               {leagues.leaguesList?.map((league, idx) => (
-               <div key={idx} className="card" style={{width: "18rem"}} >
-                     <div className="card-body d-flex justify-content-center flex-column ">
-                        <h5 className="card-title">{league.name}</h5>
-                        <h6 className="card-subtitle mb-2 text-body-secondary">{league.season}</h6>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        
-                        <a href="#" className="card-link">Another link</a>
-                     </div>
+               {leaguesList?.map((league, idx) => (
+                  <div className="card" style={{width:"14rem"}} key={idx}>
+                     <Link to={`/league/${league.id}`}>
+                        <div className="card-image">
+                           <img src={window.location.origin + `${league.logo}`} width="180" height="140" alt="Image" />
+                        </div>
+                        <div  className="card-body d-flex justify-content-center flex-column ">
+                           <h5 className="card-title">{league.name}</h5>
+                           <h6 className="card-subtitle mb-2 text-body-secondary">{league.season}</h6>
+                           <p className="card-subtitle mb-2 text-body-secondary">{league.teams.length} {league.teams.length === 1 ? "Team": "Teams"}</p>      
+                        </div>
+                     </Link>
                   </div>
-                  // <div className="home-league-card" key={idx}>
-                  //    <div>
-                  //       <img src={window.location.origin + `${league.logo}`} width="170" height="160" alt="Image" />
-                  //    </div>
-                  //    <div className="home-league-card-text">
-                  //       <div className="home-card-text-name">
-                  //          <Link to={`/league/${league.id}`}>
-                  //             <h4>{league.name}</h4>
-                  //          </Link>
-                  //       </div>
-                  //       <div className="home-card-text-subtext">
-                  //          <p>Season: {league.season}</p>
-                  //          <p>{leagues.leaguesList.length} Teams</p>
-                  //       </div>
-                  //    </div>
-                  // </div>
                ))}
             </div>
          </div>

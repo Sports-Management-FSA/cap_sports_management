@@ -12,6 +12,9 @@ const User_LeagueRoles = require('./models/User_LeagueRoles');
 const User_TeamRoles = require('./models/User_TeamRoles');
 const Team_Matches = require('./models/Team_Matches');
 const Announcements = require('./models/Announcements');
+const Post = require('./models/Post');
+const Comment = require('./models/Comment')
+
 
 Team.belongsTo(League);
 League.hasMany(Team);
@@ -49,8 +52,22 @@ Team.belongsToMany(Match, {through: Team_Matches});
 Actions.belongsTo(Category);
 Category.hasMany(Actions);
 
+
 Announcements.belongsTo(League);
 League.hasMany(Announcements);
+
+
+Post.belongsTo(User);
+Post.belongsTo(League);
+Post.belongsTo(Team);
+User.hasMany(Post);
+Team.hasMany(Post);
+League.hasMany(Post);
+
+User.hasMany(Comment)
+Post.hasMany(Comment);
+Comment.belongsTo(Post);
+Comment.belongsTo(User)
 
 
 const syncAndSeed = async()=> {
@@ -492,6 +509,29 @@ const syncAndSeed = async()=> {
     await Scorekeeper.create({matchId: 3, userId: 18, actionId: 2, teamId: 6});
     await team8.addActions(fieldGoal, {through: {userId: 20, matchId:4}})
     await team9.addActions(fieldGoal, {through: {userId: 21, matchId:4}})
+    
+    //Added Random Post To Teams
+    await Post.create({message:"WE WON!!", likes: 6, userId: 1, teamId: 1});
+    await Post.create({message:"WE LOST....", likes: 6, userId: 2, teamId: 1});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 3, teamId: 2});
+    await Post.create({message:"WE ARE THE BEST!", likes: 6, userId: 4, teamId: 2});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 5, teamId: 3});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 6, teamId: 1});
+
+    //Added Random Post To Leagues
+    await Post.create({message:"WE WON!!", likes: 6, userId: 7, leagueId: 1});
+    await Post.create({message:"WE LOST....", likes: 6, userId: 8, leagueId: 1});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 9, leagueId: 2});
+    await Post.create({message:"WE ARE THE BEST!", likes: 10, userId: 4, leagueId: 2});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 11, leagueId: 3});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 12, leagueId: 1});
+
+    //Addes Comments to Post
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:13, postId: 1});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:14, postId: 1});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:15, postId: 2});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:15, postId: 3});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:16, postId: 8});
 
     //add announcements to leagues
     await Announcements.create({name: "Sean" , description: "Testing!", leagueId: 1});
@@ -510,10 +550,12 @@ module.exports = {
   TeamRoles,
   Scorekeeper,
   LeagueRoles,
-Actions,
-Category,
-User_LeagueRoles,
-User_TeamRoles,
-Team_Matches,
 Announcements,
+  Actions,
+  Category,
+  User_LeagueRoles,
+  User_TeamRoles,
+  Team_Matches,
+  Post,
+  Comment
 };
