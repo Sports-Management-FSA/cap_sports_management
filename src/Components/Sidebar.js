@@ -43,31 +43,6 @@ const Sidebar = () => {
                     <span>News Feed</span>
                 </div>
             </div>
-            {/* <ul className="nav flex-column">
-                <li className="nav-item">
-                    <a className="nav-link active text-dark fw-bold" aria-current="page" >Home</a>
-                </li>
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Profile
-                    </a>
-                    <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Account</a></li>
-                        <li><a className="dropdown-item" href="#">Player Profile</a></li>
-                        <li><a className="dropdown-item" href="#">Team Manager</a></li>
-                        <li><a className="dropdown-item" href="#">League Manager</a></li>
-                    </ul>
-                    </li>
-                <li className="nav-item">
-                    <a className="nav-link text-dark fw-bold" href="#">Dashboard</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link text-dark fw-bold" href="#">Your Leagues</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link text-dark fw-bold" href="#">News Feed</a>
-                </li>
-            </ul> */}
         </div>
     );
 };

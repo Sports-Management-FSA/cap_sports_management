@@ -15,13 +15,6 @@ const League = () => {
    const { id } = useParams();
    const [currentComponent, setCurrentComponent] = useState('Announcements');
    const [activeTab, setActiveTab] = useState("Announcements");
-   const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
 
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
@@ -65,10 +58,7 @@ const League = () => {
                                 </div>
                             </div>
                             <div className="head-right">
-                            <Link to={`/league/${id}/request`}
-                                className="open-modal-button"
-                                onClick={openModal}
-                            >Request to Join</Link>
+                                <Link to={`/league/${id}/request`}>Request to Join</Link>
                             </div>
                         </div>
                         <div className="league-navbar">

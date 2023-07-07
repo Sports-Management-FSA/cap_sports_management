@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const initialState = {};
+
 export const fetchAllMessages = createAsyncThunk("fetchAllMessages", async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('/api/');
+      const response = await axios.get('/api/messages');
       return response.data;
     } catch(err){
         return rejectWithValue
@@ -15,7 +17,7 @@ export const addMessage = createAsyncThunk('addMessage', async(message, { reject
     try {
         console.log('adding message')
         const token = window.localStorage.getItem('token');
-        const response = await axios.post('/api/', message, {
+        const response = await axios.post('/api/messages', message, {
             headers: {
                 authorization: token
             }
@@ -29,7 +31,7 @@ export const addMessage = createAsyncThunk('addMessage', async(message, { reject
 
 export const deleteMessage = createAsyncThunk('deleteMessage', async(messageId, {rejectWithValue}) => {
     try {
-        await axios.delete(`/api/`, {
+        await axios.delete(`/api/message/${messageId}`, {
             headers: {
                 authorization: token
             }
