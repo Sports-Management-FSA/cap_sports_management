@@ -13,7 +13,8 @@ const User_TeamRoles = require('./models/User_TeamRoles');
 const Team_Matches = require('./models/Team_Matches');
 const Announcements = require('./models/Announcements');
 const Post = require('./models/Post');
-const Comment = require('./models/Comment')
+const Comment = require('./models/Comment');
+const Messages = require('./models/Mesages');
 
 
 Team.belongsTo(League);
@@ -67,7 +68,11 @@ League.hasMany(Post);
 User.hasMany(Comment)
 Post.hasMany(Comment);
 Comment.belongsTo(Post);
-Comment.belongsTo(User)
+Comment.belongsTo(User);
+
+Messages.belongsTo(League);
+League.hasMany(Messages);
+
 
 
 const syncAndSeed = async()=> {
@@ -538,6 +543,10 @@ const syncAndSeed = async()=> {
     await Announcements.create({name: "Kim" , description: "Testing!", leagueId: 2});
     await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
 
+    //add messages to leagues
+    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 1});
+    
+
     console.log('\n\nSeeding Successful!\n\n')
 };
 
@@ -557,5 +566,6 @@ Announcements,
   User_TeamRoles,
   Team_Matches,
   Post,
-  Comment
+  Comment,
+  Messages
 };
