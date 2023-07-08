@@ -39,7 +39,7 @@ const CreateLeague = () => {
             <div className="container py-5">
                <form onSubmit={handleSubmit}>
                   <div className="row d-flex justify-content-center align-items-center opacity-90 h-100">
-                     <div className="col-10 col-md-8 col-lg-6 col-xl-8">
+                     <div className="col-10">
                         <div
                            className="card"
                            style={{
@@ -47,11 +47,11 @@ const CreateLeague = () => {
                               backgroundColor: "#fdfffc"
                            }}>
                            <div className="card-body p-5 text-center">
-                              <div className="mb-md-5 mt-md-4 pb-5">
+                              <div>
                                  <h2 className="mb-1">Create Your League</h2>
                                  <p className="fst-italic">Get your league started now!</p>
                                  <div className="row g-3">
-                                    <div className="col-6 text-start">
+                                    <div className="col-6 col-xl-8 col-sm-9 text-start">
                                        <label htmlFor="selectCategory" className="form-label text-dark">
                                           Choose Category
                                        </label>
@@ -61,7 +61,7 @@ const CreateLeague = () => {
                                           aria-label="Categories-select">
                                           <option selected>Choose Category</option>
                                        </select>
-                                       <div className="col-12">
+                                       <div className="col-lg-8 col-md-6 col-xl-8 col-sm-9">
                                           <label className="text-dark mb-2">League Access</label>
                                           <div>
                                              <div className="form-check-inline">
@@ -115,7 +115,7 @@ const CreateLeague = () => {
                                        </label>
                                        <input className="form-control mb-2" type="email" id="email" />
                                     </div>
-                                    <div className="col-6 text-center my-auto">
+                                    <div className="col-6 col-xl-4 col-sm-3 text-center my-auto align-items-center justify-content-center">
                                        <img
                                           class="rounded-circle mb-2 league-logo"
                                           src="static/images/camera.svg"
@@ -125,32 +125,32 @@ const CreateLeague = () => {
                                           JPG or PNG no larger than 5 MB
                                        </div>
                                        <button className="btn btn-outline-secondary" type="button">
-                                          Upload logo
+                                          Upload
                                        </button>
                                     </div>
                                  </div>
-                                 <div className="row g-3 my-auto">
-                                    <div className="col-lg-6 col-sm-12 text-start">
+                                 <div className="row g-3 my-auto" id="league-access">
+                                    <div className="col-lg-6 col-sm-12 col-md-12 text-start">
                                        <label htmlFor="seasonName" className="form-label text-dark">
                                           Season Name
                                        </label>
                                        <input className="form-control" type="text" id="seasonName" />
                                     </div>
-                                    <div className="col-sm-6 col-lg-3 text-start">
+                                    <div className="col-sm-6 col-lg-3 col-md-6 text-start">
                                        <label htmlFor="startDate" className="text-dark mb-2">
                                           Start
                                        </label>
                                        <input id="startDate" className="form-control" type="date" />
                                     </div>
-                                    <div className="col-sm-6 col-lg-3 text-start">
+                                    <div className="col-sm-6 col-lg-3 col-md-6 text-start">
                                        <label htmlFor="endDate" className="text-dark mb-2">
                                           End
                                        </label>
                                        <input id="endDate" className="form-control" type="date" />
                                     </div>
-                                    <div className="row g-3 my-auto"></div>
                                  </div>
                               </div>
+                              <button className="btn btn-outline-secondary mt-3">Create</button>
                            </div>
                         </div>
                      </div>

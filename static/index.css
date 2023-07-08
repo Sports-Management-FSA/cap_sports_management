@@ -444,6 +444,16 @@ label {
   transition: 0.3s;
   cursor: pointer;
 }
+@media (max-width: 770px) {
+  * {
+    font-size: 10px;
+  }
+}
+@media (max-width: 990px) {
+  * {
+    font-size: 12px;
+  }
+}
 .typography.text-secondary {
   color: red;
 }
