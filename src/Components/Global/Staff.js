@@ -2,7 +2,7 @@ import React from "react";
 
 const Staff = () => {
    return (
-      <div className="container mt-4">
+      <div className="container mt-4 vh-100">
          <div className="row justify-content-center align-items-center">
             <div className="col-12">
                <div className="section-title pb-2">
