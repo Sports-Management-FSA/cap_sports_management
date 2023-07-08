@@ -13,7 +13,16 @@ import Dashboard from "./Components/dashboard";
 import Matches from "./Components/Matches";
 import Footer from "./Components/Global/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllAnnouncements, fetchAllCategories, fetchAllMessages } from "./store";
+import {
+   fetchAllLeagues,
+   fetchAllTeams,
+   fetchAllPlayers,
+   fetchAllMatches,
+   loginWithToken,
+   fetchAllAnnouncements,
+   fetchAllCategories,
+   fetchAllMessages
+} from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";

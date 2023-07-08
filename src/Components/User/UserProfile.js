@@ -25,7 +25,7 @@ const UserProfile = () => {
 
    return (
       <div>
-         <div className="container py-5">
+         <div className="container py-5 vh-100">
             <div className="row gutters-sm">
                <div className="col-md-4 d-none d-md-block">
                   <div className="card">

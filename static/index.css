@@ -188,7 +188,6 @@ form > * {
   margin-left: auto;
 }
 .landing__body-browse {
-  height: 100vh;
   margin: 0 2rem 0 2rem;
   display: flex;
   flex-direction: column;
