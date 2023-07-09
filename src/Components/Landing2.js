@@ -25,8 +25,9 @@ const Landing2 = () => {
                connected to your community. Dive into comprehensive statistics and receive live updates on the latest
                game stats, keeping you at the forefront of every thrilling moment.
             </p>
-           { //<button onClick={scrollToNextSection}>browse leagues</button>
-           }
+            {
+               //<button onClick={scrollToNextSection}>browse leagues</button>
+            }
          </div>
 
          <div id="browse" className="landing__body-browse">
@@ -44,7 +45,7 @@ const Landing2 = () => {
                   {leagues.leaguesList.map((league) => (
                      <div className="landing__browse-league-card" key={league.id}>
                         <div className="landing__card-image">
-                           <img src={window.location.origin + `${league.logo}`} width="90" height="80" alt="Image" />
+                           <img src={league.logo} width="90" height="80" alt="Image" />
                         </div>
                         <div className="landing__league-card-name">
                            <div className="home-card-text-name">
@@ -69,25 +70,33 @@ const Landing2 = () => {
                   <h1>Sports Categories</h1>
                </div>
                {categories.categoriesList.map((category) => {
-               const numLeagues = category.leagues.length; 
-               const numTeams = category.leagues.reduce((accumulator, currentValue)=>
-                  accumulator+currentValue.teams.length, 0);
-               return (
-               <Link to={`/leagues/category/${category.id}`} key={category.id}>
-               <div className="landing__sports-cards" >
-                  <div className="landing__sports-card">
-                     <div className="card-image">
-                     <img src={window.location.origin + `${category.avatar}`} width="90" height="80" alt="Image"/>
-                     </div>
-                     <div className="card-details">
-                        <h5>{category.name}</h5>
-                        <p>{numLeagues == 1 ? numLeagues+' league':numLeagues+' leagues'}</p>
-                        <p> {numTeams == 1 ? numTeams+' team':numTeams+' teams'}</p>
-                     </div>
-                  </div>
-                  </div>
-                  </Link>
-                  )})}
+                  const numLeagues = category.leagues.length;
+                  const numTeams = category.leagues.reduce(
+                     (accumulator, currentValue) => accumulator + currentValue.teams.length,
+                     0
+                  );
+                  return (
+                     <Link to={`/leagues/category/${category.id}`} key={category.id}>
+                        <div className="landing__sports-cards">
+                           <div className="landing__sports-card">
+                              <div className="card-image">
+                                 <img
+                                    src={window.location.origin + `${category.avatar}`}
+                                    width="90"
+                                    height="80"
+                                    alt="Image"
+                                 />
+                              </div>
+                              <div className="card-details">
+                                 <h5>{category.name}</h5>
+                                 <p>{numLeagues == 1 ? numLeagues + " league" : numLeagues + " leagues"}</p>
+                                 <p> {numTeams == 1 ? numTeams + " team" : numTeams + " teams"}</p>
+                              </div>
+                           </div>
+                        </div>
+                     </Link>
+                  );
+               })}
             </div>
          </div>
       </div>

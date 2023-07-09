@@ -36,6 +36,8 @@ const League = () => {
       setActiveTab(component);
    };
 
+   console.log(league);
+
    return (
       <div className="league-container">
          <div className="sidebar">
@@ -47,7 +49,7 @@ const League = () => {
                   <div className="league-head">
                      <div className="head-left">
                         <div className="head-left-img">
-                           <img src={window.location.origin + `${league.logo}`} width="70" height="60" alt="Image" />
+                           <img src={league.logo} width="70" height="60" alt="Image" />
                         </div>
                         <div className="head-left-content">
                            <h2>{league.name}</h2>
