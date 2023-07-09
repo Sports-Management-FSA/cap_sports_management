@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addLeague } from "../store";
+import validator from "validator";
+import { fetchAllLeagues } from "../store";
 
 const CreateLeague = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const leagues = useSelector((state) => state.leagues.leaguesList);
    const categories = useSelector((state) => state.categories.categoriesList);
    const fileInputRef = useRef(null);
 
@@ -17,11 +20,15 @@ const CreateLeague = () => {
    const [leagueEndDate, setLeagueEndDate] = useState("");
    const [leagueLogo, setLeagueLogo] = useState("");
    const [previewLogo, setPreviewLogo] = useState("");
+   const [formErrors, setFormErrors] = useState({});
 
    const handCategoryId = (e) => setCategoryId(e.target.value);
    const handleLeagueNameChange = (e) => setLeagueName(e.target.value);
    const handleLeagueSeasonChange = (e) => setLeagueSeason(e.target.value);
-   const handleLeagueEmailChange = (e) => setLeagueEmail(e.target.value);
+   const handleLeagueEmailChange = (e) => {
+      const email = e.target.value;
+      setLeagueEmail(email);
+   };
    const handleStartDate = (e) => setleagueStartDate(e.target.value);
    const handleEndDate = (e) => setLeagueEndDate(e.target.value);
 
@@ -39,8 +46,36 @@ const CreateLeague = () => {
       }
    };
 
+   // Validation Functions
+   const validateLeagueName = (name) => {
+      const existingLeague = leagues.find((league) => league.name === name);
+      if (existingLeague) {
+         return "League name already exists";
+      }
+      return "";
+   };
+   const validateEmail = (email) => {
+      if (!validator.isEmail(email)) {
+         return "Invalid email format";
+      }
+      return "";
+   };
+
+   const validateForm = () => {
+      const errors = {};
+      errors.leagueName = validateLeagueName(leagueName);
+      errors.email = validateEmail(leagueEmail);
+      return errors;
+   };
+
    const handleSubmit = (e) => {
       e.preventDefault();
+      const validationErrors = validateForm();
+      if (Object.keys(validationErrors).length > 0) {
+         // Form has errors, prevent form submission
+         setFormErrors(validationErrors);
+         return;
+      }
       const newLeagueData = {
          name: leagueName,
          season: leagueSeason,
@@ -50,7 +85,6 @@ const CreateLeague = () => {
          endDate: leagueEndDate,
          logo: leagueLogo
       };
-      console.log(newLeagueData);
       dispatch(addLeague(newLeagueData));
       setLeagueName("");
       setLeagueSeason("");
@@ -58,6 +92,8 @@ const CreateLeague = () => {
       setLeagueLogo("");
       navigate("/");
    };
+
+   console.log(leagues);
 
    return (
       <section className="vh-100">
@@ -143,22 +179,26 @@ const CreateLeague = () => {
                                           League Name
                                        </label>
                                        <input
-                                          className="form-control mb-2"
+                                          className={`form-control mb-2 ${formErrors.leagueName ? "is-invalid" : ""}`}
                                           type="text"
                                           id="leagueName"
                                           value={leagueName}
                                           onChange={handleLeagueNameChange}
                                        />
+                                       {formErrors.leagueName && (
+                                          <div className="invalid-feedback">{formErrors.leagueName}</div>
+                                       )}
                                        <label htmlFor="email" className="form-label text-dark">
                                           Email
                                        </label>
                                        <input
-                                          className="form-control mb-2"
+                                          className={`form-control mb-2 ${formErrors.email ? "is-invalid" : ""}`}
                                           type="email"
                                           id="email"
                                           value={leagueEmail}
                                           onChange={handleLeagueEmailChange}
                                        />
+                                       {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
                                     </div>
                                     <div className="col-6 col-xl-5 col-sm-3 col-md-5 text-center my-auto align-items-center justify-content-center">
                                        <img
