@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addLeague } from "../store";
@@ -7,6 +7,7 @@ const CreateLeague = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const categories = useSelector((state) => state.categories.categoriesList);
+   const fileInputRef = useRef(null);
 
    const [categoryId, setCategoryId] = useState("");
    const [leagueName, setLeagueName] = useState("");
@@ -14,6 +15,8 @@ const CreateLeague = () => {
    const [leagueEmail, setLeagueEmail] = useState("");
    const [leagueStartDate, setleagueStartDate] = useState("");
    const [leagueEndDate, setLeagueEndDate] = useState("");
+   const [leagueLogo, setLeagueLogo] = useState("");
+   const [previewLogo, setPreviewLogo] = useState("");
 
    const handCategoryId = (e) => setCategoryId(e.target.value);
    const handleLeagueNameChange = (e) => setLeagueName(e.target.value);
@@ -21,6 +24,20 @@ const CreateLeague = () => {
    const handleLeagueEmailChange = (e) => setLeagueEmail(e.target.value);
    const handleStartDate = (e) => setleagueStartDate(e.target.value);
    const handleEndDate = (e) => setLeagueEndDate(e.target.value);
+
+   // Logo Upload Function
+   const handleUploadButtonClick = () => fileInputRef.current.click();
+   const handleFileInputChange = (event) => {
+      if (event.target && event.target.files.length > 0) {
+         const file = event.target.files[0];
+         const reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.addEventListener("load", () => {
+            setLeagueLogo(reader.result);
+            setPreviewLogo(reader.result);
+         });
+      }
+   };
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -30,13 +47,15 @@ const CreateLeague = () => {
          email: leagueEmail,
          public: e.target.leagueAccess.value,
          startDate: leagueStartDate,
-         endDate: leagueEndDate
+         endDate: leagueEndDate,
+         logo: leagueLogo
       };
       console.log(newLeagueData);
       dispatch(addLeague(newLeagueData));
       setLeagueName("");
       setLeagueSeason("");
       setLeagueEmail("");
+      setLeagueLogo("");
       navigate("/");
    };
 
@@ -144,15 +163,25 @@ const CreateLeague = () => {
                                     <div className="col-6 col-xl-5 col-sm-3 col-md-5 text-center my-auto align-items-center justify-content-center">
                                        <img
                                           className="rounded-circle mb-2 league-logo"
-                                          src="static/images/camera.svg"
+                                          src={previewLogo || "static/images/camera.svg"}
                                           alt="leagueLogo"
                                        />
                                        <div className="small font-italic text-muted mb-3">
                                           JPG or PNG no larger than 5 MB
                                        </div>
-                                       <button className="btn btn-outline-secondary" type="button">
+                                       <button
+                                          className="btn btn-outline-secondary"
+                                          type="button"
+                                          onClick={handleUploadButtonClick}>
                                           Upload
                                        </button>
+                                       <input
+                                          type="file"
+                                          id="uploadInput"
+                                          className="d-none"
+                                          ref={fileInputRef}
+                                          onChange={handleFileInputChange}
+                                       />
                                     </div>
                                  </div>
                                  <div className="row g-3 my-auto" id="league-access">
@@ -203,27 +232,6 @@ const CreateLeague = () => {
             </div>
          </div>
       </section>
-      //   <section className="vh-100">
-      //      <div className="mask d-flex align-items-center h-100 py-5">
-      //         <div className="container py-5">
-      //            <form onSubmit={handleSubmit}>
-      //               <h1 className="display-4 fw-bold">Create your league</h1>
-      //               <label>League Name</label>
-      //               <input name="leageName" value={leagueName} onChange={handleLeagueNameChange} />
-      //               <label>Season</label>
-      //               <input name="leagueSeason" value={leagueSeason} onChange={handleLeagueSeasonChange} />
-      //               <label>Email</label>
-      //               <input name="leagueEmail" value={leagueEmail} onChange={handleLeagueEmailChange} />
-      //               <p>Visibility</p>
-      //               <fieldset data-role="controlgroup fieldcontain" data-type="horizontal">
-      //                  <input type="radio" name="visibility" value="true" />  <label htmlFor="public">Public </label>
-      //                  <input type="radio" name="visibility" value="false" />  <label htmlFor="private">Private </label>
-      //               </fieldset>
-      //               <button type="submit">Submit</button>
-      //            </form>
-      //         </div>
-      //      </div>
-      //   </section>
    );
 };
 

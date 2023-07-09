@@ -1,5 +1,5 @@
 const conn = require("../conn");
-const { STRING, UUID, UUIDV4, BOOLEAN, DATEONLY } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, BOOLEAN, DATEONLY, TEXT } = conn.Sequelize;
 
 const League = conn.define("league", {
    /* id: {
@@ -13,7 +13,7 @@ const League = conn.define("league", {
       allowNull: false
    },
    logo: {
-      type: STRING,
+      type: TEXT,
       allowNull: true
    },
    season: {
