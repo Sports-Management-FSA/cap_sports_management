@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-const Scorekeeper = () => {
+const Scorekeeper = (props) => {
   const [teamAVisible, setTeamAVisible] = useState(false);
   const [teamBVisible, setTeamBVisible] = useState(false);
   const [teamAVisibleMinus, setTeamAVisibleMinus] = useState(false);
   const [teamBVisibleMinus, setTeamBVisibleMinus] = useState(false);
   const [teamAScore, setTeamAScore] = useState(0);
   const [teamBScore, setTeamBScore] = useState(0);
-
-  const teams = useSelector(state=>state.teams.teamsList);
 
   const toggleTeamAVisibility = () => {
     setTeamAVisible(!teamAVisible);
@@ -34,7 +32,7 @@ const Scorekeeper = () => {
     <div className="row my-4 d-flex justify-content-center">
       <div className="card" style={{ width: '25rem' }}>
         <div className="card-header">
-          <div className="d-flex justify-content-center fs-1">Team A</div>
+          <div className="d-flex justify-content-center fs-1">{props.match.teams[0].name}</div>
         </div>
         <div className="card-body">
           <div className="card-text">
@@ -92,7 +90,7 @@ const Scorekeeper = () => {
       <br />
       <div className="card" style={{ width: '25rem' }}>
         <div className="card-header">
-          <div className="d-flex justify-content-center fs-1">Team B</div>
+          <div className="d-flex justify-content-center fs-1">{props.match.teams[1].name}</div>
         </div>
         <div className="card-body">
           <div className="card-text">
