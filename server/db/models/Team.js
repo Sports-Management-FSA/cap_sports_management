@@ -18,7 +18,7 @@ const Team = conn.define("team", {
       }
    },
    logo: {
-      type: STRING,
+      type: TEXT,
       defaultValue: ""
    },
    description: {
