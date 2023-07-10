@@ -3,18 +3,25 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addMessage } from '../store';
 
-const RequestJoin = () => {
+const RequestJoin2 = () => {
+
     const { id } = useParams();
     console.log(id)
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
+    const [role, setRole] = useState("");
     const [messageUserName, setMessageUserName] = useState("");
     const [messageSubject, setMessageSubject] = useState("");
     const [messageSummary, setMessageSummary] = useState("");
     const [messageTeamName, setMessageTeamName] = useState("");
     const [messageEmail, setMessageEmail] = useState("");
 
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleRoleChange = (e) => {
+      setRole(e.target.value);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +34,7 @@ const RequestJoin = () => {
             leagueId: id,
         }
         console.log(newMessageData);
-        dispatch(addMessage(newMessageData))
+        dispatch(addMessage(newMessageData));
         setMessageUserName("");
         setMessageSubject("");
         setMessageSummary("");
@@ -35,7 +42,17 @@ const RequestJoin = () => {
         setMessageEmail("");
     }
 
-    return (
+    const renderForm = () => {
+        if (role === "player") {
+          return (
+            <div>
+              <label>Player Name</label>
+              <input type="text" name="playerName" />
+              {/* Any other player specific fields */}
+            </div>
+          );
+        } else if (role === "team") {
+          return (
             <form onSubmit={handleSubmit} className='requestform__container'>
                 <h4>Request form</h4>
                 <div className="requestform__upper">
@@ -89,8 +106,34 @@ const RequestJoin = () => {
                 <div className="requestform__btn">
                     <button>Sumbit</button>
                 </div>
-            </form>  
+            </form> 
+          );
+        }
+      };
+
+      const renderRoleSelection = () => {
+        if (role === "") {
+          return (
+            <div>
+              <label>Select your role</label>
+              <select value={role} onChange={handleRoleChange}>
+                <option value="">Select...</option>
+                <option value="player">Player</option>
+                <option value="team">Team</option>
+              </select>
+            </div>
+          );
+        } else {
+          return null;
+        }
+      };
+
+    return (
+        <div className="requestform__container">
+            {renderRoleSelection()}
+            {renderForm()}
+        </div>
     );
 };
 
-export default RequestJoin;
+export default RequestJoin2;

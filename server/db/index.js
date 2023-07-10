@@ -544,7 +544,7 @@ const syncAndSeed = async()=> {
     await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
 
     //add messages to leagues
-    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 1});
+    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 1, teamEmail: "sean@y.com", teamName: "The Seans"});
     
 
     console.log('\n\nSeeding Successful!\n\n')

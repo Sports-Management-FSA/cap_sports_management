@@ -1,26 +1,32 @@
 import { all } from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addTeam } from '../../store';
+import { addTeam, deleteMessage } from '../../store';
 
 const Inbox = () => {
     const dispatch = useDispatch();
-
-    const [toggle, setToggle] = useState(null);
-    const [current, setCurrent] = useState('current')
 
     const allMessages = useSelector(state => state.joinRequests);
     const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
     const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId));
     console.log(matchedMessages);
-    const handleClick = (message) => {
+
+    useEffect(() => {
+        
+    }, [deleteMessage])
+
+    const handleApprove = (message) => {
         const team = {
             name: message.teamName,
             email: message.teamEmail,
             leagueId: message.leagueId
         }
         dispatch(addTeam(team));
+    }
+
+    const handleDecline = (id) => {
+        dispatch(deleteMessage(id));
     }
     
     return (
@@ -38,12 +44,11 @@ const Inbox = () => {
                         <p>{message.subjectLine}</p>
                         <p>{message.description}</p>
                     </div>
-                    <button onClick={() => handleClick(message)}>Accept</button>
-                    <button>Decline</button>
+                    <button onClick={() => handleApprove(message)}>Accept</button>
+                    <button onClick={() => handleDecline(message.id)}>Decline</button>
                 </div>
             ))
         }
-        {current === 'current' && 'not yet' ? '' : ''}
         </div>
     );
 };

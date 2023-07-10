@@ -30,14 +30,12 @@ export const addMessage = createAsyncThunk('addMessage', async(message, { reject
 })
 
 export const deleteMessage = createAsyncThunk('deleteMessage', async(messageId, {rejectWithValue}) => {
+    console.log('from delete message slice', messageId)
     try {
-        await axios.delete(`/api/message/${messageId}`, {
-            headers: {
-                authorization: token
-            }
+        await axios.delete(`/api/messages/${messageId}`, {
         })
     } catch (err){
-        return rejectWithValue(ex.response.data)
+        return rejectWithValue(err.response.data)
     }
 })
 

@@ -163,7 +163,7 @@ form > * {
 .landing__header {
   background-size: cover;
   background: #1f1f1f;
-  background: linear-gradient(#1f1f1f 0%, #db4242 35%, rgba(26, 26, 26, 0) 98%);
+  background: linear-gradient(#1f1f1f 0%, #db4242 65%, rgba(26, 26, 26, 0) 99%);
   padding: 10rem 0rem 10rem 20rem;
   height: 100vh;
 }

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch, Link } from 'react-redux';
 import Inbox from './Inbox';
+import DashboardLeagues from './DashboardLeagues';
 
 const Dashboard = () => {
     const auth = useSelector(state => state.auth);
-    
-    const leagues = useSelector(state => state.leagues.leaguesList)
-    const authLeagues = leagues.filter(league => league.id == auth.leagueId);
+
+    const allLeagues = useSelector((state) => state.leagues.leaguesList);
+    const authLeagues = allLeagues.filter((league) => league.id == auth.id);
+    console.log(authLeagues);
 
     const [currentComponent, setCurrentComponent] = useState('Home');
     const [activeTab, setActiveTab] = useState('Home');
@@ -15,7 +17,6 @@ const Dashboard = () => {
         setCurrentComponent(component);
         setActiveTab(component);
      };
-
 
     return (
         <div className="dashboard__container">
@@ -59,32 +60,13 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard__main-body">
                     {currentComponent === 'Home' && "Home coming soon"}
-                    {currentComponent === 'Leagues' && "Leagues coming soon"}
+                    {currentComponent === 'Leagues' && <DashboardLeagues />}
                     {currentComponent === 'Teams' && "Teams coming soon"}
                     {currentComponent === 'Personal' && "Personal coming soon"}
                     {currentComponent === 'Inbox' && <Inbox />}
                 </div>
             </div>
         </div>
-        // <>
-        //     <div>
-        //         {current === 'start' &&
-        //             <div>
-        //                 <PlayerProfile />
-        //             </div>
-        //         }
-        //         {current === 'leagues' &&
-        //             <div className='dashboard-director-container'>
-        //                 <DashboardDirector />
-        //             </div>
-        //         }
-        //         {current === 'teams' &&
-        //             <div className='dashboard-manager-container'>
-        //                 <DashboardManager />
-        //             </div>
-        //         }
-        //     </div>
-        // </>
     )
 }
 

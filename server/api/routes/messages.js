@@ -38,14 +38,12 @@ router.post('/', async (req, res, next) => {
 
 //delete messages
 router.delete('/:id', async (req, res, next) => {
+    console.log("FROM API", req.params.id);
     try {
-        const user = await User.findByToken(req.headers.authorization);
-        if (user) {
-            await Product.destroy({ where: { id: req.params.id } });
-            res.sendStatus(204);
-        }
-        res.status(401).send('Unauthorizated Access')
+        await Messages.destroy({ where: { id: req.params.id } });
+        res.sendStatus(204);
     } catch (ex) {
+        res.status(401).send('Unauthorizated Access')
         next(ex);
     }
 })
