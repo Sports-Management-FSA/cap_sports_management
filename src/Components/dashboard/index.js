@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch, Link } from 'react-redux';
-import DashboardDirector from './DashboardDirector';
-import DashboardManager from './DashboardManager';
-import PlayerProfile from './PlayerProfile';
 import Inbox from './Inbox';
 
 const Dashboard = () => {
@@ -13,8 +10,6 @@ const Dashboard = () => {
 
     const [currentComponent, setCurrentComponent] = useState('Home');
     const [activeTab, setActiveTab] = useState('Home');
-
-    // const [current, setCurrent] = useState('start');
 
     const handleClick = (component) => {
         setCurrentComponent(component);

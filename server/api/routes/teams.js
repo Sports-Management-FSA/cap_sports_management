@@ -52,10 +52,11 @@ router.post("/", async (req, res, next) => {
       return res.status(401).send("Unauthorized to create team");
     }
     const director = user.leagueRoles.find((role) => role.name == "director");
-
-    if (!director || director.user_leagueRoles.leagueId != req.body.id) {
-      return res.status(401).send("Unauthorized to create team");
-    }
+    
+    // if (!director || director.user_leagueRoles.leagueId != req.body.id) {
+    //   return res.status(401).send("Unauthorized to create team");
+    // }
+    console.log("FROM TEAM API",req.body);
     const team = await Team.create(req.body);
     res.send(team);
   } catch (ex) {

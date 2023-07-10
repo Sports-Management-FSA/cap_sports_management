@@ -69,9 +69,9 @@ const Landing2 = () => {
                   <h1>Sports Categories</h1>
                </div>
                {categories.categoriesList.map((category) => {
-               const numLeagues = category.leagues.length; 
-               const numTeams = category.leagues.reduce((accumulator, currentValue)=>
-                  accumulator+currentValue.teams.length, 0);
+                  const numLeagues = category.leagues.length; 
+                  const numTeams = category.leagues.reduce((accumulator, currentValue)=>
+                     accumulator+currentValue.teams.length, 0);
                return (
                <Link to={`/leagues/category/${category.id}`} key={category.id}>
                <div className="landing__sports-cards" >

@@ -781,6 +781,17 @@ nav {
 .requestform__container label {
   color: black;
 }
+.requestform__upper {
+  display: flex;
+  flex-direction: column;
+}
+.requestform__upper-item {
+  display: flex;
+  gap: 2rem;
+}
+.requesform__upper-item label {
+  background-color: aliceblue;
+}
 .requestform__summary {
   display: flex;
   flex-direction: column;
@@ -811,14 +822,37 @@ nav {
   margin-left: 0.5rem;
 }
 .dashboard__main {
-  background-color: dodgerblue;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.dashboard__main-body {
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  width: 100%;
+}
+.inbox__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+.inbox__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
 }
 .inbox__row {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  background-color: lightgray;
+  margin-bottom: 15px;
 }
