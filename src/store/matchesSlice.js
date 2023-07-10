@@ -19,11 +19,11 @@ export const fetchMatchById = createAsyncThunk("getMatchById", async (id, { reje
     }
 });
 
-export const addMatch = createAsyncThunk('addMatch', async (match, { rejectWithValue }) => {
+export const addMatch = createAsyncThunk('addMatch', async ({match, team1, team2}, { rejectWithValue }) => {
     try {
         console.log('adding team')
         const token = window.localStorage.getItem('token');
-        const response = await axios.post('/api/matches', match, {
+        const response = await axios.post('/api/matches', {match, team1, team2}, {
             headers: {
                 authorization: token
             }

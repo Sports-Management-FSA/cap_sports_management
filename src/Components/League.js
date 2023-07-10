@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import Matches from "./Matches";
 import Standings from "./Standings";
 import Sidebar from "./Sidebar";
@@ -12,6 +12,7 @@ import Newsfeed from "./Newsfeed";
 
 const League = () => {
    const { id } = useParams();
+   const navigate = useNavigate();
    const [currentComponent, setCurrentComponent] = useState("Announcements");
    const [activeTab, setActiveTab] = useState("Announcements");
 
@@ -20,7 +21,7 @@ const League = () => {
    const today = new Date();
 
    if (!league) {
-      return <div>...loading</div>;
+      return navigate("/notfound");
    }
 
    const matches = league.matches;
