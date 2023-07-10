@@ -12,7 +12,7 @@ const NotFound = () => {
                   <h1 className="mb-0 display-1 fst-italic fw-bold">Page Not Found</h1>
                   <h2 className="mb-4 text-white fst-italic">Sorry, something went wrong!</h2>
                   <div>
-                     <a href="/" class="btn btn-outline-dark btn-lg me-sm-2 mb-2 mb-sm-0 error-home-btn">
+                     <a href="/" className="btn btn-outline-dark btn-lg me-sm-2 mb-2 mb-sm-0 error-home-btn">
                         Return Home
                      </a>
                   </div>

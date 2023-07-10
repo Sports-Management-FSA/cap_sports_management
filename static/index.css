@@ -188,7 +188,6 @@ form > * {
   margin-left: auto;
 }
 .landing__body-browse {
-  height: 100vh;
   margin: 0 2rem 0 2rem;
   display: flex;
   flex-direction: column;
@@ -434,6 +433,29 @@ label {
 }
 .createleague label {
   color: black;
+}
+.league-logo {
+  width: 8rem;
+  height: 8rem;
+  border: 2px solid grey;
+}
+.league-logo:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  cursor: pointer;
+}
+@media (max-width: 770px) {
+  * {
+    font-size: 10px;
+  }
+  label {
+    font-size: 10px;
+  }
+}
+@media (max-width: 990px) {
+  * {
+    font-size: 12px;
+  }
 }
 .typography.text-secondary {
   color: red;

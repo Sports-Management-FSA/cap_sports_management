@@ -6,14 +6,23 @@ import Player from "./Components/Player";
 import Nav from "./Components/Global/Nav";
 import League from "./Components/League";
 import Register from "./Components/User/Register";
-import CreateLeague from "./Components/CreateLeague";
-import CreateTeam from "./Components/CreateTeam";
-import CreatePlayer from "./Components/CreatePlayer";
+import CreateLeague from "./Forms/CreateLeague";
+import CreateTeam from "./Forms/CreateTeam";
+import CreatePlayer from "./Forms/CreatePlayer";
 import Dashboard from "./Components/dashboard";
 import Matches from "./Components/Matches";
 import Footer from "./Components/Global/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllLeagues, fetchAllTeams, fetchAllPlayers, fetchAllMatches, loginWithToken, fetchAllAnnouncements, fetchAllCategories, fetchAllMessages } from "./store";
+import {
+   fetchAllLeagues,
+   fetchAllTeams,
+   fetchAllPlayers,
+   fetchAllMatches,
+   loginWithToken,
+   fetchAllAnnouncements,
+   fetchAllCategories,
+   fetchAllMessages
+} from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
 import Landing2 from "./Components/Landing2";

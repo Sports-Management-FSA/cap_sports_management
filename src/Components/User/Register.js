@@ -78,9 +78,9 @@ const Register = () => {
             backgroundColor: "#f6f3f3"
          }}>
          <div className="mask d-flex align-items-center h-100 py-5">
-            <div className="container py-5 h-100">
+            <div className="container py-5">
                <div className="row d-flex justify-content-center align-items-center h-100">
-                  <div className="col-12 col-md-9 col-lg-7 col-xl-6">
+                  <div className="col-9 col-md-9 col-lg-7 col-xl-6">
                      <div className="card" style={{ borderRadius: "15px", backgroundColor: "#fdfffc" }}>
                         <div className="card-body p-5">
                            <h2 className="text-uppercase text-center mb-3 fw-bold text-dark">Create an account</h2>

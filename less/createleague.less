@@ -5,3 +5,29 @@
 .createleague label {
    color: @font-primary;
 }
+
+.league-logo {
+   width: 8rem;
+   height: 8rem;
+   border: 2px solid grey;
+}
+
+.league-logo:hover {
+   transform: scale(1.1);
+   transition: 0.3s;
+   cursor: pointer;
+}
+
+@media (max-width: 770px) {
+   * {
+      font-size: 10px;
+   }
+   label {
+      font-size: 10px;
+   }
+}
+@media (max-width: 990px) {
+   * {
+      font-size: 12px;
+   }
+}
