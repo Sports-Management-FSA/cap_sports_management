@@ -9,7 +9,7 @@ const Match = conn.define('match', {
     name: {
         type: STRING,
         allowNull: false,
-        unique: true,
+        // unique: true,
         validate:{
             notEmpty: true,
         }
@@ -19,24 +19,24 @@ const Match = conn.define('match', {
     },
     date: {
         type: DATEONLY,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-        }
+        // allowNull: false,
+        // validate:{
+        //     notEmpty: true,
+        // }
     },
     time: {
         type: TIME,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-        }
+        // allowNull: false,
+        // validate:{
+        //     notEmpty: true,
+        // }
     },
     location:{
         type: STRING,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-        }
+        // allowNull: false,
+        // validate:{
+        //     notEmpty: true,
+        // }
     },
     teamAscore:{    
         type: INTEGER,

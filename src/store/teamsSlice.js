@@ -12,7 +12,6 @@ export const fetchAllTeams = createAsyncThunk("getTeams", async (_, { rejectWith
 
 export const fetchTeamsByLeague = createAsyncThunk("fetchTeamsByLeague", async (leagueId, { rejectWithValue }) => {
    try {
-
       const response = await axios.get(`/api/leagues/${leagueId}/teams`);
       return response.data;
    } catch (err) {
@@ -21,7 +20,7 @@ export const fetchTeamsByLeague = createAsyncThunk("fetchTeamsByLeague", async (
 });
 
 export const addTeam = createAsyncThunk("addTeam", async (team, { rejectWithValue }) => {
-   console.log(team)
+   console.log("from teamslice", team)
    try {
       console.log("adding team");
       const token = window.localStorage.getItem("token");

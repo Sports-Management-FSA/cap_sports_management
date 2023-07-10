@@ -32,19 +32,21 @@ router.post("/", async (req, res, next) => {
          include: [LeagueRoles]
       });
 
-      if (!user) {
-         return res.status(401).send("Unauthorized to create team");
-      }
-      const director = user.leagueRoles.find((role) => role.name == "director");
 
-      if (!director || director.user_leagueRoles.leagueId != req.body.leagueId) {
-         return res.status(401).send("Unauthorized to create team");
-      }
-      const team = await Team.create(req.body);
-      res.send(team);
-   } catch (ex) {
-      next(ex);
-   }
+    if (!user) {
+      return res.status(401).send("Unauthorized to create team");
+    }
+    const director = user.leagueRoles.find((role) => role.name == "director");
+    
+    // if (!director || director.user_leagueRoles.leagueId != req.body.id) {
+    //   return res.status(401).send("Unauthorized to create team");
+    // }
+    console.log("FROM TEAM API",req.body);
+    const team = await Team.create(req.body);
+    res.send(team);
+  } catch (ex) {
+    next(ex);
+  }
 });
 
 // Delete A Team

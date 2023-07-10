@@ -16,9 +16,14 @@ const Messages = conn.define('messages', {
     description: {
         type: TEXT,
     },
-    
-   
-  
+    teamName: {
+        type: TEXT,
+        allowNull: true
+    },
+    teamEmail: {
+        type: STRING,
+        allowNull: true,
+    }
 })
 
 module.exports = Messages;

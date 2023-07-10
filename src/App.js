@@ -30,6 +30,7 @@ import Staff from "./Components/Global/Staff";
 import NotFound from "./Components/Global/NotFound";
 import RequestJoin from "./Forms/RequestJoin";
 import UserProfile from "./Components/User/UserProfile";
+import Scorekeeper from "./Components/Scorekeeper";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -71,6 +72,7 @@ const App = () => {
                <Route path="/profile" element={<UserProfile />} />
                <Route path="*" element={<NotFound />} />
                <Route path="/league/:id/request" element={<RequestJoin />} />
+               <Route path="/scorekeeper" element={<Scorekeeper />} />
             </Routes>
          </div>
          <Footer />
