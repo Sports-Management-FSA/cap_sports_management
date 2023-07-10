@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addMatch } from "../store";
 
+//Props require teams = leagueTeams league = league
 const RandomMatch = (props) => {
   const dispatch = useDispatch();
   const teams = [...props.teams]
