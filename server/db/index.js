@@ -472,6 +472,10 @@ const syncAndSeed = async()=> {
     
     //add director roles to users
     await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}})
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 4}})
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 5}})
     await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
     await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
 
@@ -497,6 +501,10 @@ const syncAndSeed = async()=> {
     await han.addTeamRole(player, {through: {teamId: 7}})
     await hunt.addTeamRole(player, {through: {teamId: 8}})
     await har.addTeamRole(player, {through: {teamId: 9}})
+    await larry.addTeamRole(player, {throught: {teamId: 7}})
+    await larry.addTeamRole(player, {throught: {teamId: 4}})
+    await larry.addTeamRole(player, {throught: {teamId: 3}})
+    await larry.addTeamRole(player, {throught: {teamId: 39}})
     
     //add teams to matches
     await match1.addTeam([team1, team2]); //league 1
@@ -544,7 +552,10 @@ const syncAndSeed = async()=> {
     await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
 
     //add messages to leagues
-    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 1, teamEmail: "sean@y.com", teamName: "The Seans"});
+    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 5, teamEmail: "sean@y.com", teamName: "The Seans"});
+    await Messages.create({name: "Bob" , subjectLine: "Interested in your league", description: "Hi! Whats the requirements", leagueId: 5, teamEmail: "sean@y.com", teamName: "The Winner"});
+    await Messages.create({name: "Miguel" , subjectLine: "Hola", description: "Hola, como estas", leagueId: 5, teamEmail: "sean@y.com", teamName: "Mayhem"});
+    await Messages.create({name: "Sherry" , subjectLine: "Hello, interested", description: "Hi, may I please join?", leagueId: 5, teamEmail: "sean@y.com", teamName: "Team Sparta"});
     
 
     console.log('\n\nSeeding Successful!\n\n')
