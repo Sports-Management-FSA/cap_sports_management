@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addTeam } from "../store";
 import { useParams } from "react-router-dom";
+import validator from "validator";
 
 const CreateTeam = () => {
    const dispatch = useDispatch();
