@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const initialState = {};
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (payload) => {
    try {
@@ -39,7 +38,7 @@ export const attemptLogin = createAsyncThunk("attemptLogin", async (cred, { reje
             authorization: response.data
          }
       });
-      return response.data;
+      return { loggedIn: true, ...response.data };
    } catch (ex) {
       return rejectWithValue(ex.response.data);
    }
@@ -54,7 +53,7 @@ export const registerUser = createAsyncThunk("register", async (credential, { re
             authorization: response.data
          }
       });
-      return response.data;
+      return { loggedIn: true, ...response.data };
    } catch (ex) {
       return rejectWithValue(ex.response.data);
    }
@@ -62,25 +61,25 @@ export const registerUser = createAsyncThunk("register", async (credential, { re
 
 const authSlice = createSlice({
    name: "auth",
-   initialState,
+   initialState: { loggedIn: false },
    reducers: {
       logout: (state) => {
          window.localStorage.removeItem("token");
-         return {};
+         return { loggedIn: false };
       }
    },
    extraReducers: (builder) => {
       builder.addCase(loginWithToken.fulfilled, (state, action) => {
-         return action.payload;
+         return { loggedIn: true, ...action.payload };
       });
       builder.addCase(attemptLogin.fulfilled, (state, action) => {
-         return action.payload;
+         return { loggedIn: true, ...action.payload };
       });
       builder.addCase(updateAvatar.fulfilled, (state, action) => {
-         return action.payload;
+         return { ...state, ...action.payload };
       });
       builder.addCase(registerUser.fulfilled, (state, action) => {
-         return action.payload;
+         return { loggedIn: true, ...action.payload };
       });
    }
 });
