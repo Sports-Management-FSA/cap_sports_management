@@ -38,7 +38,6 @@ const CreateTeam = () => {
       }
    };
 
-   console.log(league);
    // Validate Functions
    const validateTeamName = (name) => {
       if (name.trim() === "") {
