@@ -34,22 +34,28 @@ const UserProfile = () => {
                            <a
                               href="#profile"
                               data-toggle="tab"
-                              className="nav-item nav-link has-icon nav-link-faded active">
+                              className="nav-item nav-link has-icon nav-link-faded active user-profile-tab">
                               <i className="bi bi-person-square profile-icon"></i>
                               Profile Information
                            </a>
-                           <a href="#account" data-toggle="tab" className="nav-item nav-link has-icon nav-link-faded">
+                           <a
+                              href="#account"
+                              data-toggle="tab"
+                              className="nav-item nav-link has-icon nav-link-faded user-profile-tab">
                               <i className="bi bi-gear profile-icon"></i>
                               Account Settings
                            </a>
-                           <a href="#security" data-toggle="tab" className="nav-item nav-link has-icon nav-link-faded">
+                           <a
+                              href="#security"
+                              data-toggle="tab"
+                              className="nav-item nav-link has-icon nav-link-faded user-profile-tab">
                               <i className="bi bi-shield profile-icon"></i>
                               Security
                            </a>
                            <a
                               href="#notification"
                               data-toggle="tab"
-                              className="nav-item nav-link has-icon nav-link-faded">
+                              className="nav-item nav-link has-icon nav-link-faded user-profile-tab">
                               <i className="bi bi-bell profile-icon"></i>
                               Notification
                            </a>
