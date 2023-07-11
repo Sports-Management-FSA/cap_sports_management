@@ -825,24 +825,6 @@ nav {
   justify-content: flex-start;
   align-items: center;
 }
-.requestform__container label {
-  color: black;
-}
-.requestform__upper {
-  display: flex;
-  flex-direction: column;
-}
-.requestform__upper-item {
-  display: flex;
-  gap: 2rem;
-}
-.requesform__upper-item label {
-  background-color: aliceblue;
-}
-.requestform__summary {
-  display: flex;
-  flex-direction: column;
-}
 .profile-icon {
   font-size: 20px;
   margin-right: 7px;
