@@ -65,15 +65,19 @@ const Nav = () => {
                               aria-labelledby="navbarDropdown">
                               <Link to="/dashboard" className="dropdown-item mb-2 mt-2" role="button">
                                  <i className="bi  bi-layout-text-window"></i>
-                                 <span className="d-inline text-white ps-3 text-decoration-none">Dashboard</span>
+                                 <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">
+                                    Dashboard
+                                 </span>
                               </Link>
                               <Link to="/profile" className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-person-square"></i>
-                                 <span className="d-inline text-white ps-3 text-decoration-none">Profile</span>
+                                 <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">
+                                    Profile
+                                 </span>
                               </Link>
                               <li className="mb-2 dropdown-item" role="button" onClick={handleLogout}>
                                  <i className="bi bi-arrow-left-square"></i>
-                                 <a className="d-inline text-white ps-3 text-decoration-none" role="button">
+                                 <a className="d-inline text-white ps-3 text-decoration-none navbar-tab" role="button">
                                     Sign Out
                                  </a>
                               </li>
@@ -82,7 +86,7 @@ const Nav = () => {
                      </>
                   ) : (
                      <>
-                        <Link to="/login" className="nav-link active me-1 nav-item">
+                        <Link to="/login" className="nav-link active me-1 nav-item" style={{ letterSpacing: "0" }}>
                            LOGIN
                         </Link>
 

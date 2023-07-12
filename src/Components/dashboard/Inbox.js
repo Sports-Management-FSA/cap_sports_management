@@ -15,8 +15,7 @@ const Inbox = () => {
 
 
     useEffect(() => {
-        fetchAllMessages();
-        fetchAllLeagues();
+        
     }, [allMessages, userLeagueIds, matchedMessages])
 
     if (!allMessages || !userLeagueIds || !matchedMessages) {
