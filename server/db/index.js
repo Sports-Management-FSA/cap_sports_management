@@ -23,48 +23,24 @@ Match.belongsTo(League);
 Category.hasMany(League);
 League.belongsTo(Category);
 
-User.belongsToMany(LeagueRoles, {
-  through: { model: User_LeagueRoles, unique: false },
-});
-LeagueRoles.belongsToMany(User, {
-  through: { model: User_LeagueRoles, unique: false },
-});
-League.belongsToMany(LeagueRoles, {
-  through: { model: User_LeagueRoles, unique: false },
-});
-LeagueRoles.belongsToMany(League, {
-  through: { model: User_LeagueRoles, unique: false },
-});
-User.belongsToMany(League, {
-  through: { model: User_LeagueRoles, unique: false },
-});
-League.belongsToMany(User, {
-  through: { model: User_LeagueRoles, unique: false },
-});
+User.belongsToMany(LeagueRoles, {through: { model: User_LeagueRoles, unique: false },});
+LeagueRoles.belongsToMany(User, {through: { model: User_LeagueRoles, unique: false },});
+League.belongsToMany(LeagueRoles, {through: { model: User_LeagueRoles, unique: false },});
+LeagueRoles.belongsToMany(League, {through: { model: User_LeagueRoles, unique: false },});
+User.belongsToMany(League, {through: { model: User_LeagueRoles, unique: false },});
+League.belongsToMany(User, {through: { model: User_LeagueRoles, unique: false },});
 
-User.belongsToMany(TeamRoles, {
-  through: { model: User_TeamRoles, unique: false },
-});
-TeamRoles.belongsToMany(User, {
-  through: { model: User_TeamRoles, unique: false },
-});
-Team.belongsToMany(TeamRoles, {
-  through: { model: User_TeamRoles, unique: false },
-});
-TeamRoles.belongsToMany(Team, {
-  through: { model: User_TeamRoles, unique: false },
-});
+User.belongsToMany(TeamRoles, {through: { model: User_TeamRoles, unique: false },});
+TeamRoles.belongsToMany(User, {through: { model: User_TeamRoles, unique: false },});
+Team.belongsToMany(TeamRoles, {through: { model: User_TeamRoles, unique: false },});
+TeamRoles.belongsToMany(Team, {through: { model: User_TeamRoles, unique: false },});
 User.belongsToMany(Team, { through: { model: User_TeamRoles, unique: false } });
 Team.belongsToMany(User, { through: { model: User_TeamRoles, unique: false } });
 
 User.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
 Actions.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
-Match.belongsToMany(Actions, {
-  through: { model: Scorekeeper, unique: false },
-});
-Actions.belongsToMany(Match, {
-  through: { model: Scorekeeper, unique: false },
-});
+Match.belongsToMany(Actions, {through: { model: Scorekeeper, unique: false },});
+Actions.belongsToMany(Match, {through: { model: Scorekeeper, unique: false },});
 User.belongsToMany(Match, { through: { model: Scorekeeper, unique: false } });
 Match.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
 Team.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
@@ -136,6 +112,10 @@ const syncAndSeed = async () => {
     name: "Field Goal",
     value: 5,
     categoryId: 3,
+  });
+  const scorePoint = await Actions.create({
+    name: "Score",
+    value: 1,
   });
 
   const player = await TeamRoles.create({ name: "player" });
@@ -551,13 +531,13 @@ const syncAndSeed = async () => {
   await match4.addTeam([team8, team9]); //league 3
 
   //add actions to scorekeeper
-  await Scorekeeper.create({ matchId: 1, userId: 13, actionId: 1, teamId: 1 });
-  await Scorekeeper.create({ matchId: 1, userId: 9, actionId: 1, teamId: 2 });
-  await Scorekeeper.create({ matchId: 2, userId: 11, actionId: 1, teamId: 4 });
-  await Scorekeeper.create({ matchId: 2, userId: 11, actionId: 1, teamId: 4 });
-  await Scorekeeper.create({ matchId: 2, userId: 12, actionId: 1, teamId: 5 });
-  await Scorekeeper.create({ matchId: 3, userId: 18, actionId: 2, teamId: 6 });
-  await Scorekeeper.create({ matchId: 3, userId: 18, actionId: 2, teamId: 6 });
+  await Scorekeeper.create({ matchId: 1, userId: 13, actionId: 1 });
+  await Scorekeeper.create({ matchId: 1, userId: 9, actionId: 1 });
+  await Scorekeeper.create({ matchId: 2, userId: 11, actionId: 1 });
+  await Scorekeeper.create({ matchId: 2, userId: 12, actionId: 1 });
+  await Scorekeeper.create({ matchId: 2, userId: 12, actionId: 1 });
+  await Scorekeeper.create({ matchId: 3, userId: 18, actionId: 2 });
+  await Scorekeeper.create({ matchId: 3, userId: 18, actionId: 2 });
   await team8.addActions(fieldGoal, { through: { userId: 20, matchId: 4 } });
   await team9.addActions(fieldGoal, { through: { userId: 21, matchId: 4 } });
 
@@ -565,30 +545,15 @@ const syncAndSeed = async () => {
   await Post.create({ message: "WE WON!!", likes: 6, userId: 1, teamId: 1 });
   await Post.create({ message: "WE LOST....", likes: 6, userId: 2, teamId: 1 });
   await Post.create({ message: "WE WON!!", likes: 6, userId: 3, teamId: 2 });
-  await Post.create({
-    message: "WE ARE THE BEST!",
-    likes: 6,
-    userId: 4,
-    teamId: 2,
-  });
+  await Post.create({message: "WE ARE THE BEST!",likes: 6, userId: 4, teamId: 2 });
   await Post.create({ message: "WE WON!!", likes: 6, userId: 5, teamId: 3 });
   await Post.create({ message: "WE WON!!", likes: 6, userId: 6, teamId: 1 });
 
   //Added Random Post To Leagues
   await Post.create({ message: "WE WON!!", likes: 6, userId: 7, leagueId: 1 });
-  await Post.create({
-    message: "WE LOST....",
-    likes: 6,
-    userId: 8,
-    leagueId: 1,
-  });
+  await Post.create({message: "WE LOST....",likes: 6,userId: 8,leagueId: 1,});
   await Post.create({ message: "WE WON!!", likes: 6, userId: 9, leagueId: 2 });
-  await Post.create({
-    message: "WE ARE THE BEST!",
-    likes: 10,
-    userId: 4,
-    leagueId: 2,
-  });
+  await Post.create({message: "WE ARE THE BEST!", likes: 10, userId: 4, leagueId: 2,});
   await Post.create({ message: "WE WON!!", likes: 6, userId: 11, leagueId: 3 });
   await Post.create({ message: "WE WON!!", likes: 6, userId: 12, leagueId: 1 });
 

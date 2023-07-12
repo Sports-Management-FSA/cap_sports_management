@@ -6,7 +6,7 @@ router.post("/", async (req, res, next) => {
     const user = await User.findByToken(req.headers.authorization);
 
     if (!user) {
-      return res.status(401).send("Unauthorized to create category");
+      return res.status(401).send("Unauthorized to create action");
     } else {
       const action = await Actions.create(req.body);
       res.send(action);
@@ -16,11 +16,42 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.post("/score", async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+
+    if (!user) {
+      return res.status(401).send("Unauthorized to create action");
+    } else {
+      const action = await Actions.create(req.body);
+      res.send(action);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/takeAction", async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+
+    if (!user) {
+      return res.status(401).send("Unauthorized to create action");
+    } else {
+      const action = await Actions.create(req.body);
+      res.send(action);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
     if (!user) {
-      return res.status(401).send("Unauthorized to delete category");
+      return res.status(401).send("Unauthorized to delete action");
     } else {
       const action = await Actions.findByPk(req.params.id);
       await action.destroy();
@@ -35,7 +66,7 @@ router.put("/:id", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
     if (!user) {
-      return res.status(401).send("Unauthorized to update category");
+      return res.status(401).send("Unauthorized to update action");
     } else {
       const action = await Actions.findByPk(req.params.id);
       await action.update(req.body);

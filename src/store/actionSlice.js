@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const addAction = createAsyncThunk(
-  "addAction",
+export const createAction = createAsyncThunk(
+  "createAction",
   async (action, { rejectWithValue }) => {
     try {
       const token = window.localStorage.getItem("token");
@@ -13,7 +13,41 @@ export const addAction = createAsyncThunk(
       });
       return response.data;
     } catch (err) {
-      return rejectWithValue("Not authorized to create category.");
+      return rejectWithValue("Not authorized to create Action.");
+    }
+  }
+);
+
+export const scorePoint = createAsyncThunk(
+  "createAction",
+  async (action, { rejectWithValue }) => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await axios.post("/api/actions/score", action, {
+        headers: {
+          authorization: token,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue("Not authorized to create Action.");
+    }
+  }
+);
+
+export const takeAction = createAsyncThunk(
+  "createAction",
+  async (action, { rejectWithValue }) => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await axios.post("/api/actions/takeAction", action, {
+        headers: {
+          authorization: token,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue("Not authorized to create Action.");
     }
   }
 );
@@ -26,7 +60,7 @@ export const updateAction = createAsyncThunk(
       const response = await axios.put(`/api/actions/${id}`, action);
       return response.data;
     } catch (err) {
-      return rejectWithValue("Not authorized to update category.");
+      return rejectWithValue("Not authorized to update Action.");
     }
   }
 );
@@ -38,7 +72,7 @@ export const deleteAction = createAsyncThunk(
       await axios.delete(`/api/actions/${actionId}`);
       return actionId;
     } catch (err) {
-      return rejectWithValue("Not authorized to delete category.");
+      return rejectWithValue("Not authorized to delete Action.");
     }
   }
 );
@@ -53,41 +87,42 @@ const actionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addCategory.pending, (state, action) => {
+      .addCase(createAction.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(addCategory.fulfilled, (state, action) => {
+      .addCase(createAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.categoriesList.push(action.payload);
+        state.actionsList.push(action.payload);
       })
-      .addCase(addCategory.rejected, (state, action) => {
+      .addCase(createAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(updateCategory.pending, (state) => {
+      .addCase(updateAction.pending, (state) => {
         state.loading = true;
       })
-      .addCase(updateCategory.fulfilled, (state, action) => {
+      .addCase(updateAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.categoriesList = state.categoriesList.map((category) =>
-          category.id !== action.payload.id ? category : action.payload
+        state.actionsList = state.actionsList.map((Action) =>
+          Action.id !== action.payload.id ? action : action.payload
         );
       })
-      .addCase(updateCategory.rejected, (state, action) => {
+      .addCase(updateAction.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      .addCase(deleteCategory.pending, (state) => {
+      .addCase(deleteAction.pending, (state) => {
         state.loading = true;
       })
-      .addCase(deleteCategory.fulfilled, (state, action) => {
+      .addCase(deleteAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.categoriesList = state.categoriesList.filter(
-          (category) => category.id !== action.payload.id
+        state.actionsList = state.actionsList.filter(
+          (action) => action.id !== action.payload.id
         );
       })
-      .addCase(deleteCategory.rejected, (state, action) => {
+      .addCase(deleteAction.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },
 });
 
+export default actionSlice.reducer;
