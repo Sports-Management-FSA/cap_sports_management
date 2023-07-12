@@ -11,7 +11,6 @@ const Matches = (props) => {
     } else {
         matches = useSelector(state=> state.matches.matchesList)
     }
-
    
 const today = new Date();
     const upcomingMatches = matches.filter((match) => {
@@ -91,6 +90,7 @@ const today = new Date();
                     <div className='matches-header'>
                         <h2>Upcoming Matches</h2>
                     </div> */}
+                    {matches.length > 0 ?
                     <div className='matches--match-container'>
                     {upcomingMatches.map((upcomingMatch) => {
                         return (
@@ -107,7 +107,7 @@ const today = new Date();
                             </div>
                         )}
                         )}
-                    </div>
+                    </div>:'No Matches to Display'}
                 </div>
             )
 }

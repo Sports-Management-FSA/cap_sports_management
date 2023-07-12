@@ -33,25 +33,25 @@ const Announcements = () => {
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
         },
         {
-            id: 5,
+            id: 6,
             userId: 5,
             username: "Kurt Cobain",
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
         },
         {
-            id: 5,
+            id: 7,
             userId: 5,
             username: "Kurt Cobain",
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
         },
         {
-            id: 5,
+            id: 8,
             userId: 5,
             username: "Kurt Cobain",
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
         },
         {
-            id: 5,
+            id: 9,
             userId: 5,
             username: "Kurt Cobain",
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"

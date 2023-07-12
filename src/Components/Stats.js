@@ -3,11 +3,16 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Standings from './Standings';
 import Matches from './Matches';
+import Announcements from './Announcements';
+import Roster from './Roster';
+import Players from './Players';
+import Teams from './Teams';
 
-const Stats = () => {
+const Stats = (props) => {
+    const {type} = props;
     const { id } = useParams();
-    const [currentComponent, setCurrentComponent] = useState('Announcements');
-    const [activeTab, setActiveTab] = useState("Announcements");
+    const [currentComponent, setCurrentComponent] = useState('Standings');
+    const [activeTab, setActiveTab] = useState("Standings");
     const leagues = useSelector((state) => state.leagues.leaguesList);
     const league = leagues.find((league) => league.id == id);
  
@@ -17,7 +22,9 @@ const Stats = () => {
   
     const matches = league.matches;
     const teams = league.teams;
- 
+    const players = [];
+    teams.forEach(team=> players.push(...team.users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) !== undefined)));
+
     const handleClick = (component) => {
        setCurrentComponent(component);
        setActiveTab(component);
@@ -33,11 +40,10 @@ const Stats = () => {
                 </ul>   
                 <div className="stats-content">
                     <div className="stats-content-body">
-                        {currentComponent === 'Announcements' && "Announcements coming soon"}
                         {currentComponent === 'Matches' && <Matches matches={matches} />}
                         {currentComponent === 'Standings' && <Standings teams={teams}/>}
-                        {currentComponent === 'Players' && "Players Component here"}
-                        {currentComponent === 'Team Info' && "Team Info Component here"}
+                        {currentComponent === 'Players' && <Players players={players} teams={teams}/>}
+                        {currentComponent === 'Team Info' && <Teams teams={teams}/>}
                     </div>        
                 </div>
             </div>

@@ -10,7 +10,8 @@ router.get("/", async (req, res, next) => {
   try {
     const league = await League.findAll({
       include: [
-        Team, Announcements, Messages,
+        Announcements, Messages,
+        { model: Team, include: [{model: User, include: [TeamRoles]}]}, 
         { model: Post, include: [Comment] },
         { model: Match, include: [Team] },
         { model: User, include: [LeagueRoles] },
