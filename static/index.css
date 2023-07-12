@@ -1129,7 +1129,7 @@ p {
   box-sizing: inherit;
 }
 .body {
-  padding: 6rem 4rem;
+  padding: 0;
   margin: 0;
   background: #aedcee;
   background: radial-gradient(circle, rgba(174, 220, 238, 0) 0%, #94bbe9 100%);
@@ -1139,24 +1139,40 @@ p {
   display: flex;
   flex-direction: column;
 }
+@media screen and (min-width: 600px) {
+  .landing_text_photo {
+    display: flex;
+    flex-direction: column;
+  }
+  .section2_photos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+.landing_text_photo {
+  display: flex;
+  flex-direction: row;
+  padding: 6rem 4rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 .landing_header h1 {
   color: black;
   font-weight: 300;
   font-size: 7rem;
+  line-height: 6rem;
 }
 .landing_header p {
   color: black;
   font-family: "Oxygen";
-  font-weight: bold;
   font-size: 2rem;
-  line-height: 3.5rem;
-  padding-top: 1rem;
+  line-height: 3rem;
 }
 .landing_header p span {
   display: block;
   color: black;
   font-family: "Oxygen";
-  font-weight: bold;
   font-size: 2rem;
   line-height: 3.5rem;
 }
@@ -1164,7 +1180,7 @@ p {
   background-image: url("https://images.pexels.com/photos/7862657/pexels-photo-7862657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-size: cover;
   background-position: center;
-  max-width: 600px;
+  width: 600px;
   height: 400px;
   border-radius: 8px;
 }
@@ -1172,14 +1188,16 @@ p {
   padding-bottom: 3rem;
 }
 .section1-description {
-  padding-top: 3rem;
+  background-color: white;
+  background-size: cover;
+  padding: 6rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.section1-description h5 {
   font-size: 1.5rem;
   font-family: "Roboto";
   line-height: 1.5;
-  display: flex;
-  justify-content: center;
-  margin-left: 5rem;
-  margin-right: 5rem;
 }
 #section2 {
   padding-bottom: 3rem;
@@ -1190,6 +1208,8 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 .home_photo {
   background-image: url("https://images.pexels.com/photos/14401500/pexels-photo-14401500.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
@@ -1215,22 +1235,14 @@ p {
   height: 300px;
   border-radius: 8px;
 }
+.cover {
+  background-color: rgba(155, 155, 155, 0.6);
+  width: 100%;
+  height: 100%;
+}
 .links_container {
   margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-@media (min-width: 800px) {
-  article {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-  }
-}
-@media (min-width: 550px) {
-  article {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
 }
