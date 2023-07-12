@@ -8,7 +8,6 @@ import playersSlice from "./playersSlice";
 import categoriesSlice from "./categoriesSlice";
 import joinRequestSlice from "./joinRequestSlice";
 import announcementsSlice from "./announcementsSlice";
-import actionSlice from "./actionSlice";
 
 const store = configureStore({
    middleware: (defaultMiddleware) => defaultMiddleware().concat(logger),
@@ -21,7 +20,6 @@ const store = configureStore({
       categories: categoriesSlice,
       joinRequests: joinRequestSlice,
       announcements: announcementsSlice,
-      actions: actionSlice,
    }
 });
 
@@ -34,4 +32,3 @@ export * from "./playersSlice";
 export * from "./categoriesSlice";
 export * from './joinRequestSlice';
 export * from "./announcementsSlice";
-export * from "./actionSlice"

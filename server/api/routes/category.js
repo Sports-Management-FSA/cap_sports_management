@@ -35,7 +35,7 @@ router.delete("/:id", async (req, res, next) => {
          return res.status(401).send('Unauthorized to delete category');
       }
       
-      const category = await Category.findByPk(req.params.id);
+      const category = await Team.findByPk(req.params.id);
       await category.destroy();
       res.send("Category deleted successfully");
    } catch (ex) {
