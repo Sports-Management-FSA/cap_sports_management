@@ -16,18 +16,21 @@ const RequestJoinTeam = () => {
    const [teamMessageSubject, setTeamMessageSubject] = useState("");
    const [teamMessageSummary, setTeamMessageSummary] = useState("");
    const [formErrors, setFormErrors] = useState({});
+
    // Validate Functions
-   const validateEmail = (email) => {
-      if (!validator.isEmail(email)) {
-         return "Invalid email format";
-      }
-      return "";
-   };
    const validateForm = () => {
       const errors = {};
 
       // Validate Email
-      errors.email = validateEmail(teamMessageEmail);
+      if (!validator.isEmail(teamMessageEmail)) {
+         errors.teamEmail = "Invalid email format";
+      }
+
+      // Validate User Name
+      if (teamMessageUserName.trim() === "") {
+         errors.teamUserName = "Name is required";
+      }
+
       // Validate Team Name
       if (teamMessageTeamName.trim() === "") {
          errors.teamName = "Team Name is required";
@@ -36,7 +39,6 @@ const RequestJoinTeam = () => {
             errors.teamName = "Team name already exists";
          }
       }
-
       setFormErrors(errors); // Update this line
 
       return errors;
@@ -45,6 +47,7 @@ const RequestJoinTeam = () => {
    const handleTeamSubmit = (e) => {
       e.preventDefault();
       const validationErrors = validateForm();
+
       if (Object.keys(validationErrors).length > 0) {
          // Form has errors, prevent form submission
          setFormErrors(validationErrors);
@@ -60,6 +63,7 @@ const RequestJoinTeam = () => {
          leagueId: id
       };
 
+      console.log(newMessageData);
       dispatch(addMessage(newMessageData));
       setTeamMessageEmail("");
       setTeamMessageSubject("");
@@ -88,13 +92,15 @@ const RequestJoinTeam = () => {
                                  Name
                               </label>
                               <input
-                                 className={`form-control ${formErrors.teamName ? "is-invalid" : ""}`}
+                                 className={`form-control ${formErrors.teamUserName ? "is-invalid" : ""}`}
                                  id="name"
                                  value={teamMessageUserName}
                                  onChange={(e) => setTeamMessageUserName(e.target.value)}
                                  placeholder="Your name"
                               />
-                              {formErrors.teamName && <div className="invalid-feedback">{formErrors.teamName}</div>}
+                              {formErrors.teamUserName && (
+                                 <div className="invalid-feedback">{formErrors.teamUserName}</div>
+                              )}
                            </div>
                            <div className="col">
                               <label htmlFor="teamName" className="form-label">
