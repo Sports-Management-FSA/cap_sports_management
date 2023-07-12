@@ -206,6 +206,296 @@ const syncAndSeed = async () => {
       logo: "/static/images/mlb.png",
       leagueId: 3,
     });
+
+    await Team.create({
+      name:'1 Team',
+      season: 'Spring',
+      email: 'regular02@gmail.com',
+      logo: '/static/images/mlb.png',
+      leagueId: 1,
+    })
+    await Team.create({
+      name:'2 Team',
+      season: 'Spring',
+      email: 'regular03@gmail.com',
+      logo: '/static/images/mlb.png',
+      leagueId: 2,
+    })
+    await Team.create({
+      name:'3 Team',
+      season: 'Spring',
+      email: 'regular04@gmail.com',
+      logo: '/static/images/mlb.png',
+      leagueId: 4,
+    })
+
+    const team1 = await Team.create({
+      name: 'The Ravens',
+      email: 'theravens@gmail.com',
+      leagueId: 1,
+      logo: '/static/images/team1.png'
+    })
+
+    const team2 = await Team.create({
+      name: 'The Bulldogs',
+      email: 'thebulldogs@gmail.com',
+      leagueId: 1,
+      logo: '/static/images/team2.png'
+    })
+    const team3 = await Team.create({
+      name: 'Dirt Devils',
+      email: 'dirtdevils@gmail.com',
+      leagueId: 1,
+      logo: '/static/images/team3.png'
+    })
+    const team4 = await Team.create({
+      name: 'Sandlot',
+      email: 'sandlot@gmail.com',
+      leagueId: 2,
+      logo: '/static/images/team1.png'
+    })
+    const team5 = await Team.create({
+      name: 'Hawks',
+      email: 'hawks@gmail.com',
+      leagueId: 2,
+      logo: '/static/images/team2.png'
+    })
+    const team6 = await Team.create({
+      name: 'Eagles',
+      email: 'eagles@gmail.com',
+      leagueId: 2,
+      logo: '/static/images/team3.png'
+    })
+    const team7 = await Team.create({
+      name: 'Angels',
+      email: 'angels@gmail.com',
+      leagueId: 2,
+      logo: '/static/images/team1.png'
+    })
+  
+    const team8 = await Team.create({
+      name: 'Pigeons',
+      email: 'pigeons@gmail.com',
+      leagueId: 3,
+      logo: '/static/images/team1.png'
+    })
+    const team9 = await Team.create({
+      name: 'Doves',
+      email: 'doves@gmail.com',
+      leagueId: 3,
+      logo: '/static/images/team2.png'
+    })
+  
+    const match1 = await Match.create({
+      name:'Finals', 
+      description: 'final round', 
+      date: "2023-11-11", 
+      time: '10:05', 
+      location: 'Barts Stadium', 
+      leagueId: 1,
+    })
+    
+    const match2 = await Match.create({
+      name:'Semi Finals', 
+      description: 'semi final round',
+      date: "2023-8-10", 
+      time: '1:05', 
+      location: 'Barts Stadium', 
+      leagueId: 2,
+    })
+
+    const match3 = await Match.create({
+      name:'Beginning',  
+      description: 'beginning round', 
+      date: "2023-10-9", 
+      time: '12:05', 
+      location: 'Barts Stadium',
+      leagueId: 2,
+    })
+
+    const match4 = await Match.create({
+      name:'Wildcard', 
+      description: 'wildcard round', 
+      date: "2023-06-01", 
+      time: '12:15', 
+      location: 'Mission Stadium', 
+      leagueId: 3,
+    })
+      //team managers
+      const jack = await User.create({ 
+        username: 'jack', 
+        password: '123', 
+        firstName: 'jack',
+        lastName: 'smith',
+        email: 'jack@g.com',
+      })
+  
+      const julissa = await User.create({ 
+        username: 'julissa', 
+        password: '123', 
+        firstName: 'julissa',
+        lastName: 'smith',
+        email: 'julissa@g.com',
+      })
+  
+      const julia = await User.create({ 
+        username: 'julia', 
+        password: '123', 
+        firstName: 'julia',
+        lastName: 'smith',
+        email: 'julia@g.com',
+      })
+  
+      const jof = await User.create({ 
+        username: 'jof', 
+        password: '123', 
+        firstName: 'jof',
+        lastName: 'smith',
+        email: 'jof@g.com',
+      })
+     
+      //directors
+      const larry = await User.create({ 
+        username: 'larry', 
+        password: '123', 
+        firstName: 'larry',
+        lastName: 'smith',
+        email: 'larry@g.com',
+      })
+  
+      const lump = await User.create({ 
+        username: 'lump', 
+        password: '123', 
+        firstName: 'lump',
+        lastName: 'smith',
+        email: 'lump@g.com',
+      })
+  
+      const lala = await User.create({ 
+        username: 'lala', 
+        password: '123', 
+        firstName: 'lala',
+        lastName: 'smith',
+        email: 'lala@g.com',
+      })
+  
+      //players
+      const jen = await User.create({ 
+        username: 'jen', 
+        password: '123', 
+        firstName: 'jen',
+        lastName: 'smith',
+        email: 'jen@g.com',
+      })
+  
+      const moe = await User.create({ 
+        username: 'moe', 
+        password: '123', 
+        firstName: 'moe',
+        lastName: 'smith',
+        email: 'moe@g.com',
+  
+      })
+  
+      const jane = await User.create({ 
+        username: 'jane', 
+        password: '123', 
+        firstName: 'jane',
+        lastName: 'smith',
+        email: 'jane@g.com',
+      })
+  
+      const jaura = await User.create({ 
+        username: 'jaura', 
+        password: '123', 
+        firstName: 'jaura',
+        lastName: 'smith',
+        email: 'jaura@g.com',
+      })
+  
+      const jaylen = await User.create({ 
+        username: 'jaylen', 
+        password: '123', 
+        firstName: 'jaylen',
+        lastName: 'smith',
+        email: 'jaylen@g.com',
+      })
+  
+      const mike = await User.create({ 
+        username: 'mike', 
+        password: '123', 
+        firstName: 'mike',
+        lastName: 'smith',
+        email: 'mike@g.com',
+      })
+  
+      const tina = await User.create({ 
+        username: 'tina', 
+        password: '123', 
+        firstName: 'tina',
+        lastName: 'smith',
+        email: 'tina@g.com',
+      })
+  
+      const joe = await User.create({ 
+        username: 'joe', 
+        password: '123', 
+        firstName: 'joe',
+        lastName: 'smith',
+        email: 'joe@g.com',
+      })
+  
+      const lucy = await User.create({ 
+        username: 'lucy', 
+        password: '123', 
+        firstName: 'lucy',
+        lastName: 'smith',
+        email: 'lucy@g.com',
+      })
+  
+      const homer = await User.create({ 
+        username: 'homer', 
+        password: '123', 
+        firstName: 'homer',
+        lastName: 'smith',
+        email: 'homer@g.com',
+      })
+  
+      const hen = await User.create({ 
+        username: 'hen', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'hen',
+        lastName: 'smith',
+        email: 'hen@g.com',
+      })
+  
+      const han = await User.create({ 
+        username: 'han', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'han',
+        lastName: 'smith',
+        email: 'han@g.com',
+      })
+  
+      const hunt = await User.create({ 
+        username: 'hunt', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'hunt',
+        lastName: 'smith',
+        email: 'hunt@g.com',
+      })
+  
+      const har = await User.create({ 
+        username: 'har', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'har',
+        lastName: 'smith',
+        email: 'har@g.com',
+      });
     
     //add director roles to users
     await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}});
