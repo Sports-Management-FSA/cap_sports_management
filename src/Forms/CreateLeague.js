@@ -48,9 +48,13 @@ const CreateLeague = () => {
 
    // Validation Functions
    const validateLeagueName = (name) => {
-      const existingLeague = leagues.find((league) => league.name === name);
-      if (existingLeague) {
-         return "League name already exists";
+      if (leagueName.trim() === "") {
+         return "Name is required";
+      } else {
+         const existingLeague = leagues.find((league) => league.name === name);
+         if (existingLeague) {
+            return "League name already exists";
+         }
       }
       return "";
    };

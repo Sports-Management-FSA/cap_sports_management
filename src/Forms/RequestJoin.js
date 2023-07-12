@@ -12,6 +12,8 @@ const RequestJoin = () => {
     const [messageUserName, setMessageUserName] = useState("");
     const [messageSubject, setMessageSubject] = useState("");
     const [messageSummary, setMessageSummary] = useState("");
+    const [messageTeamName, setMessageTeamName] = useState("");
+    const [messageEmail, setMessageEmail] = useState("");
 
 
     const handleSubmit = (e) => {
@@ -20,6 +22,8 @@ const RequestJoin = () => {
             name: messageUserName,
             subjectLine: messageSubject,
             description: messageSummary,
+            teamName: messageTeamName,
+            teamEmail: messageEmail,
             leagueId: id,
         }
         console.log(newMessageData);
@@ -27,20 +31,42 @@ const RequestJoin = () => {
         setMessageUserName("");
         setMessageSubject("");
         setMessageSummary("");
+        setMessageTeamName("");
+        setMessageEmail("");
     }
 
     return (
             <form onSubmit={handleSubmit} className='requestform__container'>
                 <h4>Request form</h4>
-                <div className="requestform__name">
+                <div className="requestform__upper">
                     <article>This league manager must approve your application</article>
-                    <label>Name</label>
-                    <input 
-                        id="name"
-                        value={messageUserName}
-                        onChange={(e) => setMessageUserName(e.target.value)}
-                        placeholder='Your name'
-                    />
+                    <div className="requestform__upper-item">
+                        <label>Name</label>
+                        <input 
+                            id="name"
+                            value={messageUserName}
+                            onChange={(e) => setMessageUserName(e.target.value)}
+                            placeholder='Your name'
+                        />
+                    </div>
+                    <div className="requestform__upper-item">
+                        <label>Team Name</label>
+                        <input 
+                            id="name"
+                            value={messageTeamName}
+                            onChange={(e) => setMessageTeamName(e.target.value)}
+                            placeholder='Team Name'
+                        />
+                    </div>
+                    <div className="requestform__upper-item">
+                        <label>Contact Email</label>
+                        <input 
+                            id="name"
+                            value={messageEmail}
+                            onChange={(e) => setMessageEmail(e.target.value)}
+                            placeholder='Email'
+                        />
+                    </div>
                 </div>
                 <div className="requestform__summary">
                     <label>Subject:</label>

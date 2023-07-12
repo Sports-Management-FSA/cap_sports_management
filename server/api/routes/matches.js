@@ -28,10 +28,14 @@ router.post('/', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
         if (user) {
-            const match = await Match.create(req.body)
-            res.send(match)
+            const match = await Match.create(req.body.match);
+            const team1 = await Team.findByPk(req.body.team1.id)
+            const team2 = await Team.findByPk(req.body.team2.id)
+            match.addTeam([team1, team2]);
+            res.send(match);
+        }else{
+            res.status(401).send('Unauthorized Access')
         }
-        res.status(401).send('Unauthorized Access')
     } catch (ex) {
         next(ex);
     }
