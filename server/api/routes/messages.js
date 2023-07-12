@@ -30,8 +30,8 @@ router.post('/', async (req, res, next) => {
             const message = await Messages.create(req.body)
             res.send(message)
         }
-        res.status(401).send('Unauthorizated Access')
     } catch (ex) {
+        res.status(401).send('Unauthorizated Access')
         next(ex);
     }
 })

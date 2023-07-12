@@ -206,392 +206,100 @@ const syncAndSeed = async () => {
       logo: "/static/images/mlb.png",
       leagueId: 3,
     });
-  await Team.create({
-    name: "1 Team",
-    season: "Spring",
-    email: "regular02@gmail.com",
-    logo: "/static/images/mlb.png",
-    leagueId: 1,
-  });
-  await Team.create({
-    name: "2 Team",
-    season: "Spring",
-    email: "regular03@gmail.com",
-    logo: "/static/images/mlb.png",
-    leagueId: 2,
-  });
-  await Team.create({
-    name: "3 Team",
-    season: "Spring",
-    email: "regular04@gmail.com",
-    logo: "/static/images/mlb.png",
-    leagueId: 4,
-  });
+    
+    //add director roles to users
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}});
+    await User_LeagueRoles.create({userId: 5, leagueId: 1, leagueRoleId: 1});
+    await User_LeagueRoles.create({userId: 5, leagueId: 2, leagueRoleId: 1});
+    await User_LeagueRoles.create({userId: 5, leagueId: 3, leagueRoleId: 1});
+    await User_LeagueRoles.create({userId: 5, leagueId: 5, leagueRoleId: 1});
+    
+    // await User_LeagueRoles.create({userId: 5, leagueId: 3, leagueRoleId: 3});
+    // await User_LeagueRoles.create({userId: 5, leagueId: 4, leagueRoleId: 4});
+    //await larry.addLeagueRole(leagueDirector, {through: {leagueId: 5}})
+    // await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
+    // await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
 
-  const team1 = await Team.create({
-    name: "The Ravens",
-    email: "theravens@gmail.com",
-    leagueId: 1,
-    logo: "/static/images/team1.png",
-  });
+    //add team manager roles to users
+    await jof.addTeamRole(teamManager, {through: {teamId: 1}})
+    await jof.addTeamRole(player, {through: {teamId: 1}});
+    await julia.addTeamRole(teamManager, {through: {teamId: 2}})
+    await julissa.addTeamRole(teamManager, {through: {teamId: 2}})
+    await jack.addTeamRole(teamManager, {through: {teamId: 3}})
 
-  const team2 = await Team.create({
-    name: "The Bulldogs",
-    email: "thebulldogs@gmail.com",
-    leagueId: 1,
-    logo: "/static/images/team2.png",
-  });
-  const team3 = await Team.create({
-    name: "Dirt Devils",
-    email: "dirtdevils@gmail.com",
-    leagueId: 1,
-    logo: "/static/images/team3.png",
-  });
-  const team4 = await Team.create({
-    name: "Sandlot",
-    email: "sandlot@gmail.com",
-    leagueId: 2,
-    logo: "/static/images/team1.png",
-  });
-  const team5 = await Team.create({
-    name: "Hawks",
-    email: "hawks@gmail.com",
-    leagueId: 2,
-    logo: "/static/images/team2.png",
-  });
-  const team6 = await Team.create({
-    name: "Eagles",
-    email: "eagles@gmail.com",
-    leagueId: 2,
-    logo: "/static/images/team3.png",
-  });
-  const team7 = await Team.create({
-    name: "Angels",
-    email: "angels@gmail.com",
-    leagueId: 2,
-    logo: "/static/images/team1.png",
-  });
+    //add team player role to users
+    await mike.addTeamRole(player, {through: {teamId: 1}})
+    await jen.addTeamRole(player, {through: {teamId: 1}})
+    await tina.addTeamRole(player, {through: {teamId: 2}})
+    await moe.addTeamRole(player, {through: {teamId: 2}})
+    await joe.addTeamRole(player, {through: {teamId: 3}})
+    await jane.addTeamRole(player, {through: {teamId: 3}})
+    await lucy.addTeamRole(player, {through: {teamId: 4}})
+    await jaura.addTeamRole(player, {through: {teamId: 4}})
+    await homer.addTeamRole(player, {through: {teamId: 5}})
+    await jaylen.addTeamRole(player, {through: {teamId: 5}})
+    await hen.addTeamRole(player, {through: {teamId: 6}})
+    await han.addTeamRole(player, {through: {teamId: 7}})
+    await hunt.addTeamRole(player, {through: {teamId: 8}})
+    await har.addTeamRole(player, {through: {teamId: 9}})
+    await larry.addTeamRole(player, {throught: {teamId: 7}})
+    await larry.addTeamRole(player, {throught: {teamId: 4}})
+    await larry.addTeamRole(player, {throught: {teamId: 3}})
+    await larry.addTeamRole(player, {throught: {teamId: 39}})
+    
+    //add teams to matches
+    await match1.addTeam([team1, team2]); //league 1
+    await match2.addTeam([team4, team5]); //league 2
+    await match3.addTeam([team6, team7]); //league 2
+    await match4.addTeam([team8, team9]); //league 3
 
-  const team8 = await Team.create({
-    name: "Pigeons",
-    email: "pigeons@gmail.com",
-    leagueId: 3,
-    logo: "/static/images/team1.png",
-  });
-  const team9 = await Team.create({
-    name: "Doves",
-    email: "doves@gmail.com",
-    leagueId: 3,
-    logo: "/static/images/team2.png",
-  });
+    //add actions to scorekeeper
+    await Scorekeeper.create({matchId: 1, userId: 13, actionId: 1, teamId: 1});
+    await Scorekeeper.create({matchId: 1, userId: 9, actionId: 1, teamId: 2});
+    await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
+    await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
+    await Scorekeeper.create({matchId: 2, userId: 12, actionId: 1, teamId: 5});
+    await Scorekeeper.create({matchId: 3, userId: 18, actionId: 2, teamId: 6});
+    await Scorekeeper.create({matchId: 3, userId: 18, actionId: 2, teamId: 6});
+    await team8.addActions(fieldGoal, {through: {userId: 20, matchId:4}})
+    await team9.addActions(fieldGoal, {through: {userId: 21, matchId:4}})
+    
+    //Added Random Post To Teams
+    await Post.create({message:"WE WON!!", likes: 6, userId: 1, teamId: 1});
+    await Post.create({message:"WE LOST....", likes: 6, userId: 2, teamId: 1});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 3, teamId: 2});
+    await Post.create({message:"WE ARE THE BEST!", likes: 6, userId: 4, teamId: 2});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 5, teamId: 3});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 6, teamId: 1});
 
-  const match1 = await Match.create({
-    name: "Finals",
-    description: "final round",
-    date: "2023-11-11",
-    time: "10:05",
-    location: "Barts Stadium",
-    leagueId: 1,
-  });
+    //Added Random Post To Leagues
+    await Post.create({message:"WE WON!!", likes: 6, userId: 7, leagueId: 1});
+    await Post.create({message:"WE LOST....", likes: 6, userId: 8, leagueId: 1});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 9, leagueId: 2});
+    await Post.create({message:"WE ARE THE BEST!", likes: 10, userId: 4, leagueId: 2});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 11, leagueId: 3});
+    await Post.create({message:"WE WON!!", likes: 6, userId: 12, leagueId: 1});
 
-  const match2 = await Match.create({
-    name: "Semi Finals",
-    description: "semi final round",
-    date: "2023-8-10",
-    time: "1:05",
-    location: "Barts Stadium",
-    leagueId: 2,
-  });
+    //Addes Comments to Post
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:13, postId: 1});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:14, postId: 1});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:15, postId: 2});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:15, postId: 3});
+    await Comment.create({message:"YEAH!!!", likes: 4, userId:16, postId: 8});
 
-  const match3 = await Match.create({
-    name: "Beginning",
-    description: "beginning round",
-    date: "2023-10-9",
-    time: "12:05",
-    location: "Barts Stadium",
-    leagueId: 2,
-  });
+    //add announcements to leagues
+    await Announcements.create({name: "Sean" , description: "Testing!", leagueId: 1});
+    await Announcements.create({name: "Kim" , description: "Testing!", leagueId: 2});
+    await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
 
-  const match4 = await Match.create({
-    name: "Wildcard",
-    description: "wildcard round",
-    date: "2023-06-01",
-    time: "12:15",
-    location: "Mission Stadium",
-    leagueId: 3,
-  });
+    //add messages to leagues
+    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 5, teamEmail: "sean@y.com", teamName: "The Seans"});
+    await Messages.create({name: "Bob" , subjectLine: "Interested in your league", description: "Hi! Whats the requirements", leagueId: 5, teamEmail: "sean@y.com", teamName: "The Winner"});
+    await Messages.create({name: "Miguel" , subjectLine: "Hola", description: "Hola, como estas", leagueId: 5, teamEmail: "sean@y.com", teamName: "Mayhem"});
+    await Messages.create({name: "Sherry" , subjectLine: "Hello, interested", description: "Hi, may I please join?", leagueId: 5, teamEmail: "sean@y.com", teamName: "Team Sparta"});
+    
 
-  //team managers
-  const jack = await User.create({
-    username: "jack",
-    password: "123",
-    firstName: "jack",
-    lastName: "smith",
-    email: "jack@g.com",
-  });
-
-  const julissa = await User.create({
-    username: "julissa",
-    password: "123",
-    firstName: "julissa",
-    lastName: "smith",
-    email: "julissa@g.com",
-  });
-
-  const julia = await User.create({
-    username: "julia",
-    password: "123",
-    firstName: "julia",
-    lastName: "smith",
-    email: "julia@g.com",
-  });
-
-  const jof = await User.create({
-    username: "jof",
-    password: "123",
-    firstName: "jof",
-    lastName: "smith",
-    email: "jof@g.com",
-  });
-
-  //directors
-  const larry = await User.create({
-    username: "larry",
-    password: "123",
-    firstName: "larry",
-    lastName: "smith",
-    email: "larry@g.com",
-  });
-
-  const lump = await User.create({
-    username: "lump",
-    password: "123",
-    firstName: "lump",
-    lastName: "smith",
-    email: "lump@g.com",
-  });
-
-  const lala = await User.create({
-    username: "lala",
-    password: "123",
-    firstName: "lala",
-    lastName: "smith",
-    email: "lala@g.com",
-  });
-
-  //players
-  const jen = await User.create({
-    username: "jen",
-    password: "123",
-    firstName: "jen",
-    lastName: "smith",
-    email: "jen@g.com",
-  });
-
-  const moe = await User.create({
-    username: "moe",
-    password: "123",
-    firstName: "moe",
-    lastName: "smith",
-    email: "moe@g.com",
-  });
-
-  const jane = await User.create({
-    username: "jane",
-    password: "123",
-    firstName: "jane",
-    lastName: "smith",
-    email: "jane@g.com",
-  });
-
-  const jaura = await User.create({
-    username: "jaura",
-    password: "123",
-    firstName: "jaura",
-    lastName: "smith",
-    email: "jaura@g.com",
-  });
-
-  const jaylen = await User.create({
-    username: "jaylen",
-    password: "123",
-    firstName: "jaylen",
-    lastName: "smith",
-    email: "jaylen@g.com",
-  });
-
-  const mike = await User.create({
-    username: "mike",
-    password: "123",
-    firstName: "mike",
-    lastName: "smith",
-    email: "mike@g.com",
-  });
-
-  const tina = await User.create({
-    username: "tina",
-    password: "123",
-    firstName: "tina",
-    lastName: "smith",
-    email: "tina@g.com",
-  });
-
-  const joe = await User.create({
-    username: "joe",
-    password: "123",
-    firstName: "joe",
-    lastName: "smith",
-    email: "joe@g.com",
-  });
-
-  const lucy = await User.create({
-    username: "lucy",
-    password: "123",
-    firstName: "lucy",
-    lastName: "smith",
-    email: "lucy@g.com",
-  });
-
-  const homer = await User.create({
-    username: "homer",
-    password: "123",
-    firstName: "homer",
-    lastName: "smith",
-    email: "homer@g.com",
-  });
-
-  const hen = await User.create({
-    username: "hen",
-    password: "123",
-    isPlayer: true,
-    firstName: "hen",
-    lastName: "smith",
-    email: "hen@g.com",
-  });
-
-  const han = await User.create({
-    username: "han",
-    password: "123",
-    isPlayer: true,
-    firstName: "han",
-    lastName: "smith",
-    email: "han@g.com",
-  });
-
-  const hunt = await User.create({
-    username: "hunt",
-    password: "123",
-    isPlayer: true,
-    firstName: "hunt",
-    lastName: "smith",
-    email: "hunt@g.com",
-  });
-
-  const har = await User.create({
-    username: "har",
-    password: "123",
-    isPlayer: true,
-    firstName: "har",
-    lastName: "smith",
-    email: "har@g.com",
-  });
-
-  //add director roles to users
-  await larry.addLeagueRole(leagueDirector, { through: { leagueId: 1 } });
-  await lump.addLeagueRole(leagueDirector, { through: { leagueId: 2 } });
-  await lala.addLeagueRole(leagueDirector, { through: { leagueId: 3 } });
-
-  //add team manager roles to users
-  await jof.addTeamRole(teamManager, { through: { teamId: 1 } });
-  await jof.addTeamRole(player, { through: { teamId: 1 } });
-  await julia.addTeamRole(teamManager, { through: { teamId: 2 } });
-  await julissa.addTeamRole(teamManager, { through: { teamId: 2 } });
-  await jack.addTeamRole(teamManager, { through: { teamId: 3 } });
-
-  //add team player role to users
-  await mike.addTeamRole(player, { through: { teamId: 1 } });
-  await jen.addTeamRole(player, { through: { teamId: 1 } });
-  await tina.addTeamRole(player, { through: { teamId: 2 } });
-  await moe.addTeamRole(player, { through: { teamId: 2 } });
-  await joe.addTeamRole(player, { through: { teamId: 3 } });
-  await jane.addTeamRole(player, { through: { teamId: 3 } });
-  await lucy.addTeamRole(player, { through: { teamId: 4 } });
-  await jaura.addTeamRole(player, { through: { teamId: 4 } });
-  await homer.addTeamRole(player, { through: { teamId: 5 } });
-  await jaylen.addTeamRole(player, { through: { teamId: 5 } });
-  await hen.addTeamRole(player, { through: { teamId: 6 } });
-  await han.addTeamRole(player, { through: { teamId: 7 } });
-  await hunt.addTeamRole(player, { through: { teamId: 8 } });
-  await har.addTeamRole(player, { through: { teamId: 9 } });
-
-  //add teams to matches
-  await match1.addTeam([team1, team2]); //league 1
-  await match2.addTeam([team4, team5]); //league 2
-  await match3.addTeam([team6, team7]); //league 2
-  await match4.addTeam([team8, team9]); //league 3
-
-  //add actions to scorekeeper
-  await Scorekeeper.create({ matchId: 1, userId: 13, actionId: 1 });
-  await Scorekeeper.create({ matchId: 1, userId: 9, actionId: 1 });
-  await Scorekeeper.create({ matchId: 2, userId: 11, actionId: 1 });
-  await Scorekeeper.create({ matchId: 2, userId: 12, actionId: 1 });
-  await Scorekeeper.create({ matchId: 2, userId: 12, actionId: 1 });
-  await Scorekeeper.create({ matchId: 3, userId: 18, actionId: 2 });
-  await Scorekeeper.create({ matchId: 3, userId: 18, actionId: 2 });
-  await team8.addActions(fieldGoal, { through: { userId: 20, matchId: 4 } });
-  await team9.addActions(fieldGoal, { through: { userId: 21, matchId: 4 } });
-
-  //Added Random Post To Teams
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 1, teamId: 1 });
-  await Post.create({ message: "WE LOST....", likes: 6, userId: 2, teamId: 1 });
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 3, teamId: 2 });
-  await Post.create({message: "WE ARE THE BEST!",likes: 6, userId: 4, teamId: 2 });
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 5, teamId: 3 });
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 6, teamId: 1 });
-
-  //Added Random Post To Leagues
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 7, leagueId: 1 });
-  await Post.create({message: "WE LOST....",likes: 6,userId: 8,leagueId: 1,});
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 9, leagueId: 2 });
-  await Post.create({message: "WE ARE THE BEST!", likes: 10, userId: 4, leagueId: 2,});
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 11, leagueId: 3 });
-  await Post.create({ message: "WE WON!!", likes: 6, userId: 12, leagueId: 1 });
-
-  //Addes Comments to Post
-  await Comment.create({ message: "YEAH!!!", likes: 4, userId: 13, postId: 1 });
-  await Comment.create({ message: "YEAH!!!", likes: 4, userId: 14, postId: 1 });
-  await Comment.create({ message: "YEAH!!!", likes: 4, userId: 15, postId: 2 });
-  await Comment.create({ message: "YEAH!!!", likes: 4, userId: 15, postId: 3 });
-  await Comment.create({ message: "YEAH!!!", likes: 4, userId: 16, postId: 8 });
-
-  //add announcements to leagues
-  await Announcements.create({
-    name: "Sean",
-    description: "Testing!",
-    leagueId: 1,
-  });
-  await Announcements.create({
-    name: "Kim",
-    description: "Testing!",
-    leagueId: 2,
-  });
-  await Announcements.create({
-    name: "Olive",
-    description: "Testing!",
-    leagueId: 3,
-  });
-
-  //add messages to leagues
-  await Messages.create({
-    name: "Sean",
-    subjectLine: "Join league",
-    description: "Hey can I join your league?",
-    leagueId: 1,
-    teamEmail: "sean@y.com",
-    teamName: "The Seans",
-  });
-
-  console.log("\n\nSeeding Successful!\n\n");
+    console.log('\n\nSeeding Successful!\n\n')
 };
 
 module.exports = {

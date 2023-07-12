@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar";
 import Matches from "./Matches";
 import Announcements from "./Announcements";
 import RightNav from "./RightNav";
-import Stats from './Stats';
+import TeamStats from './TeamStats';
 
 const Team = () => {
    const { id } = useParams();
@@ -25,7 +25,7 @@ const Team = () => {
    if (!team || !id) {
       return <div>loading</div>;
    }
-   console.log(team);
+   
    return (
       <div className="league-container">
          <div className="sidebar">
@@ -61,7 +61,7 @@ const Team = () => {
                   <div className="team__content">
                      <div className="league__content--body">
                         {currentComponent === "Announcements" && <Announcements />}
-                        {currentComponent === "Stats" && <Stats />}
+                        {currentComponent === "Stats" && <TeamStats team={team}/>}
                         {currentComponent === "Newsfeed" && "Newsfeed coming soon"}
                         {currentComponent === "About" && "About coming soon"}
                         {currentComponent === "Chat" && "Chat coming soon"}

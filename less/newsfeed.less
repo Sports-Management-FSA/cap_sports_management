@@ -4,19 +4,19 @@
 }
 
 .newsfeed__createpost {
-    background-color: white;
+    background-color: @dark-background-secondary;
     margin: 2rem 0 1rem 0;
-    box-shadow: 0 0 7px grey;
 }
 
 .newsfeed__createpost input {
-    background-color: #f6f3f3;
+    background-color: @dark-background-primary;
     border: none;
     border-radius: 25px;
 }
 
 .newsfeed__createpost input::placeholder {
     margin-left: .5rem;
+    color: @dark-font-primary;
 }
 
 .newfeed__posts {
@@ -25,21 +25,30 @@
 }
 
 .newsfeed__post {
-    background-color: white;
+    background-color: @dark-background-secondary;
     margin: 2rem 0 1rem 0;
     padding: 1rem;
-    box-shadow: 0 0 7px grey;
 }
 .newsfeed__post-upper {
     display: flex;
     flex-direction: column;
 }
-.newsfeed__post-upper span {
+.newsfeed__post-upper span{
     font-weight: bold;
+    color: @dark-font-primary;
+}
+
+.newsfeed__post-upper i{
+    font-weight: 400;
+    color: @dark-font-primary;
 }
 
 .newsfeed__post-content {
     margin: .5rem;
+}
+
+.newsfeed__post-content article {
+    color: @dark-font-primary;
 }
 
 .newsfeed__post-lower {
@@ -55,9 +64,10 @@
     justify-content: center;
     width: 50%;
     border-radius: 25px;
+    color: @dark-font-primary;
 }
 
 .newsfeed__post-lower span:hover {
-    background-color: rgb(234, 234, 234);
+    background-color: @dark-background-secondary;
     cursor: pointer;
 }

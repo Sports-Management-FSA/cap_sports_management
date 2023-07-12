@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addTeam } from "../store";
 import { useParams } from "react-router-dom";
+import validator from "validator";
 
 const CreateTeam = () => {
    const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const CreateTeam = () => {
    const [teamDescription, setTeamDescription] = useState("");
    const [teamLogo, setTeamLogo] = useState("");
    const [previewLogo, setPreviewLogo] = useState("");
+   const [formErrors, setFormErrors] = useState("");
 
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
@@ -36,8 +38,41 @@ const CreateTeam = () => {
       }
    };
 
+   // Validate Functions
+   const validateTeamName = (name) => {
+      if (name.trim() === "") {
+         return "Name is required";
+      } else {
+         if (league && league.teams.some((team) => team.name === name)) {
+            return "Team name already exists";
+         }
+      }
+      return "";
+   };
+   const validateEmail = (email) => {
+      if (!validator.isEmail(email)) {
+         return "Invalid email format";
+      }
+      return "";
+   };
+
+   const validateForm = () => {
+      const errors = {};
+      errors.teamName = validateTeamName(teamName);
+      errors.email = validateEmail(teamEmail);
+      return errors;
+   };
+
    const handleSubmit = (e) => {
       e.preventDefault();
+
+      const validationErrors = validateForm();
+      if (Object.keys(validationErrors).length > 0) {
+         // Form has errors, prevent form submission
+         setFormErrors(validationErrors);
+         return;
+      }
+
       const newTeamData = {
          name: teamName,
          email: teamEmail,
@@ -52,8 +87,6 @@ const CreateTeam = () => {
       setTeamDescription("");
       navigate(`/league/${id}`);
    };
-
-   console.log(league);
 
    return (
       <section className="vh-100">
@@ -101,22 +134,24 @@ const CreateTeam = () => {
                                        Team Name
                                     </label>
                                     <input
-                                       className="form-control mb-2"
+                                       className={`form-control ${formErrors.teamName ? "is-invalid" : ""}`}
                                        type="text"
                                        id="teamName"
                                        value={teamName}
                                        onChange={handleTeamNameChange}
                                     />
+                                    {formErrors && <div className="invalid-feedback">{formErrors.teamName}</div>}
                                     <label htmlFor="email" className="form-label text-dark">
                                        Email
                                     </label>
                                     <input
-                                       className="form-control mb-2"
+                                       className={`form-control ${formErrors.teamEmail ? "is-invalid" : ""}`}
                                        type="email"
                                        id="email"
                                        value={teamEmail}
                                        onChange={handleTeamEmailChange}
                                     />
+                                    {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
                                     <label className="form-label" htmlFor="teamDescription">
                                        Team Description
                                     </label>

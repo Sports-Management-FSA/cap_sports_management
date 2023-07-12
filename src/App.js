@@ -25,7 +25,7 @@ import {
 } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
-import Landing2 from "./Components/Landing2";
+import Landing3 from "./Components/Landing3";
 import Staff from "./Components/Global/Staff";
 import NotFound from "./Components/Global/NotFound";
 import RequestJoin from "./Forms/RequestJoin";
@@ -56,7 +56,7 @@ const App = () => {
       } */}
          <div>
             <Routes>
-               <Route path="/" element={<Landing2 />} />
+               <Route path="/" element={<Landing3 />} />
                <Route path="/home" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />

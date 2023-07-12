@@ -32,30 +32,6 @@ const Announcements = () => {
             username: "Kurt Cobain",
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
         },
-        {
-            id: 5,
-            userId: 5,
-            username: "Kurt Cobain",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
-        {
-            id: 5,
-            userId: 5,
-            username: "Kurt Cobain",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
-        {
-            id: 5,
-            userId: 5,
-            username: "Kurt Cobain",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
-        {
-            id: 5,
-            userId: 5,
-            username: "Kurt Cobain",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
     ]
 
     const date = new Date();
