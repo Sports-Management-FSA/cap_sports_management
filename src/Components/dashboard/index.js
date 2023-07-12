@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch, Link } from 'react-redux';
 import Inbox from './Inbox';
 import DashboardLeaguesWidget from './DashboardLeaguesWidget';
+import DashboardLeagues from './DashboardLeagues';
 import Standings from '../Standings';
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
@@ -39,7 +40,7 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard__main-content">
                     {currentComponent === 'Home' && <Home league={league} />}
-                    {currentComponent === 'Leagues' && <DashboardLeaguesWidget league={league}/>}
+                    {currentComponent === 'Leagues' && <DashboardLeagues />}
                     {currentComponent === 'Inbox' && <Inbox />}
                     {currentComponent === 'Teams' && "Teams coming soon"}
                     {currentComponent === 'Personal' && "Personal coming soon"}

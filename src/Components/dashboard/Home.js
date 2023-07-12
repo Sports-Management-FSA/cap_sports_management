@@ -9,11 +9,14 @@ import Standings from '../Standings';
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import Groups2RoundedIcon from '@mui/icons-material/Groups2Rounded';
 
 
 export function Home({league}) {
 
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector(state => state.auth);
+  const posts = useSelector(state => state.auth.posts)
+  console.log(posts)
     
   return (
         <div className="dashboard__home">
@@ -24,7 +27,7 @@ export function Home({league}) {
                                 <div className="widget__card">
                                     <div className="widget__card-upper">
                                         <p>Total Leagues</p>
-                                        <EmojiEventsRoundedIcon className="card-icon" />
+                                        <EmojiEventsRoundedIcon className="dashboard-icon" />
                                     </div>
                                     <div className="widget__card-center">
                                         <p>{auth.leagues.length}</p>
@@ -36,6 +39,7 @@ export function Home({league}) {
                                 <div className="widget__card">
                                     <div className="widget__card-upper">
                                         <p>Total Teams</p>
+                                        <Groups2RoundedIcon className="dashboard-icon"/>
                                     </div>
                                     <div className="widget__card-center">
                                         <p>{auth.teams.length}</p>
@@ -47,7 +51,7 @@ export function Home({league}) {
                                 <div className="widget__card">
                                     <div className="widget__card-upper">
                                         <p>New Messages</p>
-                                        <MailOutlineRoundedIcon className="card-icon" />
+                                        <MailOutlineRoundedIcon className="dashboard-icon" />
                                     </div>
                                     <div className="widget__card-center">
                                         <p>{auth.leagues.length}</p>
@@ -59,7 +63,7 @@ export function Home({league}) {
                                 <div className="widget__card">
                                     <div className="widget__card-upper">
                                         <p>New Announcements</p>
-                                        <CampaignRoundedIcon className="card-icon" />
+                                        <CampaignRoundedIcon className="dashboard-icon" />
                                     </div>
                                     <div className="widget__card-center">
                                         <p>{auth.leagues.length}</p>
@@ -75,18 +79,18 @@ export function Home({league}) {
                         </div>
                     </div>
                     <div className="main-body-center">
-                        <div className="body-center-inbox">
                             <div className="center-posts-container">
                                 <div className="post__card">
                                     <div className="post__card-upper">
                                         <p>Recent Posts</p>
                                     </div>
-                                    <div className="post__card-content">
-                                        <article>ipsum lorem so far</article>
-                                    </div>
+                                        {posts.map(post => (
+                                            <div className="post__card-content">
+                                               <p>{post.message}</p><span>{post.likes} likes</span>               
+                                            </div>
+                                        ))}
                                 </div>
                             </div>
-                        </div>
                         <div className="center-inbox-container">
                             {/* <Inbox /> */  }
                         </div>

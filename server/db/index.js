@@ -75,6 +75,7 @@ League.hasMany(Messages);
 
 
 
+
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
 
@@ -471,13 +472,17 @@ const syncAndSeed = async()=> {
     });
     
     //add director roles to users
-    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}})
-    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
-    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
-    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 4}})
-    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 5}})
-    await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
-    await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
+    await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}});
+    await User_LeagueRoles.create({userId: 5, leagueId: 1, leagueRoleId: 1});
+    await User_LeagueRoles.create({userId: 5, leagueId: 2, leagueRoleId: 1});
+    await User_LeagueRoles.create({userId: 5, leagueId: 3, leagueRoleId: 1});
+    await User_LeagueRoles.create({userId: 5, leagueId: 5, leagueRoleId: 1});
+    
+    // await User_LeagueRoles.create({userId: 5, leagueId: 3, leagueRoleId: 3});
+    // await User_LeagueRoles.create({userId: 5, leagueId: 4, leagueRoleId: 4});
+    //await larry.addLeagueRole(leagueDirector, {through: {leagueId: 5}})
+    // await lump.addLeagueRole(leagueDirector, {through: {leagueId: 2}})
+    // await lala.addLeagueRole(leagueDirector, {through: {leagueId: 3}})
 
     //add team manager roles to users
     await jof.addTeamRole(teamManager, {through: {teamId: 1}})

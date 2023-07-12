@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addTeam, deleteMessage, fetchAllLeagues, fetchAllMessages } from '../../store';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 const Inbox = () => {
 
@@ -10,6 +11,8 @@ const Inbox = () => {
     const allMessages = useSelector(state => state.joinRequests);
     const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
     const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId));
+    console.log(matchedMessages)
+
 
     useEffect(() => {
         fetchAllMessages();
@@ -33,23 +36,22 @@ const Inbox = () => {
         dispatch(deleteMessage(id));
     }
 
-    const render = (message) => {
-
-        console.log('clicked')
-    }
-
     if (selectedMessage) {
         return (
             <section className="inbox__container">
                 <section className="inbox__content">
                     <div className="inbox__content-top">
                         <h4>From: {selectedMessage.name}</h4>
-                        <p>Subject: {selectedMessage.subjectLine}</p>
+                        <span>Subject: </span><p>{selectedMessage.subjectLine}</p>
+                        <p>Team Name: {selectedMessage.teamName}</p>
+                        <p>Email: {selectedMessage.teamEmail}</p>
                     </div>
                     <div className="inbox__content-main">
                         <p>{selectedMessage.description}</p>
                     </div>
                     <div className="inbox__content-lower">
+                        {/* <button onClick={() => setSelectedMessage(null)}>back</button> */}
+                        <ArrowBackRoundedIcon className="dashboard-icon-back" onClick={() => setSelectedMessage(null)}/>
                         <button onClick={() => handleApprove(selectedMessage)}>Accept</button>
                         <button onClick={() => handleDecline(selectedMessage.id)}>Decline</button>
                     </div>
@@ -67,20 +69,24 @@ const Inbox = () => {
                     <p>{matchedMessages.length}</p>
                 </div>
             </div>
+            <table className="inbox__table">
             {matchedMessages.map(message => (
-                <ul onClick={() => setSelectedMessage(message)} className="inbox__row" key={message.id}>
-                    <li className="inbox__row-name">{message.name}</li>
-                    <li className="inbox__row-content">
-                        <p>{message.subjectLine}</p>
-                        <p>{message.description}</p>
-                    </li>
-                    <li className="inbox__row-content">
-                        <button onClick={() => handleApprove(message)}>Accept</button>
-                        <button onClick={() => handleDecline(message.id)}>Decline</button>
-                    </li>
-                </ul>
-            ))
-        }
+                    <tr  className="inbox__row" key={message.id}>
+                        <td className="inbox-col-name">{message.name}</td>
+                        <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                            <p>{message.subjectLine}</p>
+                        </td>
+                        <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                            <p>{message.description}</p>
+                        </td>
+                        <td className="inbox-col-content">
+                            <button onClick={() => handleApprove(message)}>Accept</button>
+                            <button onClick={() => handleDecline(message.id)}>Decline</button>   
+                        </td>
+                    </tr>
+                ))
+            }
+            </table>
         </div>
     );
 };

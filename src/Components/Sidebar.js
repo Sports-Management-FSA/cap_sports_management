@@ -17,7 +17,6 @@ const Sidebar = () => {
             <div className="menu">
                 <span>Browse</span>
                 <div className="item">
-                    {/* <img src={Friends} alt="" /> */}
                     <span className="nav-link">
                         <Link to="/home">Leagues</Link>
                     </span>
@@ -33,8 +32,7 @@ const Sidebar = () => {
             <div className="menu">
                 <span>Locker Room</span>
                 <div className="item">
-                    {/* <img src={Friends} alt="" /> */}
-                    <span>Dashboard</span>
+                  <Link to={'/dashboard'}>Dashboard</Link>
                 </div>
                 <div className="item">
                     <span>Your Leagues</span>
