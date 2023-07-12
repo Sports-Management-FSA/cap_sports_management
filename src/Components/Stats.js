@@ -36,14 +36,14 @@ const Stats = (props) => {
                     <a onClick={() => handleClick('Standings')} className={activeTab === 'Standings' ? 'active' : ''}>Standings</a>
                     <a onClick={() => handleClick('Players')} className={activeTab === 'Players' ? 'active' : ''}>Players</a>
                     <a onClick={() => handleClick('Matches')} className={activeTab === 'Matches' ? 'active' : ''} >Matches</a>
-                    <a onClick={() => handleClick('Team Info')} className={activeTab === 'Team Info' ? 'active' : ''}>Teams</a>
+                    <a onClick={() => handleClick('Teams')} className={activeTab === 'Teams' ? 'active' : ''}>Teams</a>
                 </ul>   
                 <div className="stats-content">
                     <div className="stats-content-body">
                         {currentComponent === 'Matches' && <Matches matches={matches} />}
                         {currentComponent === 'Standings' && <Standings teams={teams}/>}
                         {currentComponent === 'Players' && <Players players={players} teams={teams}/>}
-                        {currentComponent === 'Team Info' && <Teams teams={teams}/>}
+                        {currentComponent === 'Teams' && <Teams teams={teams}/>}
                     </div>        
                 </div>
             </div>
