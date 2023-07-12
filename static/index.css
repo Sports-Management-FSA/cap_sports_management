@@ -617,6 +617,10 @@ nav {
 .caret-off::after {
   display: none;
 }
+/* Footer customization */
+.footer-tag {
+  letter-spacing: 0;
+}
 .newsfeed-container {
   display: flex;
   justify-content: column;
@@ -842,6 +846,9 @@ nav {
   .profile-tabs {
     font-size: 13px;
   }
+}
+.profile-tab-header {
+  letter-spacing: 0.5px;
 }
 .dashboard__container {
   height: 100vh;

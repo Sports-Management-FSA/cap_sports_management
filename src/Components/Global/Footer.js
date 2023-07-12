@@ -14,10 +14,10 @@ const Footer = () => {
             </a>
             <small className="text-white">&copy; Podium, {new Date().getFullYear()}. All rights reserved.</small>
             <div className="d-flex flex-wrap">
-               <a href="/#" className="text-white text-decoration-none">
+               <a href="/#" className="text-white text-decoration-none footer-tag">
                   About
                </a>
-               <Link to="/staff" className="text-white ms-3 text-decoration-none">
+               <Link to="/staff" className="text-white ms-3 text-decoration-none footer-tag">
                   Team
                </Link>
             </div>
