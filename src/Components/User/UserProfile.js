@@ -1,28 +1,7 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import Sidebar from "../Sidebar";
+import React from "react";
+import UserProfileInformation from "./UserProfileInformation";
 
 const UserProfile = () => {
-   const { auth } = useSelector((state) => state);
-   console.log(auth);
-   const [username, setUsername] = useState(auth.username || "");
-   const [firstName, setFirstName] = useState(auth.firstName || "");
-   const [lastName, setLastName] = useState(auth.lastName || "");
-   const [email, setEmail] = useState(auth.email || "");
-
-   const handleChange = (ev, setFunction) => setFunction(ev.target.value);
-
-   const handleSubmit = (ev) => {
-      ev.preventDefault();
-
-      const updatedProfile = {
-         username,
-         firstName,
-         lastName,
-         email
-      };
-   };
-
    return (
       <div>
          <div className="container py-5 vh-100">
@@ -92,68 +71,13 @@ const UserProfile = () => {
                      </div>
                      <div className="card-body tab-content">
                         <div className="tab-pane active" id="profile">
-                           <h6>Profile Information</h6>
+                           <h6 className="profile-tab-header">Profile Information</h6>
                            <hr />
-                           <form onSubmit={handleSubmit}>
-                              <div className="form-group">
-                                 <label htmlFor="username" className="form-label text-dark">
-                                    Username
-                                 </label>
-                                 <input
-                                    type="text"
-                                    className="form-control"
-                                    id="username"
-                                    aria-describedby="usernameHelp"
-                                    placeholder="Username cannot be empty"
-                                    value={username}
-                                    onChange={(ev) => handleChange(ev, setUsername)}
-                                 />
-                              </div>
-                              <div className="form-group row justify-content-evenly">
-                                 <div className="col-6" style={{ width: "47%" }}>
-                                    <label htmlFor="firstname" className="form-label text-dark">
-                                       Firstname
-                                    </label>
-                                    <input
-                                       type="text"
-                                       className="form-control"
-                                       id="firstname"
-                                       aria-describedby="firstnameHelp"
-                                       placeholder="Firstname can not be empty"
-                                       value={firstName}
-                                       onChange={(ev) => handleChange(ev, setFirstName)}
-                                    />
-                                 </div>
-                                 <div className="col-6" style={{ width: "47%" }}>
-                                    <label htmlFor="firstname" className="form-label text-dark">
-                                       Lastname
-                                    </label>
-                                    <input
-                                       type="text"
-                                       className="form-control"
-                                       id="lastname"
-                                       aria-describedby="lastnameHelp"
-                                       placeholder="lastname can not be empty"
-                                       value={lastName}
-                                       onChange={(ev) => handleChange(ev, setLastName)}
-                                    />
-                                 </div>
-                              </div>
-                              <div className="form-group">
-                                 <label htmlFor="email" className="form-label text-dark">
-                                    Email
-                                 </label>
-                                 <input
-                                    type="text"
-                                    className="form-control"
-                                    id="email"
-                                    aria-describedby="emailHelp"
-                                    placeholder="Email cannot be empty"
-                                    value={email}
-                                    onChange={(ev) => handleChange(ev, setEmail)}
-                                 />
-                              </div>
-                           </form>
+                           <UserProfileInformation />
+                        </div>
+                        <div className="tab-pane" id="account">
+                           <h6 className="profile-tab-header">Account</h6>
+                           <hr />
                         </div>
                      </div>
                   </div>
