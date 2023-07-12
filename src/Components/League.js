@@ -9,6 +9,7 @@ import Announcements from "./Announcements";
 import Stats from "./Stats";
 import TeamInfo from "./TeamInfo";
 import Newsfeed from "./Newsfeed";
+import TestMatch from "./testMatch";
 
 const League = () => {
    const { id } = useParams();
@@ -93,6 +94,7 @@ const League = () => {
                   </div>
                </div>
             </div>
+            <TestMatch />
          </div>
          <RightNav />
       </div>
