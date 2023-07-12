@@ -5,7 +5,6 @@ const Messages = conn.define("messages", {
    name: {
       type: STRING,
       allowNull: false,
-      unique: true,
       validate: {
          notEmpty: true
       }
