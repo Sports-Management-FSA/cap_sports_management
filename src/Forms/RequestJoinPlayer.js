@@ -6,6 +6,7 @@ import validator from "validator";
 
 const RequestJoinPlayer = () => {
    const { id } = useParams();
+   const dispatch = useDispatch();
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
 
@@ -14,30 +15,29 @@ const RequestJoinPlayer = () => {
    const [playerMessageEmail, setPlayerMessageEmail] = useState("");
    const [playerMessageSubject, setPlayerMessageSubject] = useState("");
    const [playerMessageSummary, setPlayerMessageSummary] = useState("");
-   const [formErrors, setFormErrors] = useState({});
    const [selectedTeam, setSelectedTeam] = useState("none");
+   const [formErrors, setFormErrors] = useState({});
 
    const handleTeamChange = (e) => {
       setSelectedTeam(e.target.value);
    };
 
    // Validate Functions
-   const validateEmail = (email) => {
-      if (!validator.isEmail(email)) {
-         return "Invalid email format";
-      }
-      return "";
-   };
    const validateForm = () => {
       const errors = {};
 
       // Validate Email
-      errors.email = validateEmail(playerMessageEmail);
+      if (playerMessageEmail.trim() === "") {
+         errors.email = "Email is reuquired";
+      } else {
+         if (!validator.isEmail(playerMessageEmail)) {
+            errors.email = "Invalid email format";
+         }
+      }
       // Validate Team Name
       if (playerMessageUserName.trim() === "") {
          errors.userName = "Name is required";
       }
-
       setFormErrors(errors);
 
       return errors;
@@ -46,6 +46,7 @@ const RequestJoinPlayer = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
       const validationErrors = validateForm();
+
       if (Object.keys(validationErrors).length > 0) {
          // Form has errors, prevent form submission
          setFormErrors(validationErrors);
@@ -88,17 +89,17 @@ const RequestJoinPlayer = () => {
                                  Name
                               </label>
                               <input
-                                 className={`form-control ${formErrors.name ? "is-invalid" : ""}`}
+                                 className={`form-control ${formErrors.userName ? "is-invalid" : ""}`}
                                  id="name"
                                  value={playerMessageUserName}
                                  onChange={(e) => setPlayerMessageUserName(e.target.value)}
                                  placeholder="Your name"
                               />
-                              {formErrors.name && <div className="invalid-feedback">{formErrors.name}</div>}
+                              {formErrors.userName && <div className="invalid-feedback">{formErrors.userName}</div>}
                            </div>
                            <div className="col">
                               <label htmlFor="selectedTeam" className="form-label">
-                                 Team
+                                 Desired Team
                               </label>
                               <select
                                  className="form-select"
