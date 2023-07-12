@@ -20,7 +20,7 @@ const Landing3 = () => {
             </div>
 
             <div className="section1-description">
-               {/* Unlock the realm of competitive sports and esports.  */}
+
                <h5>
                 Effortlessly create and manage leagues and teams, or
                seamlessly join existing ones. Engage in real-time communication, chat with fellow players, and stay
@@ -51,17 +51,6 @@ const Landing3 = () => {
 
                 </div>
                 </div>
-                {/* <div className="links_container"> */}
-                {/* <p>
-                  <Link to="/home">Join a league and start a team now</Link>
-               </p>
-               <p>
-                  <Link to="/matches">Checkout some upcoming matches</Link>
-               </p>
-               <p>
-                  <Link to="/scorekeeper">Keep track of the game with our scorekeeper feature</Link>
-               </p> */}
-               {/* </div> */}
             </section>
             </div>
         
