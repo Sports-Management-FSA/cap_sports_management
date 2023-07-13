@@ -46,7 +46,7 @@ User.belongsToMany(Match, { through: { model: Scorekeeper, unique: false } });
 Match.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
 Team.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
 Actions.belongsToMany(Team, { through: { model: Scorekeeper, unique: false } });
-Match.hasMany(Scorekeeper)
+Match.hasMany(Scorekeeper);
 Scorekeeper.belongsTo(Actions);
 Scorekeeper.belongsTo(User);
 Scorekeeper.belongsTo(Team);
