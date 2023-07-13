@@ -28,8 +28,6 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
-    const player = await TeamRoles.create({name: 'player'});
-    user.addTeamRole(player, {through: {teamId: 1}});
     res.send(user);
   } catch (err) {
     next(err);
@@ -47,13 +45,16 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 router.put("/:id", async (req, res, next) => {
-   try {
-      const user = await User.findByPk(req.params.id);
-      user.update(req.body);
-      res.send(user);
-   } catch (err) {
-      next(err);
-   }
+  console.log("FROM API", req.body)
+  try {
+    const user = await User.findByPk(req.params.id);
+    const player = await TeamRoles.create({name: 'player'});
+    // user.addTeamRole(player, {through: {teamId: 1}});
+    // user.update(req.body);
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
