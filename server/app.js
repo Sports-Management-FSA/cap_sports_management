@@ -5,10 +5,12 @@ const routes = require("./api");
 const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
+const bodyParser = require("body-parser");
 
 require("./passport");
 
 // Middleware
+app.use(bodyParser.json({ limit: "5mb" }));
 app.use(express.json());
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
 app.use("/static", express.static(path.join(__dirname, "../static")));

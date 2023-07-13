@@ -11,17 +11,16 @@ const DashboardLeagues = () => {
 
     const leagues = useSelector(state => state.auth.leagues);
     const allLeagues = useSelector(state => state.leagues.leaguesList);
-    const players = useSelector(state => state.players.playerList)
-    //const playerRoles = useSelector(state => state.players.playerList).map(players => players.teamRoles);
+    const players = useSelector(state => state.players.playerList);
     const categories = useSelector(state => state.categories.categoriesList);
-    console.log("all player roles", players)
     
     if (selectedLeague) {
 
         const sport = categories.find(category => category.id == selectedLeague.categoryId);
         const matchedTeams = allLeagues.filter(league => league.id == selectedLeague.id)[0].teams;
-        console.log(matchedTeams)
         
+        console.log(matchedTeams)
+        const date = new Date(selectedLeague.createdAt)
         return (
                 <div className="dash__league-card">
                     <section className="dash__league-card-header">
@@ -63,14 +62,13 @@ const DashboardLeagues = () => {
                             <h5>Creation Date</h5>
                         </div>
                         <div className="dash__league-body-item">
-                            <p>{selectedLeague.createdAt}</p>
+                            <p>{date.toLocaleString()}</p>
                         </div>
-                        
                     </section>
                     <div className="dash__league-lower">
                         <ArrowBackRoundedIcon onClick={() => setSelectedLeague(null)} className="dashboard-icon"/>
                     </div>
-                    <Link className="dash__league-link" to={`/league/${selectedLeague.id}`}>View Team Page</Link>
+                    <Link className="dash__league-link" to={`/league/${selectedLeague.id}`}>View League Page</Link>
                 </div>
         )
     }

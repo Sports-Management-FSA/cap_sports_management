@@ -73,7 +73,7 @@ const App = () => {
                <Route path="/profile" element={<UserProfile />} />
                <Route path="*" element={<NotFound />} />
                <Route path="/league/:id/request" element={<RequestJoin2 />} />
-               <Route path="/scorekeeper" element={<Scorekeeper />} />
+               {/* <Route path="/scorekeeper" element={<Scorekeeper />} /> */}
             </Routes>
          </div>
          <Footer />

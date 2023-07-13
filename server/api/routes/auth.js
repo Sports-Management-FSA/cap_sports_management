@@ -23,7 +23,14 @@ app.get("/", async (req, res, next) => {
 app.put("/", async (req, res, next) => {
    try {
       const user = await User.findByToken(req.headers.authorization);
-      await user.update({ avatar: req.body.avatar });
+      await user.update({
+         username: req.body.username,
+         firstName: req.body.firstName,
+         lastName: req.body.lastName,
+         email: req.body.email,
+         avatar: req.body.avatar
+      });
+
       res.send(user);
    } catch (ex) {
       next(ex);
