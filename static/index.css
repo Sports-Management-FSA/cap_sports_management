@@ -1624,6 +1624,18 @@ span {
   border-radius: 8px;
   position: relative;
 }
+.photo-caption {
+  position: absolute;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  padding: 0 0 0 20px;
+}
 .photo-overlay {
   background-color: rgba(155, 155, 155, 0.6);
   width: 100%;
@@ -1639,18 +1651,6 @@ span {
   height: 100%;
   position: relative;
   z-index: 1;
-}
-.photo-caption {
-  position: absolute;
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  font-size: 1.5rem;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  padding: 0 0 0 20px;
 }
 .leagues_photo {
   background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");

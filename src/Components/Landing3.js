@@ -54,19 +54,6 @@ const Landing3 = () => {
          </div>
    </div>
    </section>
-   <section className="section3">
-      <div className="section3_left">
-      <ul>
-         <li>
-            <p>Hello</p>
-            <span>Javscript</span>, for you guys
-         </li>
-      </ul>
-      </div>
-      <div className="section3_right">
-
-      </div>
-   </section>
 </div>
    );
 };

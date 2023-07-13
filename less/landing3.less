@@ -23,6 +23,8 @@
    flex-direction: column;
 }
 
+
+
 @media screen and (min-width: 600px) {
     .landing_text_photo {
         display: flex;
@@ -139,9 +141,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: white;
-background-size: cover;
-padding: 6rem;
-gap: 2rem;
+    background-size: cover;
+    padding: 6rem;
+    gap: 2rem;
     
 }
 
@@ -180,6 +182,18 @@ gap: 2rem;
     position: relative;
 }
   
+.photo-caption {
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 0 0 20px;
+}
 .photo-overlay {
     background-color: rgba(155, 155, 155, 0.6);
     width: 100%;
@@ -198,20 +212,8 @@ gap: 2rem;
     position: relative;
     z-index: 1;
 }
-  
-.photo-caption {
-    position: absolute;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1.5rem;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 100%;
-    padding: 0 0 0 20px;
-}
 
+// END
 
 .leagues_photo {
     background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
@@ -223,10 +225,11 @@ gap: 2rem;
     position: relative;
 }
 
+//added
 .leagues_photo:hover .photo-overlay {
     background-color: rgba(0, 0, 0, 0.5);
 }
-
+//added
 
 .scorekeeper_photo {
     background-image: url("https://images.pexels.com/photos/209832/pexels-photo-209832.jpeg");
@@ -238,10 +241,12 @@ gap: 2rem;
     position: relative;
 }
 
+
+//added
 .scorekeeper_photo:hover .photo-overlay {
     background-color: rgba(0, 0, 0, 0.5);
 }
-
+//added
 
 .links_container {
     margin: 0;
@@ -249,3 +254,4 @@ gap: 2rem;
     flex-direction: row;
     justify-content: space-around;
 }
+
