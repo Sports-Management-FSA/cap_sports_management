@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 
 // const conn = require('../conn');
@@ -67,7 +66,6 @@
 // })
 
 // module.exports = Player;
-=======
 const conn = require("../conn");
 const { STRING, INTEGER, UUID, UUIDV4 } = conn.Sequelize;
 
@@ -134,4 +132,3 @@ const Player = conn.define("player", {
 });
 
 module.exports = Player;
->>>>>>> f80ff82e5e00d79ea9f544405454bff6ad62608b

@@ -14,7 +14,7 @@ const Landing3 = () => {
             <h1>Play.</h1>
             <h1>Connect.</h1>
             <p>Unlock the realm of competive <span>sports and esports</span></p>
-            </div>
+         </div>
 
              <div className="landing_photo"></div> 
             </div>
@@ -32,24 +32,24 @@ const Landing3 = () => {
             </section>
             <section id="section2">
                 <div className="section2_photos">
-                <div className="home_photo">
-<div className="cover">
-<Link to="/home">Join a league and start a team now</Link>
-</div>
-
-                </div>
-                <div className="leagues_photo">
-<div className="cover">
-<Link to="/matches">Checkout some upcoming matches</Link>
-</div>
-
-                </div>
-                <div className="scorekeeper_photo">
-<div className="cover">
-<Link to="/scorekeeper">Keep track of the game with our scorekeeper feature</Link>
-</div>
-
-                </div>
+                  <div className="home_photo">
+                  <div className="photo-overlay"></div>
+                     <div className="cover">
+                        <Link to="/home" className="photo-caption">Join a league and start a team now</Link>
+                     </div>
+                  </div>
+                  <div className="leagues_photo">
+                  <div className="photo-overlay"></div>
+                     <div className="cover">
+                        <Link to="/matches" className="photo-caption">Checkout some upcoming matches</Link>
+                     </div>
+                  </div>
+                  <div className="scorekeeper_photo">
+                  <div className="photo-overlay"></div>
+                  <div className="cover">
+                     <Link to="/scorekeeper" className="photo-caption">Keep track of the game with our scorekeeper feature</Link>
+                  </div>
+                  </div>
                 </div>
             </section>
             </div>
