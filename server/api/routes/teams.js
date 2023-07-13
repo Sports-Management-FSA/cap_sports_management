@@ -44,16 +44,17 @@ router.post("/", async (req, res, next) => {
       const user = await User.findByToken(req.headers.authorization, {
          include: [LeagueRoles]
       });
-
-
-    if (!user) {
-      return res.status(401).send("Unauthorized to create team");
-    }
-    const director = user.leagueRoles.find((role) => role.name == "director");
-
-    if (!director || director.user_leagueRoles.leagueId != req.body.leagueId) {
-      return res.status(401).send("Unauthorized to create team");
-    }
+      
+      
+      if (!user) {
+         return res.status(401).send("Unauthorized to create team");
+      }
+      console.log(req.body)
+      const director = user.leagueRoles.find((role) => role.name == "director");
+      
+      // if (!director || director.user_leagueRoles.leagueId !== req.body.leagueId) {
+      //    return res.status(401).send("Unauthorized to create team");
+      // }
     console.log("FROM TEAM API", req.body);
     const team = await Team.create(req.body);
     res.send(team);

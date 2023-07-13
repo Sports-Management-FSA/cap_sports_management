@@ -57,7 +57,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 95%;
-    height: 200vh;
+    //height: 200vh;
 }
 
 .dashboard__home-body {
@@ -78,10 +78,24 @@
     margin: 2rem 0 3rem 2rem;
 }
 
+.dashboard__main-header h1 {
+    font-weight: 600;
+}
+.dashboard__main-header p {
+    font-weight: 300;
+}
+
 .main-body-upper {
     display: flex;
     flex-direction: row;
     gap: 5rem;
+}
+
+@media (max-width: 1800){
+    .main-body-upper{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .widget__container {
@@ -141,7 +155,7 @@
 // UPPER - league
 .dashboard__leaguedata-container {
     display: flex;
-
+    width: 80%;
 }
 
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addTeam, deleteMessage, fetchAllLeagues, fetchAllMessages } from '../../store';
+import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages } from '../../store';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 const Inbox = () => {
@@ -11,7 +11,10 @@ const Inbox = () => {
     const allMessages = useSelector(state => state.joinRequests);
     const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
     const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId));
+
+    const leagues = useSelector((state) => state.leagues.leaguesList);
     console.log(matchedMessages)
+    
 
 
     useEffect(() => {
@@ -23,12 +26,20 @@ const Inbox = () => {
     }
 
     const handleApprove = (message) => {
-        const team = {
-            name: message.teamName,
-            email: message.teamEmail,
-            leagueId: message.leagueId
+        console.log(message)
+        if (message.desiredTeam == null) {
+            const team = {
+                name: message.teamName,
+                email: message.teamEmail,
+                leagueId: message.leagueId
+            }
+            console.log('this is a team, sent from handleapprove');
+            dispatch(addTeam(team));
+        } else {
+            console.log('this is a player request')
         }
-        dispatch(addTeam(team));
+
+        
     }
 
     const handleDecline = (id) => {
@@ -41,9 +52,10 @@ const Inbox = () => {
                 <section className="inbox__content">
                     <div className="inbox__content-top">
                         <h4>From: {selectedMessage.name}</h4>
-                        <span>Subject: </span><p>{selectedMessage.subjectLine}</p>
-                        <p>Team Name: {selectedMessage.teamName}</p>
-                        <p>Email: {selectedMessage.teamEmail}</p>
+                        <p>Subject: {selectedMessage.subjectLine}</p>
+                        {selectedMessage.teamName && (<p>Team Name: {selectedMessage.teamName}</p>)}
+                        {selectedMessage.teamEmail && (<p>Email: {selectedMessage.teamEmail}</p>)}
+                        {selectedMessage.desiredTeam !== null && (<p>Desired Team: {selectedMessage.desiredTeam}</p>)}
                     </div>
                     <div className="inbox__content-main">
                         <p>{selectedMessage.description}</p>
@@ -68,23 +80,39 @@ const Inbox = () => {
                     <p>{matchedMessages.length}</p>
                 </div>
             </div>
-            <table className="inbox__table">
-            {matchedMessages.map(message => (
-                    <tr  className="inbox__row" key={message.id}>
-                        <td className="inbox-col-name">{message.name}</td>
-                        <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
-                            <p>{message.subjectLine}</p>
-                        </td>
-                        <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
-                            <p>{message.description}</p>
-                        </td>
-                        <td className="inbox-col-content">
-                            <button onClick={() => handleApprove(message)}>Accept</button>
-                            <button onClick={() => handleDecline(message.id)}>Decline</button>   
-                        </td>
-                    </tr>
-                ))
-            }
+                <table className="inbox__table">
+                    <thead>
+                        <tr className="inbox__row">
+                            <th className="inbox-col-name">Name</th>
+                            <th className="inbox-col-name">Type</th>
+                            <th className="inbox-col-content">Subject</th>
+                            <th className="inbox-col-content">Description</th>
+                            <th className="inbox-col-content">Decision</th>
+                        </tr>
+                    </thead>
+                    {matchedMessages.map(message => (
+                        <tbody key={message.id}>
+                            <tr className="inbox__row" >
+                                <td className="inbox-col-name" onClick={() => setSelectedMessage(message)}>{message.name}</td>
+                                <td 
+                                    className="inbox-col-name"
+                                    onClick={() => setSelectedMessage(message)}
+                                >{message.desiredTeam !== null ? 'Player' : 'Team'}
+                                </td>
+                                <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                                    <p>{message.subjectLine}</p>
+                                </td>
+                                <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                                    <p>{message.description}</p>
+                                </td>
+                                <td className="inbox-col-content">
+                                    <button onClick={() => handleApprove(message)}>Accept</button>
+                                    <button onClick={() => handleDecline(message.id)}>Decline</button>   
+                                </td>
+                            </tr>
+                        </tbody>
+                        ))
+                    }
             </table>
         </div>
     );

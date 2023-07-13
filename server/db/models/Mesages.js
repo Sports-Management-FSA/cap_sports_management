@@ -27,6 +27,10 @@ const Messages = conn.define("messages", {
    playerEmail: {
       type: STRING,
       allowNull: true
+   },
+   desiredTeam: {
+      type: STRING,
+      allowNull: true
    }
 });
 
