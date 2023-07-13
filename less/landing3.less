@@ -174,37 +174,48 @@ gap: 2rem;
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
+}
+
+.home_photo span{
+display: block;
 }
 
 .photo-caption {
-    position: absolute;
+    // position: absolute;
     text-decoration: none;
     color: white;
     font-weight: 600;
     font-size: 1.5rem;
-    top: 60%;
-    margin-left: auto;
-    margin-right: auto;
+    // top: 60%;
+    // margin-left: auto;
+    // margin-right: auto;
     // transform: translateY(-50%);
     width: 100%;
     padding: 0 0 0 5px;
-    transition: transform 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
     display: block;
+    text-align: center;
 }
 
 .photo-caption:hover {
-transform: scale(1.02);
+font-size: 2rem;
 }
 .photo-overlay {
     background-color: rgba(155, 155, 155, 0.6);
     width: 100%;
     height: 100%;
-    position: absolute;
+    // position: absolute;
     transition: background-color 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px;
 }
 
 .home_photo:hover .photo-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .leagues_photo {
@@ -216,10 +227,11 @@ transform: scale(1.02);
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
 }
 
 .leagues_photo:hover .photo-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .scorekeeper_photo {
@@ -231,10 +243,15 @@ transform: scale(1.02);
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
+}
+
+.scorekeeper_photo span {
+    display: block;
 }
 
 .scorekeeper_photo:hover .photo-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .cover{
@@ -244,6 +261,8 @@ flex-direction: column;
     height: 100%;
     position: relative;
  z-index: 1;
+//  justify-content: center;
+//  align-items: center;
     // background-color: rgba(155, 155, 155, 0.6);
     // width: 100%;
     // height: 100%;
@@ -263,3 +282,17 @@ flex-direction: column;
         line-height: 2.5rem;
     }
 
+    .sports_icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        // text-align: center;
+    }
+
+    .sports_icons div{
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto";
+        font-weight: 500;
+        text-align: center;
+    }
