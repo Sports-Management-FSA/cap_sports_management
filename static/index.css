@@ -772,6 +772,13 @@ a {
   letter-spacing: 0;
   font-weight: 700;
 }
+@media (max-width: 400px) {
+  .profile-page-container {
+    width: 80%;
+    height: 60%;
+    margin-bottom: 3rem;
+  }
+}
 .dashboard__container {
   height: 200vh;
   display: flex;
