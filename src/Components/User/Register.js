@@ -94,7 +94,8 @@ const Register = () => {
       <section
          className="vh-100"
          style={{
-            backgroundColor: "#f6f3f3"
+            backgroundColor: "#f6f3f3",
+            marginBottom: "1rem"
          }}>
          <div className="mask d-flex align-items-center h-100 py-5">
             <div className="container py-5">
@@ -102,7 +103,9 @@ const Register = () => {
                   <div className="col-9 col-md-9 col-lg-7 col-xl-6">
                      <div className="card" style={{ borderRadius: "15px", backgroundColor: "#fdfffc" }}>
                         <div className="card-body p-5">
-                           <h2 className="text-uppercase text-center mb-3 fw-bold text-dark">Create an account</h2>
+                           <h2 className="text-uppercase text-center mb-3 fw-bold text-dark register-header">
+                              Create an account
+                           </h2>
 
                            <form onSubmit={handleSubmit}>
                               <div className="form-outline form-white mb-2">
@@ -171,9 +174,7 @@ const Register = () => {
                                     Register
                                  </button>
                               </div>
-                              <p
-                                 className="text-center text-dark mt-3 mb-0"
-                                 style={{ letterSpacing: "0", fontSize: "14px" }}>
+                              <p className="text-center text-dark mt-3 mb-0 register-account-paragraph">
                                  Have an account?{" "}
                                  <Link to="/login" className="text-dark fw-bold register-login">
                                     <span className="register-login-here">Login here</span>
