@@ -58,10 +58,10 @@ const UserProfileAccountDetail = () => {
 
       // Validate Username
       if (formData.username.trim() === "") {
-         errors.username = "User name is required";
+         errors.username = "Username is required";
       } else {
          if (formData.username !== auth.username && users.some((user) => user.username === formData.username)) {
-            errors.username = "User name already exists";
+            errors.username = "Username already exists";
          }
       }
       setFormErrors(errors);

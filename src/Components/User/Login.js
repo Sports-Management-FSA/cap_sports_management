@@ -72,7 +72,9 @@ const Login = () => {
                               <div className="card-body p-5 text-center">
                                  <div className="mb-md-5 mt-md-4 pb-5">
                                     <h2 className="fw-bold mb-2 text-dark">Log into Podium</h2>
-                                    <p className="text-dark mb-5">Please enter your username and password!</p>
+                                    <p className="text-dark mb-5" style={{ letterSpacing: "0", fontSize: "14px" }}>
+                                       Please enter your username and password!
+                                    </p>
                                     <div className="form-outline form-white mb-4">
                                        <input
                                           className="form-control form-control-md"
@@ -97,7 +99,11 @@ const Login = () => {
                                           Forgot password?
                                        </a>
                                     </p>
-                                    {loginError && <p>{loginError}</p>}
+                                    {loginError && (
+                                       <p className="text-danger" style={{ letterSpacing: "0", fontSize: "13px" }}>
+                                          {loginError}
+                                       </p>
+                                    )}
                                     <button
                                        className="btn btn-outline-dark btn-lg px-5"
                                        disabled={invalidCredentials}
@@ -117,7 +123,7 @@ const Login = () => {
                                     </div>
                                  </div>
                                  <div>
-                                    <p className="mb-0 text-dark">
+                                    <p className="mb-0 text-dark" style={{ letterSpacing: "0", fontSize: "14px" }}>
                                        Don't have an account?{" "}
                                        <Link to="/register" className="text-dark fw-bold sign-up">
                                           Sign Up
