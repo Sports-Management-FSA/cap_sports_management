@@ -21,6 +21,7 @@ const Landing3 = () => {
 
 <div className="about_section">
             <div className="basketball_photo"></div>
+            {/* <div className="photo-overlay"></div> */}
             <div className="section1-description">
                <h5>
                 Effortlessly create and manage leagues and teams, or
@@ -35,20 +36,23 @@ const Landing3 = () => {
             <section id="section2">
                 <div className="section2_photos">
                 <div className="home_photo">
+                    <div className="photo-overlay"></div>
 <div className="cover">
-<Link to="/home">Join a league and start a team now</Link>
+<Link to="/home" className="photo-caption">Join a league and start a team now</Link>
 </div>
 
                 </div>
                 <div className="leagues_photo">
+                    <div className="photo-overlay"></div>
 <div className="cover">
-<Link to="/matches">Checkout some upcoming matches</Link>
+<Link to="/matches" className="photo-caption">Checkout upcoming matches</Link>
 </div>
 
                 </div>
                 <div className="scorekeeper_photo">
+                    <div className="photo-overlay"></div>
 <div className="cover">
-<Link to="/scorekeeper">Keep track of the game with our scorekeeper feature</Link>
+<Link to="/scorekeeper" className="photo-caption">Keep track of the game with Scorekeeper </Link>
 </div>
 
                 </div>

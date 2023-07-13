@@ -1188,6 +1188,18 @@ p {
     flex-direction: column;
     width: 100%;
   }
+  .leagues_photo {
+    width: 400px;
+    height: 400px;
+  }
+  .home_photo {
+    width: 400px;
+    height: 400px;
+  }
+  .scorekeeper_photo {
+    width: 400px;
+    height: 400px;
+  }
 }
 .landing_text_photo {
   display: flex;
@@ -1195,6 +1207,7 @@ p {
   padding: 6rem 4rem;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .landing_header h1 {
   color: black;
@@ -1207,6 +1220,7 @@ p {
   font-family: "Oxygen";
   font-size: 2rem;
   line-height: 3rem;
+  padding-top: 1rem;
 }
 .landing_header p span {
   display: block;
@@ -1274,7 +1288,35 @@ p {
   width: 300px;
   height: 300px;
   border-radius: 8px;
+  position: relative;
   box-shadow: 0px 0px 20px black;
+}
+.photo-caption {
+  position: absolute;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+  top: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 0 0 0 5px;
+  transition: transform 0.2s ease-in-out;
+  display: block;
+}
+.photo-caption:hover {
+  transform: scale(1.02);
+}
+.photo-overlay {
+  background-color: rgba(155, 155, 155, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: background-color 0.5s ease;
+}
+.home_photo:hover .photo-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .leagues_photo {
   background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
@@ -1283,7 +1325,11 @@ p {
   width: 300px;
   height: 300px;
   border-radius: 8px;
+  position: relative;
   box-shadow: 0px 0px 20px black;
+}
+.leagues_photo:hover .photo-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .scorekeeper_photo {
   background-image: url("https://images.pexels.com/photos/209832/pexels-photo-209832.jpeg");
@@ -1292,19 +1338,28 @@ p {
   width: 300px;
   height: 300px;
   border-radius: 8px;
+  position: relative;
   box-shadow: 0px 0px 20px black;
 }
+.scorekeeper_photo:hover .photo-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .cover {
-  background-color: rgba(155, 155, 155, 0.6);
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 .cover :any-link {
   font-size: 2rem;
   text-decoration: none;
   color: white;
+  line-height: normal;
 }
 .cover :hover {
   color: white;
   font-size: 2.5rem;
+  line-height: 2.5rem;
 }
