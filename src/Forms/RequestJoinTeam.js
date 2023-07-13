@@ -39,7 +39,7 @@ const RequestJoinTeam = () => {
             errors.teamName = "Team name already exists";
          }
       }
-      setFormErrors(errors); // Update this line
+      setFormErrors(errors);
 
       return errors;
    };

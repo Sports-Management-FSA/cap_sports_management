@@ -33,6 +33,8 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
+    const player = await TeamRoles.create({name: 'player'});
+    user.addTeamRole(player, {through: {teamId: 1}});
     res.send(user);
   } catch (err) {
     next(err);

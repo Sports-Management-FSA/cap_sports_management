@@ -15,7 +15,7 @@ const RequestJoinPlayer = () => {
    const [playerMessageEmail, setPlayerMessageEmail] = useState("");
    const [playerMessageSubject, setPlayerMessageSubject] = useState("");
    const [playerMessageSummary, setPlayerMessageSummary] = useState("");
-   const [selectedTeam, setSelectedTeam] = useState("none");
+   const [selectedTeam, setSelectedTeam] = useState('none');
    const [formErrors, setFormErrors] = useState({});
 
    const handleTeamChange = (e) => {
@@ -58,7 +58,8 @@ const RequestJoinPlayer = () => {
          subjectLine: playerMessageSubject,
          description: playerMessageSummary,
          playerEmail: playerMessageEmail,
-         leagueId: id
+         leagueId: id,
+         desiredTeam: selectedTeam
       };
 
       dispatch(addMessage(newMessageData));
@@ -109,7 +110,7 @@ const RequestJoinPlayer = () => {
                                  onChange={handleTeamChange}>
                                  <option value="none">None</option>
                                  {league?.teams?.map((team) => (
-                                    <option value={team.id} key={team.id}>
+                                    <option value={team.name} key={team.id}>
                                        {team.name}
                                     </option>
                                  ))}

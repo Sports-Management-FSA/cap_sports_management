@@ -1,15 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { fetchAllMatches } from "../store";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
+import Scorekeeper from "./Scorekeeper";
+
 
 const Matches = (props) => {
+
+    const {id} = useParams();
     let matches =[];
 
     if(props.matches){
         matches = props.matches;
     } else {
-        matches = useSelector(state=> state.matches.matchesList)
+        matches = useSelector(state=> state.matches.matchesList);
     }
    
 const today = new Date();
@@ -30,80 +35,29 @@ const today = new Date();
 
     return(
         <div className='matches-container'>
-            {/* <div className='matches-header'>
-                <h2>Previous Matches</h2>
-            </div> */}
-            {/* <div className='matches--match-container' >
-        {previousMatches.map((previousMatch) => {
-            return (
-                    <div className="matches--match" key={previousMatch.id}> */}
-                        {/* <div className="matches--match-upper">
-                            <div className="matches--match-upper-name">
-                                <p>{previousMatch.name}</p>
-                            </div>
-                            <div className="matches--match-upper-dates">
-                                <p>{previousMatch.date} @ {previousMatch.time}</p>
-                            </div>
-                        </div> */}
-                        {/* <div className='matches--match-vs'>
-                            <div className="matches-match-vs-team">
-                                <p><Link to={`/teams/${previousMatch.teams[0].id}`}>{previousMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${previousMatch.teams[1].id}`}>{previousMatch.teams[1]?.name || ""}</Link></p>
-                            </div>
-                        </div>
-                        <div className='matches--match-lower'>
-                            <p>{previousMatch.location}</p>
-                            <p>{previousMatch.description}</p>
-                        </div>  
-                    </div>
-                
-                )}
-                )}
-                </div>
-                <div className='matches-header'>
-                    <h2>Current Matches</h2>
-                </div> */}
-                {/* <div className='matches--match-container' >
-                {currentMatches.map((currentMatch) => {
-                    return (
-                            <div className="matches--match" key={currentMatch.id}>
-                                <div className="matches--match-upper">
-                                    <div className="matches--match-upper-name">
-                                        <p>{currentMatch.name}</p>
-                                    </div>
-                                    <div className="matches--match-upper-dates">
-                                        <p>{currentMatch.date} @ {currentMatch.time}</p>
-                                    </div>
-                                </div>
-                                <div className='matches--match-vs'>
-                                    <div className="matches-match-vs-team">
-                                        <p><Link to={`/teams/${currentMatch.teams[0].id}`}>{currentMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${currentMatch.teams[1].id}`}>{currentMatch.teams[1]?.name || ""}</Link></p>
-                                    </div>
-                                </div>
-                                <div className='matches--match-lower'>
-                                    <p>{currentMatch.location}</p>
-                                    <p>{currentMatch.description}</p>
-                                </div>
-                            </div>
-                    )}
-                    )}
-                    </div>
-                    <div className='matches-header'>
-                        <h2>Upcoming Matches</h2>
-                    </div> */}
                     {matches.length > 0 ?
                     <div className='matches--match-container'>
                     {upcomingMatches.map((upcomingMatch) => {
                         return (
                             <div className="matches--match" key={upcomingMatch.id}>
-                                <div className='matches--match-vs'>
-                                    <p><Link to={`/teams/${upcomingMatch.teams[0].id}`}>{upcomingMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${upcomingMatch.teams[1].id}`}>{upcomingMatch.teams[1]?.name || ""}</Link></p>
+                                <div className="match-body">
+                                    <div className='matches--match-vs'>
+                                        <p><Link to={`/teams/${upcomingMatch.teams[0].id}`}>{upcomingMatch.teams[0]?.name || ""}</Link> vs <Link to={`/teams/${upcomingMatch.teams[1].id}`}>{upcomingMatch.teams[1]?.name || ""}</Link></p>
+                                    </div>
+                                    <div className="matches--match-upper">
+                                        <p>{upcomingMatch.date} @ {upcomingMatch.time}</p>
+                                    </div> 
+                                    <div className='matches--match-lower'>
+                                        <p>{upcomingMatch.location}</p>
+                                    </div>
+                                    
                                 </div>
-                                <div className="matches--match-upper">
-                                    <p>{upcomingMatch.date} @ {upcomingMatch.time}</p>
-                                </div> 
-                                <div className='matches--match-lower'>
-                                    <p>{upcomingMatch.location}</p>
-                                </div>
+                                <div className="match-lower">
+                                <Link to={`/league/${id}/scorekeeper`}>Score this Match</Link>
+                                <Routes>
+                                    <Route path={`/league/:id/scorekeeper`} element={<Scorekeeper match={upcomingMatch} />} />
+                                </Routes>
+                                 </div>
                             </div>
                         )}
                         )}
