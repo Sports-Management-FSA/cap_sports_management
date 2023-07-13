@@ -53,7 +53,8 @@ const Inbox = () => {
                     <div className="inbox__content-top">
                         <h4>From: {selectedMessage.name}</h4>
                         <p>Subject: {selectedMessage.subjectLine}</p>
-                        {selectedMessage.teamName && (<p>Team Name: {selectedMessage.teamName}</p>)}
+                        
+                        {selectedMessage.teamName && (<p>Email: {selectedMessage.teamEmail}</p>)}
                         {selectedMessage.teamEmail && (<p>Email: {selectedMessage.teamEmail}</p>)}
                         {selectedMessage.desiredTeam !== null && (<p>Desired Team: {selectedMessage.desiredTeam}</p>)}
                     </div>
