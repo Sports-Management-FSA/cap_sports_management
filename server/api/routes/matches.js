@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Match, Team } = require("../../db");
+const { Match, Team, Scorekeeper } = require("../../db");
 const { User } = require("../../db");
 const Actions = require("../../db/models/Actions");
 
@@ -7,8 +7,16 @@ const Actions = require("../../db/models/Actions");
 router.get("/", async (req, res, next) => {
   try {
     const matches = await Match.findAll({
-      include: [{ model: Team, include: [User] }, Actions],
-    });
+        include: [
+          { model: Team, attributes: ['id', 'name'], include: [
+              {model: User, attributes: ['id', 'firstName', 'lastName']}
+          ]}, 
+          { model: Scorekeeper, attributes: ['id'],include: [
+              {model: Actions, attributes: ['id', 'name', 'value']}, 
+              {model: User, attributes: ['id', 'firstName', 'lastName']}, 
+              {model: Team, attributes: ['id', 'name']}
+          ]}],
+      });
     res.send(matches);
   } catch (ex) {
     next(ex);
@@ -19,7 +27,15 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const match = await Match.findByPk(req.params.id, {
-      include: [{ model: Team, include: [User] }, Actions],
+      include: [
+        { model: Team, attributes: ['id', 'name'], include: [
+            {model: User, attributes: ['id', 'firstName', 'lastName']}
+        ]}, 
+        { model: Scorekeeper, attributes: ['id'],include: [
+            {model: Actions, attributes: ['id', 'name', 'value']}, 
+            {model: User, attributes: ['id', 'firstName', 'lastName']}, 
+            {model: Team, attributes: ['id', 'name']}
+        ]}],
     });
     res.send(match);
   } catch (ex) {

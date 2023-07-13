@@ -32,6 +32,7 @@ import RequestJoin from "./Forms/RequestJoin";
 import UserProfile from "./Components/User/UserProfile";
 import RequestJoin2 from "./Forms/RequestJoin2";
 import Scorekeeper from "./Components/Scorekeeper";
+import Home2 from './Components/Home2';
 
 const App = () => {
    const { auth } = useSelector((state) => state);
