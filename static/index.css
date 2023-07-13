@@ -1126,6 +1126,7 @@ ALLENS Updates END .landing-matches-header h2 {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  margin-right: 3rem;
   margin-left: 3rem;
 }
 .dashboard__main-header {
@@ -1146,6 +1147,7 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   flex-direction: row;
   gap: 5rem;
+  margin: 5rem;
 }
 @media (max-width: 1800) {
   .main-body-upper {
@@ -1211,6 +1213,7 @@ ALLENS Updates END .landing-matches-header h2 {
 .dashboard__main-content {
   display: flex;
   margin-left: 5rem;
+  margin-right: 5rem;
   margin-top: 5rem;
   height: 50vh;
 }
@@ -1365,7 +1368,8 @@ span {
   justify-content: space-between;
   flex-direction: column;
 }
-.inbox__content h6 {
+.inbox__content h4,
+p {
   color: #fffff0;
   font-weight: 600;
 }
