@@ -1,3 +1,4 @@
+import { create } from "@mui/material/styles/createTransitions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -59,6 +60,24 @@ export const registerUser = createAsyncThunk("register", async (credential, { re
    }
 });
 
+export const updateUser = createAsyncThunk("updateUser", async (formData, { rejectWithValue }) => {
+   try {
+      const token = window.localStorage.getItem("token");
+      if (!token) {
+         throw new Error("No token found");
+      }
+      const response = await axios.put("/api/auth", formData, {
+         headers: {
+            authorization: token
+         }
+      });
+
+      return response.data;
+   } catch (err) {
+      return rejectWithValue(err.response.data);
+   }
+});
+
 const authSlice = createSlice({
    name: "auth",
    initialState: { loggedIn: false },
@@ -79,6 +98,9 @@ const authSlice = createSlice({
          return { ...state, ...action.payload };
       });
       builder.addCase(registerUser.fulfilled, (state, action) => {
+         return { loggedIn: true, ...action.payload };
+      });
+      builder.addCase(updateUser.fulfilled, (state, action) => {
          return { loggedIn: true, ...action.payload };
       });
    }

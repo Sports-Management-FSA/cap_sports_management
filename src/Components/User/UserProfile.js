@@ -1,91 +1,57 @@
-import React from "react";
-import UserProfileInformation from "./UserProfileInformation";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import UserProfileAccountDetail from "./UserProfileAccountDetail";
+import UserProfileSecurity from "./UserProfileSecurity";
 
 const UserProfile = () => {
-   return (
-      <div>
-         <div className="container py-5 vh-100">
-            <div className="row gutters-sm">
-               <div className="col-md-4 d-none d-md-block">
-                  <div className="card">
-                     <div className="card-body">
-                        <nav className="nav flex-column nav-pills nav-gap-y-1">
-                           <a
-                              href="#profile"
-                              data-toggle="tab"
-                              className="nav-item nav-link has-icon nav-link-faded active user-profile-tab">
-                              <i className="bi bi-person-square profile-icon"></i>
-                              Profile Information
-                           </a>
-                           <a
-                              href="#account"
-                              data-toggle="tab"
-                              className="nav-item nav-link has-icon nav-link-faded user-profile-tab">
-                              <i className="bi bi-gear profile-icon"></i>
-                              Account Settings
-                           </a>
-                           <a
-                              href="#security"
-                              data-toggle="tab"
-                              className="nav-item nav-link has-icon nav-link-faded user-profile-tab">
-                              <i className="bi bi-shield profile-icon"></i>
-                              Security
-                           </a>
-                           <a
-                              href="#notification"
-                              data-toggle="tab"
-                              className="nav-item nav-link has-icon nav-link-faded user-profile-tab">
-                              <i className="bi bi-bell profile-icon"></i>
-                              Notification
-                           </a>
-                        </nav>
-                     </div>
-                  </div>
-               </div>
-               <div className="col-md-8">
-                  <div className="card">
-                     <div className="card-header border-bottom mb-3 d-md-none">
-                        <ul className="nav nav-tabs card-header-tabs nav-gap-x-1 profile-tabs" role="tablist">
-                           <li className="nav-item">
-                              <a href="#profile" data-toggle="tab" className="nav-link has-icon active">
-                                 Profile
-                              </a>
-                           </li>
-                           <li className="nav-item">
-                              <a href="#account" data-toggle="tab" className="nav-link has-icon">
-                                 {" "}
-                                 Account
-                              </a>
-                           </li>
-                           <li className="nav-item">
-                              <a href="#security" data-toggle="tab" className="nav-link has-icon">
-                                 Security
-                              </a>
-                           </li>
-                           <li className="nav-item">
-                              <a href="#notification" data-toggle="tab" className="nav-link has-icon">
-                                 Notification
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
-                     <div className="card-body tab-content">
-                        <div className="tab-pane active" id="profile">
-                           <h6 className="profile-tab-header">Profile Information</h6>
-                           <hr />
-                           <UserProfileInformation />
-                        </div>
-                        <div className="tab-pane" id="account">
-                           <h6 className="profile-tab-header">Account</h6>
-                           <hr />
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+  
+   const { auth } = useSelector(({ auth }) => ({ auth }));
+
+   // Nav Tab control
+   const [activeTab, setActiveTab] = useState("Profile");
+
+   const handleNavClick = (tabName) => {
+      setActiveTab(tabName);
+   };
+
+   const renderTabContent = () => {
+      switch (activeTab) {
+         case "Profile":
+            return <UserProfileAccountDetail />;
+         case "Security":
+            return <UserProfileSecurity />;
+         default:
+            return null;
+      }
+   };
+
+   
+
+   if (!auth.username || !auth.loggedIn) {
+      return <h2 className="text-center mt-5">Please login to view the profile</h2>;
+   } else {
+      return (
+         <div className="container-xl px-4 mt-4 vh-100">
+            <nav className="nav nav-borders">
+               <a
+                  role="button"
+                  className={`nav-link ${activeTab === "Profile" ? "active" : ""}`}
+                  onClick={() => handleNavClick("Profile")}>
+                  Profile
+               </a>
+               <a
+                  role="button"
+                  className={`nav-link ${activeTab === "Security" ? "active" : ""}`}
+                  onClick={() => handleNavClick("Security")}>
+                  Security
+               </a>
+            </nav>
+            <hr className="mt-0 mb-4" />
+
+            {renderTabContent()}
          </div>
-      </div>
-   );
+      );
+   }
 };
 
 export default UserProfile;

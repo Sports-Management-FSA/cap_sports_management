@@ -603,6 +603,8 @@ ALLENS Updates END .landing-matches-header h2 {
   font-size: 1.2rem;
   font-weight: 400;
   font-style: italic;
+  color: black;
+  letter-spacing: 0;
 }
 .createleague {
   background-color: #F5F7FB;
@@ -754,11 +756,6 @@ ALLENS Updates END .landing-matches-header h2 {
   width: 100%;
 }
 /* ---------- NavBar Customization ---------- */
-nav {
-  display: flex;
-  justify-content: space-around;
-  z-index: 99;
-}
 .navbar-tab {
   letter-spacing: 0px;
 }
@@ -995,20 +992,64 @@ nav {
 .request-form-paragraph {
   letter-spacing: 0;
 }
-.profile-icon {
-  font-size: 20px;
-  margin-right: 7px;
+.img-account-profile {
+  height: 10rem;
 }
-.user-profile-tab {
-  letter-spacing: 0px;
+.rounded-circle {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50% !important;
 }
-@media (max-width: 900px) {
-  .profile-tabs {
-    font-size: 13px;
-  }
+.card {
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
 }
-.profile-tab-header {
-  letter-spacing: 0.5px;
+.card .card-header {
+  font-weight: 500;
+}
+.card-header:first-child {
+  border-radius: 0.35rem 0.35rem 0 0;
+}
+.card-header {
+  padding: 1rem 1.35rem;
+  margin-bottom: 0;
+  background-color: rgba(33, 40, 50, 0.03);
+  border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+}
+.form-control,
+.dataTable-input {
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #69707a;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #c5ccd6;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.nav-borders .nav-link.active {
+  color: #000000;
+  border-bottom-color: #000000;
+}
+.nav-borders .nav-link {
+  color: #69707a;
+  border-bottom-width: 0.125rem;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  letter-spacing: 0;
+  font-weight: 700;
 }
 .dashboard__container {
   height: 200vh;
@@ -1457,7 +1498,7 @@ p {
   color: #fffff0;
 }
 .body {
-  padding: 6rem 4rem;
+  padding: 0;
   margin: 0;
   background: #aedcee;
   background: radial-gradient(circle, rgba(174, 220, 238, 0) 0%, #94bbe9 100%);
@@ -1467,24 +1508,40 @@ p {
   display: flex;
   flex-direction: column;
 }
+@media screen and (min-width: 600px) {
+  .landing_text_photo {
+    display: flex;
+    flex-direction: column;
+  }
+  .section2_photos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+.landing_text_photo {
+  display: flex;
+  flex-direction: row;
+  padding: 6rem 4rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 .landing_header h1 {
   color: black;
   font-weight: 300;
   font-size: 7rem;
+  line-height: 6rem;
 }
 .landing_header p {
   color: black;
   font-family: "Oxygen";
-  font-weight: bold;
   font-size: 2rem;
-  line-height: 3.5rem;
-  padding-top: 1rem;
+  line-height: 3rem;
 }
 .landing_header p span {
   display: block;
   color: black;
   font-family: "Oxygen";
-  font-weight: bold;
   font-size: 2rem;
   line-height: 3.5rem;
 }
@@ -1492,7 +1549,7 @@ p {
   background-image: url("https://images.pexels.com/photos/7862657/pexels-photo-7862657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-size: cover;
   background-position: center;
-  max-width: 600px;
+  width: 600px;
   height: 400px;
   border-radius: 8px;
 }
@@ -1500,14 +1557,16 @@ p {
   padding-bottom: 3rem;
 }
 .section1-description {
-  padding-top: 3rem;
+  background-color: white;
+  background-size: cover;
+  padding: 6rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.section1-description h5 {
   font-size: 1.5rem;
   font-family: "Roboto";
   line-height: 1.5;
-  display: flex;
-  justify-content: center;
-  margin-left: 5rem;
-  margin-right: 5rem;
 }
 #section2 {
   padding-bottom: 3rem;
@@ -1518,6 +1577,8 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 .home_photo {
   background-image: url("https://images.pexels.com/photos/14401500/pexels-photo-14401500.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
@@ -1543,22 +1604,14 @@ p {
   height: 300px;
   border-radius: 8px;
 }
+.cover {
+  background-color: rgba(155, 155, 155, 0.6);
+  width: 100%;
+  height: 100%;
+}
 .links_container {
   margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-@media (min-width: 800px) {
-  article {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-  }
-}
-@media (min-width: 550px) {
-  article {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
 }

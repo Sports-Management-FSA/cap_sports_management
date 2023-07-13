@@ -9,6 +9,7 @@ const categoryRouter = require("./routes/category.js");
 const postRouter = require("./routes/post.js");
 const announcementsRouter = require("./routes/announcements");
 const messagesRouter = require("./routes/messages");
+const actionRouter = require("./routes/action.js")
 
 // Setting endpoints AFTER /api/
 router.use("/auth", authRouter);
@@ -20,6 +21,7 @@ router.use("/categories", categoryRouter);
 router.use("/posts", postRouter);
 router.use("/announcements", announcementsRouter);
 router.use("/messages", messagesRouter);
+router.use("/actions", actionRouter);
 
 router.get("/", (req, res, next) => {
    res.send("at /api");

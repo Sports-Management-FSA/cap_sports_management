@@ -17,7 +17,7 @@ const Nav = () => {
    };
 
    return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
          <div className="container-fluid">
             <Link to="/">
                <i className="fa-solid fa-people-group ms-5" style={{ color: "#ffffff" }}>
