@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginWithToken } from "../../store";
+import { loginWithToken, updateUser } from "../../store";
 
 const UserProfileAccountDetail = () => {
    const { auth } = useSelector(({ auth }) => ({ auth }));
@@ -35,13 +35,15 @@ const UserProfileAccountDetail = () => {
       }
    };
 
+   const handleSubmit = (ev) => {
+      ev.preventDefault();
+
+      dispatch(updateUser(formData));
+   };
+
    useEffect(() => {
       dispatch(loginWithToken());
    }, [dispatch]);
-
-   const handleSubmit = (ev) => {
-      ev.preventDefault();
-   };
 
    return (
       <div className="row">
