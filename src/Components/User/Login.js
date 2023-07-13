@@ -61,7 +61,7 @@ const Login = () => {
    return (
       <>
          {!loggedIn ? (
-            <section className="vh-100" style={{ backgroundColor: "#f6f3f3" }}>
+            <section className="vh-100" style={{ backgroundColor: "#f6f3f3", marginBottom: "1rem" }}>
                <div className="mask d-flex align-items-center h-100 py-5">
                   <div className="container py-5">
                      <form className="row d-flex justify-content-center align-items-center opacity-90 h-100">
