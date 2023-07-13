@@ -1066,6 +1066,13 @@ ALLENS Updates END .landing-matches-header h2 {
   letter-spacing: 0;
   font-weight: 700;
 }
+@media (max-width: 400px) {
+  .profile-page-container {
+    width: 80%;
+    height: 60%;
+    margin-bottom: 3rem;
+  }
+}
 .dashboard__container {
   height: 200vh;
   display: flex;
@@ -1570,17 +1577,33 @@ p {
 #section1 {
   padding-bottom: 3rem;
 }
-.section1-description {
-  background-color: white;
-  background-size: cover;
-  padding: 6rem;
-  display: flex;
-  justify-content: flex-start;
-}
 .section1-description h5 {
   font-size: 1.5rem;
   font-family: "Roboto";
-  line-height: 1.5;
+  line-height: 2.5;
+  font-weight: 300;
+}
+@media screen and (min-width: 800px) {
+  .about_section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .basketball_photo {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+.about_section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: white;
+  background-size: cover;
+  padding: 6rem;
+  gap: 2rem;
 }
 #section2 {
   padding-bottom: 3rem;

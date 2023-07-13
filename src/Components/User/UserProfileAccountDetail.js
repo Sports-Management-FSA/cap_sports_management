@@ -1,11 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginWithToken, updateUser } from "../../store";
+import validator from "validator";
+import { useNavigate } from "react-router-dom";
 
 const UserProfileAccountDetail = () => {
    const { auth } = useSelector(({ auth }) => ({ auth }));
+   const users = useSelector((state) => state.players.playerList);
    const fileInputRef = useRef(null);
    const dispatch = useDispatch();
+   const navigate = useNavigate();
+   const [formErrors, setFormErrors] = useState("");
+   const [showConfirmation, setShowConfirmation] = useState(false);
    const [formData, setFormData] = useState({
       username: auth.username || "",
       firstName: auth.firstName || "",
@@ -35,10 +41,57 @@ const UserProfileAccountDetail = () => {
       }
    };
 
+   // Form validation
+   const validateForm = () => {
+      const errors = {};
+
+      // Validate Email
+      if (formData.email.trim() === "") {
+         errors.email = "Email is required";
+      } else if (!validator.isEmail(formData.email)) {
+         errors.email = "Invalid email format";
+      } else {
+         if (formData.email !== auth.email && users.some((user) => user.email === formData.email)) {
+            errors.email = "Email already exists";
+         }
+      }
+
+      // Validate Username
+      if (formData.username.trim() === "") {
+         errors.username = "User name is required";
+      } else {
+         if (formData.username !== auth.username && users.some((user) => user.username === formData.username)) {
+            errors.username = "User name already exists";
+         }
+      }
+      setFormErrors(errors);
+
+      return errors;
+   };
    const handleSubmit = (ev) => {
       ev.preventDefault();
 
+      const validateErrors = validateForm();
+      if (Object.keys(validateErrors).length > 0) {
+         // Form has errors, prevent form submission
+         setFormErrors(validateErrors);
+         return;
+      }
+
+      setShowConfirmation(true);
+   };
+
+   const handleConfirmChanges = () => {
       dispatch(updateUser(formData));
+      setShowConfirmation(false);
+      // Close the modal and backdrop after user confirm
+      const modal = document.getElementById("confirmModal");
+      const backdrop = document.getElementsByClassName("modal-backdrop")[0];
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      backdrop.parentNode.removeChild(backdrop);
+      // Refresh Page after user confirm
+      navigate("/profile");
    };
 
    useEffect(() => {
@@ -81,13 +134,14 @@ const UserProfileAccountDetail = () => {
                               Username
                            </label>
                            <input
-                              className="form-control"
+                              className={`form-control ${formErrors.username ? "is-invalid" : ""}`}
                               type="text"
                               id="username"
                               placeholder="Username can not be empty"
                               value={formData.username}
                               onChange={handleInputChange}
                            />
+                           {formErrors && <div className="invalid-feedback">{formErrors.username}</div>}
                         </div>
                      </div>
                      <div className="row gx-3 mb-3">
@@ -124,22 +178,66 @@ const UserProfileAccountDetail = () => {
                               Email
                            </label>
                            <input
-                              className="form-control"
+                              className={`form-control ${formErrors.email ? "is-invalid" : ""}`}
                               type="email"
                               id="email"
                               placeholder="Email can not be empty"
                               value={formData.email}
                               onChange={handleInputChange}
                            />
+                           {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
                         </div>
                      </div>
                      <div>
-                        <button className="btn btn-outline-secondary">Save changes</button>
+                        {/* Button trigger modal */}
+                        <button
+                           type="button"
+                           className="btn btn-outline-secondary"
+                           data-bs-toggle="modal"
+                           data-bs-target="#confirmModal">
+                           Save Changes
+                        </button>
+
+                        {/* Modal */}
+                        <div
+                           className="modal fade"
+                           id="confirmModal"
+                           tabIndex="-1"
+                           aria-labelledby="modalLabel"
+                           aria-hidden="true">
+                           <div className="modal-dialog">
+                              <div className="modal-content">
+                                 <div className="modal-header">
+                                    <h1 className="modal-title fs-6" id="modalLabel" style={{ letterSpacing: "0" }}>
+                                       Confirm Changes
+                                    </h1>
+                                    <button
+                                       type="button"
+                                       className="btn-close"
+                                       data-bs-dismiss="modal"
+                                       aria-label="Close"></button>
+                                 </div>
+                                 <div className="modal-body">Are you sure you want to save the changes?</div>
+                                 <div className="modal-footer">
+                                    <button
+                                       type="button"
+                                       className="btn btn-secondary"
+                                       data-bs-dismiss="modal"
+                                       onClick={() => setShowConfirmation(false)}>
+                                       Close
+                                    </button>
+                                    <button type="button" className="btn btn-primary" onClick={handleConfirmChanges}>
+                                       Save changes
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                      </div>
                   </form>
                </div>
             </div>
-         </div>{" "}
+         </div>
       </div>
    );
 };
