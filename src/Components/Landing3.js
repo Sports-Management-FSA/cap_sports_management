@@ -19,14 +19,16 @@ const Landing3 = () => {
              <div className="landing_photo"></div> 
             </div>
 
+<div className="about_section">
+            <div className="basketball_photo"></div>
             <div className="section1-description">
-
                <h5>
                 Effortlessly create and manage leagues and teams, or
                seamlessly join existing ones. Engage in real-time communication, chat with fellow players, and stay
                connected to your community. Dive into comprehensive statistics and receive live updates on the latest
                game stats, keeping you at the forefront of every thrilling moment.
                </h5>
+            </div>
             </div>
             </div>
             </section>
