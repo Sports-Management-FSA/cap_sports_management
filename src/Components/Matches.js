@@ -60,7 +60,12 @@ const today = new Date();
                             </div>
                         )}
                         )}
-                    </div>:'No Matches to Display'}
+                    </div>
+                    :
+                    <div>
+                        <p>No Matches to Display</p>
+                    </div>
+                    }
                 </div>
             )
 }

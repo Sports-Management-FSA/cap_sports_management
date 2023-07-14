@@ -39,7 +39,9 @@ const Roster = (props) => {
     }
 
     return (
-            <table className="table">
+        <div>
+            {players.length > 0 ?
+           <table className="table">
                 <thead>
                     <tr className="table__header-container">
                         <th onClick={()=>sortTable("name")} className="table__header">Name</th>
@@ -56,7 +58,13 @@ const Roster = (props) => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> 
+            : 
+            <div>
+                <p>No Players to Display</p>
+            </div>
+            }
+        </div>
     );
 };
 
