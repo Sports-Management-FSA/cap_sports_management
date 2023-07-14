@@ -8,17 +8,11 @@ import validator from "validator";
 const CreateTeam = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const fileInputRef = useRef(null);
    const { id } = useParams();
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
-   const users = useSelector((state) => state);
-
-
-   console.log(league)
-
-   const fileInputRef = useRef(null);
-
-   console.log(users);
+   const players = useSelector((state) => state.players.playerList);
 
    const [teamName, setTeamName] = useState("");
    const [teamEmail, setTeamEmail] = useState("");
@@ -26,11 +20,18 @@ const CreateTeam = () => {
    const [teamLogo, setTeamLogo] = useState("");
    const [previewLogo, setPreviewLogo] = useState("");
    const [formErrors, setFormErrors] = useState("");
+   const [playerInput, setPlayerInput] = useState("");
+   const [playerEmailError, setPlayerEmailError] = useState("");
+   const [addedPlayers, setAddedPlayers] = useState([]);
 
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
    const handleTeamDescriptionChange = (e) => setTeamDescription(e.target.value);
-
+   const handlePlayerInputChange = (e) => setPlayerInput(e.target.value);
+   const handleRemovePlayer = (email) => {
+      const updatedPlayers = addedPlayers.filter((player) => player.email !== email);
+      setAddedPlayers(updatedPlayers);
+   };
 
    // Logo Upload Function
    const handleUploadButtonClick = () => fileInputRef.current.click();
@@ -94,6 +95,25 @@ const CreateTeam = () => {
       setTeamLogo("");
       setTeamDescription("");
       navigate(`/home`);
+   };
+
+   console.log(players);
+
+   const handleAddPlayer = (ev) => {
+      ev.preventDefault();
+      const emails = players.map((player) => player.email);
+
+      if (emails.includes(playerInput)) {
+         // Player email exists, add player to the table
+         const player = players.find((player) => player.email === playerInput);
+
+         setAddedPlayers([...addedPlayers, player]);
+         setPlayerInput("");
+         setPlayerEmailError("");
+      } else {
+         // Player email does not exist, set the error message
+         setPlayerEmailError("Player not found");
+      }
    };
 
    return (
@@ -165,29 +185,63 @@ const CreateTeam = () => {
                         </div>
 
                         <div className="row mt-3">
-                           <div className="col-sm-7">
-                              <h1 className="text-start ms-4 mt-4 text-uppercase">Roster</h1>
+                           <div className="col-sm-4">
+                              <h2 className="text-start ms-4 mt-4 text-uppercase">Invite Players</h2>
                            </div>
-                           <div className="col-sm-5 d-flex justify-content-end align-items-end">
-                              <input
-                                 type="text"
-                                 placeholder="Enter player's username or email"
-                                 className="form-control me-2 add-player"
-                              />
-                              <button className="btn btn-outline-secondary add-player add-player-button">Add</button>
+                           <div className="col-sm-8 d-flex justify-content-end align-items-end">
+                              <div className="position-relative">
+                                 <div className="d-flex">
+                                    <input
+                                       className={`form-control me-2 add-player ${
+                                          playerEmailError ? "is-invalid" : ""
+                                       }`}
+                                       type="text"
+                                       placeholder="Enter player's email"
+                                       value={playerInput}
+                                       onChange={handlePlayerInputChange}
+                                    />
+                                    <button
+                                       className="btn btn-outline-secondary add-player-button"
+                                       onClick={handleAddPlayer}>
+                                       Add
+                                    </button>
+                                    {playerEmailError && <div className="invalid-tooltip">{playerEmailError}</div>}
+                                 </div>
+                              </div>
                            </div>
                         </div>
                         <div className="row">
-                           <table className="table align-middle mb-0 bg-light">
-                              <thead className="bg-light">
-                                 <tr className="text-center">
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Action</th>
-                                 </tr>
-                              </thead>
-                           </table>
+                           {addedPlayers.length > 0 ? (
+                              <table className="table align-middle mb-0 bg-light">
+                                 <thead className="bg-light">
+                                    <tr className="text-center">
+                                       <th>Name</th>
+                                       <th>Email</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {addedPlayers.map((player) => (
+                                       <tr key={player.email} className="text-center">
+                                          <td>{`${
+                                             player.firstName.slice(0, 1).toUpperCase() + player.firstName.slice(1)
+                                          } ${
+                                             player.lastName.slice(0, 1).toUpperCase() + player.lastName.slice(1)
+                                          }`}</td>
+                                          <td>{player.email}</td>
+                                          <td>
+                                             <i
+                                                className="bi bi-x-circle"
+                                                role="button"
+                                                onClick={() => handleRemovePlayer(player.email)}></i>
+                                          </td>
+                                       </tr>
+                                    ))}
+                                 </tbody>
+                              </table>
+                           ) : (
+                              <p className="text-center text-dark mt-5">No players added yet.</p>
+                           )}
                         </div>
                         <hr className="mt-5" />
                         <div className="text-center">

@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
    return (
       <footer className="footer bg-dark">
-         <div
-            className="d-flex justify-content-between align-items-center py-4 flex-wrap"
-            style={{ width: "80%" }}>
+         <div className="d-flex justify-content-around align-items-center py-4 flex-wrap">
             <a href="/#" className="d-flex align-items-center text-decoration-none">
                <i className="fa-solid fa-people-group fs-6 text-decoration-none" style={{ color: "#ffffff" }}>
                   Podium
