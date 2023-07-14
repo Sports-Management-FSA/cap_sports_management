@@ -231,7 +231,7 @@ a {
   background-color: #112222;
 }
 .landing__header h1 {
-  color: #717171;
+  color: #ffffff;
   font-size: 6rem;
 }
 .landing__body-browse-header {
@@ -271,7 +271,7 @@ a {
   justify-content: space-between;
   align-items: flex-start;
   margin: 0;
-  width: 15rem;
+  width: 20rem;
   height: 17rem;
   border-radius: 1px;
   background-color: #2a5262;
@@ -279,22 +279,28 @@ a {
 .landing__card-image {
   margin-left: auto;
   margin-right: auto;
+  height: 50%;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  margin-left: 0.5rem;
 }
 .home-card-text-name {
   color: #fffff0;
   text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-left: 1rem;
+  font-weight: 800;
 }
 .landing__league-card-name-subtext {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-  line-height: 1px;
+  width: 100%;
+  line-height: 5px;
   font-weight: 100;
   font-size: 0.75rem;
-  color: #717171;
+  color: #ffffff;
 }
 .landing__body-browse-leagues::-webkit-scrollbar {
   width: 10px;
@@ -486,12 +492,10 @@ ALLENS Updates END .landing-matches-header h2 {
   margin-top: 1rem;
 }
 .home-popular h3 {
-  color: black;
+  color: #fffff0;
+  font-weight: 600;
   margin-bottom: 2px;
-  text-decoration: underline;
-  text-decoration-color: #008f99;
   text-decoration-skip-ink: none;
-  text-decoration-thickness: 2px;
 }
 .home-popular-cards {
   display: flex;
@@ -516,6 +520,15 @@ ALLENS Updates END .landing-matches-header h2 {
   justify-content: space-between;
   margin: 20 15 30 15;
   background-color: #112222;
+}
+.home-leagues-header-left h1 {
+  color: #fffff0;
+}
+.home-leagues-header-right {
+  color: #fffff0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 .home-leagues-cards {
   grid-template-rows: 2rem;
@@ -683,8 +696,11 @@ ALLENS Updates END .landing-matches-header h2 {
 .item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 3rem;
   margin-left: 1rem;
+}
+.item-link {
+  text-decoration: none;
 }
 .item:hover {
   cursor: pointer;
@@ -721,17 +737,33 @@ ALLENS Updates END .landing-matches-header h2 {
   cursor: pointer;
   transform: scale(1.1);
 }
+.announcements__container {
+  height: 50rem;
+  overflow-y: scroll;
+}
 .announcements__post {
   background-color: #2a5262;
   border-radius: 2px;
   margin: 2rem 1rem 1rem 1rem;
   padding-left: 0.5rem;
+  padding-top: 0.5rem;
+}
+.post-header {
+  color: #fffff0;
+}
+.post-content {
+  margin-left: 0.5rem;
+  font-weight: 200;
 }
 .post-bottom {
   margin: 1rem;
 }
 .post-bottom span {
   margin-right: 1rem;
+}
+.post-likescomments {
+  display: flex;
+  gap: 1rem;
 }
 .rightnav-container {
   position: sticky;
@@ -1446,7 +1478,7 @@ p {
 }
 .leagues-table-row:hover {
   background-color: #386e84;
-  color: lightgrey;
+  color: #717171;
 }
 .leagues-table-header {
   color: #fffff0;

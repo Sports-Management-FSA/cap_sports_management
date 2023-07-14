@@ -1,8 +1,23 @@
+.announcements__container {
+    height: 50rem;
+    overflow-y: scroll;
+}
+
 .announcements__post {
     background-color: @dark-background-secondary;
     border-radius: 2px;
     margin: 2rem 1rem 1rem 1rem;
     padding-left: .5rem;
+    padding-top: .5rem;
+}
+
+.post-header {
+    color: @dark-font-primary;
+}
+
+.post-content {
+    margin-left: .5rem;
+    font-weight: 200;
 }
 
 .post-bottom {
@@ -10,4 +25,10 @@
 }
 .post-bottom span {
     margin-right: 1rem;
+}
+
+.post-likescomments {
+    display: flex;
+    gap: 1rem;
+    
 }

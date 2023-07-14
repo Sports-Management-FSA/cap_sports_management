@@ -63,14 +63,14 @@ const Home2 = () => {
          <div className="home-leagues">
             <div className="home-leagues-header">
                <div className="home-leagues-header-left">
-                  <div>
+
                      <h1>Leagues</h1>
-                  </div>
+      
                   <div className="search-bar">
                      <input placeholder="Search Leagues" />
                   </div>
                </div>
-               <Link to="/createleague" style={{ textDecoration: 'none' }}>Create League</Link>
+               <Link className="home-leagues-header-right" to="/createleague" style={{ textDecoration: 'none' }}>Create A League</Link>
             </div>
             {topCategories.map((category, index)=>(
             <div key={category.id}>
@@ -84,12 +84,14 @@ const Home2 = () => {
                      {category.leagues.map((league) => (
                         <div className="landing__browse-league-card" key={league.id}>
                            <img  className="landing__card-image" src={league.logo} width="90" height="80" alt="Image" />
-                           <div className="landing__league-card-name">
-                              <Link to={`/league/${league.id}`} className="home-card-text-name">{league.name}</Link>
-                           </div>
-                           <div className="landing__league-card-name-subtext">
-                              <p>Season: {league.season}</p>
-                              <p>{league.teams.length} Teams</p>
+                           <div className="card-body">
+                              <div className="landing__league-card-name">
+                                 <Link to={`/league/${league.id}`} className="home-card-text-name">{league.name}</Link>
+                              </div>
+                              <div className="landing__league-card-name-subtext">
+                                 <p>Season: {league.season}</p>
+                                 <p>{league.teams.length} Teams</p>
+                              </div>
                            </div>
                         </div>
                      ))}
