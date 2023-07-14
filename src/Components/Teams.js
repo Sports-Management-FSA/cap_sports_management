@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Teams = (props) => {
     const {teams} = props;
-    
+
     return (
         <table className="table">
             <thead>
@@ -15,12 +15,12 @@ const Teams = (props) => {
             <tbody className="table__body-container">
            {
             teams.map(team=>{
-                const players = team.users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) !== null)
+                const numPlayers = team.user_teamRoles.filter(player=>(player.teamRole.name == 'player')).length;
                 return(
                         <tr key={team.id}>
                             <td className="table__cell"><img src={window.location.origin + `${team.logo}`} width="20" height="10" alt="Image" /> </td>
                             <td className="table__cell">{team.name}</td>
-                            <td className="table__cell">{players.length}</td>
+                            <td className="table__cell">{numPlayers}</td>
                         </tr>
                 )
             })
