@@ -8,12 +8,11 @@ import validator from "validator";
 const CreateTeam = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const fileInputRef = useRef(null);
    const { id } = useParams();
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
-
-   console.log(league)
-   const fileInputRef = useRef(null);
+   const players = useSelector((state) => state.players.playerList);
 
    const [teamName, setTeamName] = useState("");
    const [teamEmail, setTeamEmail] = useState("");
@@ -21,11 +20,18 @@ const CreateTeam = () => {
    const [teamLogo, setTeamLogo] = useState("");
    const [previewLogo, setPreviewLogo] = useState("");
    const [formErrors, setFormErrors] = useState("");
+   const [playerInput, setPlayerInput] = useState("");
+   const [playerEmailError, setPlayerEmailError] = useState("");
+   const [addedPlayers, setAddedPlayers] = useState([]);
 
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
    const handleTeamDescriptionChange = (e) => setTeamDescription(e.target.value);
-
+   const handlePlayerInputChange = (e) => setPlayerInput(e.target.value);
+   const handleRemovePlayer = (email) => {
+      const updatedPlayers = addedPlayers.filter((player) => player.email !== email);
+      setAddedPlayers(updatedPlayers);
+   };
 
    // Logo Upload Function
    const handleUploadButtonClick = () => fileInputRef.current.click();
@@ -88,95 +94,165 @@ const CreateTeam = () => {
       setTeamEmail("");
       setTeamLogo("");
       setTeamDescription("");
-      navigate(`/league/${id}`);
+      navigate(`/home`);
+   };
+
+   console.log(players);
+
+   const handleAddPlayer = (ev) => {
+      ev.preventDefault();
+      const emails = players.map((player) => player.email);
+
+      if (emails.includes(playerInput)) {
+         // Player email exists, add player to the table
+         const player = players.find((player) => player.email === playerInput);
+
+         setAddedPlayers([...addedPlayers, player]);
+         setPlayerInput("");
+         setPlayerEmailError("");
+      } else {
+         // Player email does not exist, set the error message
+         setPlayerEmailError("Player not found");
+      }
    };
 
    return (
-      <section className="vh-100">
-         <div className="d-flex align-items-center h-100">
-            <div className="container py-5">
-               <form onSubmit={handleSubmit}>
-                  <div className="row d-flex justify-content-center align-items-center opacity-90 h-100">
-                     <div className="col-sm-11 col-md-11 col-lg-10">
-                        <div className="card create-team-card">
-                           <h3 className="text-center mt-4 create-team-leagueName">{league?.name.toUpperCase()}</h3>
-                           <div className="row-col-2 d-flex justify-content-center">
-                              <img src={league?.logo} alt="leagueLogo" className="create-team-leagueLogo" />
+      <div className="container create-team-form p-5">
+         <form onSubmit={handleSubmit}>
+            <div className="row d-flex justify-content-center align-items-center opacity-90 vh-100">
+               <div className="col-11">
+                  <div className="card create-team-card">
+                     <h1 className="text-center mt-4 text-uppercase">Create Team</h1>
+                     <p className="mb-3 create-team-title text-center">Assemble Your Winning Team Today!</p>
+                     <div className="row-col-2 d-flex justify-content-center"></div>
+                     <hr />
+                     <div className="card-body">
+                        <div className="row justify-content-around">
+                           <div className="col-lg-6 col-sm-5 my-auto text-center">
+                              <img
+                                 className="rounded-circle mb-2 league-logo"
+                                 src={previewLogo || "static/images/camera.svg"}
+                                 alt="teamLogo"
+                              />
+                              <div className="small font-italic text-muted mb-3">JPG or PNG no larger than 5 MB</div>
+                              <button
+                                 className="btn btn-outline-secondary"
+                                 type="button"
+                                 onClick={handleUploadButtonClick}>
+                                 Upload
+                              </button>
+                              <input
+                                 type="file"
+                                 id="uploadInput"
+                                 className="d-none"
+                                 ref={fileInputRef}
+                                 onChange={handleFileInputChange}
+                              />
                            </div>
-                           <hr />
-                           <div className="card-body">
-                              <div className="row">
-                                 <p className="mb-3 create-team-title text-center">Assemble Your Winning Team Today!</p>
-                              </div>
-                              <div className="row justify-content-around">
-                                 <div className="col-lg-6 col-sm-5 my-auto text-center">
-                                    <img
-                                       className="rounded-circle mb-2 league-logo"
-                                       src={previewLogo || "static/images/camera.svg"}
-                                       alt="teamLogo"
-                                    />
-                                    <div className="small font-italic text-muted mb-3">
-                                       JPG or PNG no larger than 5 MB
-                                    </div>
-                                    <button
-                                       className="btn btn-outline-secondary"
-                                       type="button"
-                                       onClick={handleUploadButtonClick}>
-                                       Upload
-                                    </button>
+                           <div className="col-lg-4 col-sm-7">
+                              <label htmlFor="teamName" className="form-label text-dark mt-2">
+                                 Team Name
+                              </label>
+                              <input
+                                 className={`form-control ${formErrors.teamName ? "is-invalid" : ""}`}
+                                 type="text"
+                                 id="teamName"
+                                 value={teamName}
+                                 onChange={handleTeamNameChange}
+                              />
+                              {formErrors && <div className="invalid-feedback">{formErrors.teamName}</div>}
+                              <label htmlFor="email" className="form-label text-dark mt-2">
+                                 Contact Email
+                              </label>
+                              <input
+                                 className={`form-control ${formErrors.teamEmail ? "is-invalid" : ""}`}
+                                 type="email"
+                                 id="email"
+                                 value={teamEmail}
+                                 onChange={handleTeamEmailChange}
+                              />
+                              {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
+                              <label className="form-label mt-2" htmlFor="teamDescription">
+                                 Team Description
+                              </label>
+                              <textarea
+                                 className="form-control"
+                                 id="teamDescription"
+                                 rows="3"
+                                 value={teamDescription}
+                                 onChange={handleTeamDescriptionChange}></textarea>
+                           </div>
+                        </div>
+
+                        <div className="row mt-3">
+                           <div className="col-sm-4">
+                              <h2 className="text-start ms-4 mt-4 text-uppercase">Invite Players</h2>
+                           </div>
+                           <div className="col-sm-8 d-flex justify-content-end align-items-end">
+                              <div className="position-relative">
+                                 <div className="d-flex">
                                     <input
-                                       type="file"
-                                       id="uploadInput"
-                                       className="d-none"
-                                       ref={fileInputRef}
-                                       onChange={handleFileInputChange}
-                                    />
-                                 </div>
-                                 <div className="col-lg-4 col-sm-7">
-                                    <label htmlFor="teamName" className="form-label text-dark mt-2">
-                                       Team Name
-                                    </label>
-                                    <input
-                                       className={`form-control ${formErrors.teamName ? "is-invalid" : ""}`}
+                                       className={`form-control me-2 add-player ${
+                                          playerEmailError ? "is-invalid" : ""
+                                       }`}
                                        type="text"
-                                       id="teamName"
-                                       value={teamName}
-                                       onChange={handleTeamNameChange}
+                                       placeholder="Enter player's email"
+                                       value={playerInput}
+                                       onChange={handlePlayerInputChange}
                                     />
-                                    {formErrors && <div className="invalid-feedback">{formErrors.teamName}</div>}
-                                    <label htmlFor="email" className="form-label text-dark">
-                                       Email
-                                    </label>
-                                    <input
-                                       className={`form-control ${formErrors.teamEmail ? "is-invalid" : ""}`}
-                                       type="email"
-                                       id="email"
-                                       value={teamEmail}
-                                       onChange={handleTeamEmailChange}
-                                    />
-                                    {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
-                                    <label className="form-label" htmlFor="teamDescription">
-                                       Team Description
-                                    </label>
-                                    <textarea
-                                       className="form-control"
-                                       id="teamDescription"
-                                       rows="3"
-                                       value={teamDescription}
-                                       onChange={handleTeamDescriptionChange}></textarea>
+                                    <button
+                                       className="btn btn-outline-secondary add-player-button"
+                                       onClick={handleAddPlayer}>
+                                       Add
+                                    </button>
+                                    {playerEmailError && <div className="invalid-tooltip">{playerEmailError}</div>}
                                  </div>
-                              </div>
-                              <div className="text-center">
-                                 <button className="btn btn-outline-secondary mt-4">Create</button>
                               </div>
                            </div>
                         </div>
+                        <div className="row">
+                           {addedPlayers.length > 0 ? (
+                              <table className="table align-middle mb-0 bg-light">
+                                 <thead className="bg-light">
+                                    <tr className="text-center">
+                                       <th>Name</th>
+                                       <th>Email</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {addedPlayers.map((player) => (
+                                       <tr key={player.email} className="text-center">
+                                          <td>{`${
+                                             player.firstName.slice(0, 1).toUpperCase() + player.firstName.slice(1)
+                                          } ${
+                                             player.lastName.slice(0, 1).toUpperCase() + player.lastName.slice(1)
+                                          }`}</td>
+                                          <td>{player.email}</td>
+                                          <td>
+                                             <i
+                                                className="bi bi-x-circle"
+                                                role="button"
+                                                onClick={() => handleRemovePlayer(player.email)}></i>
+                                          </td>
+                                       </tr>
+                                    ))}
+                                 </tbody>
+                              </table>
+                           ) : (
+                              <p className="text-center text-dark mt-5">No players added yet.</p>
+                           )}
+                        </div>
+                        <hr className="mt-5" />
+                        <div className="text-center">
+                           <button className="btn btn-outline-secondary mt-4">Create</button>
+                        </div>
                      </div>
                   </div>
-               </form>
+               </div>
             </div>
-         </div>
-      </section>
+         </form>
+      </div>
    );
 };
 
