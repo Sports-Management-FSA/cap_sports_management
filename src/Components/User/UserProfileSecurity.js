@@ -14,14 +14,31 @@ const UserProfileSecurity = () => {
    const handleInputChange = (ev) => {
       setFormData({ ...formData, [ev.target.id]: ev.target.value });
    };
+
+   // Form validation
+   const validateForm = () => {
+      const errors = {};
+
+      if (formData.newPassword !== formData.confirmPassword) {
+         errors.newPassword = "New password and confirm password do not match";
+      }
+
+      return errors;
+   };
+
    const handleSubmit = (ev) => {
       ev.preventDefault();
 
-      if (formData.newPassword !== formData.confirmPassword) {
-         setFormErrors("New password and confirm password do not match");
+      const validateErrors = validateForm();
+      if (Object.keys(validateErrors).length > 0) {
+         // Form has errors, prevent form submission
+         setFormErrors(validateErrors);
          return;
       }
+      setShowConfirmation(true);
+   };
 
+   const handleConfirmChanges = () => {
       dispatch(
          updatePassword({
             currentPassword: formData.currentPassword,
@@ -36,6 +53,15 @@ const UserProfileSecurity = () => {
             // Handle error
             setFormErrors(error.message);
          });
+      setShowConfirmation(false);
+      // Close the modal and backdrop after user confirm
+      const modal = document.getElementById("confirmModal");
+      const backdrop = document.getElementsByClassName("modal-backdrop")[0];
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      backdrop.parentNode.removeChild(backdrop);
+      // Refresh Page after user confirm
+      navigate("/");
    };
 
    return (
@@ -50,41 +76,83 @@ const UserProfileSecurity = () => {
                            Current Password
                         </label>
                         <input
-                           className="form-control"
+                           className={`form-control ${formErrors.currentPassword ? "is-invalid" : ""}`}
                            type="password"
                            id="currentPassword"
                            placeholder="Enter current password"
                            onChange={handleInputChange}
                         />
+                        {formErrors && <div className="invalid-feedback">{formErrors.currentPassword}</div>}
                      </div>
-                     {formErrors && <div className="text-danger">{formErrors}</div>}
                      <div className="mb-3">
                         <label className="small mb-1" htmlFor="newPassword">
                            New Password
                         </label>
                         <input
-                           className="form-control"
+                           className={`form-control ${formErrors.newPassword ? "is-invalid" : ""}`}
                            type="password"
                            id="newPassword"
                            placeholder="Enter new password"
                            onChange={handleInputChange}
                         />
+                        {formErrors && <div className="invalid-feedback">{formErrors.newPassword}</div>}
                      </div>
                      <div className="mb-3">
                         <label className="small mb-1" htmlFor="confirmPassword">
                            Confirm Password
                         </label>
                         <input
-                           className="form-control"
+                           className={`form-control ${formErrors.newPassword ? "is-invalid" : ""}`}
                            type="password"
                            id="confirmPassword"
                            placeholder="Confirm New Password"
                            onChange={handleInputChange}
                         />
+                        {formErrors && <div className="invalid-feedback">{formErrors.newPassword}</div>}
                      </div>
-                     {formErrors && <div className="text-danger">{formErrors}</div>}
                      <div>
-                        <button className="btn btn-outline-secondary">Save</button>
+                        <button
+                           type="button"
+                           className="btn btn-outline-secondary"
+                           data-bs-toggle="modal"
+                           data-bs-target="#confirmModal">
+                           Save
+                        </button>
+                     </div>
+                     {/* Modal */}
+                     <div
+                        className="modal fade"
+                        id="confirmModal"
+                        tabIndex="-1"
+                        aria-labelledby="modalLabel"
+                        aria-hidden="true">
+                        <div className="modal-dialog">
+                           <div className="modal-content">
+                              <div className="modal-header">
+                                 <h1 className="modal-title fs-6" id="modalLabel" style={{ letterSpacing: "0" }}>
+                                    Confirm Changes
+                                 </h1>
+                                 <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                              </div>
+                              <div className="modal-body">Are you sure you want to save the changes?</div>
+                              <div className="modal-footer">
+                                 <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                    onClick={() => setShowConfirmation(false)}>
+                                    Close
+                                 </button>
+                                 <button type="button" className="btn btn-primary" onClick={handleConfirmChanges}>
+                                    Save changes
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
                      </div>
                   </form>
                </div>
