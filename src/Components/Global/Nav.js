@@ -39,8 +39,8 @@ const Nav = () => {
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
                   {auth?.username ? (
                      <>
-                        <span className="text-white align-middle">
-                           Welcome! {`${auth.username[0].toUpperCase()}${auth.username.slice(1)}`}
+                        <span className="text-white align-middle" style={{ letterSpacing: "0", fontSize: "14px" }}>
+                           Welcome! {auth.username}
                         </span>
                         <li className="nav-item dropdown">
                            <a

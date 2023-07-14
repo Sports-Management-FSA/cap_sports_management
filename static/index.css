@@ -685,12 +685,6 @@ ALLENS Updates END .landing-matches-header h2 {
 .stats-main {
   margin: 1rem;
 }
-.stats-content-body {
-  margin: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .stats--navbar-items {
   display: flex;
   flex-direction: row;
@@ -771,6 +765,7 @@ ALLENS Updates END .landing-matches-header h2 {
 /* ---------- NavBar Customization ---------- */
 .navbar-tab {
   letter-spacing: 0px;
+  font-size: 14px;
 }
 /* Hide the dropdown arrow below icon */
 .caret-off::before {
@@ -848,6 +843,8 @@ ALLENS Updates END .landing-matches-header h2 {
 /* ---------- Login Customization ---------- */
 .forgot-password {
   text-decoration: none;
+  letter-spacing: 0;
+  font-size: 14px;
 }
 .forgot-password:hover {
   font-size: 16px;
@@ -856,6 +853,8 @@ ALLENS Updates END .landing-matches-header h2 {
 }
 .sign-up {
   text-decoration: none;
+  letter-spacing: 0;
+  font-size: 14px;
 }
 .sign-up:hover {
   font-size: 18px;
@@ -866,14 +865,40 @@ ALLENS Updates END .landing-matches-header h2 {
   font-size: 20px;
   transition: 0.3s;
 }
+@media (max-width: 400px) {
+  .forgot-password {
+    font-size: 10px;
+  }
+}
 /* ---------- Register Customization ---------- */
 .register-login {
   text-decoration: none;
+  color: black;
 }
-.register-login:hover {
+.register-login-here:hover {
   text-decoration: underline;
-  font-size: 18px;
+  font-size: 16px;
   transition: 0.3s;
+}
+.register-login-here {
+  color: black;
+  letter-spacing: 0;
+  font-size: 14px;
+}
+.register-account-paragraph {
+  letter-spacing: 0;
+  font-size: 14px;
+}
+@media (max-width: 400px) {
+  .register-header {
+    font-size: 14px;
+  }
+  .register-account-paragraph {
+    font-size: 10px;
+  }
+  .register-login-here {
+    font-size: 9px;
+  }
 }
 .request-modal-container {
   width: 100%;
@@ -1064,11 +1089,18 @@ ALLENS Updates END .landing-matches-header h2 {
   letter-spacing: 0;
   font-weight: 700;
 }
+.user-security-pargraph {
+  letter-spacing: 0;
+  font-size: 14px;
+}
 @media (max-width: 400px) {
   .profile-page-container {
     width: 80%;
     height: 60%;
     margin-bottom: 3rem;
+  }
+  .user-security-pargraph {
+    font-size: 10px;
   }
 }
 .dashboard__container {
@@ -1126,6 +1158,7 @@ ALLENS Updates END .landing-matches-header h2 {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  margin-right: 3rem;
   margin-left: 3rem;
 }
 .dashboard__main-header {
@@ -1146,6 +1179,7 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   flex-direction: row;
   gap: 5rem;
+  margin: 5rem;
 }
 @media (max-width: 1800) {
   .main-body-upper {
@@ -1211,6 +1245,7 @@ ALLENS Updates END .landing-matches-header h2 {
 .dashboard__main-content {
   display: flex;
   margin-left: 5rem;
+  margin-right: 5rem;
   margin-top: 5rem;
   height: 50vh;
 }
@@ -1365,7 +1400,8 @@ span {
   justify-content: space-between;
   flex-direction: column;
 }
-.inbox__content h6 {
+.inbox__content h4,
+p {
   color: #fffff0;
   font-weight: 600;
 }
@@ -1516,14 +1552,6 @@ span {
   font-weight: 800;
   color: #fffff0;
 }
-* {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
 .body {
   padding: 0;
   margin: 0;
@@ -1647,33 +1675,38 @@ span {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
+}
+.home_photo span {
+  display: block;
 }
 .photo-caption {
-  position: absolute;
   text-decoration: none;
   color: white;
   font-weight: 600;
   font-size: 1.5rem;
-  top: 60%;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
   padding: 0 0 0 5px;
-  transition: transform 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
   display: block;
+  text-align: center;
 }
 .photo-caption:hover {
-  transform: scale(1.02);
+  font-size: 2rem;
 }
 .photo-overlay {
   background-color: rgba(155, 155, 155, 0.6);
   width: 100%;
   height: 100%;
-  position: absolute;
   transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px;
 }
 .home_photo:hover .photo-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .leagues_photo {
   background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
@@ -1684,9 +1717,10 @@ span {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
 }
 .leagues_photo:hover .photo-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .scorekeeper_photo {
   background-image: url("https://images.pexels.com/photos/209832/pexels-photo-209832.jpeg");
@@ -1697,9 +1731,13 @@ span {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
+}
+.scorekeeper_photo span {
+  display: block;
 }
 .scorekeeper_photo:hover .photo-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .cover {
   display: flex;
@@ -1719,4 +1757,16 @@ span {
   color: white;
   font-size: 2rem;
   line-height: 2.5rem;
+}
+.sports_icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.sports_icons div {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-align: center;
 }

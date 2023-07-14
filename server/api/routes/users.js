@@ -46,16 +46,17 @@ router.post("/", async (req, res, next) => {
 });
 
 router.delete("/:id", async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.id);
-    user.destroy();
-    res.send(user);
-  } catch (err) {
-    next();
-  }
+   try {
+      const user = await User.findByPk(req.params.id);
+      user.destroy();
+      res.send(user);
+   } catch (err) {
+      next();
+   }
 });
 
 router.put("/:id", async (req, res, next) => {
+  console.log("FROM API", req.body)
   try {
     const user = await User.findByPk(req.params.id);
     if(req.body.role){
