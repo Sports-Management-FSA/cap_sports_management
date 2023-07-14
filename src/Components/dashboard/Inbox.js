@@ -9,8 +9,10 @@ const Inbox = () => {
     const dispatch = useDispatch();
     const [selectedMessage, setSelectedMessage] = useState(null);
     const allMessages = useSelector(state => state.joinRequests.messagesList);
+    const activeMessages = allMessages.filter(message => message.isActive == true);
     const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
-    const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId && message.isActive));
+    const matchedMessages = activeMessages.filter(message => userLeagueIds.includes(message.leagueId));
+    console.log(matchedMessages);
 
     const leagues = useSelector((state) => state.leagues.leaguesList);
 

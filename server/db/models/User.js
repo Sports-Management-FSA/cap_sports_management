@@ -182,6 +182,10 @@ User.findByToken = async function (token) {
     const { id } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await this.findByPk(id, {
       include: [
+        conn.models.teamRoles,
+        conn.models.team,
+        conn.models.leagueRoles,
+        conn.models.league,
         {model: User_LeagueRoles, include: [League, LeagueRoles]},
         {model: User_TeamRoles, include: [Team, TeamRoles]},
         {model: Scorekeeper, include: [Actions, Team, Match]},
