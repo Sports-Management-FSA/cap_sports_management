@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const initialState = {};
-
 export const fetchAllMessages = createAsyncThunk("fetchAllMessages", async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/api/messages');
@@ -39,20 +37,68 @@ export const deleteMessage = createAsyncThunk('deleteMessage', async(messageId, 
     }
 })
 
+export const updateMessage = createAsyncThunk("updateMessage", async (formData, { rejectWithValue }) => {
+    const { id } = formData;
+    try {
+       const response = await axios.put(`/api/messages/${id}`, formData);
+       return response.data;
+    } catch (ex) {
+       return rejectWithValue(ex.response.data);
+    }
+ });
+
 const joinRequestSlice = createSlice({
     name: "requestMessages",
-    initialState,
+    initialState: {
+        messagesList: [],
+        loading: false,
+        error: null
+    },
     reducers: {},
     extraReducers: (builder) => {
         builder
+        .addCase(fetchAllMessages.pending, (state) => {
+            state.loading = true;
+        })
         .addCase(fetchAllMessages.fulfilled, (state, action) => {
-            return action.payload;
+            
+            state.loading = false;
+            state.messagesList.push(...action.payload);
+        })
+        .addCase(fetchAllMessages.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        .addCase(addMessage.pending, (state) => {
+            state.loading = true
         })
         .addCase(addMessage.fulfilled, (state, action) => {
-            return action.payload;
+            state.loading = false;
+            state.messagesList.push(action.payload);
         })
-        .addCase(deleteMessage.fulfilled, (state, action) =>{
-            return action.payload;
+        .addCase(addMessage.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        .addCase(deleteMessage.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(deleteMessage.fulfilled, (state, action) => {
+            state.loading = false;
+            state.messagesList.map(Message => Message.id !== action.payload.id ? Message : action.payload);
+        })
+        .addCase(deleteMessage.rejected, (state, action) => {
+            state.error = action.error.message;
+        })
+        .addCase(updateMessage.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(updateMessage.fulfilled, (state, action) => {
+            state.loading = false;
+            state.messagesList.map(Message => Message.id !== action.payload.id ? Message : action.payload);
+        })
+        .addCase(updateMessage.rejected, (state, action) => {
+            state.error = action.error.message;
         })
     }
 })

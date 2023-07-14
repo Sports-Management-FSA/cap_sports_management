@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages } from '../../store';
+import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages, updatePlayer, updateTeam } from '../../store';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 const Inbox = () => {
 
     const dispatch = useDispatch();
     const [selectedMessage, setSelectedMessage] = useState(null);
-    const allMessages = useSelector(state => state.joinRequests);
+    const allMessages = useSelector(state => state.joinRequests.messagesList);
     const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
     const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId));
 
     const leagues = useSelector((state) => state.leagues.leaguesList);
-    console.log(matchedMessages)
-    
-
 
     useEffect(() => {
         
@@ -31,15 +28,21 @@ const Inbox = () => {
             const team = {
                 name: message.teamName,
                 email: message.teamEmail,
-                leagueId: message.leagueId
+                leagueId: message.leagueId,
+                teamId: message.teamId,
             }
             console.log('this is a team, sent from handleapprove');
-            dispatch(addTeam(team));
+            dispatch(updateTeam(team));
         } else {
             console.log('this is a player request')
+            const desiredTeam = leagues.find(league=>league.id == message.leagueId).teams.find(team=>team.name == message.desiredTeam);
+            const role = {
+                teamId: desiredTeam.id,
+                teamRoleId: 1,
+            }
+            dispatch(updatePlayer({id: message.userId, role: role}));
         }
-
-        
+        //do something with message, delete or archive?
     }
 
     const handleDecline = (id) => {

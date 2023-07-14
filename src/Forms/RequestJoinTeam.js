@@ -9,6 +9,9 @@ const RequestJoinTeam = () => {
    const dispatch = useDispatch();
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
+   const team = {id:5};
+   const {auth} = useSelector((state)=>state);
+   console.log(auth);
 
    const [teamMessageUserName, setTeamMessageUserName] = useState("");
    const [teamMessageTeamName, setTeamMessageTeamName] = useState("");
@@ -60,7 +63,8 @@ const RequestJoinTeam = () => {
          description: teamMessageSummary,
          teamName: teamMessageTeamName,
          teamEmail: teamMessageEmail,
-         leagueId: id
+         leagueId: id,
+         teamId: team.id,
       };
 
       console.log(newMessageData);

@@ -23,13 +23,19 @@ Match.belongsTo(League);
 Category.hasMany(League);
 League.belongsTo(Category);
 
-//many to many
+//super many to many
 User.belongsToMany(LeagueRoles, {through: { model: User_LeagueRoles, unique: false },});
 LeagueRoles.belongsToMany(User, {through: { model: User_LeagueRoles, unique: false },});
 League.belongsToMany(LeagueRoles, {through: { model: User_LeagueRoles, unique: false },});
 LeagueRoles.belongsToMany(League, {through: { model: User_LeagueRoles, unique: false },});
 User.belongsToMany(League, {through: { model: User_LeagueRoles, unique: false },});
 League.belongsToMany(User, {through: { model: User_LeagueRoles, unique: false },});
+League.hasMany(User_LeagueRoles);
+User.hasMany(User_LeagueRoles);
+LeagueRoles.hasMany(User_LeagueRoles);
+User_LeagueRoles.belongsTo(User);
+User_LeagueRoles.belongsTo(League);
+User_LeagueRoles.belongsTo(LeagueRoles);
 
 //super many to many
 User.belongsToMany(TeamRoles, {through: { model: User_TeamRoles, unique: false },});
@@ -38,6 +44,14 @@ Team.belongsToMany(TeamRoles, {through: { model: User_TeamRoles, unique: false }
 TeamRoles.belongsToMany(Team, {through: { model: User_TeamRoles, unique: false },});
 User.belongsToMany(Team, { through: { model: User_TeamRoles, unique: false } });
 Team.belongsToMany(User, { through: { model: User_TeamRoles, unique: false } });
+Team.hasMany(User_TeamRoles);
+User.hasMany(User_TeamRoles);
+TeamRoles.hasMany(User_TeamRoles);
+User_TeamRoles.belongsTo(User);
+User_TeamRoles.belongsTo(Team);
+User_TeamRoles.belongsTo(TeamRoles);
+
+//super many to many
 User.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
 Actions.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
 Match.belongsToMany(Actions, {through: { model: Scorekeeper, unique: false },});
@@ -47,6 +61,8 @@ Match.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
 Team.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
 Actions.belongsToMany(Team, { through: { model: Scorekeeper, unique: false } });
 Match.hasMany(Scorekeeper);
+Team.hasMany(Scorekeeper);
+User.hasMany(Scorekeeper);
 Scorekeeper.belongsTo(Actions);
 Scorekeeper.belongsTo(User);
 Scorekeeper.belongsTo(Team);
@@ -220,6 +236,14 @@ const syncAndSeed = async () => {
       logo: '/static/images/mlb.png',
       leagueId: 1,
     })
+
+    await Team.create({
+      name:'Team No League',
+      season: 'Spring',
+      email: 'regular022@gmail.com',
+      logo: '/static/images/mlb.png',
+    })
+
     await Team.create({
       name:'2 Team',
       season: 'Spring',
@@ -532,11 +556,9 @@ const syncAndSeed = async () => {
     await han.addTeamRole(player, {through: {teamId: 7}})
     await hunt.addTeamRole(player, {through: {teamId: 8}})
     await har.addTeamRole(player, {through: {teamId: 9}})
-    await larry.addTeamRole(player, {throught: {teamId: 7}})
-    await larry.addTeamRole(player, {throught: {teamId: 4}})
-    await larry.addTeamRole(player, {throught: {teamId: 3}})
-    await larry.addTeamRole(player, {throught: {teamId: 39}})
-    
+    await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 7});
+    await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 4});
+    await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 3});
     //add teams to matches
     await match1.addTeam([team1, team2]); //league 1
     await match2.addTeam([team4, team5]); //league 2
@@ -584,12 +606,12 @@ const syncAndSeed = async () => {
     await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
 
     //add messages to leagues
-    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 5, teamEmail: "sean1322@yahoo.com", teamName: "The Seans"});
-    await Messages.create({name: "Bob" , subjectLine: "Interested in your league", description: "Hi! Whats the requirements", leagueId: 5, teamEmail: "bob4523@yahoo.com", teamName: "The Winner"});
-    await Messages.create({name: "Miguel" , subjectLine: "Hola", description: "Hola, como estas", leagueId: 5, teamEmail: "Miguelito3234@yahoo.com", teamName: "Mayhem"});
-    await Messages.create({name: "Sherry" , subjectLine: "Hello, interested", description: "Hi, may I please join?", leagueId: 5, teamEmail: "Teddy5983@yahoo.com", teamName: "Team Sparta"});
-    await Messages.create({name: "Ted" , subjectLine: "Free Agent", description: "Hi, may I please join a team?", leagueId: 5});
-    await Messages.create({name: "Ashley" , subjectLine: "Need a team", description: "Can I join?", leagueId: 5});
+    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 5, teamEmail: "sean1322@yahoo.com", teamName: "The Seans", userId: 19});
+    await Messages.create({name: "Bob" , subjectLine: "Interested in your league", description: "Hi! Whats the requirements", leagueId: 5, teamEmail: "bob4523@yahoo.com", teamName: "The Winner", userId: 18});
+    await Messages.create({name: "Miguel" , subjectLine: "Hola", description: "Hola, como estas", leagueId: 5, teamEmail: "Miguelito3234@yahoo.com", teamName: "Mayhem", userId: 3});
+    await Messages.create({name: "Sherry" , subjectLine: "Hello, interested", description: "Hi, may I please join?", leagueId: 5, teamEmail: "Teddy5983@yahoo.com", teamName: "Team Sparta", userId: 4});
+    await Messages.create({name: "Ted" , subjectLine: "Free Agent", description: "Hi, may I please join a team?", leagueId: 5, userId: 7});
+    await Messages.create({name: "Ashley" , subjectLine: "Need a team", description: "Can I join?", leagueId: 5, userId: 9});
     
 
     console.log('\n\nSeeding Successful!\n\n')
