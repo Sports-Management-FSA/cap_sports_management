@@ -19,11 +19,15 @@ router.get("/", async (req, res, next) => {
       include: [
          { model: User_TeamRoles, include: [
             TeamRoles,
-            { model: User, attributes: ['firstName', 'lastName']} 
+            { model: User, attributes: ['firstName', 'lastName'], include:[
+               Match,
+               {model: Scorekeeper, include:[Actions]}
+            ]} 
          ]},
          { model: Match, include: [
+            Team,
             { model: Scorekeeper, include: [ 
-               Actions, 
+               Actions,
                {model: User, attributes: ['firstName', 'lastName']} 
             ]}
          ]},

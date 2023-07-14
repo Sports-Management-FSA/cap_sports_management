@@ -7,7 +7,6 @@ import Scorekeeper from "./Scorekeeper";
 
 
 const Matches = (props) => {
-
     const {id} = useParams();
     let matches =[];
 
@@ -22,7 +21,7 @@ const today = new Date();
         const matchDate = new Date(match.date);
         return matchDate > today;
     })
-
+    console.log(upcomingMatches);
     const previousMatches = matches.filter((match) => {
         const matchDate = new Date(match.date);
         return matchDate < today;
@@ -61,7 +60,12 @@ const today = new Date();
                             </div>
                         )}
                         )}
-                    </div>:'No Matches to Display'}
+                    </div>
+                    :
+                    <div>
+                        <p>No Matches to Display</p>
+                    </div>
+                    }
                 </div>
             )
 }

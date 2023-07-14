@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 const Roster = (props) => {
     let {players}  = props;
+    console.log(players);
     //create obj with different roles as keys and save the users with those roles
     const [sortField, setSortField] = useState("");
     const [order, setOrder] = useState("asc");
@@ -38,7 +39,9 @@ const Roster = (props) => {
     }
 
     return (
-            <table className="table">
+        <div>
+            {players.length > 0 ?
+           <table className="table">
                 <thead>
                     <tr className="table__header-container">
                         <th onClick={()=>sortTable("name")} className="table__header">Name</th>
@@ -51,11 +54,17 @@ const Roster = (props) => {
                         <tr key={player.id}>
                             <td className="table__cell">{player.firstName} {player.lastName}</td>
                             <td className="table__cell">{player.matches.length}</td>
-                            <td className="table__cell">{player.actions.reduce((sum, current)=>sum+current.value, 0)}</td>
+                            <td className="table__cell">{player.scorekeepers.reduce((sum, current)=>sum+current.action.value, 0)}</td>
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> 
+            : 
+            <div>
+                <p>No Players to Display</p>
+            </div>
+            }
+        </div>
     );
 };
 

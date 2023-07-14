@@ -8,6 +8,7 @@ const Standings = (props) => {
 
     return (
         <div className="standings__container">
+            { teams.length > 0 ?
             <table className="table">
                 <thead>
                 <tr className="table__header-container">
@@ -33,7 +34,10 @@ const Standings = (props) => {
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </table> 
+            :
+            <p>No Standings to Display</p>
+            }
         </div>
     );
 };
