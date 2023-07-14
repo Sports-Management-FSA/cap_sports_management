@@ -11,6 +11,8 @@ const CreateTeam = () => {
    const { id } = useParams();
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
+
+   console.log(league)
    const fileInputRef = useRef(null);
 
    const [teamName, setTeamName] = useState("");
@@ -23,6 +25,7 @@ const CreateTeam = () => {
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
    const handleTeamDescriptionChange = (e) => setTeamDescription(e.target.value);
+
 
    // Logo Upload Function
    const handleUploadButtonClick = () => fileInputRef.current.click();

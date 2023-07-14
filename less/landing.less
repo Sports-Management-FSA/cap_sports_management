@@ -8,11 +8,12 @@
    background: linear-gradient(rgba(31, 31, 31, 1) 0%, rgb(219, 66, 66) 65%, rgba(26, 26, 26, 0) 99%);
    padding: 10rem 0rem 10rem 20rem;
    height: 100vh;
+   background-color: @dark-background-primary
 }
 
 .landing__header h1 {
    color: @dark-font-alt;
-   
+
    font-size: 6rem;
 }
 
@@ -38,6 +39,7 @@
    display: flex;
    align-items: center;
    justify-content: space-between;
+   background-color: @dark-background-primary
 }
 
 .landing__body-browse-leagues {
@@ -64,31 +66,26 @@
 }
 
 .landing__card-image {
-   flex-grow: 2;
-   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 .home-card-text-name {
-   flex-grow: 1;
    color: @dark-font-primary;
    text-decoration: none;
    font-size: 1.2rem;
-   //text-align: left;
    font-weight: 700;
    margin-left: 1rem;
 }
 
 .landing__league-card-name-subtext {
    display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-   flex-grow: 1;
-   line-height: 1px;
-   padding-top: 5rem;
-   margin-bottom: .5rem;
+   flex-direction: column;
    margin-left: 1rem;
+   line-height: 1px;
    font-weight: 100;
    font-size: .75rem;
+   color: @dark-font-alt;
 }
 
 
