@@ -1,104 +1,98 @@
-* {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
-
+// * {
+//     box-sizing: border-box;
+//   }
+//   *, *:before, *:after {
+//     box-sizing: inherit;
+//   }
 
 .body {
-    // padding: 6rem 4rem;
-    padding: 0;
-    margin: 0;
-     background: rgb(174,220,238);
-  background: radial-gradient(circle, rgba(174,220,238,0) 0%, rgba(148,187,233,1) 100%);
+   // padding: 6rem 4rem;
+   padding: 0;
+   margin: 0;
+   background: rgb(174, 220, 238);
+   background: radial-gradient(circle, rgba(174, 220, 238, 0) 0%, rgba(148, 187, 233, 1) 100%);
 }
-
 
 .landing_header {
    margin: 0;
-// padding: 6rem 4rem;
+   // padding: 6rem 4rem;
    display: flex;
    flex-direction: column;
 }
 
 @media screen and (min-width: 600px) {
-    .landing_text_photo {
-        display: flex;
-        flex-direction: column;
-    }
-    .section2_photos {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-    .leagues_photo {
-       width: 400px;
-        height: 400px;
-    }
-     .home_photo {
-        width: 400px;
-     height: 400px;
-     }
-     .scorekeeper_photo {
-        width: 400px;
-         height: 400px;
-
-}
+   .landing_text_photo {
+      display: flex;
+      flex-direction: column;
+   }
+   .section2_photos {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+   }
+   .leagues_photo {
+      width: 400px;
+      height: 400px;
+   }
+   .home_photo {
+      width: 400px;
+      height: 400px;
+   }
+   .scorekeeper_photo {
+      width: 400px;
+      height: 400px;
+   }
 }
 
 .landing_text_photo {
-    display: flex;
-    flex-direction: row;
-    padding: 6rem 4rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+   display: flex;
+   flex-direction: row;
+   padding: 6rem 4rem;
+   gap: 1rem;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
 }
 
-.landing_header h1{
-    color: black;
-    font-weight: @font-weight-light;
-    font-size: 7rem;
-    line-height: 6rem;
+.landing_header h1 {
+   color: black;
+   font-weight: @font-weight-light;
+   font-size: 7rem;
+   line-height: 6rem;
 }
 
-.landing_header p{
-    color: black;
-    font-family: "Oxygen";
-    // font-weight: bold;
-    font-size: 2rem;
-    line-height: 3rem;
-     padding-top: 1rem;
+.landing_header p {
+   color: black;
+   font-family: "Oxygen";
+   // font-weight: bold;
+   font-size: 2rem;
+   line-height: 3rem;
+   padding-top: 1rem;
 }
 
 .landing_header p span {
-    display: block;
-    color: black;
-    font-family: "Oxygen";
-    // font-weight: bold;
-    font-size: 2rem;
-    line-height: 3.5rem;
+   display: block;
+   color: black;
+   font-family: "Oxygen";
+   // font-weight: bold;
+   font-size: 2rem;
+   line-height: 3.5rem;
 }
 
 .landing_photo {
-    background-image: url("https://images.pexels.com/photos/7862657/pexels-photo-7862657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-    background-size: cover;
-    background-position: center;
-  width: 600px;
-  height: 400px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px black;
+   background-image: url("https://images.pexels.com/photos/7862657/pexels-photo-7862657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+   background-size: cover;
+   background-position: center;
+   width: 600px;
+   height: 400px;
+   border-radius: 8px;
+   box-shadow: 0px 0px 20px black;
 }
 
 #section1 {
-    padding-bottom: 3rem;
+   padding-bottom: 3rem;
 }
 
 // .section1-description {
-
-
 
 // // justify-content: flex-start;
 // // margin-left: 5rem;
@@ -106,39 +100,36 @@
 // }
 
 .section1-description h5 {
-    font-size: 1.5rem;
-    font-family: "Roboto";
-    line-height: 2.5;
-    font-weight: @font-weight-light;
-    // width: 50%;
-
-
+   font-size: 1.5rem;
+   font-family: "Roboto";
+   line-height: 2.5;
+   font-weight: @font-weight-light;
+   // width: 50%;
 }
 
 @media screen and (min-width: 800px) {
-    .about_section {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    .basketball_photo {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
+   .about_section {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+   }
+
+   .basketball_photo {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+   }
 }
 
 .about_section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: white;
-background-size: cover;
-padding: 6rem;
-gap: 2rem;
-    
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   background-color: white;
+   background-size: cover;
+   padding: 6rem;
+   gap: 2rem;
 }
 
 // .basketball_photo {
@@ -152,11 +143,11 @@ gap: 2rem;
 // }
 
 #section2 {
-    padding-bottom: 3rem;
+   padding-bottom: 3rem;
 }
 
 .section2_photos {
-    margin: 0;
+   margin: 0;
    padding: 3rem 0;
    display: flex;
    flex-direction: row;
@@ -166,100 +157,132 @@ gap: 2rem;
 }
 
 .home_photo {
-    background-image: url("https://images.pexels.com/photos/14401500/pexels-photo-14401500.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-    background-position: center;
-    background-size: cover;
-  width: 300px;
-  height: 300px;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0px 0px 20px black;
+   background-image: url("https://images.pexels.com/photos/14401500/pexels-photo-14401500.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+   background-position: center;
+   background-size: cover;
+   width: 300px;
+   height: 300px;
+   border-radius: 8px;
+   position: relative;
+   box-shadow: 0px 0px 20px black;
+   overflow: hidden;
+}
+
+.home_photo span {
+   display: block;
 }
 
 .photo-caption {
-    position: absolute;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1.5rem;
-    top: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    // transform: translateY(-50%);
-    width: 100%;
-    padding: 0 0 0 5px;
-    transition: transform 0.2s ease-in-out;
-    display: block;
+   // position: absolute;
+   text-decoration: none;
+   color: white;
+   font-weight: 600;
+   font-size: 1.5rem;
+   // top: 60%;
+   // margin-left: auto;
+   // margin-right: auto;
+   // transform: translateY(-50%);
+   width: 100%;
+   padding: 0 0 0 5px;
+   transition: 0.2s ease-in-out;
+   display: block;
+   text-align: center;
 }
 
 .photo-caption:hover {
-transform: scale(1.02);
+   font-size: 2rem;
 }
 .photo-overlay {
-    background-color: rgba(155, 155, 155, 0.6);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transition: background-color 0.5s ease;
+   background-color: rgba(155, 155, 155, 0.6);
+   width: 100%;
+   height: 100%;
+   // position: absolute;
+   transition: background-color 0.5s ease;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   box-sizing: border-box;
+   padding: 8px;
 }
 
 .home_photo:hover .photo-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .leagues_photo {
-    background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-    background-position: center;
-    background-size: cover;
-  width: 300px;
-  height: 300px;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0px 0px 20px black;
+   background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+   background-position: center;
+   background-size: cover;
+   width: 300px;
+   height: 300px;
+   border-radius: 8px;
+   position: relative;
+   box-shadow: 0px 0px 20px black;
+   overflow: hidden;
 }
 
 .leagues_photo:hover .photo-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .scorekeeper_photo {
-    background-image: url("https://images.pexels.com/photos/209832/pexels-photo-209832.jpeg");
-    background-position: center;
-    background-size: cover;
-  width: 300px;
-  height: 300px;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0px 0px 20px black;
+   background-image: url("https://images.pexels.com/photos/209832/pexels-photo-209832.jpeg");
+   background-position: center;
+   background-size: cover;
+   width: 300px;
+   height: 300px;
+   border-radius: 8px;
+   position: relative;
+   box-shadow: 0px 0px 20px black;
+   overflow: hidden;
+}
+
+.scorekeeper_photo span {
+   display: block;
 }
 
 .scorekeeper_photo:hover .photo-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.cover{
-display: flex;
-flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: relative;
- z-index: 1;
-    // background-color: rgba(155, 155, 155, 0.6);
-    // width: 100%;
-    // height: 100%;
-    
-  }
+.cover {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+   position: relative;
+   z-index: 1;
+   //  justify-content: center;
+   //  align-items: center;
+   // background-color: rgba(155, 155, 155, 0.6);
+   // width: 100%;
+   // height: 100%;
+}
 
 .cover :any-link {
-    font-size: 1.75rem;
-    text-decoration: none;
-    color: white;
-    line-height: normal;
-    }
+   font-size: 1.75rem;
+   text-decoration: none;
+   color: white;
+   line-height: normal;
+}
 
-    .cover :hover {
-        color: white;
-        font-size: 2rem;
-        line-height: 2.5rem;
-    }
+.cover :hover {
+   color: white;
+   font-size: 2rem;
+   line-height: 2.5rem;
+}
 
+.sports_icons {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   // text-align: center;
+}
+
+.sports_icons div {
+   display: flex;
+   flex-direction: column;
+   font-family: "Roboto";
+   font-weight: 500;
+   text-align: center;
+}

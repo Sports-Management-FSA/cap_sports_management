@@ -8,6 +8,8 @@ const {
   Post,
   Comment,
   Actions,
+  Scorekeeper,
+  User_TeamRoles,
 } = require("../../db");
 
 // Get All Team
@@ -15,9 +17,17 @@ router.get("/", async (req, res, next) => {
   try {
     const teams = await Team.findAll({
       include: [
-        { model: User, include: [TeamRoles, Actions, Match] },
-        Match,
-        { model: Post, include: [Comment] },
+         { model: User_TeamRoles, include: [
+            TeamRoles,
+            { model: User, attributes: ['firstName', 'lastName']} 
+         ]},
+         { model: Match, include: [
+            { model: Scorekeeper, include: [ 
+               Actions, 
+               {model: User, attributes: ['firstName', 'lastName']} 
+            ]}
+         ]},
+         { model: Post, include: [Comment] },
       ],
     });
     res.send(teams);
@@ -30,8 +40,20 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
    try {
       const team = await Team.findByPk(req.params.id, {
-         include: [{ model: User, include: [TeamRoles] }, Match, { model: Post, include: [Comment] }]
-      });
+         include: [
+            { model: User_TeamRoles, include: [
+               TeamRoles,
+               { model: User, attributes: ['firstName', 'lastName']} 
+            ]},
+            { model: Match, include: [
+               { model: Scorekeeper, include: [ 
+                  Actions, 
+                  {model: User, attributes: ['firstName', 'lastName']} 
+               ]}
+            ]},
+            { model: Post, include: [Comment] },
+         ],
+       });
       res.send(team);
    } catch (ex) {
       next(ex);
@@ -44,7 +66,6 @@ router.post("/", async (req, res, next) => {
       const user = await User.findByToken(req.headers.authorization, {
          include: [LeagueRoles]
       });
-      
       
       if (!user) {
          return res.status(401).send("Unauthorized to create team");

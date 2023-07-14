@@ -49,6 +49,19 @@ export const updateMatch = createAsyncThunk("updateMatch", async (match, { rejec
     }
 });
 
+export const deleteMatch = createAsyncThunk("deleteMatch", async (matchId, { rejectWithValue }) => {
+    try {
+       await axios.delete(`/api/matches/${matchId}`, {
+          headers: {
+             authorization: token
+          }
+       });
+    } catch (err) {
+       return rejectWithValue("Not authorized to delete Match.");
+    }
+ });
+ 
+
 const matchesSlice = createSlice({
     name: 'matches',
     initialState: {
@@ -103,6 +116,16 @@ const matchesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+            .addCase(deleteMatch.pending, (state) => {
+                state.loading = true;
+             })
+             .addCase(deleteMatch.fulfilled, (state, action) => {
+                state.loading = false;
+                state.matchesList = state.matchesList.filter((match) => (match.id !== action.payload.id));
+             })
+             .addCase(deleteMatch.rejected, (state, action) => {
+                state.error = action.error.message;
+             });
     }
 })
 

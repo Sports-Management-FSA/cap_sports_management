@@ -693,12 +693,6 @@ ALLENS Updates END .landing-matches-header h2 {
 .stats-main {
   margin: 1rem;
 }
-.stats-content-body {
-  margin: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .stats--navbar-items {
   display: flex;
   flex-direction: row;
@@ -779,6 +773,7 @@ ALLENS Updates END .landing-matches-header h2 {
 /* ---------- NavBar Customization ---------- */
 .navbar-tab {
   letter-spacing: 0px;
+  font-size: 14px;
 }
 /* Hide the dropdown arrow below icon */
 .caret-off::before {
@@ -790,6 +785,18 @@ ALLENS Updates END .landing-matches-header h2 {
 /* Footer customization */
 .footer-tag {
   letter-spacing: 0;
+}
+.footer {
+  margin-top: 300px;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #343a40;
+  /* adjust the background color as needed */
+  z-index: 999;
+  /* add a higher z-index to ensure the footer stays on top */
 }
 .newsfeed-container {
   display: flex;
@@ -856,6 +863,8 @@ ALLENS Updates END .landing-matches-header h2 {
 /* ---------- Login Customization ---------- */
 .forgot-password {
   text-decoration: none;
+  letter-spacing: 0;
+  font-size: 14px;
 }
 .forgot-password:hover {
   font-size: 16px;
@@ -864,6 +873,8 @@ ALLENS Updates END .landing-matches-header h2 {
 }
 .sign-up {
   text-decoration: none;
+  letter-spacing: 0;
+  font-size: 14px;
 }
 .sign-up:hover {
   font-size: 18px;
@@ -874,14 +885,40 @@ ALLENS Updates END .landing-matches-header h2 {
   font-size: 20px;
   transition: 0.3s;
 }
+@media (max-width: 400px) {
+  .forgot-password {
+    font-size: 10px;
+  }
+}
 /* ---------- Register Customization ---------- */
 .register-login {
   text-decoration: none;
+  color: black;
 }
-.register-login:hover {
+.register-login-here:hover {
   text-decoration: underline;
-  font-size: 18px;
+  font-size: 16px;
   transition: 0.3s;
+}
+.register-login-here {
+  color: black;
+  letter-spacing: 0;
+  font-size: 14px;
+}
+.register-account-paragraph {
+  letter-spacing: 0;
+  font-size: 14px;
+}
+@media (max-width: 400px) {
+  .register-header {
+    font-size: 14px;
+  }
+  .register-account-paragraph {
+    font-size: 10px;
+  }
+  .register-login-here {
+    font-size: 9px;
+  }
 }
 .request-modal-container {
   width: 100%;
@@ -892,115 +929,73 @@ ALLENS Updates END .landing-matches-header h2 {
   justify-content: center;
   align-items: center;
 }
-/* ---------- Staff Customization ---------- */
-.staff-list img {
-  width: 50%;
+.h1,
+h1 {
+  font-size: 1.5rem;
 }
-.staff-list .content {
-  width: 50%;
+.card {
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  border: 1;
+  border-radius: 1rem;
 }
-.staff-list .content .follow {
-  position: absolute;
-  bottom: 24px;
+.img-hover-zoom--colorize img {
+  border-radius: 50%;
+  width: 150px;
+  height: auto;
+  margin-top: 20px;
+  padding: 1px;
+  transition: transform 0.5s;
 }
-.staff-list:hover {
-  -webkit-transform: scale(1.05);
+.img-hover-zoom--colorize:hover img {
+  filter: grayscale(0);
   transform: scale(1.05);
 }
-.staff,
-.staff-list {
-  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-}
-.staff .content .title,
-.staff-list .content .title {
-  font-size: 18px;
-}
-.staff .overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-.staff .member-position,
-.staff .staff-social {
-  position: absolute;
-  bottom: -35px;
-  right: 0;
-  left: 0;
-  margin: auto 10%;
-  z-index: 99;
-}
-.staff-title {
-  font-size: 5rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  font-style: italic;
-}
-.staff .staff-social {
-  bottom: 40px;
-  opacity: 0;
-  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-}
-.staff:hover {
-  -webkit-transform: translateY(-7px);
-  transform: translateY(-7px);
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-}
-.staff:hover .overlay {
-  opacity: 0.6;
-}
-.staff:hover .staff-social {
-  opacity: 1;
-}
-@media (max-width: 768px) {
-  .staff-list img,
-  .staff-list .content {
-    width: 100%;
-    float: none !important;
-  }
-  .staff-list img .follow,
-  .staff-list .content .follow {
-    position: relative;
-    bottom: 0;
-  }
-}
-.social-icon.social li a {
-  color: #707070;
-  border-color: #707070;
-}
-.social-icon li a {
-  color: #35404e;
-  border: 1px solid #35404e;
-  display: inline-block;
-  height: 32px;
-  text-align: center;
-  font-size: 15px;
-  width: 32px;
-  line-height: 30px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+.card h5 {
   overflow: hidden;
-  position: relative;
+  height: 80px;
+  font-weight: 300;
+  font-size: 1rem;
 }
-.rounded {
-  border-radius: 5px !important;
+.card h5 a {
+  color: black;
+  text-decoration: none;
 }
-.para-desc {
-  max-width: 600px;
+.role {
+  color: #7a7a7a;
 }
-.text-muted {
-  color: #8492a6 !important;
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.section-title .title {
-  letter-spacing: 0.5px;
-  font-size: 3rem;
+.fab {
+  font-size: 1.5rem;
+  color: darkgray;
+  transition: transform 0.5s;
+}
+.fab:hover {
+  color: black;
+  transform: scale(1.1);
+}
+.card h2 {
+  font-size: 1rem;
+}
+.list-inline > li > a {
+  text-decoration: none;
+  color: black;
+}
+/* MEDIA */
+@media only screen and (min-width: 1200px) {
+  .img-hover-zoom--colorize img {
+    width: 200px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .h1,
+  h1 {
+    font-size: 2rem;
+  }
 }
 .requestform__container {
   height: 100vh;
@@ -1072,11 +1067,18 @@ ALLENS Updates END .landing-matches-header h2 {
   letter-spacing: 0;
   font-weight: 700;
 }
+.user-security-pargraph {
+  letter-spacing: 0;
+  font-size: 14px;
+}
 @media (max-width: 400px) {
   .profile-page-container {
     width: 80%;
     height: 60%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+  }
+  .user-security-pargraph {
+    font-size: 10px;
   }
 }
 .dashboard__container {
@@ -1528,14 +1530,6 @@ p {
   font-weight: 800;
   color: #fffff0;
 }
-* {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
 .body {
   padding: 0;
   margin: 0;
@@ -1659,33 +1653,38 @@ p {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
+}
+.home_photo span {
+  display: block;
 }
 .photo-caption {
-  position: absolute;
   text-decoration: none;
   color: white;
   font-weight: 600;
   font-size: 1.5rem;
-  top: 60%;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
   padding: 0 0 0 5px;
-  transition: transform 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
   display: block;
+  text-align: center;
 }
 .photo-caption:hover {
-  transform: scale(1.02);
+  font-size: 2rem;
 }
 .photo-overlay {
   background-color: rgba(155, 155, 155, 0.6);
   width: 100%;
   height: 100%;
-  position: absolute;
   transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px;
 }
 .home_photo:hover .photo-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .leagues_photo {
   background-image: url("https://images.pexels.com/photos/159574/american-football-football-defense-tackle-159574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
@@ -1696,9 +1695,10 @@ p {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
 }
 .leagues_photo:hover .photo-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .scorekeeper_photo {
   background-image: url("https://images.pexels.com/photos/209832/pexels-photo-209832.jpeg");
@@ -1709,9 +1709,13 @@ p {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 0px 20px black;
+  overflow: hidden;
+}
+.scorekeeper_photo span {
+  display: block;
 }
 .scorekeeper_photo:hover .photo-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .cover {
   display: flex;
@@ -1731,4 +1735,16 @@ p {
   color: white;
   font-size: 2rem;
   line-height: 2.5rem;
+}
+.sports_icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.sports_icons div {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-align: center;
 }

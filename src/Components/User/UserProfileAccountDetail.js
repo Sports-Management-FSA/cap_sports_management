@@ -58,10 +58,10 @@ const UserProfileAccountDetail = () => {
 
       // Validate Username
       if (formData.username.trim() === "") {
-         errors.username = "User name is required";
+         errors.username = "Username is required";
       } else {
          if (formData.username !== auth.username && users.some((user) => user.username === formData.username)) {
-            errors.username = "User name already exists";
+            errors.username = "Username already exists";
          }
       }
       setFormErrors(errors);
@@ -91,7 +91,7 @@ const UserProfileAccountDetail = () => {
       modal.setAttribute("aria-hidden", "true");
       backdrop.parentNode.removeChild(backdrop);
       // Refresh Page after user confirm
-      navigate("/profile");
+      navigate("/");
    };
 
    useEffect(() => {
@@ -99,7 +99,7 @@ const UserProfileAccountDetail = () => {
    }, [dispatch]);
 
    return (
-      <div className="row">
+      <div className="row profile-account-details">
          <div className="col-xl-4">
             <div className="card mb-4 mb-xl-0">
                <div className="card-header">Profile Picture</div>

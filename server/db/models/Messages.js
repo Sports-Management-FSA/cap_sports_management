@@ -1,5 +1,5 @@
 const conn = require("../conn");
-const { TEXT, STRING } = conn.Sequelize;
+const { TEXT, STRING, INTEGER, BOOLEAN } = conn.Sequelize;
 
 const Messages = conn.define("messages", {
    name: {
@@ -30,6 +30,14 @@ const Messages = conn.define("messages", {
    desiredTeam: {
       type: STRING,
       allowNull: true
+   },
+   userId: {
+      type: INTEGER,
+      allowNull: false,
+   },
+   isActive: {
+      type: BOOLEAN,
+      defaultValue: true,
    }
 });
 
