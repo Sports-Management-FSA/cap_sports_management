@@ -10,7 +10,7 @@ passport.use(
       {
          clientID: process.env.GOOGLE_CLIENT_ID,
          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-         callbackURL: "https://podium.onrender.com/auth/google/callback",
+         callbackURL: "/auth/google/callback",
          passReqToCallback: true
       },
       async (req, accessToken, refreshToken, profile, cb) => {
