@@ -10,7 +10,7 @@ const Inbox = () => {
     const [selectedMessage, setSelectedMessage] = useState(null);
     const allMessages = useSelector(state => state.joinRequests.messagesList);
     const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
-    const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId));
+    const matchedMessages = allMessages.filter(message => userLeagueIds.includes(message.leagueId && message.isActive));
 
     const leagues = useSelector((state) => state.leagues.leaguesList);
 

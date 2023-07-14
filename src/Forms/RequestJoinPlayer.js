@@ -29,7 +29,7 @@ const RequestJoinPlayer = () => {
 
       // Validate Email
       if (playerMessageEmail.trim() === "") {
-         errors.email = "Email is reuquired";
+         errors.email = "Email is required";
       } else {
          if (!validator.isEmail(playerMessageEmail)) {
             errors.email = "Invalid email format";

@@ -4,6 +4,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Post = require("./Post");
 const Comment = require("./Comment");
+const Match = require("./Match");
+const Actions = require("./Actions");
+const Team = require("./Team");
+const User_TeamRoles = require("./User_TeamRoles");
+const LeagueRoles = require("./LeagueRoles");
+const League = require("./League");
+const User_LeagueRoles = require("./User_LeagueRoles");
+const Scorekeeper = require("./Scorekeeper");
+const TeamRoles = require("./TeamRoles");
 const JWT = process.env.JWT;
 
 const User = conn.define("user", {
@@ -169,10 +178,9 @@ User.findByToken = async function (token) {
     const { id } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await this.findByPk(id, {
       include: [
-        conn.models.teamRoles,
-        conn.models.team,
-        conn.models.leagueRoles,
-        conn.models.league,
+        {model: User_LeagueRoles, include: [League, LeagueRoles]},
+        {model: User_TeamRoles, include: [Team, TeamRoles]},
+        {model: Scorekeeper, include: [Actions, Team, Match]},
         { model: Post, include: [Comment] },
       ],
     });

@@ -14,7 +14,7 @@ const Team_Matches = require("./models/Team_Matches");
 const Announcements = require("./models/Announcements");
 const Post = require("./models/Post");
 const Comment = require("./models/Comment");
-const Messages = require("./models/Mesages");
+const Messages = require("./models/Messages");
 
 Team.belongsTo(League);
 League.hasMany(Team);
