@@ -13,9 +13,9 @@ const DashboardLeagues = () => {
     const allLeagues = useSelector(state => state.leagues.leaguesList);
     const players = useSelector(state => state.players.playerList);
     const categories = useSelector(state => state.categories.categoriesList);
+    const [activeTab, setActiveTab] = useState("Recent");
     
     if (selectedLeague) {
-
         const sport = categories.find(category => category.id == selectedLeague.categoryId);
         const matchedTeams = allLeagues.filter(league => league.id == selectedLeague.id)[0].teams;
         
@@ -72,6 +72,11 @@ const DashboardLeagues = () => {
                 </div>
         )
     }
+
+    const handleClick = (component) => {
+        
+        setActiveTab(component);
+     };
 
     return (
         <div className="dashboard__leagues-container">

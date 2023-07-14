@@ -1,33 +1,51 @@
 import { Numbers } from "@mui/icons-material";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector} from "react-redux";
 import { Link } from "react-router-dom";
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
 
 const Home2 = () => {
    const { auth, leagues } = useSelector((state) => state);
    let leaguesList = leagues.leaguesList;
    const {categories} = useSelector((state) => state);
+   console.log(categories)
    const [category, setCategory] = useState('');
    const topCategories = categories.categoriesList.toSorted((a, b) => a.leagues.length > b.leagues.length ? -1: 0).slice(0, 3);
 
    if(category !== ''){
       leaguesList = categories.categoriesList.find(el=>el.name === category).leagues;
    }
+   const leagueCardsRef = useRef([]);
+
+   useEffect(() => {
+      leagueCardsRef.current = leagueCardsRef.current.slice(0, topCategories.length);
+    }, [topCategories]);
 
    const handleClick = (ev) => {
       ev.preventDefault();
       setCategory(ev.target.value);
    };
 
-   const leagueCards0Ref = useRef(null);
-   const leagueCards1Ref = useRef(null);
-   const leagueCards2Ref = useRef(null);
+   
+   // const leagueCards1Ref = useRef(null);
+   // const leagueCards2Ref = useRef(null);
 
-   const scrollToLeft = (num) => {
-      `${`leagueCards${num}Ref`}`.current.scrollLeft -= 1500;
+   //  Previous change
+   // const scrollToLeft = (num) => {
+   //    `${`leagueCards${num}Ref`}`.current.scrollLeft -= 1500;
+   // };
+
+   // onClick={scrollToLeft(index.toString())
+   // const scrollToRight = (num) => {
+   //  `${`leagueCards${num}Ref`}`.current.scrollLeft += 1500;
+   // };
+
+   const scrollToLeft = (index) => {
+      leagueCardsRef.current.scrollLeft -= 1500;
    };
-   const scrollToRight = (num) => {
-    `${`leagueCards${num}Ref`}`.current.scrollLeft += 1500;
+   const scrollToRight = (index) => {
+      leagueCardsRef.current.scrollLeft += 1500;
    };
    
    return (
@@ -55,36 +73,34 @@ const Home2 = () => {
                <Link to="/createleague" style={{ textDecoration: 'none' }}>Create League</Link>
             </div>
             {topCategories.map((category, index)=>(
-            <div>
-                <h5>{category.name}</h5>
-            <div className="landing__body-browse-content">
-               <div className="pagination-arrows left">
-                  <button className="arrow left" onClick={scrollToLeft(index.toString())}></button>
-               </div>
-               <div className="landing__body-browse-leagues" ref={`leagueCards${index.toString()}Ref`}>
-                  {category.leagues.map((league) => (
-                     <div className="landing__browse-league-card" key={league.id}>
-                        <div className="landing__card-image">
-                           <img src={league.logo} width="90" height="80" alt="Image" />
-                        </div>
-                        <div className="landing__league-card-name">
-                           <div className="home-card-text-name">
-                              <Link to={`/league/${league.id}`}>
-                                 <h4>{league.name}</h4>
-                              </Link>
+            <div key={category.id}>
+               <h5>{category.name}</h5>
+               <div className="landing__body-browse-content">
+                  <div className="pagination-arrows left">
+                     {/* <button className="arrow left" onClick={scrollToLeft}></button> */}
+                     <KeyboardDoubleArrowLeftRoundedIcon className="arrow left" onClick={scrollToLeft}/>
+                  </div>
+                  <div className="landing__body-browse-leagues" ref={el => leagueCardsRef.current[index] = el}>
+                     {category.leagues.map((league) => (
+                        <div className="landing__browse-league-card" key={league.id}>
+                           <div className="landing__card-image">
+                              <img src={league.logo} width="90" height="80" alt="Image" />
+                           </div>
+                           <div className="landing__league-card-name">
+                              <Link to={`/league/${league.id}`} className="home-card-text-name">{league.name}</Link>
                            </div>
                            <div className="landing__league-card-name-subtext">
                               <p>Season: {league.season}</p>
                               <p>{league.teams.length} Teams</p>
                            </div>
                         </div>
-                     </div>
-                  ))}
-              </div>
-               <div className="pagination-arrows right">
-                  <button className="arrow right" onClick={scrollToRight(index.toString())}></button>
+                     ))}
                </div>
-            </div>
+                  <div className="pagination-arrows right">
+                     {/* <button className="arrow right" onClick={scrollToRight}></button> */}
+                     <KeyboardDoubleArrowRightRoundedIcon className="arrow right" onClick={scrollToRight}/>
+                  </div>
+               </div>
             </div>
             ))}
             <div className="home-leagues-cards">
