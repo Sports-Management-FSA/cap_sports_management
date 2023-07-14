@@ -627,6 +627,21 @@ ALLENS Updates END .landing-matches-header h2 {
   color: black;
   letter-spacing: 0;
 }
+.add-player {
+  height: 50%;
+}
+@media (max-width: 400px) {
+  .create-team-form h1 {
+    font-size: 14px;
+  }
+  .create-team-title {
+    font-size: 10px;
+  }
+  .add-player-button {
+    height: 65%;
+    font-size: 8px;
+  }
+}
 .createleague {
   background-color: #F5F7FB;
 }
@@ -787,7 +802,6 @@ ALLENS Updates END .landing-matches-header h2 {
   letter-spacing: 0;
 }
 .footer {
-  margin-top: 300px;
   position: relative;
   left: 0;
   bottom: 0;
@@ -1070,6 +1084,9 @@ h1 {
 .user-security-pargraph {
   letter-spacing: 0;
   font-size: 14px;
+}
+.delete-message {
+  font-size: 12px;
 }
 @media (max-width: 400px) {
   .profile-page-container {

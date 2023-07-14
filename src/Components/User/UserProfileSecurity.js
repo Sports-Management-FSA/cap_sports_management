@@ -162,7 +162,7 @@ const UserProfileSecurity = () => {
             <div className="card mb-4">
                <div className="card-header">Delete Account</div>
                <div className="card-body">
-                  <p className="text-dark user-security-pargraph">
+                  <p className="text-dark user-security-pargraph delete-message">
                      Deleting your account is a permanent action and cannot be undone. If you are sure you want to
                      delete your account, select the button below.
                   </p>
