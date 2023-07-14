@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const Personnel = (props) => {
     const {personnel, teamId} = props;
+    console.log(personnel);
 
     return (
         <table className="table">
@@ -16,8 +17,8 @@ const Personnel = (props) => {
            {
             personnel.map(member=>(
                 <tr key={member.id}>
-                    <td className="table__cell">{member.firstName} {member.lastName}</td>
-                    <td className="table__cell">{member.teamRoles.find(role=>role!='player').name}</td>
+                    <td className="table__cell">{member.user.firstName} {member.user.lastName}</td>
+                    <td className="table__cell">{member.teamRole.name}</td>
                 </tr>
             ))
            }
