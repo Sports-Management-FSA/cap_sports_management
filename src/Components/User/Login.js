@@ -71,7 +71,7 @@ const Login = () => {
                               style={{ borderRadius: "1rem", backgroundColor: "#fdfffc" }}>
                               <div className="card-body p-5 text-center">
                                  <div className="mb-md-5 mt-md-4 pb-5">
-                                    <h2 className="fw-bold mb-2 text-dark">Log into Podium</h2>
+                                    <h1 className="fw-bold mb-2 text-dark">Log into Podium</h1>
                                     <p className="text-dark mb-5" style={{ letterSpacing: "0", fontSize: "14px" }}>
                                        Please enter your username and password!
                                     </p>

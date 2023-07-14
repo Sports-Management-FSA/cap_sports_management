@@ -91,7 +91,7 @@ const UserProfileAccountDetail = () => {
       modal.setAttribute("aria-hidden", "true");
       backdrop.parentNode.removeChild(backdrop);
       // Refresh Page after user confirm
-      navigate("/profile");
+      navigate("/");
    };
 
    useEffect(() => {
