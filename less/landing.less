@@ -12,7 +12,7 @@
 
 .landing__header h1 {
    color: @dark-font-alt;
-   font-weight: @font-weight-light;
+   
    font-size: 6rem;
 }
 
@@ -34,19 +34,17 @@
    margin-left: auto;
 }
 
-.landing__body-browse {
-//    height: 100vh; // was 75vh before testing footer issue
-   margin: 0 2rem 0 2rem;
+.landing__body-browse-content {
    display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
+   align-items: center;
+   justify-content: space-between;
 }
 
 .landing__body-browse-leagues {
    display: flex;
    flex-direction: row;
    justify-content: flex-start;
-   gap: 50px;
+   gap: 1rem;
    margin: 1rem;
    flex-wrap: nowrap;
    overflow-x: auto;
@@ -57,17 +55,43 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-
    align-items: flex-start;
-   margin: 0 50 10px 50px;
-   padding: 0 15px 0 9px;
-   border: 0.5px grey solid;
-   border-radius: 15px;
+   margin: 0;
+   width: 15rem;
+   height: 17rem;
+   border-radius: 1px;
    background-color: @dark-background-secondary;
 }
+
 .landing__card-image {
-   margin-bottom: 50px;
+   flex-grow: 2;
+   width: 100%;
 }
+
+.home-card-text-name {
+   flex-grow: 1;
+   color: @dark-font-primary;
+   text-decoration: none;
+   font-size: 1.2rem;
+   //text-align: left;
+   font-weight: 700;
+   margin-left: 1rem;
+}
+
+.landing__league-card-name-subtext {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   flex-grow: 1;
+   line-height: 1px;
+   padding-top: 5rem;
+   margin-bottom: .5rem;
+   margin-left: 1rem;
+   font-weight: 100;
+   font-size: .75rem;
+}
+
+
 
 .landing__body-browse-leagues::-webkit-scrollbar {
    width: 10px;
@@ -86,27 +110,23 @@
    background-color: #555;
 }
 
-.landing__body-browse-content {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-}
+
 
 .pagination-arrows {
    display: flex;
    align-items: center;
 }
 
-.pagination-arrows.left {
-   margin-right: auto;
-}
+// .pagination-arrows.left {
+//    margin-right: auto;
+// }
 
-.pagination-arrows.right {
-   margin-left: auto;
-}
+// .pagination-arrows.right {
+//    margin-left: auto;
+// }
 
 .arrow {
-   width: 40px;
+   width: 1rem;
    height: 70px;
    border: none;
    background-color: transparent;

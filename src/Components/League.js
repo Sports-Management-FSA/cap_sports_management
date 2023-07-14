@@ -13,6 +13,7 @@ import TestMatch from "./testMatch";
 
 const League = () => {
    const { id } = useParams();
+   const auth = useSelector(state => state.auth.id);
    const navigate = useNavigate();
    const [currentComponent, setCurrentComponent] = useState("Announcements");
    const [activeTab, setActiveTab] = useState("Announcements");
@@ -59,7 +60,7 @@ const League = () => {
                         </div>
                      </div>
                      <div className="head-right">
-                        <Link to={`/league/${id}/request`}>Request to Join</Link>
+                        {auth && (<Link to={`/league/${id}/request`}>Request to Join</Link>)}
                      </div>
                   </div>
                   <div className="league-navbar">
