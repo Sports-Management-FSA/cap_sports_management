@@ -103,10 +103,15 @@ const syncAndSeed = async () => {
     name: "Soccer",
     avatar: "/static/images/soccer.png",
   });
-
+  
   const touchdown = await Actions.create({
     name: "Touchdown",
     value: 5,
+    categoryId: 1,
+  });
+  const fieldGoal = await Actions.create({
+    name: "Field Goal",
+    value: 1,
     categoryId: 1,
   });
   const homerun = await Actions.create({
@@ -114,12 +119,12 @@ const syncAndSeed = async () => {
     value: 5,
     categoryId: 2,
   });
-  const fieldGoal = await Actions.create({
-    name: "Field Goal",
+  const goal = await Actions.create({
+    name: "Goal",
     value: 5,
     categoryId: 3,
   });
-  const scorePoint = await Actions.create({
+  const score = await Actions.create({
     name: "Score",
     value: 1,
   });
