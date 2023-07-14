@@ -23,7 +23,7 @@ p {
   }
 }
 .league-head {
-  background-color: #203e4a;
+  background-color: #2a5262;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,12 +42,12 @@ p {
   margin-right: 1rem;
 }
 .league-main-upperbox {
-  background-color: #203e4a;
+  background-color: #2a5262;
   margin-top: 2rem;
   border-radius: 2px;
 }
 .league--navbar-items {
-  background-color: #203e4a;
+  background-color: #2a5262;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -131,6 +131,8 @@ body {
   margin-bottom: 100px;
   clear: both;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 form > * {
   margin: 1rem;
@@ -226,9 +228,10 @@ a {
   background: linear-gradient(#1f1f1f 0%, #db4242 65%, rgba(26, 26, 26, 0) 99%);
   padding: 10rem 0rem 10rem 20rem;
   height: 100vh;
+  background-color: #112222;
 }
 .landing__header h1 {
-  color: #fbfbfb;
+  color: #717171;
   font-size: 6rem;
 }
 .landing__body-browse-header {
@@ -250,6 +253,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #112222;
 }
 .landing__body-browse-leagues {
   display: flex;
@@ -270,14 +274,13 @@ a {
   width: 15rem;
   height: 17rem;
   border-radius: 1px;
-  background-color: #203e4a;
+  background-color: #2a5262;
 }
 .landing__card-image {
-  flex-grow: 2;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .home-card-text-name {
-  flex-grow: 1;
   color: #fffff0;
   text-decoration: none;
   font-size: 1.2rem;
@@ -286,15 +289,12 @@ a {
 }
 .landing__league-card-name-subtext {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-grow: 1;
-  line-height: 1px;
-  padding-top: 5rem;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
   margin-left: 1rem;
+  line-height: 1px;
   font-weight: 100;
   font-size: 0.75rem;
+  color: #717171;
 }
 .landing__body-browse-leagues::-webkit-scrollbar {
   width: 10px;
@@ -365,7 +365,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   gap: 50px;
-  background-color: #203e4a;
+  background-color: #2a5262;
 }
 Allens Updates Start .landing-container {
   display: flex;
@@ -473,7 +473,7 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: #F5F7FB;
+  background-color: #112222;
 }
 .home-container h1 {
   color: black;
@@ -507,7 +507,7 @@ ALLENS Updates END .landing-matches-header h2 {
 .home-leagues {
   display: flex;
   flex-direction: column;
-  background-color: #F5F7FB;
+  background-color: #112222;
   margin: 5rem;
 }
 .home-leagues-header {
@@ -515,11 +515,10 @@ ALLENS Updates END .landing-matches-header h2 {
   flex-direction: row;
   justify-content: space-between;
   margin: 20 15 30 15;
+  background-color: #112222;
 }
 .home-leagues-cards {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  grid-template-rows: 2rem;
   flex-flow: wrap;
   gap: 2rem;
 }
@@ -559,7 +558,7 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #203e4a;
+  background-color: #2a5262;
   margin: 1rem;
 }
 .match-body {
@@ -570,7 +569,7 @@ ALLENS Updates END .landing-matches-header h2 {
   align-items: center;
   gap: 5rem;
   width: 100%;
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-radius: 2px;
   padding: 1rem 1rem 1rem 1rem;
 }
@@ -679,7 +678,7 @@ ALLENS Updates END .landing-matches-header h2 {
   position: sticky;
   top: 0px;
   height: calc(150vh - 72px);
-  background-color: #203e4a;
+  background-color: #2a5262;
   color: black;
   margin: 0;
   width: 20%;
@@ -738,7 +737,7 @@ ALLENS Updates END .landing-matches-header h2 {
   transform: scale(1.1);
 }
 .announcements__post {
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-radius: 2px;
   margin: 2rem 1rem 1rem 1rem;
   padding-left: 0.5rem;
@@ -766,7 +765,7 @@ ALLENS Updates END .landing-matches-header h2 {
   padding: 2rem;
   margin-right: 5rem;
   margin-top: 2rem;
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-radius: 2px;
 }
 .rightnav-match span {
@@ -817,7 +816,7 @@ ALLENS Updates END .landing-matches-header h2 {
   justify-content: column;
 }
 .newsfeed__createpost {
-  background-color: #203e4a;
+  background-color: #2a5262;
   margin: 2rem 0 1rem 0;
 }
 .newsfeed__createpost input {
@@ -834,7 +833,7 @@ ALLENS Updates END .landing-matches-header h2 {
   flex-direction: column;
 }
 .newsfeed__post {
-  background-color: #203e4a;
+  background-color: #2a5262;
   margin: 2rem 0 1rem 0;
   padding: 1rem;
 }
@@ -871,7 +870,7 @@ ALLENS Updates END .landing-matches-header h2 {
   color: #fffff0;
 }
 .newsfeed__post-lower span:hover {
-  background-color: #203e4a;
+  background-color: #2a5262;
   cursor: pointer;
 }
 /* ---------- Login Customization ---------- */
@@ -1152,8 +1151,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
-  margin-right: 3rem;
+  width: 90%;
   margin-left: 3rem;
 }
 .dashboard__main-header {
@@ -1173,14 +1171,8 @@ h1 {
 .main-body-upper {
   display: flex;
   flex-direction: row;
-  gap: 5rem;
-  margin: 5rem;
-}
-@media (max-width: 1800) {
-  .main-body-upper {
-    display: flex;
-    flex-direction: column;
-  }
+  gap: 2rem;
+  margin: 1rem;
 }
 .widget__container {
   display: flex;
@@ -1245,7 +1237,7 @@ h1 {
   height: 50vh;
 }
 .post__card {
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-radius: 8px;
   height: 10rem;
   width: 30rem;
@@ -1271,7 +1263,7 @@ span {
 .inbox__container {
   display: flex;
   flex-direction: column;
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-radius: 8px;
 }
 @media (max-width: 1175px) {
@@ -1318,7 +1310,7 @@ span {
   justify-content: flex-start;
   list-style-type: none;
   gap: 5rem;
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-bottom: 0.5px solid #386e84;
   margin-bottom: 0;
   height: 100%;
@@ -1442,7 +1434,7 @@ p {
   cursor: pointer;
 }
 .dashboard__leagues-container {
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-radius: 8px;
   box-shadow: 0 0 10px 7px #0e1c1c;
   width: 100%;
@@ -1461,7 +1453,7 @@ p {
   margin-bottom: 1rem;
 }
 .dashboard__leagues-table {
-  background-color: #203e4a;
+  background-color: #2a5262;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   width: 100%;
@@ -1472,7 +1464,7 @@ p {
 }
 .leagues-table-row:hover {
   background-color: #386e84;
-  color: #ffff9d;
+  color: lightgrey;
 }
 .leagues-table-header {
   color: #fffff0;
@@ -1493,8 +1485,11 @@ p {
   margin-bottom: 0;
   cursor: pointer;
 }
+.main-body-upper {
+  margin-right: 0;
+}
 .dash__league-card {
-  background-color: #203e4a;
+  background-color: #2a5262;
   width: 40rem;
   height: 50rem;
   border-radius: 8px;

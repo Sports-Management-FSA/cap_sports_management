@@ -83,9 +83,7 @@ const Home2 = () => {
                   <div className="landing__body-browse-leagues" ref={el => leagueCardsRef.current[index] = el}>
                      {category.leagues.map((league) => (
                         <div className="landing__browse-league-card" key={league.id}>
-                           <div className="landing__card-image">
-                              <img src={league.logo} width="90" height="80" alt="Image" />
-                           </div>
+                           <img  className="landing__card-image" src={league.logo} width="90" height="80" alt="Image" />
                            <div className="landing__league-card-name">
                               <Link to={`/league/${league.id}`} className="home-card-text-name">{league.name}</Link>
                            </div>
