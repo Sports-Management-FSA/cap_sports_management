@@ -99,7 +99,7 @@ const UserProfileAccountDetail = () => {
    }, [dispatch]);
 
    return (
-      <div className="row">
+      <div className="row profile-account-details">
          <div className="col-xl-4">
             <div className="card mb-4 mb-xl-0">
                <div className="card-header">Profile Picture</div>
