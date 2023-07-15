@@ -24,14 +24,16 @@ app.use(
    })
 );
 
+app.set("trust proxy", 1);
+
 app.use(
    session({
       secret: "secretcode",
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true,
       cookie: {
          sameSite: "none",
-         secure: true,
+         secure: "auto",
          maxAge: 1000 * 60 * 60 * 24 * 7 // One Week
       }
    })
