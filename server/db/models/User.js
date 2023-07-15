@@ -178,47 +178,48 @@ User.addHook("beforeSave", async (user) => {
 });
 
 User.findByToken = async function (token) {
-  try {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await this.findByPk(id, {
-      include: [
-        conn.models.teamRoles,
-        conn.models.team,
-        conn.models.leagueRoles,
-        conn.models.league,
-        {model: User_LeagueRoles, include: [League, LeagueRoles]},
-        {model: User_TeamRoles, include: [Team, TeamRoles]},
-        {model: Scorekeeper, include: [Actions, Team, Match]},
-        { model: Post, include: [Comment] },
-      ],
-    });
-    if (user) {
-      return user;
-    }
-    throw new Error("User not found");
-  } catch (ex) {
-    const error = new Error("bad credentials");
-    error.status = 401;
-    throw error;
-  }
+   try {
+      const { id } = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await this.findByPk(id, {
+         include: [
+            conn.models.teamRoles,
+            conn.models.team,
+            conn.models.leagueRoles,
+            conn.models.league,
+            { model: User_LeagueRoles, include: [League, LeagueRoles] },
+            { model: User_TeamRoles, include: [Team, TeamRoles] },
+            { model: Scorekeeper, include: [Actions, Team, Match] },
+            { model: Post, include: [Comment] }
+         ]
+      });
+      if (user) {
+         return user;
+      }
+      throw new Error("User not found");
+   } catch (ex) {
+      const error = new Error("bad credentials");
+      error.status = 401;
+      throw error;
+   }
 };
 
 User.prototype.generateToken = function () {
    return jwt.sign({ id: this.id }, process.env.JWT_SECRET);
 };
 
-User.authenticate = async function ({ username, password }) {
+User.authenticate = async function (credentials) {
+   const { username, password } = credentials;
    const user = await this.findOne({
       where: {
          username
       }
    });
-   if (user && (await bcrypt.compare(password, user.password))) {
-      return jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+   if (!user || !(await bcrypt.compare(password, user.password))) {
+      const error = Error("bad credentials");
+      error.status = 401;
+      throw error;
    }
-   const error = new Error("Bad credentials");
-   error.status = 401;
-   throw error;
+   return user.generateToken();
 };
 
 module.exports = User;
