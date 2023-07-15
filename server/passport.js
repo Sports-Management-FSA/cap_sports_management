@@ -56,7 +56,7 @@ passport.use(
       {
          clientID: process.env.FACEBOOK_APP_ID,
          clientSecret: process.env.FACEBOOK_APP_SECRET,
-         callbackURL: "/auth/facebook/callback",
+         callbackURL: "https://podium.onrender.com/auth/facebook/callback",
          passReqToCallback: true,
          profileFields: ["id", "displayName", "photos", "email"]
       },
