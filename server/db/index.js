@@ -587,6 +587,7 @@ const syncAndSeed = async () => {
     await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 7});
     await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 4});
     await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 3});
+    
     //add teams to matches
     await match1.addTeam([team1, team2]); //league 1
     await match2.addTeam([team4, team5]); //league 2
@@ -608,9 +609,9 @@ const syncAndSeed = async () => {
     //Added Random Post To Teams
     await Post.create({message:"WE WON!!", likes: 6, userId: 1, teamId: 1});
     await Post.create({message:"WE LOST....", likes: 6, userId: 2, teamId: 1});
-    await Post.create({message:"WE WON!!", likes: 6, userId: 3, teamId: 2});
+    await Post.create({message:"Playoffs begin next week!!", likes: 6, userId: 3, teamId: 2});
     await Post.create({message:"WE ARE THE BEST!", likes: 6, userId: 4, teamId: 2});
-    await Post.create({message:"WE WON!!", likes: 6, userId: 5, teamId: 3});
+    await Post.create({message:"Looking for additional teams for next season.", likes: 6, userId: 5, teamId: 3});
     await Post.create({message:"WE WON!!", likes: 6, userId: 6, teamId: 1});
 
     //Added Random Post To Leagues

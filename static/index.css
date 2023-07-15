@@ -7,7 +7,7 @@
 }
 .league-container a,
 p {
-  color: #fffff0;
+  color: #ffffff;
 }
 .league__content {
   background-color: #112222;
@@ -16,11 +16,6 @@ p {
   display: flex;
   flex-direction: column;
   width: 50%;
-}
-@media (max-width: 900px) {
-  .league-main {
-    margin-left: 10rem;
-  }
 }
 .league-head {
   background-color: #2a5262;
@@ -35,6 +30,9 @@ p {
   flex-direction: row;
   margin-top: 1.2rem;
 }
+.head-left-content {
+  color: #ffffff;
+}
 .league-head img {
   margin-right: 1rem;
 }
@@ -46,34 +44,35 @@ p {
   margin-top: 2rem;
   border-radius: 2px;
 }
+.head__about {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #386e84;
+}
+.head__about-content {
+  color: #ffffff;
+}
 .league--navbar-items {
   background-color: #2a5262;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
   list-style-type: none;
   margin-bottom: 0;
 }
 .league--navbar-items a {
-  width: 100%;
+  width: auto;
+  color: #ffffff;
   height: 3rem;
-  color: #fffff0;
   font-weight: bold;
   font-size: 1rem;
   text-decoration: none;
-  margin-right: 3rem;
   transition: transform 0.3s ease-in-out;
-}
-@media (max-width: 1664px) {
-  .league--navbar-items a {
-    margin-right: 0.75rem;
-    font-weight: 200;
-    font-size: 0.75rem;
-  }
+  margin-right: 3rem;
 }
 .league--navbar-items a.active {
-  color: #fffff0;
+  color: #ffffff;
   margin-bottom: 0;
   transform: scale(1.1);
   letter-spacing: 0.2rem;
@@ -82,6 +81,70 @@ p {
   cursor: pointer;
   transform: scale(1.1);
   letter-spacing: 0.2rem;
+}
+@media (max-width: 900px) {
+  .league-main {
+    margin-left: 10rem;
+  }
+}
+@media (max-width: 1664px) {
+  .league--navbar-items a {
+    margin-right: 2rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1140px) {
+  .league--navbar-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1320px) {
+  .league-container {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+@media (max-width: 500px) {
+  .league-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+  }
+  .league-main-upper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .league-head {
+    background-color: #2a5262;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1rem;
+  }
+  .league-navbar {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .league--navbar-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    font-size: 1rem;
+  }
 }
 @font-face {
   font-family: 'Montserrat';
@@ -119,7 +182,10 @@ p {
   src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-.ttf) format('truetype');
 }
 * {
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 form {
   display: flex;
@@ -131,11 +197,6 @@ body {
   margin-bottom: 100px;
   clear: both;
   margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-form > * {
-  margin: 1rem;
 }
 @media (max-width: 900px) {
   footer {
@@ -144,6 +205,9 @@ form > * {
   footer a {
     font-size: 10px;
   }
+}
+@media (max-width: 1320px) {
+  margin: 0;
 }
 p,
 h1,
@@ -220,7 +284,7 @@ a {
   cursor: pointer;
 }
 .landing__container {
-  color: #fffff0;
+  color: #ffffff;
 }
 .landing__header {
   background-size: cover;
@@ -231,7 +295,7 @@ a {
   background-color: #112222;
 }
 .landing__header h1 {
-  color: #ffffff;
+  color: #717171;
   font-size: 6rem;
 }
 .landing__body-browse-header {
@@ -248,6 +312,20 @@ a {
 }
 .landing__header button {
   margin-left: auto;
+}
+.browse-header {
+  color: #ffffff;
+}
+.home-leagues-header-left .search-bar input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: #2a5262;
+  border: none;
+  color: #ffffff;
+}
+.home-leagues-header-left .search-bar input::placeholder {
+  color: #ffffff;
 }
 .landing__body-browse-content {
   display: flex;
@@ -291,7 +369,7 @@ a {
   margin-left: 0.5rem;
 }
 .home-card-text-name {
-  color: #fffff0;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 800;
 }
@@ -300,7 +378,7 @@ a {
   line-height: 5px;
   font-weight: 100;
   font-size: 0.75rem;
-  color: #ffffff;
+  color: #717171;
 }
 .landing__body-browse-leagues::-webkit-scrollbar {
   width: 10px;
@@ -492,7 +570,7 @@ ALLENS Updates END .landing-matches-header h2 {
   margin-top: 1rem;
 }
 .home-popular h3 {
-  color: #fffff0;
+  color: #ffffff;
   font-weight: 600;
   margin-bottom: 2px;
   text-decoration-skip-ink: none;
@@ -522,10 +600,10 @@ ALLENS Updates END .landing-matches-header h2 {
   background-color: #112222;
 }
 .home-leagues-header-left h1 {
-  color: #fffff0;
+  color: #ffffff;
 }
 .home-leagues-header-right {
-  color: #fffff0;
+  color: #ffffff;
   font-size: 1.5rem;
   font-weight: 600;
   text-decoration: none;
@@ -539,10 +617,10 @@ ALLENS Updates END .landing-matches-header h2 {
   text-decoration: none;
 }
 .home-leagues-cards h4 {
-  color: #fffff0;
+  color: #ffffff;
 }
 .home-leagues-cards p {
-  color: #fffff0;
+  color: #ffffff;
 }
 .home-league-card p {
   display: flex;
@@ -566,6 +644,11 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
 }
 .matches--match {
   display: flex;
@@ -573,6 +656,8 @@ ALLENS Updates END .landing-matches-header h2 {
   align-items: center;
   background-color: #2a5262;
   margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 3px 4px 2px #2c2c2c;
 }
 .match-body {
   position: relative;
@@ -583,25 +668,27 @@ ALLENS Updates END .landing-matches-header h2 {
   gap: 5rem;
   width: 100%;
   background-color: #2a5262;
-  border-radius: 2px;
+  border-radius: 8px;
   padding: 1rem 1rem 1rem 1rem;
 }
 .match-lower {
   margin: 0.5rem;
 }
 .match-body p {
-  color: #fffff0;
+  color: #ffffff;
 }
 .standings__container {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
 }
-.standings__container,
-.table {
+.standings__container .standings__table {
   margin-top: 0.5rem;
 }
-.table {
+.standings__table {
   width: 100%;
-  color: blue;
 }
 .table__header {
   font-weight: bold;
@@ -609,14 +696,11 @@ ALLENS Updates END .landing-matches-header h2 {
   text-align: left;
 }
 .table__cell {
-  padding: 0.5rem;
-  border-bottom: 1px solid #dee2e6;
+  padding: 1rem;
+  color: #ffffff;
 }
-.table__cell:first-child {
-  border-top-left-radius: 0.25rem;
-}
-.table__cell:last-child {
-  border-top-right-radius: 0.25rem;
+.table__body-container tr:hover {
+  background-color: #2a5262;
 }
 .create-team-leagueLogo {
   width: 6rem;
@@ -710,13 +794,25 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   align-items: center;
   gap: 3rem;
-  margin-left: 1rem;
 }
 .item-link {
   text-decoration: none;
 }
 .item:hover {
   cursor: pointer;
+}
+@media (max-width: 1320px) {
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 0.5rem;
+  }
+}
+@media (max-width: 1223px) {
+  .sidebar {
+    display: none;
+  }
 }
 .stats-main {
   margin: 1rem;
@@ -732,7 +828,7 @@ ALLENS Updates END .landing-matches-header h2 {
 .stats--navbar-items a {
   width: 100%;
   height: 1rem;
-  color: #fffff0;
+  color: #ffffff;
   font-weight: 400;
   border: none;
   font-size: 1rem;
@@ -753,6 +849,25 @@ ALLENS Updates END .landing-matches-header h2 {
 .announcements__container {
   height: 50rem;
   overflow-y: scroll;
+  margin: 1rem;
+  z-index: -1;
+}
+.announcements__container::-webkit-scrollbar {
+  background-color: #386e84;
+  border-radius: 8px;
+  width: 10px;
+}
+.announcements__container::-webkit-scrollbar-track {
+  background-color: #386e84;
+  border-radius: 8px;
+}
+.announcements__container::-webkit-scrollbar-thumb {
+  background-color: #386e84;
+  border-radius: 8px;
+}
+.announcements__container::-webkit-scrollbar-thumb:hover {
+  background-color: #386e84;
+  border-radius: 8px;
 }
 .announcements__post {
   background-color: #2a5262;
@@ -762,7 +877,7 @@ ALLENS Updates END .landing-matches-header h2 {
   padding-top: 0.5rem;
 }
 .post-header {
-  color: #fffff0;
+  color: #ffffff;
 }
 .post-content {
   margin-left: 0.5rem;
@@ -784,7 +899,7 @@ ALLENS Updates END .landing-matches-header h2 {
   height: 100vh;
   background-color: #112222;
   color: black;
-  margin-left: 3rem;
+  margin-left: 0;
   width: 20%;
   padding: 20px;
 }
@@ -801,18 +916,13 @@ ALLENS Updates END .landing-matches-header h2 {
 .rightnav-match span {
   margin: 0.5rem;
 }
-.rightnav-announcements {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border-radius: 2px;
-  box-shadow: 0px 0px 7px grey;
-  margin-top: 1rem;
-  width: 53%;
-}
-.rightnav-container > * {
-  width: 100%;
+@media (max-width: 1320px) {
+  .rightnav-container {
+    display: none;
+  }
+  .rightnav-matches {
+    display: none;
+  }
 }
 /* ---------- NavBar Customization ---------- */
 .navbar-tab {
@@ -855,7 +965,7 @@ ALLENS Updates END .landing-matches-header h2 {
 }
 .newsfeed__createpost input::placeholder {
   margin-left: 0.5rem;
-  color: #fffff0;
+  color: #ffffff;
 }
 .newfeed__posts {
   display: flex;
@@ -872,17 +982,17 @@ ALLENS Updates END .landing-matches-header h2 {
 }
 .newsfeed__post-upper span {
   font-weight: bold;
-  color: #fffff0;
+  color: #ffffff;
 }
 .newsfeed__post-upper i {
   font-weight: 400;
-  color: #fffff0;
+  color: #ffffff;
 }
 .newsfeed__post-content {
   margin: 0.5rem;
 }
 .newsfeed__post-content article {
-  color: #fffff0;
+  color: #ffffff;
 }
 .newsfeed__post-lower {
   display: flex;
@@ -896,7 +1006,7 @@ ALLENS Updates END .landing-matches-header h2 {
   justify-content: center;
   width: 50%;
   border-radius: 25px;
-  color: #fffff0;
+  color: #ffffff;
 }
 .newsfeed__post-lower span:hover {
   background-color: #2a5262;
@@ -1236,7 +1346,7 @@ h1 {
   justify-content: space-between;
 }
 .dashboard-icon {
-  color: #fffff0;
+  color: #ffffff;
   transition: transform 0.3s ease-in-out;
 }
 .card-icon:hover {
@@ -1287,7 +1397,7 @@ h1 {
 }
 .post__card-content p,
 span {
-  color: #fffff0;
+  color: #ffffff;
 }
 .inbox__container {
   display: flex;
@@ -1295,26 +1405,13 @@ span {
   background-color: #2a5262;
   border-radius: 8px;
 }
-@media (max-width: 1175px) {
-  .inbox__row td:nth-child(2) {
-    display: none;
-  }
-}
-@media (max-width: 900px) {
-  .inbox__container {
-    width: 50%;
-  }
-  .inbox__row td:last-child {
-    display: none;
-  }
-}
 .inbox__header {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
-  color: #fffff0;
+  color: #ffffff;
   border-bottom: 3px solid #386e84;
 }
 .inbox__header h4 {
@@ -1385,11 +1482,11 @@ span {
   background-color: #386e84;
 }
 .inbox-col-name {
-  color: #fffff0;
+  color: #ffffff;
   font-weight: 600;
 }
 .inbox-col-content {
-  color: #fffff0;
+  color: #ffffff;
 }
 .inbox-col-content p {
   white-space: nowrap;
@@ -1403,7 +1500,7 @@ span {
   border-radius: 5px;
   margin: 1rem;
   padding: 0.75rem 2rem 0.75rem 2rem;
-  color: #fffff0;
+  color: #ffffff;
   transition: transform 0.1s ease-in-out;
 }
 .inbox-col-content button:hover {
@@ -1418,7 +1515,7 @@ span {
 }
 .inbox__content h4,
 p {
-  color: #fffff0;
+  color: #ffffff;
   font-weight: 600;
 }
 .inbox__content p {
@@ -1449,7 +1546,7 @@ p {
   border: none;
   border-radius: 5px;
   background-color: #386e84;
-  color: #fffff0;
+  color: #ffffff;
   padding: 5px 15px 5px 15px;
 }
 .dashboard-icon-back {
@@ -1461,6 +1558,19 @@ p {
   color: #fffff0;
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
+}
+@media (max-width: 1175px) {
+  .inbox__row td:nth-child(2) {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .inbox__container {
+    width: 50%;
+  }
+  .inbox__row td:last-child {
+    display: none;
+  }
 }
 .dashboard__leagues-container {
   background-color: #2a5262;
@@ -1476,7 +1586,7 @@ p {
   margin: 5px;
 }
 .leagues-title p {
-  color: #fffff0;
+  color: #ffffff;
   margin-left: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -1493,14 +1603,14 @@ p {
 }
 .leagues-table-row:hover {
   background-color: #386e84;
-  color: #717171;
+  color: #e4e4e4;
 }
 .leagues-table-header {
-  color: #fffff0;
+  color: #ffffff;
   padding: 1rem;
 }
 .leagues-table-data {
-  color: #fffff0;
+  color: #ffffff;
   padding: 1rem;
 }
 .leagues-bottom {
@@ -1510,7 +1620,7 @@ p {
   margin-bottom: 0;
 }
 .leagues-bottom p {
-  color: #fffff0;
+  color: #ffffff;
   margin-bottom: 0;
   cursor: pointer;
 }
@@ -1535,13 +1645,13 @@ p {
   border-bottom: 1px #386e84 solid;
 }
 .dash__league-card-header h5 {
-  color: #fffff0;
+  color: #ffffff;
 }
 .dash__league-body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  color: #fffff0;
+  color: #ffffff;
   border-radius: 10px;
   margin: 1rem;
   padding: 0rem 0rem 0rem 1rem;
@@ -1569,7 +1679,7 @@ p {
   right: 1rem;
   text-decoration: none;
   font-weight: 800;
-  color: #fffff0;
+  color: #ffffff;
 }
 .body {
   padding: 0;
@@ -1788,4 +1898,30 @@ p {
   font-family: "Roboto";
   font-weight: 500;
   text-align: center;
+}
+.players__container {
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
+}
+.players__container .players__table {
+  margin-top: 0.5rem;
+}
+.players__table {
+  width: 100%;
+}
+.teamsTable__container {
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
+}
+.teamsTable__container .teams__table {
+  margin-top: 0.5rem;
+}
+.teams__table {
+  width: 100%;
 }

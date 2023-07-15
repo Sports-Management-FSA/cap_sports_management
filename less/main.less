@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600;800&display=swap');
 
 * {
+   margin: 0;
    font-family: 'Montserrat', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 form {
    display: flex;
@@ -14,13 +17,11 @@ body {
    margin-bottom: 100px;
    clear: both;
    margin: 0;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
 }
 
-form > * {
-   margin: 1rem;
-}
+// form > * {
+//    margin: 1rem;
+// }
 
 @media (max-width: 900px) {
    footer {
@@ -30,6 +31,10 @@ form > * {
    footer a {
       font-size: 10px;
    }
+}
+
+@media (max-width: 1320px) {
+   margin: 0;
 }
 
 p,

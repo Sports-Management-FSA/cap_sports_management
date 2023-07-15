@@ -1,7 +1,30 @@
 .announcements__container {
     height: 50rem;
     overflow-y: scroll;
+    margin:1rem;
+    z-index: -1;
 }
+
+.announcements__container::-webkit-scrollbar {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+    width: 10px;
+ }
+ 
+ .announcements__container::-webkit-scrollbar-track {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+ }
+ 
+ .announcements__container::-webkit-scrollbar-thumb {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+ }
+ 
+ .announcements__container::-webkit-scrollbar-thumb:hover {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+ }
 
 .announcements__post {
     background-color: @dark-background-secondary;

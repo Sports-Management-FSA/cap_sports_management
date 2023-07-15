@@ -94,10 +94,10 @@ const Announcements = () => {
                         <p>{post.desc}</p>
                     </div>
                     <div className="post-likescomments" onClick={handleIconClick}>
-                    {isFavorited ? 
-                        <FavoriteRoundedIcon className="dashboard-icon"/> :
-                        <FavoriteBorderRoundedIcon className="dashboard-icon"/> 
-                    }
+                        {isFavorited ? 
+                            <FavoriteRoundedIcon className="dashboard-icon"/> :
+                            <FavoriteBorderRoundedIcon className="dashboard-icon"/> 
+                        }
                         <CommentRoundedIcon className="dashboard-icon"/>
                     </div>
                     <div className="post-bottom">

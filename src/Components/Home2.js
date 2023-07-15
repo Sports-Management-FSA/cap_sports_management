@@ -63,9 +63,7 @@ const Home2 = () => {
          <div className="home-leagues">
             <div className="home-leagues-header">
                <div className="home-leagues-header-left">
-
                      <h1>Leagues</h1>
-      
                   <div className="search-bar">
                      <input placeholder="Search Leagues" />
                   </div>
@@ -74,7 +72,7 @@ const Home2 = () => {
             </div>
             {topCategories.map((category, index)=>(
             <div key={category.id}>
-               <h5>{category.name}</h5>
+               <h5 className="browse-header">{category.name}</h5>
                <div className="landing__body-browse-content">
                   <div className="pagination-arrows left">
                      {/* <button className="arrow left" onClick={scrollToLeft}></button> */}
