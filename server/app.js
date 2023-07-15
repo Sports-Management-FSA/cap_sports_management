@@ -91,7 +91,7 @@ app.get(
          `);
       } catch (err) {
          console.log("Error generating token", err);
-         res.status(500).send("Internal Server Error");
+         res.status(500).send("Something wrong");
       }
    }
 );
