@@ -23,7 +23,7 @@ const Stats = (props) => {
   
     const leagueMatches = matches.filter(match => match.leagueId === league.id)
 
-    const matches = league.matches;
+    // const matches = league.matches;
 
     const teams = league.teams;
     const players = [];
