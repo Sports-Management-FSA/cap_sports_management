@@ -2,12 +2,13 @@ const router = require("express").Router();
 const { User, Match, Team, Actions, Post, 
         Comment, User_TeamRoles, LeagueRoles, 
         League, User_LeagueRoles, Scorekeeper, 
-        TeamRoles } = require("../../db");
+        TeamRoles, Requests } = require("../../db");
 
 router.get("/", async (req, res, next) => {
   try {
     const user = await User.findAll({
-      include: [
+      include: [ 
+        {model: Requests, as: 'receivedRequests'},
         {model: User_LeagueRoles, include: [League, LeagueRoles]},
         {model: User_TeamRoles, include: [Team, TeamRoles]},
         {model: Scorekeeper, include: [Actions, Team, Match]},
@@ -23,7 +24,8 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
-      include: [
+      include: [ 
+        {model: Requests, as: 'receivedRequests'},
         {model: User_LeagueRoles, include: [League, LeagueRoles]},
         {model: User_TeamRoles, include: [Team, TeamRoles]},
         {model: Scorekeeper, include: [Actions, Team, Match]},

@@ -3,6 +3,7 @@ const {
   User,
   Team,
   Match,
+  League,
   LeagueRoles,
   TeamRoles,
   Post,
@@ -10,13 +11,15 @@ const {
   Actions,
   Scorekeeper,
   User_TeamRoles,
+  User_LeagueRoles,
+  Requests,
 } = require("../../db");
 
 // Get All Team
 router.get("/", async (req, res, next) => {
   try {
     const teams = await Team.findAll({
-      include: [
+      include: [ Requests,
          { model: User_TeamRoles, include: [
             TeamRoles,
             { model: User, attributes: ['firstName', 'lastName'], include:[
@@ -113,17 +116,21 @@ router.delete("/:id", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
    try {
       const user = await User.findByToken(req.headers.authorization, {
-         include: [LeagueRoles]
+         include: { model: User_LeagueRoles, include: [League]},
       });
 
       if (!user) {
-         return res.status(401).send("Unauthorized to update team");
+         return res.status(401).send("Unauthorized to update team, not a user");
       }
-      const director = user.leagueRoles.find((role) => role.name == "director");
+  
       const team = await Team.findByPk(req.params.id);
-      if (!director || director.user_leagueRoles.leagueId != team.leagueId) {
-         return res.status(401).send("Unauthorized to update team");
+   
+      const director = user.user_leagueRoles.find((role) => role.leagueRole.name == "director" && role.leagueId == req.body.leagueId);
+   
+      if (!director) {
+         return res.status(401).send("Unauthorized to update team, not a director for the league");
       }
+     
       await team.update(req.body);
       return team;
    } catch (ex) {

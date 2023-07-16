@@ -21,7 +21,9 @@ import {
    loginWithToken,
    fetchAllAnnouncements,
    fetchAllCategories,
-   fetchAllMessages
+   fetchAllMessages,
+   fetchAllScorekeepers,
+   fetchAllRequests,
 } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
@@ -46,6 +48,8 @@ const App = () => {
       dispatch(loginWithToken());
       dispatch(fetchAllAnnouncements());
       dispatch(fetchAllMessages());
+      dispatch(fetchAllRequests());
+      dispatch(fetchAllScorekeepers());
    }, []);
    console.log(auth);
    return (

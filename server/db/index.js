@@ -77,11 +77,11 @@ User.hasMany(Scorekeeper);
 //User.belongsToMany(Requests, {as: 'receiver', foreignKey: 'receiverId', through: { model: User_Requests, unique: false },});
 //Requests.belongsToMany(User, {as: 'sender', foreignKey: 'senderId', through: { model: User_Requests, unique: false },});
 //Requests.belongsToMany(User, {as: 'receiver', foreignKey: 'receiverId',through: { model: User_Requests, unique: false },});
-User.hasMany(Requests, {foreignKey: 'senderId', as: 'SentRequests'});
-User.hasMany(Requests, {foreignKey: 'receiverId', as: 'ReceivedRequests'});
+User.hasMany(Requests, {foreignKey: 'senderId', as: 'sentRequests'});
+User.hasMany(Requests, {foreignKey: 'receiverId', as: 'receivedRequests'});
 //User.hasMany(User_Requests);
-Requests.belongsTo(User, {foreignKey: 'senderId', as: 'Sender'});
-Requests.belongsTo(User, {foreignKey: 'receiverId', as: 'Receiver'});
+Requests.belongsTo(User, {foreignKey: 'senderId', as: 'sender'});
+Requests.belongsTo(User, {foreignKey: 'receiverId', as: 'receiver'});
 //User_Requests.belongsTo(User);
 
 //super many to many
@@ -709,14 +709,14 @@ const syncAndSeed = async () => {
     ])
 
     User_LeagueRoles.bulkCreate([
-      {userId: 5, leagueRoleId: 1, leagueId: 1},
+      {userId: 5, leagueRoleId: 1, leagueId: 7},
     ])
 
     await User_Requests.bulkCreate([
-      {senderId: 1, leagueId: 7, requestId: 1, teamId: 15}, //team to league
-      {senderId: 1, leagueId: 7, requestId: 2, teamId: 16},
-      {senderId: 2, leagueId: 7, requestId: 3, teamId: 17},
-      {senderId: 2, leagueId: 7, requestId: 4, teamId: 18},
+      {senderId: 1, leagueId: 2, requestId: 1, teamId: 6},
+      {senderId: 1, leagueId: 1, requestId: 2, teamId: 2},
+      {senderId: 1, leagueId: 2, requestId: 3, teamId: 4},
+      {senderId: 1, leagueId: 7, requestId: 4, teamId: 15}, //team to league works
       {senderId: 3, leagueId: 7, requestId: 5, teamId: 15}, //player to league
       {senderId: 4, leagueId: 7, requestId: 6, teamId: 16},
       {senderId: 5, leagueId: 7, requestId: 7},              //no desired team
