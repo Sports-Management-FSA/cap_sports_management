@@ -47,20 +47,19 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), async (req, res) => {
    try {
-      // Successful authentication, generate a token
+      //   Successful authentication, generate a token
       const token = req.user.generateToken();
-
-      // Redirect or respond with the token
+      //   Redirect or respond with the token
       res.send(`
-            <html>
-               <body>
-                  <script>
-                     window.localStorage.setItem('token', '${token}');
-                     window.location = '/';
-                  </script>
-               </body>
-            </html>
-         `);
+              <html>
+                 <body>
+                    <script>
+                       window.localStorage.setItem('token', '${token}');
+                       window.location = '/';
+                    </script>
+                 </body>
+              </html>
+           `);
    } catch (err) {
       console.log("Error generating token", err);
       res.status(500).send("Internal Server Error");
@@ -70,42 +69,29 @@ app.get("/auth/google/callback", passport.authenticate("google", { failureRedire
 // Facebook Login Route
 app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "public_profile"] }));
 
-// app.get(
-//    "/auth/facebook/callback",
-//    passport.authenticate("facebook", { failureRedirect: "/login" }),
-//    async (req, res) => {
-//       try {
-//          // Successful authentication, generate a token
-//          const token = req.user.generateToken();
-
-//          // Redirect or respond with the token
-//          res.send(`
-//             <html>
-//                <body>
-//                   <script>
-//                      window.localStorage.setItem('token', '${token}');
-//                      window.location = '/';
-//                   </script>
-//                </body>
-//             </html>
-//          `);
-//       } catch (err) {
-//          console.log("Error generating token", err);
-//          res.status(500).send("Something wrong");
-//       }
-//    }
-// );
-
 app.get(
-   "/auth/google/callback",
-   passport.authenticate("google", {
-      failureMessage: "Cannot login to Google, please try again later!",
-      failureRedirect: "/login",
-      successRedirect: "/"
-   }),
-   (req, res) => {
-      console.log("User: ", req.user);
-      res.send("Thank you for signing in!");
+   "/auth/facebook/callback",
+   passport.authenticate("facebook", { failureRedirect: "/login" }),
+   async (req, res) => {
+      try {
+         // Successful authentication, generate a token
+         const token = req.user.generateToken();
+
+         // Redirect or respond with the token
+         res.send(`
+            <html>
+               <body>
+                  <script>
+                     window.localStorage.setItem('token', '${token}');
+                     window.location = '/';
+                  </script>
+               </body>
+            </html>
+         `);
+      } catch (err) {
+         console.log("Error generating token", err);
+         res.status(500).send("Something wrong");
+      }
    }
 );
 
