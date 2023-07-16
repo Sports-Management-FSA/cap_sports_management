@@ -57,8 +57,8 @@ const DashboardLeagues = () => {
                 <div className="dash__league-card">
                     <section className="dash__league-card-header">
                         <h5>{selectedLeague.name}</h5>
-                        <div>
-                            <span>Configure Matches</span>
+                        <div >
+                            <span className="dash-header-topright">Configure Matches</span>
                             <SettingsRoundedIcon onClick={() => setEditMode(true)} className="dashboard-icon-clickable"/>
                         </div>
                     </section>

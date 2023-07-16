@@ -327,59 +327,6 @@ a {
 .home-leagues-header-left .search-bar input::placeholder {
   color: #ffffff;
 }
-.landing__body-browse-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #112222;
-}
-.landing__body-browse-leagues {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 1rem;
-  margin: 1rem;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-.landing__browse-league-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 0;
-  width: 20rem;
-  height: 17rem;
-  border-radius: 1px;
-  background-color: #2a5262;
-}
-.landing__card-image {
-  margin-left: auto;
-  margin-right: auto;
-  height: 50%;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: auto;
-  margin-left: 0.5rem;
-}
-.home-card-text-name {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 800;
-}
-.landing__league-card-name-subtext {
-  width: 100%;
-  line-height: 5px;
-  font-weight: 100;
-  font-size: 0.75rem;
-  color: #717171;
-}
 .landing__body-browse-leagues::-webkit-scrollbar {
   width: 10px;
 }
@@ -552,93 +499,6 @@ ALLENS Updates END .landing-matches-header h2 {
 .landing-matches--match-lower {
   display: flex;
   justify-content: space-between;
-}
-.home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: #112222;
-}
-.home-container h1 {
-  color: black;
-}
-.home-popular {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 1rem;
-}
-.home-popular h3 {
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 2px;
-  text-decoration-skip-ink: none;
-}
-.home-popular-cards {
-  display: flex;
-  gap: 5rem;
-  margin: 2rem;
-}
-.home-popular-cards button {
-  border-radius: 10px;
-  padding: 8px 20px 8px 20px;
-  color: black;
-  background-color: white;
-}
-.home-leagues {
-  display: flex;
-  flex-direction: column;
-  background-color: #112222;
-  margin: 5rem;
-}
-.home-leagues-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 20 15 30 15;
-  background-color: #112222;
-}
-.home-leagues-header-left h1 {
-  color: #ffffff;
-}
-.home-leagues-header-right {
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-.home-leagues-cards {
-  grid-template-rows: 2rem;
-  flex-flow: wrap;
-  gap: 2rem;
-}
-.home-leagues-cards a {
-  text-decoration: none;
-}
-.home-leagues-cards h4 {
-  color: #ffffff;
-}
-.home-leagues-cards p {
-  color: #ffffff;
-}
-.home-league-card p {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: black;
-  border-radius: 5px;
-  margin: 5px;
-  padding: 5px;
-  align-items: flex-start;
-}
-.card-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.search-bar {
-  margin-bottom: 1rem;
 }
 .matches-container {
   display: flex;
@@ -1714,7 +1574,7 @@ p {
 .dashboard-icon-clickable:hover {
   cursor: pointer;
 }
-.dash-header-topright:hover span {
+.dash-header-topright:hover {
   cursor: pointer;
 }
 .body {
@@ -2035,4 +1895,164 @@ p {
   position: absolute;
   bottom: 0;
   right: 2.5rem;
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #112222;
+}
+.home-container h1 {
+  color: black;
+}
+.home-popular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.home-popular h3 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 2px;
+  text-decoration-skip-ink: none;
+}
+.home-popular-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem;
+  margin: 2rem;
+  width: 100%;
+  height: 100%;
+}
+.home-popular-card {
+  background-color: #2a5262;
+  border-radius: 8px;
+  padding: 1rem 1rem 1rem 1rem;
+  color: #ffffff;
+}
+.home-popular-card:hover {
+  background-color: #386e84;
+  cursor: pointer;
+}
+.home-popular-card a {
+  transition: font-size 0.3s ease-in-out;
+  text-decoration: none;
+  margin: 3rem;
+}
+.home-popular-card a:hover {
+  font-size: 1.5rem;
+}
+.home-leagues {
+  display: flex;
+  flex-direction: column;
+  background-color: #112222;
+  margin: 5rem;
+}
+.home-leagues-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20 15 30 15;
+  background-color: #112222;
+}
+.home-leagues-header-left h1 {
+  color: #ffffff;
+}
+.home-leagues-header-right {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.home-leagues-cards {
+  display: flex;
+  margin-left: 40px;
+  flex-direction: row;
+  justify-content: center;
+  grid-template-rows: 2rem;
+  flex-flow: wrap;
+  gap: 2rem;
+}
+.home-leagues-cards a {
+  text-decoration: none;
+}
+.home-leagues-cards h4 {
+  color: #ffffff;
+}
+.home-leagues-cards p {
+  color: #ffffff;
+}
+.home-league-card p {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  align-items: flex-start;
+}
+.card-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar {
+  margin-bottom: 1rem;
+}
+.home-leagues-container {
+  width: auto;
+  height: auto;
+}
+.landing__body-browse-leagues {
+  gap: 2rem;
+  margin: 1rem;
+  width: auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.landing__browse-league-card {
+  display: inline-block;
+  margin: 2rem;
+  width: 20rem;
+  height: 23rem;
+  border-radius: 8px;
+  background-color: #2a5262;
+}
+.landing__card-image {
+  margin-left: auto;
+  margin-right: auto;
+  height: 50%;
+  width: 100%;
+  margin-bottom: 3rem;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  margin-left: 1rem;
+}
+.home-card-text-name {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 800;
+  margin-bottom: 3rem;
+}
+.landing__league-card-name {
+  margin-bottom: 3.5rem;
+  font-size: 1.2rem;
+}
+.landing__league-card-name-subtext {
+  width: 100%;
+  line-height: 5px;
+  font-weight: 100;
+  font-size: 0.75rem;
+  color: #717171;
 }
