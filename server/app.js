@@ -30,7 +30,7 @@ app.use(
    session({
       secret: "secretcode",
       resave: false,
-      saveUninitialized: true,
+      saveUninitialized: false,
       cookie: {
          sameSite: "none",
          secure: "true",
