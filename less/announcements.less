@@ -1,8 +1,46 @@
+.announcements__container {
+    height: 50rem;
+    overflow-y: scroll;
+    margin:1rem;
+    z-index: -1;
+}
+
+.announcements__container::-webkit-scrollbar {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+    width: 10px;
+ }
+ 
+ .announcements__container::-webkit-scrollbar-track {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+ }
+ 
+ .announcements__container::-webkit-scrollbar-thumb {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+ }
+ 
+ .announcements__container::-webkit-scrollbar-thumb:hover {
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+ }
+
 .announcements__post {
     background-color: @dark-background-secondary;
     border-radius: 2px;
     margin: 2rem 1rem 1rem 1rem;
     padding-left: .5rem;
+    padding-top: .5rem;
+}
+
+.post-header {
+    color: @dark-font-primary;
+}
+
+.post-content {
+    margin-left: .5rem;
+    font-weight: 200;
 }
 
 .post-bottom {
@@ -10,4 +48,10 @@
 }
 .post-bottom span {
     margin-right: 1rem;
+}
+
+.post-likescomments {
+    display: flex;
+    gap: 1rem;
+    
 }

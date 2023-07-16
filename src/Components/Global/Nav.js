@@ -39,8 +39,8 @@ const Nav = () => {
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
                   {auth?.username ? (
                      <>
-                        <span className="text-white align-middle">
-                           Welcome! {`${auth.username[0].toUpperCase()}${auth.username.slice(1)}`}
+                        <span className="text-white align-middle" style={{ letterSpacing: "0", fontSize: "14px" }}>
+                           Welcome! {auth.username}
                         </span>
                         <li className="nav-item dropdown">
                            <a
@@ -73,6 +73,18 @@ const Nav = () => {
                                  <i className="bi bi-person-square"></i>
                                  <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">
                                     Profile
+                                 </span>
+                              </Link>
+                              <Link to="/dashboard" className="mb-2 dropdown-item" role="button">
+                                 <i className="bi bi-person-square"></i>
+                                 <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">
+                                    Dashboard
+                                 </span>
+                              </Link>
+                              <Link to="/home" className="mb-2 dropdown-item" role="button">
+                                 <i className="bi bi-person-square"></i>
+                                 <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">
+                                    Leagues
                                  </span>
                               </Link>
                               <li className="mb-2 dropdown-item" role="button" onClick={handleLogout}>

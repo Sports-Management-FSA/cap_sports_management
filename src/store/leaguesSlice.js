@@ -93,6 +93,16 @@ const leagueSlice = createSlice({
          })
          .addCase(updateLeague.rejected, (state, action) => {
             state.error = action.error.message;
+         })
+         .addCase(deleteLeague.pending, (state) => {
+            state.loading = true;
+         })
+         .addCase(deleteLeague.fulfilled, (state, action) => {
+            state.loading = false;
+            state.leaguesList = state.leaguesList.filter((league) => (league.id !== action.payload.id));
+         })
+         .addCase(deleteLeague.rejected, (state, action) => {
+            state.error = action.error.message;
          });
    }
 });

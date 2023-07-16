@@ -33,6 +33,8 @@ import UserProfile from "./Components/User/UserProfile";
 import RequestJoin2 from "./Forms/RequestJoin2";
 import Scorekeeper from "./Components/Scorekeeper";
 import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
+import Home2 from './Components/Home2';
+
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -58,7 +60,7 @@ const App = () => {
          <div>
             <Routes>
                <Route path="/" element={<Landing3 />} />
-               <Route path="/home" element={<Home />} />
+               <Route path="/home" element={<Home2 />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
                <Route path="/scorekeeper/:id" element={<AdvancedScoreKeeper />} />

@@ -8,9 +8,12 @@ import Personnel from './Personnel';
 
 const TeamStats = (props) => {
     const {team} = props;
+    console.log(team)
     const matches = team.matches;
-    const players = team.users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) !== undefined);
-    const personnel = team.users.filter(personnel=>(personnel.teamRoles.filter(role => role.name !== 'player' && role.user_teamRoles.teamId == team.id)).length > 0);
+    const players = [];
+    team.user_teamRoles.forEach(user=>{if(user.teamRole.name == 'player'){players.push(user.user)}});
+    const personnel = [];
+    team.user_teamRoles.forEach(user=>{if(user.teamRole.name !== 'player'){personnel.push(user)}});
     const [currentComponent, setCurrentComponent] = useState('Roster');
     const [activeTab, setActiveTab] = useState("Roster");
  

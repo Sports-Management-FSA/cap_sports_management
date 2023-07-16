@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 
 
 const Matches = (props) => {
-
     const { id } = useParams();
     let matches = [];
     const category = useSelector(state => state.categories.categoriesList);
+
 
     if (props.matches) {
         matches = props.matches;
@@ -24,7 +24,7 @@ const Matches = (props) => {
         const matchDate = new Date(match.date);
         return matchDate > today;
     })
-
+    console.log(upcomingMatches);
     const previousMatches = matches.filter((match) => {
         const matchDate = new Date(match.date);
         return matchDate < today;
@@ -58,12 +58,16 @@ const Matches = (props) => {
                                     <Link to={`/scorekeeper/${upcomingMatch.id}`}>Score this Match</Link>
                                 </div>
                             </div>
-                        )
+                        )}
+                        )}
+                    </div>
+                    :
+                    <div>
+                        <p>No Matches to Display</p>
+                    </div>
                     }
-                    )}
-                </div> : 'No Matches to Display'}
-        </div>
-    )
+                </div>
+            )
 }
 
 export default Matches;

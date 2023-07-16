@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express.Router();
 const { User } = require("../../db");
-
-/* Google login routes */
+const bcrypt = require("bcrypt");
 
 app.post("/", async (req, res, next) => {
    try {
@@ -37,6 +36,25 @@ app.put("/", async (req, res, next) => {
    }
 });
 
+app.put("/password", async (req, res, next) => {
+   try {
+      const user = await User.findByToken(req.headers.authorization);
+      const { currentPassword, newPassword } = req.body;
+
+      // Compare the current password with the one stored in the database
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) {
+         return res.status(400).send({ message: "Current password is incorrect" });
+      }
+
+      // Update the user's password
+      await user.update({ password: newPassword });
+
+      res.send({ message: "Password updated successfully" });
+   } catch (ex) {
+      next(ex);
+   }
+});
 app.post("/register", async (req, res, next) => {
    try {
       res.send(await User.create(req.body));

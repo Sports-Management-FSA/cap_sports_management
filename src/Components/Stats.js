@@ -22,9 +22,12 @@ const Stats = (props) => {
      }
   
     const leagueMatches = matches.filter(match => match.leagueId === league.id)
+
+    const matches = league.matches;
+
     const teams = league.teams;
     const players = [];
-    teams.forEach(team=> players.push(...team.users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) !== undefined)));
+    teams.forEach(team=> players.push(...team.user_teamRoles.filter(player=>(player.teamRole.name == 'player'))));
 
     const handleClick = (component) => {
        setCurrentComponent(component);

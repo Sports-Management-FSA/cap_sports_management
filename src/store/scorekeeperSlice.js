@@ -14,7 +14,7 @@ export const fetchAllScorekeepers = createAsyncThunk("fetchAllScorekeepers", asy
 export const addScorekeeper = createAsyncThunk('addScorekeeper', async(Scorekeeper, { rejectWithValue}) => {
     try {
         const token = window.localStorage.getItem('token');
-        //scorekeeper object should include: matchId, userId, actionId, teamId
+        //scorekeeper object should include: matchId, userId, actionId, ScorekeeperId
         const response = await axios.post('/api/scorekeepers', Scorekeeper, {
             headers: {
                 authorization: token
@@ -99,6 +99,16 @@ const scorekeepersSlice = createSlice({
         .addCase(updateScorekeeper.rejected, (state, action) => {
             state.error = action.error.message;
         })
+        .addCase(deleteScorekeeper.pending, (state) => {
+            state.loading = true;
+         })
+         .addCase(deleteScorekeeper.fulfilled, (state, action) => {
+            state.loading = false;
+            state.scorekeepersList = state.scorekeepersList.filter((scorekeeper) => (scorekeeper.id !== action.payload.id));
+         })
+         .addCase(deleteScorekeeper.rejected, (state, action) => {
+            state.error = action.error.message;
+         });
     }
 })
 

@@ -6,6 +6,7 @@ const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const MemoryStore = require("memorystore")(session);
 
 require("./passport");
 
@@ -24,11 +25,20 @@ app.use(
    })
 );
 
+app.set("trust proxy", 1);
+
 app.use(
    session({
       secret: "secretcode",
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
+      store: new MemoryStore({
+         checkPeriod: 86400000 // Prune expired entries every 24h
+      }),
+      cookie: {
+         sameSite: "none",
+         secure: "true"
+      }
    })
 );
 
@@ -40,20 +50,19 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), async (req, res) => {
    try {
-      // Successful authentication, generate a token
+      //   Successful authentication, generate a token
       const token = req.user.generateToken();
-
-      // Redirect or respond with the token
+      //   Redirect or respond with the token
       res.send(`
-            <html>
-               <body>
-                  <script>
-                     window.localStorage.setItem('token', '${token}');
-                     window.location = '/';
-                  </script>
-               </body>
-            </html>
-         `);
+              <html>
+                 <body>
+                    <script>
+                       window.localStorage.setItem('token', '${token}');
+                       window.location = '/';
+                    </script>
+                 </body>
+              </html>
+           `);
    } catch (err) {
       console.log("Error generating token", err);
       res.status(500).send("Internal Server Error");
@@ -84,7 +93,7 @@ app.get(
          `);
       } catch (err) {
          console.log("Error generating token", err);
-         res.status(500).send("Internal Server Error");
+         res.status(500).send("Something wrong");
       }
    }
 );

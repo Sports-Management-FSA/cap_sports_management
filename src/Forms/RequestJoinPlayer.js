@@ -9,6 +9,7 @@ const RequestJoinPlayer = () => {
    const dispatch = useDispatch();
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
+   const {auth} = useSelector(state=>state);
 
    const [playerMessageUserName, setPlayerMessageUserName] = useState("");
    const [playerMessageTeamName, setPlayerMessageTeamName] = useState("");
@@ -28,7 +29,7 @@ const RequestJoinPlayer = () => {
 
       // Validate Email
       if (playerMessageEmail.trim() === "") {
-         errors.email = "Email is reuquired";
+         errors.email = "Email is required";
       } else {
          if (!validator.isEmail(playerMessageEmail)) {
             errors.email = "Invalid email format";
@@ -59,6 +60,7 @@ const RequestJoinPlayer = () => {
          description: playerMessageSummary,
          playerEmail: playerMessageEmail,
          leagueId: id,
+         userId: auth.id,
          desiredTeam: selectedTeam
       };
 

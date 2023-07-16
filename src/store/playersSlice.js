@@ -86,6 +86,16 @@ const playersSlice = createSlice({
          })
          .addCase(updatePlayer.rejected, (state, action) => {
             state.error = action.error.message;
+         })
+         .addCase(deletePlayer.pending, (state) => {
+            state.loading = true;
+         })
+         .addCase(deletePlayer.fulfilled, (state, action) => {
+            state.loading = false;
+            state.playerList = state.playerList.filter((player) => (player.id !== action.payload.id));
+         })
+         .addCase(deletePlayer.rejected, (state, action) => {
+            state.error = action.error.message;
          });
    }
 });

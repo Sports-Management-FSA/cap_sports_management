@@ -58,10 +58,10 @@ const UserProfileAccountDetail = () => {
 
       // Validate Username
       if (formData.username.trim() === "") {
-         errors.username = "User name is required";
+         errors.username = "Username is required";
       } else {
          if (formData.username !== auth.username && users.some((user) => user.username === formData.username)) {
-            errors.username = "User name already exists";
+            errors.username = "Username already exists";
          }
       }
       setFormErrors(errors);
@@ -91,7 +91,7 @@ const UserProfileAccountDetail = () => {
       modal.setAttribute("aria-hidden", "true");
       backdrop.parentNode.removeChild(backdrop);
       // Refresh Page after user confirm
-      navigate("/profile");
+      navigate("/");
    };
 
    useEffect(() => {
@@ -99,7 +99,7 @@ const UserProfileAccountDetail = () => {
    }, [dispatch]);
 
    return (
-      <div className="row">
+      <div className="row profile-account-details">
          <div className="col-xl-4">
             <div className="card mb-4 mb-xl-0">
                <div className="card-header">Profile Picture</div>
@@ -186,52 +186,6 @@ const UserProfileAccountDetail = () => {
                               onChange={handleInputChange}
                            />
                            {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
-                        </div>
-                     </div>
-                     <div>
-                        {/* Button trigger modal */}
-                        <button
-                           type="button"
-                           className="btn btn-outline-secondary"
-                           data-bs-toggle="modal"
-                           data-bs-target="#confirmModal">
-                           Save Changes
-                        </button>
-
-                        {/* Modal */}
-                        <div
-                           className="modal fade"
-                           id="confirmModal"
-                           tabIndex="-1"
-                           aria-labelledby="modalLabel"
-                           aria-hidden="true">
-                           <div className="modal-dialog">
-                              <div className="modal-content">
-                                 <div className="modal-header">
-                                    <h1 className="modal-title fs-6" id="modalLabel" style={{ letterSpacing: "0" }}>
-                                       Confirm Changes
-                                    </h1>
-                                    <button
-                                       type="button"
-                                       className="btn-close"
-                                       data-bs-dismiss="modal"
-                                       aria-label="Close"></button>
-                                 </div>
-                                 <div className="modal-body">Are you sure you want to save the changes?</div>
-                                 <div className="modal-footer">
-                                    <button
-                                       type="button"
-                                       className="btn btn-secondary"
-                                       data-bs-dismiss="modal"
-                                       onClick={() => setShowConfirmation(false)}>
-                                       Close
-                                    </button>
-                                    <button type="button" className="btn btn-primary" onClick={handleConfirmChanges}>
-                                       Save changes
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
                         </div>
                      </div>
                   </form>

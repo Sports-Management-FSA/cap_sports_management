@@ -1,81 +1,101 @@
 import React, { useState } from "react";
-import { attemptLogin, registerUser } from "../../store";
-import { useDispatch } from "react-redux";
+import { attemptLogin, attemptSignup } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import validator from "validator";
 
 const Register = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
-
-   const [credentials, setCredentials] = useState({
+   const users = useSelector((state) => state.players.playerList);
+   const [formErrors, setFormErrors] = useState("");
+   const [formData, setFormData] = useState({
       username: "",
       password: "",
-      confirmPassword: "",
       firstName: "",
       lastName: "",
       email: ""
    });
+   const [confirmPassword, setConfirmPassword] = useState("");
 
-   const [registerError, setRegisterError] = useState("");
-
-   const onChange = (event) => {
-      setCredentials({ ...credentials, [event.target.name]: event.target.value });
-      setRegisterError("");
-   };
-
-   const handleRegister = async (event) => {
-      event.preventDefault();
-      try {
-         if (!validator.isEmail(credentials.email)) {
-            setRegisterError("Please enter a valid email address.");
-            return;
-         }
-
-         if (credentials.password !== credentials.confirmPassword) {
-            setRegisterError("Passwords do not match. Please try again.");
-            return;
-         }
-
-         const registrationResult = await dispatch(registerUser(credentials));
-         if (registrationResult.payload.error) {
-            setRegisterError("Username or Email already in use. Please try again.");
-            return;
-         }
-
-         const loginResult = await dispatch(attemptLogin(credentials));
-         if (loginResult.payload) {
-            navigate("/");
-         } else {
-            setRegisterError("An error occurred during login. Please try again.");
-         }
-      } catch (error) {
-         console.error("Error during registration:", error);
-         setRegisterError("An error occurred during registration. Please try again.");
+   const handleInputChange = (ev) => {
+      if (ev.target.id === "confirmPassword") {
+         setConfirmPassword(ev.target.value);
+      } else {
+         setFormData({ ...formData, [ev.target.id]: ev.target.value });
       }
    };
 
-   const validateEmail = (email) => {
-      // Regular expression for email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
+   // Form validation
+   const validateForm = () => {
+      const errors = {};
+
+      // Validate Email
+      if (formData.email.trim() === "") {
+         errors.email = "Email is required";
+      } else if (!validator.isEmail(formData.email)) {
+         errors.email = "Invalid email format";
+      } else {
+         if (users.some((user) => user.email === formData.email)) {
+            errors.email = "Email already exists";
+         }
+      }
+
+      // Validate Username
+      if (formData.username.trim() === "") {
+         errors.username = "Username is required";
+      } else {
+         if (users.some((user) => user.username === formData.username)) {
+            errors.username = "Username already exists";
+         }
+      }
+
+      // Validate Password
+      if (formData.password === "") {
+         errors.password = "Password is required";
+      }
+
+      // Validate Confirm Password
+      if (formData.password !== confirmPassword) {
+         errors.confirmPassword = "Password do no match";
+      }
+
+      setFormErrors(errors);
+
+      return errors;
    };
 
-   const invalidCredentials =
-      credentials.username === "" ||
-      credentials.password === "" ||
-      credentials.confirmPassword === "" ||
-      credentials.firstName === "" ||
-      credentials.lastName === "" ||
-      credentials.email === "" ||
-      !validateEmail(credentials.email) ||
-      credentials.password !== credentials.confirmPassword;
+   const handleSubmit = async (ev) => {
+      ev.preventDefault();
+      try {
+         const validateErrors = validateForm();
+         if (Object.keys(validateErrors).length > 0) {
+            // Form has errors, prevent form submission
+            setFormErrors(validateErrors);
+            return;
+         }
+         const signUpResult = await dispatch(attemptSignup(formData));
+         if (signUpResult.payload.error) {
+            console.log("Sign up error:", error);
+            return;
+         }
+         const loginResult = await dispatch(attemptLogin(formData));
+         if (loginResult.payload) {
+            navigate("/");
+         } else {
+            console.error("Error:", error);
+         }
+      } catch (err) {
+         console.log("Error:", console.error);
+      }
+   };
 
    return (
       <section
          className="vh-100"
          style={{
-            backgroundColor: "#f6f3f3"
+            backgroundColor: "#f6f3f3",
+            marginBottom: "1rem"
          }}>
          <div className="mask d-flex align-items-center h-100 py-5">
             <div className="container py-5">
@@ -83,76 +103,81 @@ const Register = () => {
                   <div className="col-9 col-md-9 col-lg-7 col-xl-6">
                      <div className="card" style={{ borderRadius: "15px", backgroundColor: "#fdfffc" }}>
                         <div className="card-body p-5">
-                           <h2 className="text-uppercase text-center mb-3 fw-bold text-dark">Create an account</h2>
+                           <h2 className="text-uppercase text-center mb-3 fw-bold text-dark register-header">
+                              Create an account
+                           </h2>
 
-                           <form onSubmit={handleRegister}>
+                           <form onSubmit={handleSubmit}>
                               <div className="form-outline form-white mb-2">
                                  <input
-                                    className="form-control"
+                                    className={`form-control ${formErrors.username ? "is-invalid" : ""}`}
                                     placeholder="Username"
-                                    value={credentials.username}
-                                    name="username"
-                                    onChange={onChange}
+                                    value={formData.username}
+                                    id="username"
+                                    onChange={handleInputChange}
                                  />
+                                 {formErrors && <div className="invalid-feedback">{formErrors.username}</div>}
                               </div>
                               <div className="form-outline form-white mb-2">
                                  <input
-                                    className="form-control"
+                                    className={`form-control ${formErrors.password ? "is-invalid" : ""}`}
                                     placeholder="Password"
                                     type="password"
-                                    name="password"
-                                    value={credentials.password}
-                                    onChange={onChange}
+                                    id="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
                                  />
+                                 {formErrors && <div className="invalid-feedback">{formErrors.password}</div>}
                               </div>
                               <div className="form-outline form-white mb-2">
                                  <input
-                                    className="form-control"
+                                    className={`form-control ${formErrors.confirmPassword ? "is-invalid" : ""}`}
                                     placeholder="Confirm Password"
                                     type="password"
-                                    name="confirmPassword"
-                                    value={credentials.confirmPassword}
-                                    onChange={onChange}
+                                    id="confirmPassword"
+                                    value={confirmPassword}
+                                    onChange={handleInputChange}
                                  />
+                                 {formErrors && <div className="invalid-feedback">{formErrors.confirmPassword}</div>}
                               </div>
                               <div className="form-outline form-white mb-2">
                                  <input
                                     className="form-control"
                                     placeholder="FirstName"
-                                    value={credentials.firstName}
-                                    name="firstName"
-                                    onChange={onChange}
+                                    value={formData.firstName}
+                                    id="firstName"
+                                    onChange={handleInputChange}
                                  />
                               </div>
                               <div className="form-outline form-white mb-2">
                                  <input
                                     className="form-control"
                                     placeholder="LastName"
-                                    value={credentials.lastName}
-                                    name="lastName"
-                                    onChange={onChange}
+                                    value={formData.lastName}
+                                    id="lastName"
+                                    onChange={handleInputChange}
                                  />
                               </div>
                               <div className="form-outline form-white mb-2">
                                  <input
-                                    className="form-control"
+                                    className={`form-control ${formErrors.email ? "is-invalid" : ""}`}
                                     placeholder="Email"
                                     type="email"
-                                    name="email"
-                                    value={credentials.email}
-                                    onChange={onChange}
+                                    id="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
                                  />
+                                 {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
                               </div>
-                              {registerError && <div className="fw-bold text-center">{registerError}</div>}
                               <div className="d-flex justify-content-center">
                                  <button className="btn btn-outline-dark btn-lg px-5" type="submit">
                                     Register
                                  </button>
                               </div>
-                              <p className="text-center text-dark mt-3 mb-0">
+                              <p className="text-center text-dark mt-3 mb-0 register-account-paragraph">
                                  Have an account?{" "}
                                  <Link to="/login" className="text-dark fw-bold register-login">
-                                    <span>Login here</span>
+                                    <span className="register-login-here">Login here</span>
                                  </Link>
                               </p>
                            </form>

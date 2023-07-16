@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const { User, Team, Match, Post, Comment, Category, Actions } = require('../../db');
+const { User, Team, Match, Post, Comment, User_TeamRoles, User_LeagueRoles } = require('../../db');
 const { League, Announcements, Messages } = require('../../db');
 const LeagueRoles = require('../../db/models/LeagueRoles');
 const TeamRoles = require('../../db/models/TeamRoles');
@@ -11,13 +11,20 @@ router.get("/", async (req, res, next) => {
     const league = await League.findAll({
       include: [
         Announcements, Messages,
-        { model: Team, include: [{model: User, include: [TeamRoles]}]}, 
+        { model: Team, include: [
+          {model: User_TeamRoles, include: [
+            {model: User, attributes: ['firstName', 'lastName']}, 
+            {model: TeamRoles, attributes: ['name']}
+          ]}
+        ]}, 
         { model: Post, include: [Comment] },
         { model: Match, include: [Team] },
-        { model: User, include: [LeagueRoles] },
-        { model: Category, include: [Actions]},
-      ],
-    });
+        { model: User_LeagueRoles, include: [
+            {model: User, attributes: ['firstName', 'lastName']}, 
+            {model: LeagueRoles, attributes: ['name']}
+          ]}
+        ]},
+    );
     res.send(league);
   } catch (ex) {
     res.send("no data yet, next(ex) prompted");
@@ -31,12 +38,21 @@ router.get("/:id", async (req, res, next) => {
   try {
     const league = await League.findByPk(req.params.id, {
       include: [
-        Team,
+        Announcements, Messages,
+        { model: Team, include: [
+          {model: User_TeamRoles, include: [
+            {model: User, attributes: ['firstName', 'lastName']}, 
+            {model: TeamRoles, attributes: ['name']}
+          ]}
+        ]}, 
         { model: Post, include: [Comment] },
         { model: Match, include: [Team] },
-        { model: User, include: [LeagueRoles] },
-      ],
-    });
+        { model: User_LeagueRoles, include: [
+            {model: User, attributes: ['firstName', 'lastName']}, 
+            {model: LeagueRoles, attributes: ['name']}
+          ]}
+        ]},
+    );
     res.send(league);
   } catch (ex) {
     next(ex);
