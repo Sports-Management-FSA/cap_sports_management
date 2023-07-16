@@ -48,14 +48,14 @@ const Login = () => {
    const invalidCredentials = credentials.username === "" || credentials.password === "";
 
    const google = () => {
-      window.open("https://podium.onrender.com/auth/google", "_self");
+      window.open(process.env.GOOGLE_LOGIN_URL, "_self");
    };
    const facebook = () => {
-      window.open("http://localhost:3000/auth/facebook", "_self");
+      window.open(process.env.FACEBOOK_LOGIN_URL, "_self");
    };
 
    const twitter = () => {
-      window.open("http://localhost:3000/auth/twitter", "_self");
+      window.open(process.env.TWITTER_LOGIN_URL, "_self");
    };
 
    return (
