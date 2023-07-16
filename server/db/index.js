@@ -15,6 +15,8 @@ const Announcements = require("./models/Announcements");
 const Post = require("./models/Post");
 const Comment = require("./models/Comment");
 const Messages = require("./models/Messages");
+const Requests = require('./models/Requests');
+const User_Requests = require('./models/User_Requests');
 
 Team.belongsTo(League);
 League.hasMany(Team);
@@ -54,19 +56,46 @@ User_TeamRoles.belongsTo(TeamRoles);
 //super many to many
 User.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
 Actions.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
-Match.belongsToMany(Actions, {through: { model: Scorekeeper, unique: false },});
-Actions.belongsToMany(Match, {through: { model: Scorekeeper, unique: false },});
 User.belongsToMany(Match, { through: { model: Scorekeeper, unique: false } });
 Match.belongsToMany(User, { through: { model: Scorekeeper, unique: false } });
+Match.belongsToMany(Actions, {through: { model: Scorekeeper, unique: false },});
+Actions.belongsToMany(Match, {through: { model: Scorekeeper, unique: false },});
 Team.belongsToMany(Actions, { through: { model: Scorekeeper, unique: false } });
 Actions.belongsToMany(Team, { through: { model: Scorekeeper, unique: false } });
+Scorekeeper.belongsTo(Match);
 Match.hasMany(Scorekeeper);
+Scorekeeper.belongsTo(Team);
 Team.hasMany(Scorekeeper);
-User.hasMany(Scorekeeper);
 Scorekeeper.belongsTo(Actions);
 Scorekeeper.belongsTo(User);
-Scorekeeper.belongsTo(Team);
-Scorekeeper.belongsTo(Match);
+User.hasMany(Scorekeeper);
+
+
+
+//super many to many
+//User.belongsToMany(Requests, {as: 'sender', foreignKey: 'senderId', through: { model: User_Requests, unique: false },});
+//User.belongsToMany(Requests, {as: 'receiver', foreignKey: 'receiverId', through: { model: User_Requests, unique: false },});
+//Requests.belongsToMany(User, {as: 'sender', foreignKey: 'senderId', through: { model: User_Requests, unique: false },});
+//Requests.belongsToMany(User, {as: 'receiver', foreignKey: 'receiverId',through: { model: User_Requests, unique: false },});
+User.hasMany(Requests, {foreignKey: 'senderId', as: 'SentRequests'});
+User.hasMany(Requests, {foreignKey: 'receiverId', as: 'ReceivedRequests'});
+//User.hasMany(User_Requests);
+Requests.belongsTo(User, {foreignKey: 'senderId', as: 'Sender'});
+Requests.belongsTo(User, {foreignKey: 'receiverId', as: 'Receiver'});
+//User_Requests.belongsTo(User);
+
+//super many to many
+Team.belongsToMany(Requests, {through: { model: User_Requests, unique: false },});
+Requests.belongsToMany(Team, {through: { model: User_Requests, unique: false },});
+User_Requests.belongsTo(Team);
+Team.hasMany(User_Requests);
+
+//super many to many
+League.belongsToMany(Requests, {through: { model: User_Requests, unique: false },});
+Requests.belongsToMany(League, {through: { model: User_Requests, unique: false },});
+User_Requests.belongsTo(League);
+League.hasMany(User_Requests);
+
 
 Match.belongsToMany(Team, { through: Team_Matches });
 Team.belongsToMany(Match, { through: Team_Matches });
@@ -634,13 +663,72 @@ const syncAndSeed = async () => {
     await Announcements.create({name: "Olive" , description: "Testing!", leagueId: 3});
 
     //add messages to leagues
-    await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 5, teamEmail: "sean1322@yahoo.com", teamName: "The Seans", userId: 19});
-    await Messages.create({name: "Bob" , subjectLine: "Interested in your league", description: "Hi! Whats the requirements", leagueId: 5, teamEmail: "bob4523@yahoo.com", teamName: "The Winner", userId: 18});
-    await Messages.create({name: "Miguel" , subjectLine: "Hola", description: "Hola, como estas", leagueId: 5, teamEmail: "Miguelito3234@yahoo.com", teamName: "Mayhem", userId: 3});
-    await Messages.create({name: "Sherry" , subjectLine: "Hello, interested", description: "Hi, may I please join?", leagueId: 5, teamEmail: "Teddy5983@yahoo.com", teamName: "Team Sparta", userId: 4});
-    await Messages.create({name: "Ted" , subjectLine: "Free Agent", description: "Hi, may I please join a team?", leagueId: 5, userId: 7});
-    await Messages.create({name: "Ashley" , subjectLine: "Need a team", description: "Can I join?", leagueId: 5, userId: 9});
+    // await Messages.create({name: "Sean" , subjectLine: "Join league", description: "Hey can I join your league?", leagueId: 5, teamEmail: "sean1322@yahoo.com", teamName: "The Seans", userId: 19});
+    // await Messages.create({name: "Bob" , subjectLine: "Interested in your league", description: "Hi! Whats the requirements", leagueId: 5, teamEmail: "bob4523@yahoo.com", teamName: "The Winner", userId: 18});
+    // await Messages.create({name: "Miguel" , subjectLine: "Hola", description: "Hola, como estas", leagueId: 5, teamEmail: "Miguelito3234@yahoo.com", teamName: "Mayhem", userId: 3});
+    // await Messages.create({name: "Sherry" , subjectLine: "Hello, interested", description: "Hi, may I please join?", leagueId: 5, teamEmail: "Teddy5983@yahoo.com", teamName: "Team Sparta", userId: 4});
+    // await Messages.create({name: "Ted" , subjectLine: "Free Agent", description: "Hi, may I please join a team?", leagueId: 5, userId: 7});
+    // await Messages.create({name: "Ashley" , subjectLine: "Need a team", description: "Can I join?", leagueId: 5, userId: 9});
     
+    //add requests from team to leagues (1-4)
+    // from player to league (5-8)
+    // from player to team (9-12)
+    // from team to player (13-16)
+    await Requests.bulkCreate([
+      { senderId: 1, subjectLine: "1team to league", description: "Please let me join1", from: 'team', to: 'league'}, //1
+      { senderId: 1, subjectLine: "2team to league", description: "Please let me join2", from: 'team', to: 'league'}, //2
+      { senderId: 2, subjectLine: "3team to league", description: "Please let me join3", from: 'team', to: 'league'}, //3
+      { senderId: 2, subjectLine: "4team to league", description: "Please let me join4", from: 'team', to: 'league'}, //4
+      { senderId: 3, subjectLine: "1player to league", description: "Please let me join5", from: 'player', to: 'league'}, //5
+      { senderId: 4, subjectLine: "2player to league", description: "Please let me join6", from: 'player', to: 'league'}, //6
+      { senderId: 5, subjectLine: "3player to league", description: "Please let me join7", from: 'player', to: 'league'}, //7
+      { senderId: 6, subjectLine: "4player to league", description: "Please let me join8", from: 'player', to: 'league'}, //8
+      { senderId: 21, subjectLine: "1player to team", description: "Please let me join9", from: 'player', to: 'team'}, //9
+      { senderId: 21, subjectLine: "2player to team", description: "Please let me join10", from: 'player', to: 'team'}, //10
+      { senderId: 21, subjectLine: "3player to team", description: "Please let me join11", from: 'player', to: 'team'}, //11
+      { senderId: 21, subjectLine: "4player to team", description: "Please let me join12", from: 'player', to: 'team'}, //12
+      { senderId: 1, receiverId: 5, subjectLine: "1team to player", description: "Please let me join13", from: 'team', to: 'player'}, //13
+      { senderId: 1, receiverId: 5, subjectLine: "2team to player", description: "Please let me join14", from: 'team', to: 'player'}, //14
+      { senderId: 2, receiverId: 5, subjectLine: "3team to player", description: "Please let me join15", from: 'team', to: 'player'}, //15
+      { senderId: 2, receiverId: 5, subjectLine: "4team to player", description: "Please let me join16", from: 'team', to: 'player'}, //16
+    ]);
+
+    await Team.bulkCreate([
+      { name:'1 Free Agent Team', season: 'Spring', email: 'freeagent01@gmail.com', logo: '/static/images/mlb.png' }, //15
+      { name:'2 Free Agent Team', season: 'Spring', email: 'freeagent02@gmail.com', logo: '/static/images/mlb.png' }, //16
+      { name:'3 Free Agent Team', season: 'Spring', email: 'freeagent03@gmail.com', logo: '/static/images/mlb.png' }, //17
+      { name:'4 Free Agent Team', season: 'Spring', email: 'freeagent04@gmail.com', logo: '/static/images/mlb.png' }, //18
+    ]);
+
+    User_TeamRoles.bulkCreate([
+      {userId: 1, teamRoleId: 2, teamId: 15},
+      {userId: 1, teamRoleId: 2, teamId: 16},
+      {userId: 2, teamRoleId: 2, teamId: 17},
+      {userId: 2, teamRoleId: 2, teamId: 18},
+    ])
+
+    User_LeagueRoles.bulkCreate([
+      {userId: 5, leagueRoleId: 1, leagueId: 1},
+    ])
+
+    await User_Requests.bulkCreate([
+      {senderId: 1, leagueId: 7, requestId: 1, teamId: 15}, //team to league
+      {senderId: 1, leagueId: 7, requestId: 2, teamId: 16},
+      {senderId: 2, leagueId: 7, requestId: 3, teamId: 17},
+      {senderId: 2, leagueId: 7, requestId: 4, teamId: 18},
+      {senderId: 3, leagueId: 7, requestId: 5, teamId: 15}, //player to league
+      {senderId: 4, leagueId: 7, requestId: 6, teamId: 16},
+      {senderId: 5, leagueId: 7, requestId: 7},              //no desired team
+      {senderId: 6, leagueId: 7, requestId: 8},             //no desired team
+      {senderId: 21, requestId: 9, teamId: 15}, //player to team
+      {senderId: 21, requestId: 10, teamId: 16},
+      {senderId: 21, requestId: 11, teamId: 17},
+      {senderId: 21, requestId: 12, teamId: 18},
+      {senderId: 1, receiverId: 5, requestId: 13, teamId: 15}, //team to player
+      {senderId: 1, receiverId: 5, requestId: 14, teamId: 16}, 
+      {senderId: 2, receiverId: 5, requestId: 15, teamId: 17}, 
+      {senderId: 2, receiverId: 5, requestId: 16, teamId: 18},  
+    ]);
 
     console.log('\n\nSeeding Successful!\n\n')
 };
@@ -663,4 +751,6 @@ module.exports = {
   Post,
   Comment,
   Messages,
+  Requests,
+  User_Requests,
 };
