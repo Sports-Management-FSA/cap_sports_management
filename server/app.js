@@ -6,6 +6,7 @@ const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const MemoryStore = require("memorystore")(session);
 
 require("./passport");
 
@@ -31,10 +32,12 @@ app.use(
       secret: "secretcode",
       resave: false,
       saveUninitialized: false,
+      store: new MemoryStore({
+         checkPeriod: 86400000 // Prune expired entries every 24h
+      }),
       cookie: {
          sameSite: "none",
-         secure: "true",
-         maxAge: 1000 * 60 * 60 * 24 * 7 // One Week
+         secure: "true"
       }
    })
 );
