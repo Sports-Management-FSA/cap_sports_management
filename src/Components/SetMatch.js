@@ -4,6 +4,7 @@ import { addMatch } from "../store";
 
 //Props require teams = leagueTeams league = league
 const SetMatch = (props) => {
+
   const dispatch = useDispatch();
 
   const [team1, setTeam1] = useState({});
@@ -45,83 +46,92 @@ const SetMatch = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmitMatch}>
-        <div>
-        <h3>Team 1</h3>
-          <select
-            name="team1"
-            id="team1"
-            onChange={(e) =>
-              setTeam1(props.teams.find((team) => team.id == e.target.value))
-            }
-          >
-            <option value="">--Choose Team--</option>
-            {props.teams.map((team) => {
-              return (
-                <option key={team.id} value={team.id}>
-                  {team.name}
-                </option>
-              );
-            })}
-          </select>
-
-          <h3>Team 2</h3>
-          <select
-            name="team2"
-            id="team2"
-            onChange={(e) =>
-              setTeam2(props.teams.find((team) => team.id == e.target.value))
-            }
-          >
-            <option value="">--Choose Team--</option>
-            {props.teams.map((team) => {
-              return (
-                <option key={team.id} value={team.id}>
-                  {team.name}
-                </option>
-              );
-            })}
-          </select>
+    <div className="setmatch__container">
+      <form className="setmatch__form" onSubmit={handleSubmitMatch}>
+        <div className="setmatch__team1">
+          <h4>Team 1</h4>
+            <select
+              name="team1"
+              id="team1"
+              onChange={(e) =>
+                setTeam1(props.teams.find((team) => team.id == e.target.value))
+              }
+            >
+              <option value="">--Choose Team--</option>
+              {props.teams.map((team) => {
+                return (
+                  <option key={team.id} value={team.id}>
+                    {team.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="setmatch__team2">
+            <h4>Team 2</h4>
+            <select
+              name="team2"
+              id="team2"
+              onChange={(e) =>
+                setTeam2(props.teams.find((team) => team.id == e.target.value))
+              }
+            >
+              <option value="">--Choose Team--</option>
+              {props.teams.map((team) => {
+                return (
+                  <option key={team.id} value={team.id}>
+                    {team.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        <div className="setmatch__main">
+          <div className="setmatch__main-items">
+            <label htmlFor="">Match Name:</label>
+              <input
+                type="text"
+                value={match.name}
+                onChange={(e) => setMatch({ ...match, name: e.target.value })}
+              />
+          </div>
+          <div className="setmatch__main-items">
+            <label htmlFor="">Description:</label>
+              <input
+                type="text"
+                value={match.description}
+                onChange={(e) =>
+                  setMatch({ ...match, description: e.target.value })
+                }
+              />
+          </div>
+          <div className="setmatch__main-items">
+            <label htmlFor="">Date:</label>
+              <input
+                type="date"
+                value={match.date}
+                onChange={(e) => setMatch({ ...match, date: e.target.value })}
+              />
+          </div>
+          <div className="setmatch__main-items">
+            <label htmlFor="">Time:</label>
+              <input
+                type="time"
+                value={match.time}
+                onChange={(e) => setMatch({ ...match, time: e.target.value })}
+              />
+          </div>
+          <div className="setmatch__main-items">
+            <label htmlFor="">Location:</label>
+              <input
+                type="text"
+                value={match.location}
+                onChange={(e) => setMatch({ ...match, location: e.target.value })}
+              />
+          </div>
         </div>
-
         <div>
-          <label htmlFor="">Match Name:</label>
-          <input
-            type="text"
-            value={match.name}
-            onChange={(e) => setMatch({ ...match, name: e.target.value })}
-          />
-          <label htmlFor="">Description:</label>
-          <input
-            type="text"
-            value={match.description}
-            onChange={(e) =>
-              setMatch({ ...match, description: e.target.value })
-            }
-          />
-          <label htmlFor="">Date:</label>
-          <input
-            type="date"
-            value={match.date}
-            onChange={(e) => setMatch({ ...match, date: e.target.value })}
-          />
-          <label htmlFor="">Time:</label>
-          <input
-            type="time"
-            value={match.time}
-            onChange={(e) => setMatch({ ...match, time: e.target.value })}
-          />
-          <label htmlFor="">Location:</label>
-          <input
-            type="text"
-            value={match.location}
-            onChange={(e) => setMatch({ ...match, location: e.target.value })}
-          />
-        </div>
-
-        <div>
-          <button type="submit">Submit</button>
+          <button onClick={props.onDone} type="submit">Save Changes</button>
         </div>
       </form>
     </div>
