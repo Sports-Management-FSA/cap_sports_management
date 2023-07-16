@@ -14,7 +14,7 @@ const RightNav = () => {
     }
     let team1 = upcomingMatch.teams[0].name;
     let team2 = upcomingMatch.teams[1].name;
-    console.log(team2)
+    // console.log(team2)
 
 
     return (

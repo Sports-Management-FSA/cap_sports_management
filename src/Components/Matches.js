@@ -3,20 +3,23 @@ import { useSelector } from "react-redux";
 import { fetchAllMatches } from "../store";
 //import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
-import Scorekeeper from "./Scorekeeper";
+// import AdvancedScoreKeeper from "./AdvancedScoreKeeper";
 
 
 const Matches = (props) => {
-    const {id} = useParams();
-    let matches =[];
+    const { id } = useParams();
+    let matches = [];
+    const category = useSelector(state => state.categories.categoriesList);
 
-    if(props.matches){
+
+    if (props.matches) {
         matches = props.matches;
     } else {
-        matches = useSelector(state=> state.matches.matchesList);
+        matches = useSelector(state => state.matches.matchesList);
     }
-   
-const today = new Date();
+    console.log(matches)
+
+    const today = new Date();
     const upcomingMatches = matches.filter((match) => {
         const matchDate = new Date(match.date);
         return matchDate > today;
@@ -32,10 +35,10 @@ const today = new Date();
         return matchDate === today;
     })
 
-    return(
+    return (
         <div className='matches-container'>
-                    {matches.length > 0 ?
-                    <div className='matches--match-container'>
+            {matches.length > 0 ?
+                <div className='matches--match-container'>
                     {upcomingMatches.map((upcomingMatch) => {
                         return (
                             <div className="matches--match" key={upcomingMatch.id}>
@@ -45,18 +48,15 @@ const today = new Date();
                                     </div>
                                     <div className="matches--match-upper">
                                         <p>{upcomingMatch.date} @ {upcomingMatch.time}</p>
-                                    </div> 
+                                    </div>
                                     <div className='matches--match-lower'>
                                         <p>{upcomingMatch.location}</p>
                                     </div>
-                                    
+
                                 </div>
                                 <div className="match-lower">
-                                <Link to={`/league/${id}/scorekeeper`}>Score this Match</Link>
-                                <Routes>
-                                    <Route path={`/league/:id/scorekeeper`} element={<Scorekeeper match={upcomingMatch} />} />
-                                </Routes>
-                                 </div>
+                                    <Link to={`/scorekeeper/${upcomingMatch.id}`}>Score this Match</Link>
+                                </div>
                             </div>
                         )}
                         )}
