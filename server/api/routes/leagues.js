@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const { User, Team, Match, Post, Comment } = require('../../db');
+const { User, Team, Match, Post, Comment, Category, Actions } = require('../../db');
 const { League, Announcements, Messages } = require('../../db');
 const LeagueRoles = require('../../db/models/LeagueRoles');
 const TeamRoles = require('../../db/models/TeamRoles');
@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
         { model: Post, include: [Comment] },
         { model: Match, include: [Team] },
         { model: User, include: [LeagueRoles] },
+        { model: Category, include: [Actions]},
       ],
     });
     res.send(league);

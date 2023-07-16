@@ -14,13 +14,14 @@ const Stats = (props) => {
     const [currentComponent, setCurrentComponent] = useState('Standings');
     const [activeTab, setActiveTab] = useState("Standings");
     const leagues = useSelector((state) => state.leagues.leaguesList);
+    const matches = useSelector(state => state.matches.matchesList)
     const league = leagues.find((league) => league.id == id);
  
     if (!league) {
          return <div>...loading</div>;
      }
   
-    const matches = league.matches;
+    const leagueMatches = matches.filter(match => match.leagueId === league.id)
     const teams = league.teams;
     const players = [];
     teams.forEach(team=> players.push(...team.users.filter(player=>(player.teamRoles.find(role => role.name == 'player')) !== undefined)));
@@ -40,7 +41,7 @@ const Stats = (props) => {
                 </ul>   
                 <div className="stats-content">
                     <div className="stats-content-body">
-                        {currentComponent === 'Matches' && <Matches matches={matches} />}
+                        {currentComponent === 'Matches' && <Matches matches={leagueMatches} />}
                         {currentComponent === 'Standings' && <Standings teams={teams}/>}
                         {currentComponent === 'Players' && <Players players={players} teams={teams}/>}
                         {currentComponent === 'Teams' && <Teams teams={teams}/>}

@@ -32,6 +32,7 @@ import RequestJoin from "./Forms/RequestJoin";
 import UserProfile from "./Components/User/UserProfile";
 import RequestJoin2 from "./Forms/RequestJoin2";
 import Scorekeeper from "./Components/Scorekeeper";
+import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -46,7 +47,7 @@ const App = () => {
       dispatch(fetchAllAnnouncements());
       dispatch(fetchAllMessages());
    }, []);
-   console.log(auth);
+   // console.log(auth);
    return (
       <div className="app">
          <Nav />
@@ -60,6 +61,7 @@ const App = () => {
                <Route path="/home" element={<Home />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
+               <Route path="/scorekeeper/:id" element={<AdvancedScoreKeeper />} />
                <Route path="/teams/:id" element={<Team />} />
                <Route path="/login" element={<Login />} />
                <Route path="/league/:id/createteam" element={<CreateTeam />} />

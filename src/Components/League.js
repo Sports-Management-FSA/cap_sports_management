@@ -38,7 +38,7 @@ const League = () => {
       setActiveTab(component);
    };
 
-   console.log(league);
+   // console.log(league);
 
    return (
       <div className="league-container">
@@ -94,7 +94,7 @@ const League = () => {
                   </div>
                </div>
             </div>
-            <TestMatch />
+            {/* <TestMatch /> */}
          </div>
          <RightNav />
       </div>

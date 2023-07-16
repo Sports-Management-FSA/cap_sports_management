@@ -117,7 +117,7 @@ const syncAndSeed = async () => {
   const homerun = await Actions.create({
     name: "Homerun",
     value: 5,
-    categoryId: 2,
+    categoryId: 4,
   });
   const goal = await Actions.create({
     name: "Goal",
@@ -549,8 +549,8 @@ const syncAndSeed = async () => {
     await match4.addTeam([team8, team9]); //league 3
 
     //add actions to scorekeeper
-    await Scorekeeper.create({matchId: 1, userId: 13, actionId: 1, teamId: 1});
-    await Scorekeeper.create({matchId: 1, userId: 9, actionId: 1, teamId: 2});
+    await Scorekeeper.create({matchId: 1, userId: 12, actionId: 1, teamId: 5});
+    await Scorekeeper.create({matchId: 1, userId: 18, actionId: 1, teamId: 6});
     await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
     await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
     await Scorekeeper.create({matchId: 2, userId: 12, actionId: 1, teamId: 5});
