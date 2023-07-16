@@ -48,7 +48,7 @@ const Login = () => {
    const invalidCredentials = credentials.username === "" || credentials.password === "";
 
    const google = () => {
-      window.open("http://localhost:3000/auth/google", "_self");
+      window.open("https://podium.onrender.com/auth/google", "_self");
    };
    const facebook = () => {
       window.open("http://localhost:3000/auth/facebook", "_self");
