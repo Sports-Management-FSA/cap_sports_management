@@ -18,40 +18,6 @@ export const createAction = createAsyncThunk(
   }
 );
 
-export const scorePoint = createAsyncThunk(
-  "createAction",
-  async (action, { rejectWithValue }) => {
-    try {
-      const token = window.localStorage.getItem("token");
-      const response = await axios.post("/api/actions/score", action, {
-        headers: {
-          authorization: token,
-        },
-      });
-      return response.data;
-    } catch (err) {
-      return rejectWithValue("Not authorized to create Action.");
-    }
-  }
-);
-
-export const takeAction = createAsyncThunk(
-  "createAction",
-  async (action, { rejectWithValue }) => {
-    try {
-      const token = window.localStorage.getItem("token");
-      const response = await axios.post("/api/actions/takeAction", action, {
-        headers: {
-          authorization: token,
-        },
-      });
-      return response.data;
-    } catch (err) {
-      return rejectWithValue("Not authorized to create Action.");
-    }
-  }
-);
-
 export const updateAction = createAsyncThunk(
   "updateAction",
   async (action, { rejectWithValue }) => {

@@ -119,23 +119,28 @@ const syncAndSeed = async () => {
     name: "Soccer",
     avatar: "/static/images/soccer.png",
   });
-
+  
   const touchdown = await Actions.create({
     name: "Touchdown",
     value: 5,
     categoryId: 1,
   });
+  const fieldGoal = await Actions.create({
+    name: "Field Goal",
+    value: 1,
+    categoryId: 1,
+  });
   const homerun = await Actions.create({
     name: "Homerun",
     value: 5,
-    categoryId: 2,
+    categoryId: 4,
   });
-  const fieldGoal = await Actions.create({
-    name: "Field Goal",
+  const goal = await Actions.create({
+    name: "Goal",
     value: 5,
     categoryId: 3,
   });
-  const scorePoint = await Actions.create({
+  const score = await Actions.create({
     name: "Score",
     value: 1,
   });
@@ -595,8 +600,8 @@ const syncAndSeed = async () => {
     await match4.addTeam([team8, team9]); //league 3
 
     //add actions to scorekeeper
-    await Scorekeeper.create({matchId: 1, userId: 13, actionId: 1, teamId: 1});
-    await Scorekeeper.create({matchId: 1, userId: 9, actionId: 1, teamId: 2});
+    await Scorekeeper.create({matchId: 1, userId: 12, actionId: 1, teamId: 5});
+    await Scorekeeper.create({matchId: 1, userId: 18, actionId: 1, teamId: 6});
     await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
     await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
     await Scorekeeper.create({matchId: 2, userId: 12, actionId: 1, teamId: 5});

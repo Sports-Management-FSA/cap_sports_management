@@ -39,7 +39,7 @@ const League = () => {
       setActiveTab(component);
    };
 
-   console.log(league);
+   // console.log(league);
 
    return (
       <div className="league-container">

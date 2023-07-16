@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
               {model: User, attributes: ['id', 'firstName', 'lastName']}
           ]}, 
           { model: Scorekeeper, attributes: ['id'],include: [
-              {model: Actions, attributes: ['id', 'name', 'value']}, 
+              {model: Actions, attributes: ['id', 'name', 'value', 'countPoint']}, 
               {model: User, attributes: ['id', 'firstName', 'lastName']}, 
               {model: Team, attributes: ['id', 'name']}
           ]}],
