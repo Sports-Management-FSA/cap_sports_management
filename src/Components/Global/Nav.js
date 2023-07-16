@@ -19,7 +19,7 @@ const Nav = () => {
    return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
          <div className="container-fluid">
-            <Link to="/">
+            <Link to="/home">
                <i className="fa-solid fa-people-group ms-5" style={{ color: "#ffffff" }}>
                   {"  "}
                   Podium

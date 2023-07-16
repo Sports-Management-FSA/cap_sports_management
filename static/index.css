@@ -1684,8 +1684,8 @@ p {
 .body {
   padding: 0;
   margin: 0;
-  background: #aedcee;
-  background: radial-gradient(circle, rgba(174, 220, 238, 0) 0%, #94bbe9 100%);
+  background: #4b7c90;
+  background: linear-gradient(90deg, #4b7c90 0%, #90bac1 54%, rgba(56, 110, 132, 0.37160802) 100%);
 }
 .landing_header {
   margin: 0;
@@ -1736,7 +1736,7 @@ p {
   line-height: 3rem;
   padding-top: 1rem;
 }
-.landing_header p span {
+.landing_header span {
   display: block;
   color: black;
   font-family: "Oxygen";

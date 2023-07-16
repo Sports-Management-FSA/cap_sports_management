@@ -68,7 +68,7 @@ Basketball
                 <div className="home_photo">
                     <div className="photo-overlay">
 
-                    <Link to="/home" className="photo-caption">Join a league <span>and start a</span> team now</Link>
+                    <Link to="/home" className="photo-caption">Join a league and start a team now</Link>
                     </div>
 {/* <div className="cover"> */}
 
@@ -85,7 +85,7 @@ Basketball
                 </div>
                 <div className="scorekeeper_photo">
                     <div className="photo-overlay">
-                    <Link to="/scorekeeper" className="photo-caption">Keep track <span>of the</span> game with Scorekeeper </Link>
+                    <Link to="/scorekeeper" className="photo-caption">Keep track of the game with Scorekeeper </Link>
                     </div>
 
 
