@@ -4,9 +4,9 @@ const Teams = (props) => {
     const {teams} = props;
 
     return (
-        <div>
+        <div className="teamsTable__container">
             {teams.length > 0 ?
-            <table className="table">
+            <table className="teams__table">
                 <thead>
                     <tr className="table__header-container">
                         <th className="table__header"></th>

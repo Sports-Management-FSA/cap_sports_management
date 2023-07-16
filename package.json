@@ -32,6 +32,7 @@
         "passport-twitter": "^1.0.4",
         "pg": "^8.8.0",
         "react-bootstrap": "^2.8.0",
+        "react-hot-toast": "^2.4.1",
         "react-modal": "^3.16.1",
         "sequelize": "^6.25.3",
         "validator": "^13.9.0"

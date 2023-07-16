@@ -1,14 +1,15 @@
 .standings__container {
-    margin-top: 1rem;
-    // background-color: @background-secondary;
+    margin-top: 2rem;
+    height: 60vh;
+    background-color: @dark-background-alt;
+    border-radius: 8px;
+    box-shadow: @dark-box-shadow;
 }
-.standings__container, .table{
+.standings__container .standings__table{
     margin-top: .5rem;
 }
-.table {
+.standings__table {
     width: 100%;
-    //border-collapse: collapse;
-    color: blue;
 }
 
 .table__header {
@@ -19,16 +20,22 @@
 
 
 .table__cell {
-    padding: 0.5rem;
-    border-bottom: 1px solid #dee2e6;
+    padding: 1rem;
+    color: @dark-font-primary;
 }
 
-.table__cell:first-child {
-    border-top-left-radius: 0.25rem;
+.table__body-container tr:hover {
+    background-color: @dark-background-secondary;
 }
 
-.table__cell:last-child {
-    border-top-right-radius: 0.25rem;
-}
+// .table__cell:first-child {
+//     border-top-left-radius: 0.25rem;
+// }
 
-  
+// .table__cell:last-child {
+//     border-top-right-radius: 0.25rem;
+// }
+
+// .table__cell .table_link {
+//     color: @dark-fon
+// }
