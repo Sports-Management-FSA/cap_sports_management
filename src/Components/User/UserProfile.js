@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UserProfileAccountDetail from "./UserProfileAccountDetail";
 import UserProfileSecurity from "./UserProfileSecurity";
+import { loginWithToken } from "../../store";
 
 const UserProfile = () => {
+   const dispatch = useDispatch();
    const { auth } = useSelector(({ auth }) => ({ auth }));
 
    // Nav Tab control
@@ -25,7 +27,11 @@ const UserProfile = () => {
    };
 
    if (!auth.username || !auth.loggedIn) {
-      return <h2 className="text-center mt-5">Please login to view the profile</h2>;
+      return (
+         <h1 className="text-center mt-5 fst-italic" style={{ marginBottom: "1175px" }}>
+            Please login to view the profile
+         </h1>
+      );
    } else {
       return (
          <div className="container mt-4 vh-100 profile-page-container" style={{ paddingBottom: "5rem" }}>
