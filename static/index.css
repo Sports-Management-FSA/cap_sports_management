@@ -1749,31 +1749,111 @@ p {
   align-items: center;
   background-color: #112222;
   color: white;
+  height: 100vh;
 }
 .scoreboards-container {
   display: flex;
   justify-content: space-between;
   width: 60%;
   padding: 1rem;
+  margin: 1rem;
+  background-color: #2a5262;
+  border-radius: 8px;
+  position: relative;
 }
 .team-scoreboard-container {
-  background-color: #2a5262;
   padding: 3rem;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   width: 50rem;
 }
 .playerScores-container {
   height: 20rem;
-  width: 100%;
+  width: auto;
   background-color: #386e84;
-  padding: 2rem;
+  padding-top: 1rem;
   border-radius: 8px;
   overflow-y: scroll;
+}
+.playerScores-container::-webkit-scrollbar {
+  width: 10px;
+}
+.playerScores-container::-webkit-scrollbar-track {
+  background-color: #2a5262;
+}
+.playerScores-container::-webkit-scrollbar-thumb {
+  background-color: #88d2ef;
+  border-radius: 5px;
+}
+.playerScores-container::-webkit-scrollbar-thumb:hover {
+  background-color: #386e84;
 }
 .score-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem 2rem 1rem 1.5rem;
+  position: relative;
+  width: 100%;
+}
+.score-container .scorekeeper-icon {
+  position: absolute;
+  right: 1rem;
+  bottom: 32px;
+}
+.score-container:hover {
+  background-color: #2a5262;
+}
+.scorekeeper-lower {
+  margin: 1rem;
+}
+.scorekeeper-lower-actions {
+  margin-bottom: 1.5rem;
+}
+.scorekeeper-lower-actions select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #ffffff;
+  border-radius: 8px;
+  border: 0.2px #88d2ef solid;
+  background-color: #386e84;
+  margin-right: 1rem;
+  width: 8rem;
+  font-size: 0.8rem;
+}
+.scorekeeper-lower-actions button {
+  background-color: #58aecf;
+  color: #ffffff;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  margin-top: 1rem;
+}
+.scorekeeper-lower-actions button:hover {
+  background-color: #386e84;
+}
+.scorekeeper-icon {
+  color: #ffffff;
+  cursor: pointer;
+}
+.scoreboard-footer {
+  position: absolute;
+  bottom: 5px;
+  left: 44%;
+  right: 56%;
+  width: 13rem;
+}
+.scoreboard-footer button {
+  background-color: #1ab6f4;
+  color: #ffffff;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  margin-top: 1rem;
+  font-size: 1.2rem;
 }
 .teamsTable__container {
   margin-top: 2rem;
@@ -1821,7 +1901,6 @@ p {
   border-radius: 8px;
   border: 0.2px solid #88d2ef;
   background-color: #386e84;
-  border: none;
 }
 .setmatch__team1 option,
 .setmatch__team2 option {
