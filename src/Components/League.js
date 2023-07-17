@@ -54,7 +54,8 @@ const League = () => {
                   <div className="league-head">
                      <div className="head-left">
                         <div className="head-left-img">
-                           <img src={league.logo} width="70" height="60" alt="Image" />
+                           <img src={league.logo} alt="Image" /> 
+                           {/* before was this width="70" height="60" */}
                         </div>
                         <div className="head-left-content">
                            <h2>{league.name}</h2>
