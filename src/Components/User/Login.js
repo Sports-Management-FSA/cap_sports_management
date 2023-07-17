@@ -55,7 +55,7 @@ const Login = () => {
    };
 
    const twitter = () => {
-      window.open("https://podium.onrender.com/auth/twitter", "_self");
+      window.open("https://podium.onrender.com/auth/twitter");
    };
 
    return (

@@ -24,6 +24,7 @@ import {
    fetchAllMessages,
    fetchAllScorekeepers,
    fetchAllRequests,
+   fetchAllPosts
 } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
@@ -34,7 +35,10 @@ import RequestJoin from "./Forms/RequestJoin";
 import UserProfile from "./Components/User/UserProfile";
 import RequestJoin2 from "./Forms/RequestJoin2";
 import Scorekeeper from "./Components/Scorekeeper";
+import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
 import Home2 from './Components/Home2';
+import Home4 from "./Components/Home4";
+
 
 const App = () => {
    const { auth } = useSelector((state) => state);
@@ -50,8 +54,9 @@ const App = () => {
       dispatch(fetchAllMessages());
       dispatch(fetchAllRequests());
       dispatch(fetchAllScorekeepers());
+      dispatch(fetchAllPosts())
    }, []);
-   console.log(auth);
+   // console.log(auth);
    return (
       <div className="app">
          <Nav />
@@ -62,9 +67,10 @@ const App = () => {
          <div>
             <Routes>
                <Route path="/" element={<Landing3 />} />
-               <Route path="/home" element={<Home2 />} />
+               <Route path="/home" element={<Home4 />} />
                <Route path="/players/:id" element={<Player />} />
                <Route path="/league/:id" element={<League />} />
+               <Route path="/scorekeeper/:id" element={<AdvancedScoreKeeper />} />
                <Route path="/teams/:id" element={<Team />} />
                <Route path="/login" element={<Login />} />
                <Route path="/league/:id/createteam" element={<CreateTeam />} />

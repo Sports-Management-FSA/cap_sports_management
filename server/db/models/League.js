@@ -39,6 +39,10 @@ const League = conn.define("league", {
    endDate: {
       type: DATEONLY,
       allowNull: true
+   },
+   description: {
+      type: STRING,
+      allowNull: true
    }
 });
 

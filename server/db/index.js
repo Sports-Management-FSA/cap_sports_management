@@ -148,23 +148,28 @@ const syncAndSeed = async () => {
     name: "Soccer",
     avatar: "/static/images/soccer.png",
   });
-
+  
   const touchdown = await Actions.create({
     name: "Touchdown",
     value: 5,
     categoryId: 1,
   });
+  const fieldGoal = await Actions.create({
+    name: "Field Goal",
+    value: 1,
+    categoryId: 1,
+  });
   const homerun = await Actions.create({
     name: "Homerun",
     value: 5,
-    categoryId: 2,
+    categoryId: 4,
   });
-  const fieldGoal = await Actions.create({
-    name: "Field Goal",
+  const goal = await Actions.create({
+    name: "Goal",
     value: 5,
     categoryId: 3,
   });
-  const scorePoint = await Actions.create({
+  const score = await Actions.create({
     name: "Score",
     value: 1,
   });
@@ -173,26 +178,35 @@ const syncAndSeed = async () => {
   const leagueDirector = await LeagueRoles.create({ name: "director" });
   const teamManager = await TeamRoles.create({ name: "manager" });
 
-  const league1 = await League.create({
-    name: "Little League",
+  // Baseball
+  await League.create({
+    name: "OC Baseball Club",
     season: "Fall",
     email: "little01@gmail.com",
-    logo: "/static/images/nfl.png",
+    logo: "/static/images/baseball2.png",
     categoryId: 4,
   });
-  const league2 = await League.create({
-    name: "Big League",
+  await League.create({
+    name: "Oakland League",
     season: "Summer",
-    email: "little02@gmail.com",
-    logo: "/static/images/league2.png",
+    email: "oakleague@gmail.com",
+    logo: "/static/images/baseball3.png",
     categoryId: 4,
   });
-  const league3 = await League.create({
-    name: "Major League",
-    season: "Spring",
-    email: "little03@gmail.com",
-    logo: "/static/images/league3.png",
-    categoryId: 1,
+  await League.create({
+    name: "Just for Fun",
+    season: "Summer",
+    email: "funn@gmail.com",
+    logo: "/static/images/baseball4.png",
+    categoryId: 4,
+    description: "Welcome to our casual adult baseball league! We're a group of baseball enthusiasts who prioritize fun and a relaxed atmosphere. Our league is all about getting together at random times to enjoy the game without the pressure of intense competition."
+  });
+  await League.create({
+    name: "Beer League Baseball",
+    season: "Summer",
+    email: "funn@gmail.com",
+    logo: "/static/images/baseball5.png",
+    categoryId: 4,
   });
   await League.create({
     name: "Hockey League",
@@ -201,120 +215,145 @@ const syncAndSeed = async () => {
     logo: "/static/images/nhl.png",
     categoryId: 2,
   }),
-    await League.create({
-      name: "Esports League",
-      season: "All Year",
-      email: "esports01@gmail.com",
-      logo: "/static/images/esports.jpeg",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "Just for fun",
-      season: "Fall",
-      email: "little04@gmail.com",
-      logo: "/static/images/esports.jpeg",
-      categoryId: 3,
-    }),
-    await League.create({
-      name: "CSGO Wild",
-      season: "Summer",
-      email: "little05@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 3,
-    }),
-    await League.create({
-      name: "I love gaming",
-      season: "Spring",
-      email: "little06@gmail.com",
-      logo: "/static/images/esports.jpeg",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "Basket Weaving",
-      season: "Fall",
-      email: "little07@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "Basket Weaving",
-      season: "Fall",
-      email: "little07@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "Basket Weaving",
-      season: "Fall",
-      email: "little07@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "Basket Weaving",
-      season: "Fall",
-      email: "little07@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "Basket Weaving",
-      season: "Fall",
-      email: "little07@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 5,
-    }),
-    await League.create({
-      name: "American Football",
-      season: "Summer",
-      email: "little08@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 1,
-    }),
-    await League.create({
-      name: "Soccer Fans",
-      season: "Spring",
-      email: "little09@gmail.com",
-      logo: "/static/images/nhl.png",
-      categoryId: 6,
-    }),
-    await Team.create({
-      name: "Regular Team",
-      season: "Spring",
-      email: "regular01@gmail.com",
-      logo: "/static/images/mlb.png",
-      leagueId: 3,
-    });
 
-    await Team.create({
-      name:'1 Team',
-      season: 'Spring',
-      email: 'regular02@gmail.com',
-      logo: '/static/images/mlb.png',
-      leagueId: 1,
-    })
+    // ESPORTS 
+  await League.create({
+    name: "CSGO Wild",
+    season: "Summer",
+    email: "little05@gmail.com",
+    logo: "/static/images/csgoskins.png",
+    categoryId: 5,
+  }),
+  await League.create({
+    name: "I love gaming",
+    season: "Spring",
+    email: "little06@gmail.com",
+    logo: "/static/images/esports3.png",
+    categoryId: 5,
+  }),
+  await League.create({
+    name: "Esports League",
+    season: "All Year",
+    email: "esports01@gmail.com",
+    logo: "/static/images/esports.jpeg",
+    categoryId: 5,
+  }),
+  await League.create({
+    name: "LoL US West",
+    season: "Fall",
+    email: "little06@gmail.com",
+    logo: "/static/images/lolwest1.png",
+    categoryId: 5,
+  }),
+  await League.create({
+    name: "ValoRATS",
+    season: "Fall",
+    email: "little07@gmail.com",
+    logo: "/static/images/valorant1.png",
+    categoryId: 5,
+  }),
+  await League.create({
+    name: "DOTA2 Friendz",
+    season: "Fall",
+    email: "dota2@gmail.com",
+    logo: "/static/images/dota21.png",
+    categoryId: 5,
+  }),
+  await League.create({
+    name: "BF4 Throwback",
+    season: "Fall",
+    email: "bf41@gmail.com",
+    logo: "/static/images/bf41.png",
+    categoryId: 5,
+  }),
+  // FOOTBALL
+  await League.create({
+    name: "Flag Football NY",
+    season: "Summer",
+    email: "little08@gmail.com",
+    logo: "/static/images/flagfootball1.png",
+    categoryId: 1,
+  }),
+  await League.create({
+    name: "Rec Football Fans",
+    season: "Spring",
+    email: "little02@gmail.com",
+    logo: "/static/images/football1.png",
+    categoryId: 1,
+  });
+  await League.create({
+    name: "2-hand touch LA",
+    season: "Spring",
+    email: "2handtouch1@gmail.com",
+    logo: "/static/images/football2.png",
+    categoryId: 1,
+  });
+  await League.create({
+    name: "Beach ball",
+    season: "Spring",
+    email: "2handtouch1@gmail.com",
+    logo: "/static/images/football3.png",
+    categoryId: 1,
+  });
+  await League.create({
+    name: "Beginner Friendly",
+    season: "Spring",
+    email: "2handtouch1@gmail.com",
+    logo: "/static/images/football4.png",
+    categoryId: 1,
+  });
+  await League.create({
+    name: "Just for fun",
+    season: "Fall",
+    email: "little04@gmail.com",
+    logo: "/static/images/esports.jpeg",
+    categoryId: 3,
+  }),
+  await League.create({
+    name: "Soccer Fans",
+    season: "Spring",
+    email: "little09@gmail.com",
+    logo: "/static/images/nhl.png",
+    categoryId: 6,
+  }),
+  await Team.create({
+    name: "Regular Team",
+    season: "Spring",
+    email: "regular01@gmail.com",
+    logo: "/static/images/mlb.png",
+    leagueId: 3,
+    description: "We're a fun-loving group that enjoys playing the game and creating memorable experiences. Our team values camaraderie, good sportsmanship, and having a great time together. Please reach out to our manager Jof Smith if you're interested in joining us on Thursday nights."
+  });
 
-    await Team.create({
-      name:'Team No League',
-      season: 'Spring',
-      email: 'regular022@gmail.com',
-      logo: '/static/images/mlb.png',
-    })
+  await Team.create({
+    name:'1 Team',
+    season: 'Spring',
+    email: 'regular02@gmail.com',
+    logo: '/static/images/mlb.png',
+    leagueId: 1,
+  })
 
-    await Team.create({
-      name:'2 Team',
-      season: 'Spring',
-      email: 'regular03@gmail.com',
-      logo: '/static/images/mlb.png',
-      leagueId: 2,
-    })
-    await Team.create({
-      name:'3 Team',
-      season: 'Spring',
-      email: 'regular04@gmail.com',
-      logo: '/static/images/mlb.png',
-      leagueId: 4,
-    })
+  await Team.create({
+    name:'Team No League',
+    season: 'Spring',
+    email: 'regular022@gmail.com',
+    logo: '/static/images/mlb.png',
+  })
+
+  await Team.create({
+    name:'2 Team',
+    season: 'Spring',
+    email: 'regular03@gmail.com',
+    logo: '/static/images/mlb.png',
+    leagueId: 2,
+  })
+  await Team.create({
+    name:'3 Team',
+    season: 'Spring',
+    email: 'regular04@gmail.com',
+    logo: '/static/images/mlb.png',
+    leagueId: 4,
+  })
 
     const team1 = await Team.create({
       name: 'The Ravens',
@@ -624,8 +663,8 @@ const syncAndSeed = async () => {
     await match4.addTeam([team8, team9]); //league 3
 
     //add actions to scorekeeper
-    await Scorekeeper.create({matchId: 1, userId: 13, actionId: 1, teamId: 1});
-    await Scorekeeper.create({matchId: 1, userId: 9, actionId: 1, teamId: 2});
+    await Scorekeeper.create({matchId: 1, userId: 12, actionId: 1, teamId: 5});
+    await Scorekeeper.create({matchId: 1, userId: 18, actionId: 1, teamId: 6});
     await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
     await Scorekeeper.create({matchId: 2, userId: 11, actionId: 1, teamId: 4});
     await Scorekeeper.create({matchId: 2, userId: 12, actionId: 1, teamId: 5});
@@ -637,11 +676,11 @@ const syncAndSeed = async () => {
     
     //Added Random Post To Teams
     await Post.create({message:"WE WON!!", likes: 6, userId: 1, teamId: 1});
-    await Post.create({message:"WE LOST....", likes: 6, userId: 2, teamId: 1});
+    await Post.create({message:"Can someone cover for me this week?", likes: 6, userId: 2, teamId: 1});
+    await Post.create({message:"Finally got a hatrick!", likes: 6, userId: 6, teamId: 1});
     await Post.create({message:"Playoffs begin next week!!", likes: 6, userId: 3, teamId: 2});
     await Post.create({message:"WE ARE THE BEST!", likes: 6, userId: 4, teamId: 2});
     await Post.create({message:"Looking for additional teams for next season.", likes: 6, userId: 5, teamId: 3});
-    await Post.create({message:"WE WON!!", likes: 6, userId: 6, teamId: 1});
 
     //Added Random Post To Leagues
     await Post.create({message:"WE WON!!", likes: 6, userId: 7, leagueId: 1});

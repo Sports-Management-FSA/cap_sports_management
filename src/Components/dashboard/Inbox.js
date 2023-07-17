@@ -82,7 +82,7 @@ const Inbox = () => {
                         <p>Subject: {selectedMessage.subjectLine}</p>
                         
                         {selectedMessage.teamName && (<p>Email: {selectedMessage.teamEmail}</p>)}
-                        {selectedMessage.teamEmail && (<p>Email: {selectedMessage.teamEmail}</p>)}
+                        {selectedMessage.teamName && (<p>Name: {selectedMessage.teamName}</p>)}
                         {selectedMessage.desiredTeam !== null && (<p>Desired Team: {selectedMessage.desiredTeam}</p>)}
                     </div>
                     <div className="inbox__content-main">

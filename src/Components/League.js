@@ -15,8 +15,8 @@ const League = () => {
    const { id } = useParams();
    const auth = useSelector(state => state.auth.id);
    const navigate = useNavigate();
-   const [currentComponent, setCurrentComponent] = useState("Announcements");
-   const [activeTab, setActiveTab] = useState("Announcements");
+   const [currentComponent, setCurrentComponent] = useState("Stats");
+   const [activeTab, setActiveTab] = useState("Stats");
 
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);
@@ -29,6 +29,8 @@ const League = () => {
    const matches = league.matches;
    const teams = league.teams;
 
+   console.log(teams)
+
    const upcomingMatch = matches?.find((match) => {
       const matchDate = new Date(match.date);
       return matchDate > today;
@@ -39,7 +41,7 @@ const League = () => {
       setActiveTab(component);
    };
 
-   console.log(league);
+   // console.log(league);
 
    return (
       <div className="league-container">
@@ -52,7 +54,8 @@ const League = () => {
                   <div className="league-head">
                      <div className="head-left">
                         <div className="head-left-img">
-                           <img src={league.logo} width="70" height="60" alt="Image" />
+                           <img src={league.logo} alt="Image" /> 
+                           {/* before was this width="70" height="60" */}
                         </div>
                         <div className="head-left-content">
                            <h2>{league.name}</h2>
@@ -60,7 +63,7 @@ const League = () => {
                         </div>
                      </div>
                      <div className="head-right">
-                        {auth && (<Link to={`/league/${id}/request`}>Request to Join</Link>)}
+                        {auth && (<Link className="head-request" to={`/league/${id}/request`}>Request to Join</Link>)}
                      </div>
                   </div>
                   <section className="head__about">
@@ -68,7 +71,8 @@ const League = () => {
                         <h5>About us</h5>
                      </div>
                      <article className="head__about-content">
-                     Lorem ipsum dolor sit amet. At ullam esse vel fuga debitis est accusamus odio eos ipsa natus et culpa natus sed debitis iste. Qui quia ipsa quo galisum porro vel velit quod.
+                        {league.description}
+                     
                      </article>
                   </section>
                   <div className="league-navbar">

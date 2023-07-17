@@ -101,6 +101,7 @@ router.put("/:id", async (req, res, next) => {
     }
     const league = await League.findByPk(req.params.id);
     await league.update(req.body);
+    res.send(league);
   } catch (ex) {
     next(ex);
   }

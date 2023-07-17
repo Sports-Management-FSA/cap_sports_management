@@ -1,0 +1,290 @@
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: @dark-background-primary;
+    //background: radial-gradient(ellipse at center, #142929 50%, #1f3c3c 100%);
+}
+.home-container h1 {
+    color: @font-primary;
+}
+
+// Popular Category cards (TOP)
+
+.home-popular {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.home-popular h3 {
+    color: @dark-font-primary;
+    font-weight: 600;
+    margin-bottom: 2px;
+    text-decoration-skip-ink: none;
+}
+
+.home-popular-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+    margin: 2rem;
+    width: 100%;
+    height: 100%;
+}
+
+
+// .home-popular-cards button {
+//     border-radius: 10px;
+//     padding: 8px 20px 8px 20px;
+//     color: @dark-font-primary;
+//     background-color: @dark-background-alt;
+//     border: none;
+//     transition: font-size .3s font-weight .3s;
+// }
+
+.home-popular-card {
+    background-color: @dark-background-secondary;
+    border-radius: 8px;
+    padding: 1rem 1rem 1rem 1rem;
+    color: @dark-font-primary;
+}
+
+.home-popular-card:hover {
+    background-color: @dark-background-alt;
+    cursor: pointer;
+}
+
+.home-popular-card a {
+    transition: font-size .3s ease-in-out;
+    text-decoration: none;
+    margin: 3rem;
+}
+
+.home-popular-card a:hover {
+    font-size: 1.5rem;
+}
+
+
+.home-leagues {
+    display: flex;
+    flex-direction: column;
+    background-color: @dark-background-primary;
+    margin: 5rem;
+}
+
+.home-leagues-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20 15 30 15;
+    background-color: @dark-background-primary;
+    
+}
+
+.home-leagues-header-left h1 {
+    color: @dark-font-primary;
+}
+.home-leagues-header-right {
+    color: @dark-font-primary;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.home-leagues-cards {
+   display: flex;
+    margin-left: 40px;
+    flex-direction: row;
+    justify-content: center;
+    grid-template-rows: 2rem;
+    flex-flow: wrap;
+    gap: 2rem;
+}
+
+.home-leagues-cards a{
+    text-decoration: none;
+}
+
+.home-leagues-cards h4{
+    color: @dark-font-primary   ;
+}
+
+.home-leagues-cards p{
+    color: @dark-font-primary;
+}
+
+
+.home-league-card p{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    align-items: flex-start;
+}
+
+.card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    margin-bottom: 1rem;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar {
+   width: 10px;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar-track {
+   background-color: @dark-background-primary;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar-thumb {
+   background-color: @dark-border;
+   border-radius: 5px;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar-thumb:hover {
+   background-color: @dark-background-alt;
+}
+
+// LEAGUE CARDS
+
+// deprecate this 
+// .landing__body-browse-content {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     background-color: @dark-background-primary;
+//     width: 100%;
+//     flex-wrap: nowrap;
+//     overflow-x: auto;
+//     scroll-behavior: smooth;
+//  }
+
+
+ // BEFORE WITH FLEXBOX
+//  .landing__body-browse-leagues {
+//     display: flex;
+//     justify-content: flex-start;
+//     gap: 2rem;
+//     flex-wrap: nowrap;
+//     margin: 1rem;
+//     //width: 100%;
+//     overflow-x: scroll;
+//     scroll-behavior: smooth;
+//  }
+ 
+//  .landing__browse-league-card {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     align-items: flex-start;
+//     margin: 0;
+//     width: 20rem;
+//     height: 20rem;
+//     border-radius: 1px;
+//     background-color: @dark-background-secondary;
+//  }
+
+.home-leagues-container {
+    width: auto;
+    height: auto;
+}
+
+ .landing__body-browse-leagues {
+    gap: 2rem;
+    margin: 1rem 1rem 2.5rem 1rem;
+    width: auto;
+    white-space: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  
+    //background: radial-gradient(ellipse at center, #142929 0%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(100px)
+ }
+ 
+ .landing__browse-league-card {
+    display: inline-block;
+    margin: 2rem;
+    width: 20rem;
+    height: 23rem;
+    border-radius: 8px;
+    background-color: @dark-background-secondary;
+    box-shadow: @dark-box-shadow;
+    
+ }
+ .browse-header {
+    color: @dark-font-primary;
+    font-weight: 600;
+ }
+
+ .landing__card-image {
+    margin-left: auto;
+    margin-right: auto;
+    height: 50%;
+    width: 100%;
+    margin-bottom: 3rem;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+ }
+ 
+ .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    margin-left: 1rem;
+ }
+ 
+ 
+ .home-card-text-name {
+    color: @dark-font-primary;
+    text-decoration: none; 
+    font-weight: 800;
+    //font-size: 1.5rem;
+    margin-bottom: 3rem;
+ }
+
+ .landing__league-card-name {
+    margin-bottom: 3.5rem;
+    font-size: 1.2rem;
+ }
+ 
+ .landing__league-card-name-subtext {
+    width: 100%;
+    line-height: 5px;
+    font-weight: 100;
+    font-size: .75rem;
+    color: @dark-font-alt;
+ }
+ 
+
+
+// .home-league-card h2 {
+//     height: 125px;
+// }
+
+// .home-league-card-text {
+//     width: 100%;
+// }
+
+// .home-card-text-subtext {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+// }
+
+// .home-card-text-subtext p{
+//     font-size: .7rem;
+//     margin: 0;
+// }
