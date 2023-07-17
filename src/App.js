@@ -38,13 +38,14 @@ import Scorekeeper from "./Components/Scorekeeper";
 import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
 import Home2 from './Components/Home2';
 import { stepButtonClasses } from "@mui/material";
+
 import Home4 from "./Components/Home4";
 
-
 const App = () => {
-   const { auth } = useSelector((state) => state);
+   const { loggedIn } = useSelector((state) => state.auth);
    const dispatch = useDispatch();
    const [load, setload] = useState(false);
+
    useEffect(() => {
       dispatch(fetchAllCategories());
       dispatch(fetchAllLeagues());

@@ -888,6 +888,16 @@ h1 {
     font-size: 2rem;
   }
 }
+@media only screen and (min-width: 1200px) {
+  .staff-container {
+    margin-bottom: 200px;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .staff-container {
+    margin-bottom: 200px;
+  }
+}
 .requestform__container {
   height: 100vh;
   margin-top: 5rem;
