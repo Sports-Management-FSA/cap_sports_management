@@ -91,11 +91,7 @@ const Register = () => {
    };
 
    return (
-      <section
-         className="vh-100 register-page"
-         style={{
-            marginBottom: "1rem"
-         }}>
+      <section className="vh-100 register-page">
          <div className="mask d-flex align-items-center h-100 py-5">
             <div className="container py-5">
                <div className="row d-flex justify-content-center align-items-center h-100">
