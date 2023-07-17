@@ -75,12 +75,7 @@ const Nav = () => {
                                     Profile
                                  </span>
                               </Link>
-                              <Link to="/dashboard" className="mb-2 dropdown-item" role="button">
-                                 <i className="bi bi-person-square"></i>
-                                 <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">
-                                    Dashboard
-                                 </span>
-                              </Link>
+                             
                               <Link to="/home" className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-person-square"></i>
                                  <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">

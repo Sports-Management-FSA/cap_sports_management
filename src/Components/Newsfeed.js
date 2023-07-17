@@ -1,70 +1,86 @@
 import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addPost, updatePost } from '../store';
 
-const Newsfeed = () => {
+const Newsfeed = (props) => {
+    const { posts } = props;
+    console.log(props)
+    const dispatch = useDispatch();
+    const [post, setPost] = useState('');
+    let postTeamId;
+    
+    if (posts && posts.length > 0){
+        postTeamId = posts[0].teamId;
+    } 
 
-    const data = [
-        {
-            id: 1,
-            userId: 1,
-            username: "Larry David",
-            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-        },
-        {
-            id: 1,
-            userId: 1,
-            username: "Larry David",
-            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-        },
-        {
-            id: 1,
-            userId: 1,
-            username: "Larry David",
-            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-        },
-        {
-            id: 1,
-            userId: 1,
-            username: "Larry David",
-            desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-            molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-        },
-    ]
-
-    const handlePostSubmit = () => {
-        console.log('posted!')
+    if (!posts){
+        return ( 
+            <section className="newsfeed__nodata">
+                <h3>no posts yet</h3>
+            </section>    
+        )
     }
+
+    const sortedPosts = posts.slice().sort((a, b) => b.id - a.id);
+    const auth = useSelector(state => state.auth);
+    const players = useSelector(state => state.players.playerList);
+    const handlePostSubmit = (e) => {
+        e.preventDefault();
+        const postMessage = {
+           message: post,
+           teamId: postTeamId,
+           userId: 1
+        }
+       dispatch(addPost(postMessage))
+       setPost('');
+    }
+    
+    // useEffect(() => {
+    //     if (posts && posts.length > 0) {
+    //       setPost(posts[0].message);
+    //     }
+    //   }, [posts]);
+    
+
     return (
         <div className="newsfeed__container">
             <div className="newsfeed__createpost">
-                <form onSubmit={handlePostSubmit}>
+                <form className="newsfeed__createpost-form" onSubmit={handlePostSubmit}>
                     <input 
                         id="post"
                         name="post"
-                        placeholder='whats on your mind'
+                        placeholder='Start a conversation with your team'
+                        value={post}
+                        onChange={(e) => setPost(e.target.value)}
                     />
                     <button>Post</button>
                 </form>
             </div>
             <div className="newsfeed__posts">
-                {data.map(data => (
-                    <div className="newsfeed__post" key={data.id}>
+                {sortedPosts.map(post => {
+                    const player = players.find(player => player.id == post.userId);
+                    console.log(player)
+                    return (
+                    <div className="newsfeed__post" key={post.id}>
                         <div className="newsfeed__post-upper">
-                            <span>{data.username}</span>
-                            <i>yesterday</i>
+                            <div className="post-upper-group">
+                                <img src={player.avatar} alt="Image" />
+                                <div className="upper-group-names">
+                                    <span>{player.firstName} {player.lastName}<i>@{player.username}</i></span><br />
+                                    <i>posted Yesterday</i>
+                                </div>
+                            </div>
                         </div>
                         <div className="newsfeed__post-content">
-                            <article>{data.desc}
-                            </article>
+                            <article>{post.message} </article>
                         </div>
                         <div className="newsfeed__post-lower">
-                            <span>Like</span>
+                            <span onClick={() => dispatch(updatePost())}>Like</span>
                             <span>comments</span>
                         </div>
                 </div>            
-                ))}
+                )})}
                     
             </div>
         </div>

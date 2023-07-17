@@ -21,7 +21,10 @@ import {
    loginWithToken,
    fetchAllAnnouncements,
    fetchAllCategories,
-   fetchAllMessages
+   fetchAllMessages,
+   fetchAllScorekeepers,
+   fetchAllRequests,
+   fetchAllPosts
 } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
 import Standings from "./Components/Standings";
@@ -35,6 +38,7 @@ import Scorekeeper from "./Components/Scorekeeper";
 import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
 import Home2 from './Components/Home2';
 import { stepButtonClasses } from "@mui/material";
+import Home4 from "./Components/Home4";
 
 
 const App = () => {
@@ -50,6 +54,9 @@ const App = () => {
       dispatch(loginWithToken());
       dispatch(fetchAllAnnouncements());
       dispatch(fetchAllMessages());
+      dispatch(fetchAllRequests());
+      dispatch(fetchAllScorekeepers());
+      dispatch(fetchAllPosts())
       setload(true)
    }, []);
    // console.log(auth);

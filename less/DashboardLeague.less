@@ -42,9 +42,23 @@
     
 }
 .dash__league-body-item {
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px @dark-background-alt solid;
     padding-bottom: .5rem;
     margin-left: .5rem;
+}
+
+// .dash-input {
+//     background-color: transparent;
+// }
+
+.dash-button {
+    background-color: @dark-background-primary;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    color: @dark-font-primary;
+    border: none;
+    border-radius: 8px;
 }
 
 .dash__league-lower {
@@ -63,3 +77,14 @@
     color: @dark-font-primary;
 }
 
+.dashboard-icon-clickable {
+    color: @dark-font-primary;
+}
+
+.dashboard-icon-clickable:hover {
+    cursor: pointer;
+}
+
+.dash-header-topright:hover {
+    cursor: pointer;
+}
