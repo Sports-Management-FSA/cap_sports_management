@@ -12,6 +12,7 @@ import Newsfeed from "./Newsfeed";
 
 const Team = () => {
    const { id } = useParams();
+   const auth = useSelector(state => state.auth);
    const [currentComponent, setCurrentComponent] = useState("Newsfeed");
    const [activeTab, setActiveTab] = useState("Newsfeed");
    const today = new Date();
@@ -48,7 +49,7 @@ const Team = () => {
                         </div>
                      </div>
                      <div className="head-right">
-                        {/* {auth && (<Link to={`/league/${id}/request`}>Request to Join</Link>)} */}
+                        {auth && (<Link className="link" to={`/league/${id}/request`}>Request to Join</Link>)}
                      </div>
                   </div>
                   <section className="head__about">

@@ -288,6 +288,9 @@ a {
 .team--navbar-items a:hover {
   cursor: pointer;
 }
+.head-right .link {
+  text-decoration: none;
+}
 .landing__container {
   color: #ffffff;
 }
@@ -663,18 +666,16 @@ ALLENS Updates END .landing-matches-header h2 {
   color: black;
   margin: 0;
   width: 20%;
-  padding: 20px;
+  padding-left: 2rem;
 }
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 .menu span {
   font-size: 1.1rem;
-}
-.menu a {
-  font-size: 1.1rem;
+  padding: 1rem;
 }
 .item {
   display: flex;
@@ -683,9 +684,15 @@ ALLENS Updates END .landing-matches-header h2 {
 }
 .item-link {
   text-decoration: none;
+  font-size: 1.1rem;
+  padding: 1rem;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
-.item:hover {
+.item-link:hover {
   cursor: pointer;
+  background-color: #386e84;
 }
 @media (max-width: 1320px) {
   .item {
