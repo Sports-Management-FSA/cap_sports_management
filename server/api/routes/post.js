@@ -1,6 +1,11 @@
 const { User, Post } = require("../../db");
-
 const router = require("express").Router();
+
+
+router.get("/", async (req, res, next) => {
+      const posts = await Post.findAll();
+      res.send(posts)
+})
 
 router.post("/", async (req, res, next) => {
   try {

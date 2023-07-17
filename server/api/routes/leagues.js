@@ -1,7 +1,8 @@
 
 const router = require('express').Router();
 const { User, Team, Match, Post, Comment, User_TeamRoles, User_LeagueRoles, Category, Actions } = require('../../db');
-const { League, Announcements, Messages } = require('../../db');
+const { League, Announcements, Messages, Requests } = require('../../db');
+
 const LeagueRoles = require('../../db/models/LeagueRoles');
 const TeamRoles = require('../../db/models/TeamRoles');
 
@@ -10,7 +11,7 @@ router.get("/", async (req, res, next) => {
   try {
     const league = await League.findAll({
       include: [
-        Announcements, Messages,
+        Announcements, Messages, Requests,
         { model: Team, include: [
           {model: User_TeamRoles, include: [
             {model: User, attributes: ['firstName', 'lastName']}, 
@@ -39,7 +40,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const league = await League.findByPk(req.params.id, {
       include: [
-        Announcements, Messages,
+        Announcements, Messages, Requests,
         { model: Team, include: [
           {model: User_TeamRoles, include: [
             {model: User, attributes: ['firstName', 'lastName']}, 
@@ -89,19 +90,20 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization, {
-      include: [LeagueRoles],
-    });
+      include: { model: User_LeagueRoles, include: [League]},
+   });
 
     if (!user) {
-      return res.status(401).send("Unauthorized to update league");
+      return res.status(401).send("Unauthorized to update league, not a user");
     }
-    const director = user.leagueRoles.find((role) => role.name == "director");
 
-    if (!director || director.user_leagueRoles.leagueId != req.params.id) {
-      return res.status(401).send("Unauthorized to update league");
+    const director = user.user_leagueRoles.find((role) => role.leagueRole.name == "director" && role.leagueId == req.params.id);
+    if (!director) {
+      return res.status(401).send("Unauthorized to update league, not a director for league");
     }
     const league = await League.findByPk(req.params.id);
     await league.update(req.body);
+    res.send(league);
   } catch (ex) {
     next(ex);
   }

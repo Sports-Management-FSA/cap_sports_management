@@ -39,9 +39,9 @@ const Roster = (props) => {
     }
 
     return (
-        <div>
+        <div className="roster__container">
             {players.length > 0 ?
-           <table className="table">
+           <table className="roster__table">
                 <thead>
                     <tr className="table__header-container">
                         <th onClick={()=>sortTable("name")} className="table__header">Name</th>

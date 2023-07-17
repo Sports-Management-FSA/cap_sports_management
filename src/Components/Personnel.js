@@ -5,9 +5,9 @@ const Personnel = (props) => {
     const {personnel, teamId} = props;
 
     return (
-        <div>
+        <div className="personnel__container">
             { personnel.length > 0 ?
-            <table className="table">
+            <table className="personnel__table">
                 <thead>
                     <tr className="table__header-container">
                         <th className="table__header">Name</th>
