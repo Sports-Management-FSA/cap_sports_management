@@ -74,12 +74,16 @@ const UserProfileSecurity = () => {
             <Toaster position="top-center" reverseOrder={false} />
          </div>
          <div className="col-xl-8">
-            <div className="card mb-4">
+            <div
+               className="card mb-4"
+               style={{
+                  backgroundColor: "#2a5262"
+               }}>
                <div className="card-header">Change Password</div>
                <div className="card-body">
                   <form onSubmit={handleSubmit}>
                      <div className="mb-3">
-                        <label className="small mb-1" htmlFor="currentPassword">
+                        <label className="small mb-1 text-white" htmlFor="currentPassword">
                            Current Password
                         </label>
                         <input
@@ -94,7 +98,7 @@ const UserProfileSecurity = () => {
                         )}
                      </div>
                      <div className="mb-3">
-                        <label className="small mb-1" htmlFor="newPassword">
+                        <label className="small mb-1 text-white" htmlFor="newPassword">
                            New Password
                         </label>
                         <input
@@ -107,7 +111,7 @@ const UserProfileSecurity = () => {
                         {formErrors.newPassword && <div className="invalid-feedback">{formErrors.newPassword}</div>}
                      </div>
                      <div className="mb-3">
-                        <label className="small mb-1" htmlFor="confirmPassword">
+                        <label className="small mb-1 text-white" htmlFor="confirmPassword">
                            Confirm Password
                         </label>
                         <input
@@ -125,7 +129,7 @@ const UserProfileSecurity = () => {
                         </div>
                      )}
                      <div>
-                        <button type="submit" className="btn btn-outline-secondary" disabled={isFormEmpty()}>
+                        <button type="submit" className="btn btn-light" disabled={isFormEmpty()}>
                            Save
                         </button>
                      </div>
@@ -134,10 +138,14 @@ const UserProfileSecurity = () => {
             </div>
          </div>
          <div className="col-xl-4">
-            <div className="card mb-4">
+            <div
+               className="card mb-4"
+               style={{
+                  backgroundColor: "#2a5262"
+               }}>
                <div className="card-header">Delete Account</div>
                <div className="card-body">
-                  <p className="text-dark user-security-pargraph delete-message">
+                  <p className="text-light user-security-pargraph delete-message">
                      Deleting your account is a permanent action and cannot be undone. If you are sure you want to
                      delete your account, select the button below.
                   </p>

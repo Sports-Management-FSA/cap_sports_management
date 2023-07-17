@@ -28,7 +28,7 @@ const UserProfile = () => {
 
    if (!auth.username || !auth.loggedIn) {
       return (
-         <h1 className="text-center mt-5 fst-italic" style={{ marginBottom: "1175px" }}>
+         <h1 className="text-center text-light mt-5 fst-italic" style={{ marginBottom: "1175px" }}>
             Please login to view the profile
          </h1>
       );
@@ -38,13 +38,13 @@ const UserProfile = () => {
             <nav className="nav nav-borders">
                <a
                   role="button"
-                  className={`nav-link ${activeTab === "Profile" ? "active" : ""}`}
+                  className={`nav-link text-white ${activeTab === "Profile" ? "active" : ""}`}
                   onClick={() => handleNavClick("Profile")}>
                   Profile
                </a>
                <a
                   role="button"
-                  className={`nav-link ${activeTab === "Security" ? "active" : ""}`}
+                  className={`nav-link text-white ${activeTab === "Security" ? "active" : ""}`}
                   onClick={() => handleNavClick("Security")}>
                   Security
                </a>
