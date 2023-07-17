@@ -91,24 +91,19 @@ const Register = () => {
    };
 
    return (
-      <section
-         className="vh-100"
-         style={{
-            backgroundColor: "#f6f3f3",
-            marginBottom: "1rem"
-         }}>
+      <section className="vh-100 register-page">
          <div className="mask d-flex align-items-center h-100 py-5">
             <div className="container py-5">
                <div className="row d-flex justify-content-center align-items-center h-100">
                   <div className="col-9 col-md-9 col-lg-7 col-xl-6">
-                     <div className="card" style={{ borderRadius: "15px", backgroundColor: "#fdfffc" }}>
+                     <div className="card" style={{ borderRadius: "15px", backgroundColor: "#2a5262" }}>
                         <div className="card-body p-5">
-                           <h2 className="text-uppercase text-center mb-3 fw-bold text-dark register-header">
+                           <h2 className="text-uppercase text-center mb-3 fw-bold text-light register-header">
                               Create an account
                            </h2>
 
                            <form onSubmit={handleSubmit}>
-                              <div className="form-outline form-white mb-2">
+                              <div className="form-outline mb-2">
                                  <input
                                     className={`form-control ${formErrors.username ? "is-invalid" : ""}`}
                                     placeholder="Username"
@@ -118,7 +113,7 @@ const Register = () => {
                                  />
                                  {formErrors && <div className="invalid-feedback">{formErrors.username}</div>}
                               </div>
-                              <div className="form-outline form-white mb-2">
+                              <div className="form-outline mb-2">
                                  <input
                                     className={`form-control ${formErrors.password ? "is-invalid" : ""}`}
                                     placeholder="Password"
@@ -129,7 +124,7 @@ const Register = () => {
                                  />
                                  {formErrors && <div className="invalid-feedback">{formErrors.password}</div>}
                               </div>
-                              <div className="form-outline form-white mb-2">
+                              <div className="form-outline mb-2">
                                  <input
                                     className={`form-control ${formErrors.confirmPassword ? "is-invalid" : ""}`}
                                     placeholder="Confirm Password"
@@ -140,7 +135,7 @@ const Register = () => {
                                  />
                                  {formErrors && <div className="invalid-feedback">{formErrors.confirmPassword}</div>}
                               </div>
-                              <div className="form-outline form-white mb-2">
+                              <div className="form-outline mb-2">
                                  <input
                                     className="form-control"
                                     placeholder="FirstName"
@@ -149,7 +144,7 @@ const Register = () => {
                                     onChange={handleInputChange}
                                  />
                               </div>
-                              <div className="form-outline form-white mb-2">
+                              <div className="form-outline mb-2">
                                  <input
                                     className="form-control"
                                     placeholder="LastName"
@@ -158,7 +153,7 @@ const Register = () => {
                                     onChange={handleInputChange}
                                  />
                               </div>
-                              <div className="form-outline form-white mb-2">
+                              <div className="form-outline mb-2">
                                  <input
                                     className={`form-control ${formErrors.email ? "is-invalid" : ""}`}
                                     placeholder="Email"
@@ -170,13 +165,13 @@ const Register = () => {
                                  {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
                               </div>
                               <div className="d-flex justify-content-center">
-                                 <button className="btn btn-outline-dark btn-lg px-5" type="submit">
+                                 <button className="btn btn-light btn-lg px-5" type="submit">
                                     Register
                                  </button>
                               </div>
-                              <p className="text-center text-dark mt-3 mb-0 register-account-paragraph">
+                              <p className="text-center text-light mt-3 mb-0 register-account-paragraph">
                                  Have an account?{" "}
-                                 <Link to="/login" className="text-dark fw-bold register-login">
+                                 <Link to="/login" className="text-light fw-bold register-login">
                                     <span className="register-login-here">Login here</span>
                                  </Link>
                               </p>
