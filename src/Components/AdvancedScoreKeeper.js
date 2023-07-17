@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addScorekeeper, deleteScorekeeper } from "../store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AdvancedScoreKeeper = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { id } = useParams();
 
     const matches = useSelector(state => state.matches.matchesList);
@@ -17,11 +18,13 @@ const AdvancedScoreKeeper = () => {
 
     const [match, setMatch] = useState(matches.find((match) => { match.id == id }));
     const [league, setLeague] = useState(leagues.find((league) => league.id == match?.leagueId));
+    const actions = leagues.find((league) => league.id == match?.leagueId)?.category?.actions
+
 
     useEffect(() => {
         setMatch(matches.find((match) => match.id == id));
         setLeague(leagues.find((league) => league.id === match?.leagueId));
-    }, [id, matches, leagues,])
+    }, [id, matches, leagues, dispatch])
 
 
     const handleTeam1Action = (e) => {
@@ -32,7 +35,8 @@ const AdvancedScoreKeeper = () => {
                 actionId: action1,
                 teamId: match.teams[0].id,
             })
-        );
+        )
+        navigate(0);
     };
 
     const handleTeam2Action = (e) => {
@@ -44,11 +48,13 @@ const AdvancedScoreKeeper = () => {
                 teamId: match.teams[1].id,
             })
         );
+        navigate(0);
     };
 
     const handleRemoveAction = (id) => {
         console.log('THE ID:', id)
         dispatch(deleteScorekeeper(id))
+        navigate(0);
     }
 
     return (
@@ -108,14 +114,13 @@ const AdvancedScoreKeeper = () => {
                             onChange={(e) => setAction1(e.target.value)}
                         >
                             <option value="">--Choose Action--</option>
-                            {league ? league.category.actions.map((action) => {
-                                console.log('HELLLOOOOOOOOOO!!!!', action)
+                            {actions?.map((action) => {
                                 return (
                                     <option key={action.id} value={action.id}>
                                         {action.name}
                                     </option>
                                 );
-                            }) : <div>loading</div>}
+                            })}
                         </select>
                     </div>
                 </div>
@@ -174,7 +179,7 @@ const AdvancedScoreKeeper = () => {
                             onChange={(e) => setAction2(e.target.value)}
                         >
                             <option value="">--Choose Action--</option>
-                            {league?.category.actions.map((action) => {
+                            {actions?.map((action) => {
 
                                 return (
                                     <option key={action.id} value={action.id}>
