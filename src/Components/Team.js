@@ -17,7 +17,13 @@ const Team = () => {
    const [activeTab, setActiveTab] = useState("Newsfeed");
    const today = new Date();
    const teams = useSelector((state) => state.teams.teamsList);
+   const leagues = useSelector((state) => state.leagues.leaguesList);
+   console.log("leagues", leagues)
    const team = teams.find((team) => team.id == id);
+   console.log("team", team?.leagueId)
+   const league = leagues.find(league => league.id == team?.leagueId);
+   console.log(league)
+ 
    
 
    const handleClick = (componentAndTab) => {
@@ -29,7 +35,6 @@ const Team = () => {
       return <div>loading</div>;
    }
    const posts = team.posts;
-   console.log(posts)
    
    return (
       <div className="league-container">
@@ -46,6 +51,7 @@ const Team = () => {
                         </div>
                         <div className="head-left-content">
                            <h2>{team.name}</h2>
+                           <i>{league.name}</i>
                         </div>
                      </div>
                      <div className="head-right">
@@ -57,7 +63,7 @@ const Team = () => {
                         <h5>About us</h5>
                      </div>
                      <article className="head__about-content">
-                     Lorem ipsum dolor sit amet. At ullam esse vel fuga debitis est accusamus odio eos ipsa natus et culpa natus sed debitis iste. Qui quia ipsa quo galisum porro vel velit quod.
+                        {team.description}
                      </article>
                   </section>
                   <div className="league-navbar">

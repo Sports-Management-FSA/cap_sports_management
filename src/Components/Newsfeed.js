@@ -2,42 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 
 const Newsfeed = (props) => {
-    console.log(props)
     const { posts } = props;
     const players = useSelector(state => state.players.playerList);
-    console.log(players);
-    console.log(posts);
-    // const matchedPlayer = players.find(player => player.id == posts)
-    // const data = [
-    //     {
-    //         id: 1,
-    //         userId: 1,
-    //         username: "Larry David",
-    //         desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-    //         molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-    //     },
-    //     {
-    //         id: 1,
-    //         userId: 1,
-    //         username: "Larry David",
-    //         desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-    //         molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-    //     },
-    //     {
-    //         id: 1,
-    //         userId: 1,
-    //         username: "Larry David",
-    //         desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-    //         molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-    //     },
-    //     {
-    //         id: 1,
-    //         userId: 1,
-    //         username: "Larry David",
-    //         desc: `Lorem ipsum dolor sit amet. Id blanditiis ullam nam architecto cupiditate est galisum 
-    //         molestiae vel saepe voluptas sed quia deserunt est aperiam sint aut quia commodi.`
-    //     },
-    // ]
 
     const handlePostSubmit = () => {
         console.log('posted!')
@@ -57,7 +23,6 @@ const Newsfeed = (props) => {
             <div className="newsfeed__posts">
                 {posts.map(data => {
                     const player = players.find(player => player.id == data.userId);
-                    console.log(player)
                     return (
                     <div className="newsfeed__post" key={data.id}>
                         <div className="newsfeed__post-upper">

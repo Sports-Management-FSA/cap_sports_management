@@ -71,7 +71,8 @@ const League = () => {
                         <h5>About us</h5>
                      </div>
                      <article className="head__about-content">
-                     Lorem ipsum dolor sit amet. At ullam esse vel fuga debitis est accusamus odio eos ipsa natus et culpa natus sed debitis iste. Qui quia ipsa quo galisum porro vel velit quod.
+                        {league.description}
+                     
                      </article>
                   </section>
                   <div className="league-navbar">

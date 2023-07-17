@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: space-around;
     background-color: @dark-background-primary;
+    //background: radial-gradient(ellipse at center, #142929 50%, #1f3c3c 100%);
 }
 .home-container h1 {
     color: @font-primary;
@@ -139,6 +140,23 @@
     margin-bottom: 1rem;
 }
 
+.landing__body-browse-leagues::-webkit-scrollbar {
+   width: 10px;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar-track {
+   background-color: @dark-background-primary;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar-thumb {
+   background-color: @dark-border;
+   border-radius: 5px;
+}
+
+.landing__body-browse-leagues::-webkit-scrollbar-thumb:hover {
+   background-color: @dark-background-alt;
+}
+
 // LEAGUE CARDS
 
 // deprecate this 
@@ -179,20 +197,20 @@
 //  }
 
 .home-leagues-container {
-    // overflow-x: scroll;
-    // scroll-behavior: smooth;
-    // white-space: nowrap;
     width: auto;
     height: auto;
 }
 
  .landing__body-browse-leagues {
     gap: 2rem;
-    margin: 1rem;
+    margin: 1rem 1rem 2.5rem 1rem;
     width: auto;
     white-space: nowrap;
     overflow-x: scroll;
     scroll-behavior: smooth;
+  
+    //background: radial-gradient(ellipse at center, #142929 0%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(100px)
  }
  
  .landing__browse-league-card {
@@ -202,8 +220,13 @@
     height: 23rem;
     border-radius: 8px;
     background-color: @dark-background-secondary;
+    box-shadow: @dark-box-shadow;
+    
  }
-
+ .browse-header {
+    color: @dark-font-primary;
+    font-weight: 600;
+ }
 
  .landing__card-image {
     margin-left: auto;

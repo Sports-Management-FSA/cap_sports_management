@@ -39,6 +39,7 @@ p {
   border-radius: 50%;
   width: 5rem;
   height: 5rem;
+  border: 1.5px #88d2ef solid;
 }
 .league-head h2 {
   margin-right: 1rem;
@@ -251,6 +252,9 @@ a {
   align-items: flex-end;
   margin: 2rem;
 }
+.head-left-content i {
+  font-weight: 600;
+}
 .team-head img {
   margin-right: 1rem;
 }
@@ -293,223 +297,6 @@ a {
 }
 .head-right .link {
   text-decoration: none;
-}
-.landing__container {
-  color: #ffffff;
-}
-.landing__header {
-  background-size: cover;
-  background: #1f1f1f;
-  background: linear-gradient(#1f1f1f 0%, #db4242 65%, rgba(26, 26, 26, 0) 99%);
-  padding: 10rem 0rem 10rem 20rem;
-  height: 100vh;
-  background-color: #112222;
-}
-.landing__header h1 {
-  color: #717171;
-  font-size: 6rem;
-}
-.landing__body-browse-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 1rem;
-}
-.landing__header p {
-  margin: 50px 10rem 50px 100px;
-  font-size: smaller;
-  width: 50rem;
-}
-.landing__header button {
-  margin-left: auto;
-}
-.browse-header {
-  color: #ffffff;
-}
-.home-leagues-header-left .search-bar input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 8px;
-  background-color: #2a5262;
-  border: none;
-  color: #ffffff;
-}
-.home-leagues-header-left .search-bar input::placeholder {
-  color: #ffffff;
-}
-.landing__body-browse-leagues::-webkit-scrollbar {
-  width: 10px;
-}
-.landing__body-browse-leagues::-webkit-scrollbar-track {
-  background-color: #112222;
-}
-.landing__body-browse-leagues::-webkit-scrollbar-thumb {
-  background-color: #464444;
-  border-radius: 5px;
-}
-.landing__body-browse-leagues::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-.pagination-arrows {
-  display: flex;
-  align-items: center;
-}
-.arrow {
-  width: 1rem;
-  height: 70px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-.arrow.right::before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #00cce3;
-  transform: rotate(-90deg);
-}
-.arrow.left::before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #00cce3;
-  transform: rotate(90deg);
-}
-.landing__body-browse-sports {
-  margin: 3rem 1rem 3rem 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.landing__sports-header {
-  margin-bottom: 1rem;
-}
-.landing__sports-cards {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  margin-left: 2rem;
-  margin-bottom: 2rem;
-}
-.landing__sports-card {
-  border: 1px grey solid;
-  border-radius: 15px;
-  margin: 0 50 10px 50px;
-  padding-left: 9px;
-  padding-right: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 50px;
-  background-color: #2a5262;
-}
-Allens Updates Start .landing-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.carousel {
-  height: 75vh;
-  border: none;
-}
-.landing-header h1 {
-  color: black;
-  margin-top: 1rem;
-}
-.landing-features-center {
-  display: flex;
-  flex-direction: row;
-  gap: 10rem;
-}
-.landing-features-center h4 {
-  color: black;
-}
-.landing-features-center p {
-  color: #464646;
-}
-.landing-features-center a {
-  color: #008f99;
-}
-.landing-feature {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 0.5px #464646 solid;
-  border-radius: 5px;
-  padding: 20px;
-}
-ALLENS Updates END .landing-matches-header h2 {
-  color: black;
-}
-.landing-matches-header h5 {
-  color: #464646;
-  font-size: 0.9rem;
-}
-.landing-matches--match-container {
-  background-color: #3c3e3f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  height: 25%;
-  border: 1px grey solid;
-  border-radius: 20px;
-  max-width: 35%;
-}
-.landing-matches--match-container h5 {
-  color: black;
-}
-.landing-matches--match {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100vh;
-}
-.landing-matches--match p {
-  color: black;
-}
-.landing-matches--match h5 {
-  color: black;
-}
-.landing-matches--match-upper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-.landing-matches--match-vs {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 1rem;
-}
-.landing-matches--match-vs p {
-  margin: 0 10px 0 10px;
-}
-.landing-matches-vs-team {
-  display: flex;
-  flex-direction: row;
-  margin-top: 1px;
-}
-.landing-matches-vs-team p:nth-child(2) {
-  margin-top: 1px;
-  font-size: smaller;
-  font-style: italic;
-  color: grey;
-}
-.landing-matches--match-lower {
-  display: flex;
-  justify-content: space-between;
 }
 .matches-container {
   display: flex;
@@ -2053,17 +1840,31 @@ p {
 .search-bar {
   margin-bottom: 1rem;
 }
+.landing__body-browse-leagues::-webkit-scrollbar {
+  width: 10px;
+}
+.landing__body-browse-leagues::-webkit-scrollbar-track {
+  background-color: #112222;
+}
+.landing__body-browse-leagues::-webkit-scrollbar-thumb {
+  background-color: #88d2ef;
+  border-radius: 5px;
+}
+.landing__body-browse-leagues::-webkit-scrollbar-thumb:hover {
+  background-color: #386e84;
+}
 .home-leagues-container {
   width: auto;
   height: auto;
 }
 .landing__body-browse-leagues {
   gap: 2rem;
-  margin: 1rem;
+  margin: 1rem 1rem 2.5rem 1rem;
   width: auto;
   white-space: nowrap;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  backdrop-filter: blur(100px);
 }
 .landing__browse-league-card {
   display: inline-block;
@@ -2072,6 +1873,11 @@ p {
   height: 23rem;
   border-radius: 8px;
   background-color: #2a5262;
+  box-shadow: 0px 5px 3px 3px #131313;
+}
+.browse-header {
+  color: #ffffff;
+  font-weight: 600;
 }
 .landing__card-image {
   margin-left: auto;
