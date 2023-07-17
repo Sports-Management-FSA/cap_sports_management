@@ -1,24 +1,61 @@
 .newsfeed-container {
     display: flex;
     justify-content: column;
+    margin: 1rem;
 }
 
 .newsfeed__createpost {
-    background-color: @dark-background-secondary;
+    //background-color: @dark-background-secondary;
     margin: 2rem 0 1rem 0;
 }
 
 .newsfeed__createpost input {
-    background-color: @dark-background-primary;
+    background-color: @dark-background-secondary;
     border: none;
-    border-radius: 25px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: 5rem;
+    margin-bottom: 1rem;
+    width: 85%;
+    color: @dark-font-primary;
+    padding-left: 2rem;
+    font-size: 1.4rem;
 }
 
 .newsfeed__createpost input::placeholder {
     margin-left: .5rem;
     color: @dark-font-primary;
+    font-size: 1.4rem;
 }
 
+.newsfeed__createpost input:focus {
+    outline: none;
+}
+
+
+.newsfeed__createpost-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.newsfeed__createpost-form button {
+    background-color: @dark-background-alt;
+    border: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: @dark-font-primary;
+    width:15%;
+    height: 5rem;
+    padding: 1rem 2rem 1rem 1rem;
+}
+
+.newsfeed__createpost-form button:hover {
+    background-color: @dark-background-alt-bright;
+}
+
+
+
+// POSTS
 .newfeed__posts {
     display: flex;
     flex-direction: column;
@@ -28,6 +65,7 @@
     background-color: @dark-background-secondary;
     margin: 2rem 0 1rem 0;
     padding: 1rem;
+    border-radius: 8px;
 }
 .newsfeed__post-upper {
     display: flex;
@@ -49,6 +87,7 @@
 
 .newsfeed__post-content article {
     color: @dark-font-primary;
+    padding: 1rem;
 }
 
 .newsfeed__post-lower {
@@ -63,11 +102,12 @@
     display: flex;
     justify-content: center;
     width: 50%;
-    border-radius: 25px;
+    border-radius: 15px;
     color: @dark-font-primary;
+    padding: .5rem;
 }
 
 .newsfeed__post-lower span:hover {
-    background-color: @dark-background-secondary;
+    background-color: @dark-background-alt;
     cursor: pointer;
 }

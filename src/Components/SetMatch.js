@@ -131,7 +131,7 @@ const SetMatch = (props) => {
           </div>
         </div>
         <div>
-          <button onClick={props.onDone} type="submit">Save Changes</button>
+          <button type="submit">Save Changes</button>
         </div>
       </form>
     </div>

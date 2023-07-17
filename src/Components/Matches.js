@@ -54,7 +54,7 @@ const today = new Date();
                                     
                                 </div>
                                 <div className="match-lower">
-                                <Link to={`/league/${id}/scorekeeper`}>Score this Match</Link>
+                                <Link className="match-score-link" to={`/league/${id}/scorekeeper`}>Score this Match</Link>
                                 <Routes>
                                     <Route path={`/league/:id/scorekeeper`} element={<Scorekeeper match={upcomingMatch} />} />
                                 </Routes>

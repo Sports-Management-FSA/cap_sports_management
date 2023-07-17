@@ -24,6 +24,7 @@ p {
   align-items: center;
   justify-content: space-between;
   margin: 2rem;
+  border-radius: 8px;
 }
 .head-left {
   display: flex;
@@ -39,10 +40,13 @@ p {
 .league-head h2 {
   margin-right: 1rem;
 }
+.head-request {
+  text-decoration: none;
+}
 .league-main-upperbox {
   background-color: #2a5262;
   margin-top: 2rem;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 .head__about {
   margin: 1rem;
@@ -60,6 +64,7 @@ p {
   align-items: center;
   list-style-type: none;
   margin-bottom: 0;
+  border-radius: 8px;
 }
 .league--navbar-items a {
   width: auto;
@@ -555,6 +560,9 @@ ALLENS Updates END .landing-matches-header h2 {
 .match-body p {
   color: #ffffff;
 }
+.match-score-link {
+  text-decoration: none;
+}
 .standings__container {
   margin-top: 2rem;
   height: 60vh;
@@ -831,19 +839,47 @@ ALLENS Updates END .landing-matches-header h2 {
 .newsfeed-container {
   display: flex;
   justify-content: column;
+  margin: 1rem;
 }
 .newsfeed__createpost {
-  background-color: #2a5262;
   margin: 2rem 0 1rem 0;
 }
 .newsfeed__createpost input {
-  background-color: #112222;
+  background-color: #2a5262;
   border: none;
-  border-radius: 25px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  height: 5rem;
+  margin-bottom: 1rem;
+  width: 85%;
+  color: #ffffff;
+  padding-left: 2rem;
+  font-size: 1.4rem;
 }
 .newsfeed__createpost input::placeholder {
   margin-left: 0.5rem;
   color: #ffffff;
+  font-size: 1.4rem;
+}
+.newsfeed__createpost input:focus {
+  outline: none;
+}
+.newsfeed__createpost-form {
+  display: flex;
+  flex-direction: row;
+}
+.newsfeed__createpost-form button {
+  background-color: #386e84;
+  border: none;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  color: #ffffff;
+  width: 15%;
+  height: 5rem;
+  padding: 1rem 2rem 1rem 1rem;
+}
+.newsfeed__createpost-form button:hover {
+  background-color: #58aecf;
 }
 .newfeed__posts {
   display: flex;
@@ -853,6 +889,7 @@ ALLENS Updates END .landing-matches-header h2 {
   background-color: #2a5262;
   margin: 2rem 0 1rem 0;
   padding: 1rem;
+  border-radius: 8px;
 }
 .newsfeed__post-upper {
   display: flex;
@@ -871,6 +908,7 @@ ALLENS Updates END .landing-matches-header h2 {
 }
 .newsfeed__post-content article {
   color: #ffffff;
+  padding: 1rem;
 }
 .newsfeed__post-lower {
   display: flex;
@@ -883,11 +921,12 @@ ALLENS Updates END .landing-matches-header h2 {
   display: flex;
   justify-content: center;
   width: 50%;
-  border-radius: 25px;
+  border-radius: 15px;
   color: #ffffff;
+  padding: 0.5rem;
 }
 .newsfeed__post-lower span:hover {
-  background-color: #2a5262;
+  background-color: #386e84;
   cursor: pointer;
 }
 /* ---------- Login Customization ---------- */
@@ -1282,6 +1321,7 @@ span {
   flex-direction: column;
   background-color: #2a5262;
   border-radius: 8px;
+  height: 100%;
 }
 .inbox__header {
   display: flex;

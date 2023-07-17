@@ -8,6 +8,7 @@ import Matches from "./Matches";
 import Announcements from "./Announcements";
 import RightNav from "./RightNav";
 import TeamStats from './TeamStats';
+import Newsfeed from "./Newsfeed";
 
 const Team = () => {
    const { id } = useParams();
@@ -16,6 +17,7 @@ const Team = () => {
    const today = new Date();
    const teams = useSelector((state) => state.teams.teamsList);
    const team = teams.find((team) => team.id == id);
+   
 
    const handleClick = (componentAndTab) => {
       setCurrentComponent(componentAndTab);
@@ -25,6 +27,8 @@ const Team = () => {
    if (!team || !id) {
       return <div>loading</div>;
    }
+   const posts = team.posts;
+   console.log(posts)
    
    return (
       <div className="league-container">
@@ -33,45 +37,100 @@ const Team = () => {
          </div>
          <div className="league-main">
             <div className="league-main-upper">
-               <div className="league-head">
-                  <img src={window.location.origin + `${team.logo}`} width="70" height="60" alt="Image" />
-                  <h2>{team.name}</h2>
-                  {/* <p>{league.season}</p> */}
-               </div>
-               <div className="league-navbar">
-                  <ul className="league--navbar-items">
-                     <a
-                        onClick={() => handleClick("Announcements")}
-                        className={activeTab === "Announcements" ? "active" : ""}>
-                        Announcements
-                     </a>
-                     <a onClick={() => handleClick("Stats")} className={activeTab === "Stats" ? "active" : ""}>
-                        Stats
-                     </a>
-                     <a onClick={() => handleClick("Newsfeed")} className={activeTab === "Newsfeed" ? "active" : ""}>
-                        Newsfeed
-                     </a>
-                     <a onClick={() => handleClick("About")} className={activeTab === "About" ? "active" : ""}>
-                        About
-                     </a>
-                     <a onClick={() => handleClick("Chat")} className={activeTab === "Chat" ? "active" : ""}>
-                        Chat
-                     </a>
-                  </ul>
-                  <div className="team__content">
-                     <div className="league__content--body">
-                        {currentComponent === "Announcements" && <Announcements />}
-                        {currentComponent === "Stats" && <TeamStats team={team}/>}
-                        {currentComponent === "Newsfeed" && "Newsfeed coming soon"}
-                        {currentComponent === "About" && "About coming soon"}
-                        {currentComponent === "Chat" && "Chat coming soon"}
+               <div className="league-main-upperbox">
+                  <div className="league-head">
+                     <div className="head-left">
+                        <div className="head-left-img">
+                           <img src={team.logo} width="70" height="60" alt="Image" />
+                        </div>
+                        <div className="head-left-content">
+                           <h2>{team.name}</h2>
+                        </div>
                      </div>
+                     <div className="head-right">
+                        {/* {auth && (<Link to={`/league/${id}/request`}>Request to Join</Link>)} */}
+                     </div>
+                  </div>
+                  <section className="head__about">
+                     <div className="head__about-title">
+                        <h5>About us</h5>
+                     </div>
+                     <article className="head__about-content">
+                     Lorem ipsum dolor sit amet. At ullam esse vel fuga debitis est accusamus odio eos ipsa natus et culpa natus sed debitis iste. Qui quia ipsa quo galisum porro vel velit quod.
+                     </article>
+                  </section>
+                  <div className="league-navbar">
+                     <ul className="league--navbar-items">
+                        <a onClick={() => handleClick("Stats")} className={activeTab === "Stats" ? "active" : ""}>
+                           Stats
+                        </a>
+                        <a onClick={() => handleClick("Announcements")} className={activeTab === "Announcements" ? "active" : ""}>
+                           Announcements
+                        </a>
+                        <a onClick={() => handleClick("Newsfeed")} className={activeTab === "Newsfeed" ? "active" : ""}>
+                           Newsfeed
+                        </a>
+                     </ul>
+                  </div>
+               </div>
+               <div className="league__content">
+                  <div className="league__content--body">
+                     {currentComponent === "Stats" && <Stats />}
+                     {currentComponent === "Announcements" && <Announcements />}
+                     {currentComponent === "Newsfeed" && <Newsfeed posts={posts}/>}
                   </div>
                </div>
             </div>
+            {/* <TestMatch /> */}
          </div>
          <RightNav />
       </div>
+      // Previous verion from 7/16
+      // <div className="league-container">
+      //    <div className="sidebar">
+      //       <Sidebar />
+      //    </div>
+      //    <div className="league-main">
+      //       <div className="league-main-upper">
+      //          <div className="league-head">
+      //             <img src={window.location.origin + `${team.logo}`} width="70" height="60" alt="Image" />
+      //             <h2>{team.name}</h2>
+      //             {/* <p>{league.season}</p> */}
+      //          </div>
+      //          <div className="league-navbar">
+      //             <ul className="league--navbar-items">
+      //                <a
+      //                   onClick={() => handleClick("Announcements")}
+      //                   className={activeTab === "Announcements" ? "active" : ""}>
+      //                   Announcements
+      //                </a>
+      //                <a onClick={() => handleClick("Stats")} className={activeTab === "Stats" ? "active" : ""}>
+      //                   Stats
+      //                </a>
+      //                <a onClick={() => handleClick("Newsfeed")} className={activeTab === "Newsfeed" ? "active" : ""}>
+      //                   Newsfeed
+      //                </a>
+      //                <a onClick={() => handleClick("About")} className={activeTab === "About" ? "active" : ""}>
+      //                   About
+      //                </a>
+      //                <a onClick={() => handleClick("Chat")} className={activeTab === "Chat" ? "active" : ""}>
+      //                   Chat
+      //                </a>
+      //             </ul>
+      //             <div className="team__content">
+      //                <div className="league__content--body">
+      //                   {currentComponent === "Announcements" && <Announcements />}
+      //                   {currentComponent === "Stats" && <TeamStats team={team}/>}
+      //                   {currentComponent === "Newsfeed" && "Newsfeed coming soon"}
+      //                   {currentComponent === "About" && "About coming soon"}
+      //                   {currentComponent === "Chat" && "Chat coming soon"}
+      //                </div>
+      //             </div>
+      //          </div>
+      //       </div>
+      //    </div>
+      //    <RightNav />
+      // </div>
       // <div className='team__container'>
       //     <div className="team__header">
       //         <div className="team__header-image">

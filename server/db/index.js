@@ -613,11 +613,11 @@ const syncAndSeed = async () => {
     
     //Added Random Post To Teams
     await Post.create({message:"WE WON!!", likes: 6, userId: 1, teamId: 1});
-    await Post.create({message:"WE LOST....", likes: 6, userId: 2, teamId: 1});
+    await Post.create({message:"Can someone cover for me this week?", likes: 6, userId: 2, teamId: 1});
+    await Post.create({message:"Finally got a hatrick!", likes: 6, userId: 6, teamId: 1});
     await Post.create({message:"Playoffs begin next week!!", likes: 6, userId: 3, teamId: 2});
     await Post.create({message:"WE ARE THE BEST!", likes: 6, userId: 4, teamId: 2});
     await Post.create({message:"Looking for additional teams for next season.", likes: 6, userId: 5, teamId: 3});
-    await Post.create({message:"WE WON!!", likes: 6, userId: 6, teamId: 1});
 
     //Added Random Post To Leagues
     await Post.create({message:"WE WON!!", likes: 6, userId: 7, leagueId: 1});

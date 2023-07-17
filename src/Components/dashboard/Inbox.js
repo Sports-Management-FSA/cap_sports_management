@@ -60,7 +60,7 @@ const Inbox = () => {
                         <p>Subject: {selectedMessage.subjectLine}</p>
                         
                         {selectedMessage.teamName && (<p>Email: {selectedMessage.teamEmail}</p>)}
-                        {selectedMessage.teamEmail && (<p>Email: {selectedMessage.teamEmail}</p>)}
+                        {selectedMessage.teamName && (<p>Name: {selectedMessage.teamName}</p>)}
                         {selectedMessage.desiredTeam !== null && (<p>Desired Team: {selectedMessage.desiredTeam}</p>)}
                     </div>
                     <div className="inbox__content-main">
@@ -86,40 +86,40 @@ const Inbox = () => {
                     <p>{matchedMessages.length}</p>
                 </div>
             </div>
-                <table className="inbox__table">
-                    <thead>
-                        <tr className="inbox__row">
-                            <th className="inbox-col-name">Name</th>
-                            <th className="inbox-col-name">Type</th>
-                            <th className="inbox-col-content">Subject</th>
-                            <th className="inbox-col-content">Description</th>
-                            <th className="inbox-col-content">Decision</th>
+            <table className="inbox__table">
+                <thead>
+                    <tr className="inbox__row">
+                        <th className="inbox-col-name">Name</th>
+                        <th className="inbox-col-name">Type</th>
+                        <th className="inbox-col-content">Subject</th>
+                        <th className="inbox-col-content">Description</th>
+                        <th className="inbox-col-content">Decision</th>
+                    </tr>
+                </thead>
+                {matchedMessages.map(message => (
+                    <tbody key={message.id}>
+                        <tr className="inbox__row" >
+                            <td className="inbox-col-name" onClick={() => setSelectedMessage(message)}>{message.name}</td>
+                            <td 
+                                className="inbox-col-name"
+                                onClick={() => setSelectedMessage(message)}
+                            >{message.desiredTeam !== null ? 'Player' : 'Team'}
+                            </td>
+                            <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                                <p>{message.subjectLine}</p>
+                            </td>
+                            <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                                <p>{message.description}</p>
+                            </td>
+                            <td className="inbox-col-content">
+                                <button onClick={() => handleApprove(message)}>Accept</button>
+                                <button onClick={() => handleDecline(message.id)}>Decline</button>   
+                            </td>
                         </tr>
-                    </thead>
-                    {matchedMessages.map(message => (
-                        <tbody key={message.id}>
-                            <tr className="inbox__row" >
-                                <td className="inbox-col-name" onClick={() => setSelectedMessage(message)}>{message.name}</td>
-                                <td 
-                                    className="inbox-col-name"
-                                    onClick={() => setSelectedMessage(message)}
-                                >{message.desiredTeam !== null ? 'Player' : 'Team'}
-                                </td>
-                                <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
-                                    <p>{message.subjectLine}</p>
-                                </td>
-                                <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
-                                    <p>{message.description}</p>
-                                </td>
-                                <td className="inbox-col-content">
-                                    <button onClick={() => handleApprove(message)}>Accept</button>
-                                    <button onClick={() => handleDecline(message.id)}>Decline</button>   
-                                </td>
-                            </tr>
-                        </tbody>
-                        ))
-                    }
-            </table>
+                    </tbody>
+                    ))
+                }
+        </table>
         </div>
     );
 };

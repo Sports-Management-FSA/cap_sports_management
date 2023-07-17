@@ -29,6 +29,8 @@ const League = () => {
    const matches = league.matches;
    const teams = league.teams;
 
+   console.log(teams)
+
    const upcomingMatch = matches?.find((match) => {
       const matchDate = new Date(match.date);
       return matchDate > today;
@@ -60,7 +62,7 @@ const League = () => {
                         </div>
                      </div>
                      <div className="head-right">
-                        {auth && (<Link to={`/league/${id}/request`}>Request to Join</Link>)}
+                        {auth && (<Link className="head-request" to={`/league/${id}/request`}>Request to Join</Link>)}
                      </div>
                   </div>
                   <section className="head__about">
