@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addScorekeeper } from "../store";
+import { addScorekeeper, deleteScorekeeper } from "../store";
 import { useParams } from "react-router-dom";
 
 const AdvancedScoreKeeper = () => {
@@ -12,14 +12,15 @@ const AdvancedScoreKeeper = () => {
 
     const [team1Player, setTeam1Player] = useState("");
     const [team2Player, setTeam2Player] = useState("");
-    const [action, setAction] = useState("");
+    const [action1, setAction1] = useState("");
+    const [action2, setAction2] = useState("");
 
     const [match, setMatch] = useState(matches.find((match) => { match.id == id }));
     const [league, setLeague] = useState(leagues.find((league) => league.id == match?.leagueId));
 
     useEffect(() => {
         setMatch(matches.find((match) => match.id == id));
-        setLeague(leagues.find((league) => league.id == match?.leagueId));
+        setLeague(leagues.find((league) => league.id === match?.leagueId));
     }, [id, matches, leagues,])
 
 
@@ -28,7 +29,7 @@ const AdvancedScoreKeeper = () => {
             addScorekeeper({
                 matchId: match.id,
                 userId: team1Player,
-                actionId: action,
+                actionId: action1,
                 teamId: match.teams[0].id,
             })
         );
@@ -39,120 +40,154 @@ const AdvancedScoreKeeper = () => {
             addScorekeeper({
                 matchId: match.id,
                 userId: team2Player,
-                actionId: action,
+                actionId: action2,
                 teamId: match.teams[1].id,
             })
         );
     };
 
+    const handleRemoveAction = (id) => {
+        console.log('THE ID:', id)
+        dispatch(deleteScorekeeper(id))
+    }
+
     return (
-        <div>
-            <div>
-                <div className="team1Scoreboard">
+        <div className="scorekeeper-container">
+            <div className="scoreboards-container">
+                <div className="team-scoreboard-container">
                     <h3>{match?.teams[0].name} Scoreboard</h3>
-                    <h3>
-                        Total Score:{" "}
-                        {match?.scorekeepers.reduce((acc, score) => {
-                            if (score.team.id == match?.teams[0].id && score.action.countPoint) {
-                                return acc + score.action.value;
-                            } else {
-                                return acc;
-                            }
-                        }, 0)}
-                    </h3>
-                    <div className="playerScores">
+                    <div className="playerScores-container">
                         {match?.scorekeepers.map((score) => {
                             if (score.team.id == match?.teams[0].id) {
                                 return (
-                                    <p>
-                                        {score.user.firstName} {score.user.lastName} scored a{" "}
-                                        {score.action.name}
-                                    </p>
+                                    <div className="score-container">
+                                        <p>
+                                            {score.user.firstName} {score.user.lastName} scored: {score.action.name}
+                                        </p>
+                                        <button onClick={() => handleRemoveAction(score.id)}>delete</button>
+                                    </div>
                                 )
                             }
                         })}
                     </div>
+                    <div>
+                        <h3>
+                            Total Score:{" "}
+                            {match?.scorekeepers.reduce((acc, score) => {
+                                if (score.team.id == match?.teams[0].id && score.action.countPoint) {
+                                    return acc + score.action.value;
+                                } else {
+                                    return acc;
+                                }
+                            }, 0)}
+                        </h3>
+                    </div>
+                    <div>
+                        <h3>{match?.teams[0].name} players:</h3>
+                        <select
+                            name="team1"
+                            id="team1"
+                            onChange={(e) => setTeam1Player(e.target.value)}
+                        >
+                            <option value="">--Choose Player--</option>
+                            {match?.teams[0].users.map((player) => {
+                                return (
+                                    <option key={player.id} value={player.id}>
+                                        {player.firstName} {player.lastName}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                        <button onClick={handleTeam1Action}>Add Action</button>
+                    </div>
+                    <div>
+                        <h3>Actions:</h3>
+                        <select
+                            name="actions"
+                            id="actions"
+                            onChange={(e) => setAction1(e.target.value)}
+                        >
+                            <option value="">--Choose Action--</option>
+                            {league ? league.category.actions.map((action) => {
+                                console.log('HELLLOOOOOOOOOO!!!!', action)
+                                return (
+                                    <option key={action.id} value={action.id}>
+                                        {action.name}
+                                    </option>
+                                );
+                            }) : <div>loading</div>}
+                        </select>
+                    </div>
                 </div>
 
-                <div className="team2Scoreboard">
+                <div className="team-scoreboard-container">
                     <h3>{match?.teams[1].name} Scoreboard</h3>
-                    <h3>
-                        Total Score:{" "}
-                        {match?.scorekeepers.reduce((acc, score) => {
-                            if (score.team.id == match?.teams[1].id && score.action.countPoint) {
-                                return acc + score.action.value;
-                            } else {
-                                return acc;
-                            }
-                        }, 0)}
-                    </h3>
-                    <div className="playerScores">
+
+                    <div className="playerScores-container">
                         {match?.scorekeepers.map((score) => {
                             if (score.team.id == match?.teams[1].id) {
                                 return (
-                                    <p>
-                                        {score.user.firstName} {score.user.lastName} scored a{" "}
-                                        {score.action.name}
-                                    </p>
+                                    <div className="score-container">
+                                        <p>
+                                            {score.user.firstName} {score.user.lastName} scored: {score.action.name}
+                                        </p>
+                                        <button onClick={() => handleRemoveAction(score.id)}>delete</button>
+                                    </div>
                                 )
                             }
                         })}
                     </div>
+                    <div>
+                        <h3>
+                            Total Score:{" "}
+                            {match?.scorekeepers.reduce((acc, score) => {
+                                if (score.team.id == match?.teams[1].id && score.action.countPoint) {
+                                    return acc + score.action.value;
+                                } else {
+                                    return acc;
+                                }
+                            }, 0)}
+                        </h3>
+                    </div>
+                    <div>
+                        <h3>{match?.teams[1].name} players:</h3>
+                        <select
+                            name="actions"
+                            id="actions"
+                            onChange={(e) => setTeam2Player(e.target.value)}
+                        >
+                            <option value="">--Choose Player--</option>
+                            {match?.teams[1].users.map((player) => {
+                                return (
+                                    <option key={player.id} value={player.id}>
+                                        {player.firstName} {player.lastName}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                        <button onClick={handleTeam2Action}>Add Action</button>
+
+                        <h3>Actions:</h3>
+                        <select
+                            name="actions"
+                            id="actions"
+                            onChange={(e) => setAction2(e.target.value)}
+                        >
+                            <option value="">--Choose Action--</option>
+                            {league?.category.actions.map((action) => {
+
+                                return (
+                                    <option key={action.id} value={action.id}>
+                                        {action.name}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <h3>Actions:</h3>
-                <select
-                    name="actions"
-                    id="actions"
-                    onChange={(e) => setAction(e.target.value)}
-                >
-                    <option value="">--Choose Action--</option>
-                    {league?.category.actions.map((action) => {
 
-                        return (
-                            <option key={action.id} value={action.id}>
-                                {action.name}
-                            </option>
-                        );
-                    })}
-                </select>
-
-                <h3>Team 1:</h3>
-                <select
-                    name="team1"
-                    id="team1"
-                    onChange={(e) => setTeam1Player(e.target.value)}
-                >
-                    <option value="">--Choose Player--</option>
-                    {match?.teams[0].users.map((player) => {
-                        return (
-                            <option key={player.id} value={player.id}>
-                                {player.firstName} {player.lastName}
-                            </option>
-                        );
-                    })}
-                </select>
-                <button onClick={handleTeam1Action}>Add Action</button>
-
-                <h3>Team 2:</h3>
-                <select
-                    name="actions"
-                    id="actions"
-                    onChange={(e) => setTeam2Player(e.target.value)}
-                >
-                    <option value="">--Choose Player--</option>
-                    {match?.teams[1].users.map((player) => {
-                        return (
-                            <option key={player.id} value={player.id}>
-                                {player.firstName} {player.lastName}
-                            </option>
-                        );
-                    })}
-                </select>
-                <button onClick={handleTeam2Action}>Add Action</button>
-            </div>
         </div>
     );
 };
