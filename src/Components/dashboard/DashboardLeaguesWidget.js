@@ -6,11 +6,7 @@ import leaguesSlice from '../../store/leaguesSlice';
 
 const DashboardLeaguesWidget = (props) => {
     const leagues = props.league;
-    console.log("FROM Dashboard league component", leagues);
     const categories = useSelector(state => state.categories.categoriesList);
-    // leagues.map(league => {
-    //     console.log(league)
-    // })
     return (
         <div className="dashboard__leagues-container">
             <div className="leagues-title">
@@ -39,9 +35,6 @@ const DashboardLeaguesWidget = (props) => {
                     ))}
                 </tbody>
             </table>
-            <div className="leagues-bottom">
-                <p>View All</p>
-            </div>
         </div>
     );
 };

@@ -521,7 +521,7 @@ a {
   transition: transform 0.3s ease-in-out;
 }
 .stats--navbar-items a.active {
-  color: #ff5f5f;
+  color: #58aecf;
   margin-bottom: 0;
   transform: scale(1.1);
 }
@@ -1298,6 +1298,12 @@ p {
   color: #fffff0;
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
+}
+.stats--navbar-items {
+  margin-bottom: 2rem;
+}
+.stats--navbar-items a {
+  font-weight: 400;
 }
 @media (max-width: 1175px) {
   .inbox__row td:nth-child(2) {

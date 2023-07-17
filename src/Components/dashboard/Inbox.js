@@ -109,7 +109,7 @@ const Inbox = () => {
                 </div>
             </div>
             <ul className="stats--navbar-items">
-                    <a onClick={() => handleClick(leagueRequests, 'league')} className={activeTab === 'league' ? 'active' : ''}>League Requets</a>
+                    <a onClick={() => handleClick(leagueRequests, 'league')} className={activeTab === 'league' ? 'active' : ''}>League Requests</a>
                     <a onClick={() => handleClick(teamRequests, 'team')} className={activeTab === 'players' ? 'active' : ''}>Team Requests</a>
                     <a onClick={() => handleClick(auth.receivedRequests, 'you')} className={activeTab === 'you' ? 'active' : ''} >Your Requests</a>
                 </ul> 
