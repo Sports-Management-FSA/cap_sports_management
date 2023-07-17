@@ -6,6 +6,7 @@
     justify-content: space-between;
     background-color: @dark-background-primary;
     overflow-y: scroll;
+    margin: 0;
 }
 
 .league-container a, p {
@@ -13,14 +14,14 @@
 }
 
 .league__content {
-    
     background-color: @dark-background-primary;
 }
 
 .league-main {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
+    margin: 3rem;
 }
 
 
@@ -131,16 +132,29 @@
 }
 
 
-@media (max-width: 900px) {
-    .league-main {
-        margin-left: 10rem;
-    }
-}
+
 
 @media (max-width: 1664px) {
     .league--navbar-items a{
        margin-right: 2rem;
        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1320px) {
+    .league-container{
+        margin: 0;
+        display: flex;
+        justify-content: flex-start;
+        gap: 5rem;
+    }
+
+}
+
+@media (max-width: 1185px){
+    .league-main-upper {
+        margin: 0;
+        width: 100%;
     }
 }
 
@@ -157,18 +171,28 @@
     }
 }
 
-@media (max-width: 1320px) {
-    .league-container{
-        margin: 1rem;
-        display: flex;
-        justify-content: space-evenly;
+@media (max-width: 900px) {
+    .league-main {
+        margin-left: .5rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
-@media (max-width: 500px){
-    
+@media (max-width: 750px){
+    .league-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
+    }
+    .league-main {
+        margin-left: .5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
-
 
 @media (max-width: 500px) {
     .league-container{

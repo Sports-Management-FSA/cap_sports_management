@@ -99,7 +99,6 @@ const AdvancedScoreKeeper = () => {
                         </h4>
                     </div>
                     <div className="scorekeeper-lower-actions">
-
                         <select
                             name="team1"
                             id="team1"
@@ -200,7 +199,7 @@ const AdvancedScoreKeeper = () => {
                 </section>
             </div>
             <div className="scoreboard-footer">
-                <button>End Match</button>
+                <button onClick={() => navigate(`/league/${league.id}`)}>End Match</button>
             </div>
             </div>
         </div>

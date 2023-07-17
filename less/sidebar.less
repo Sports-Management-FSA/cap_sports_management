@@ -51,6 +51,18 @@
 }
 
 @media (max-width: 1320px){
+   .sidebar {
+      height: 100vh;
+      position: sticky;
+      top: 0px;
+      height: calc(150vh - 72px);
+      background-color: @dark-background-secondary;
+      color: black;
+      margin: 0;
+      width: 25%;
+      padding-left: 2rem;
+   }
+   
    .item {
       display: flex;
       align-items: center;
@@ -59,7 +71,7 @@
    }
 }
 
-@media (max-width: 1223px){
+@media (max-width: 750px){
    .sidebar {
       display: none;
    }
