@@ -60,7 +60,8 @@ const User = conn.define("user", {
       unique: true
    },
    avatar: {
-      type: TEXT
+      type: TEXT,
+      defaultValue: ""
    },
    googleId: {
       type: STRING

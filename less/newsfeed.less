@@ -81,6 +81,18 @@
     color: @dark-font-primary;
 }
 
+.post-upper-group {
+    display: flex;
+}
+
+.post-upper-group img {
+    margin-right: 1rem;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    border: 1.5px @dark-border solid;
+}
+
 .newsfeed__post-content {
     margin: .5rem;
 }
@@ -110,4 +122,21 @@
 .newsfeed__post-lower span:hover {
     background-color: @dark-background-alt;
     cursor: pointer;
+}
+
+.newsfeed__nodata {
+    background-color: @dark-background-alt;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    margin-top: 2rem;
+    width: 50%;
+    height: 10rem;
+}
+
+.newsfeed__nodata h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: @dark-font-primary;
 }

@@ -12,30 +12,7 @@ const Announcements = () => {
             username: "Tom Morello",
             desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
         },
-        {
-            id: 2,
-            userId: 2,
-            username: "Jimi Hendrix",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
-        {
-            id: 3,
-            userId: 3,
-            username: "Janice Joplin",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
-        {
-            id: 4,
-            userId: 4,
-            username: "Jim Morisson",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
-        {
-            id: 5,
-            userId: 5,
-            username: "Kurt Cobain",
-            desc: "ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem"
-        },
+        
     ]
 
     function timeSince(date) {

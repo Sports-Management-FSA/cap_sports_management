@@ -29,7 +29,7 @@ const League = () => {
    const matches = league.matches;
    const teams = league.teams;
 
-   console.log(teams)
+   const posts = league.posts;
 
    const upcomingMatch = matches?.find((match) => {
       const matchDate = new Date(match.date);
@@ -96,7 +96,7 @@ const League = () => {
                   <div className="league__content--body">
                      {currentComponent === "Announcements" && <Announcements />}
                      {currentComponent === "Stats" && <Stats />}
-                     {currentComponent === "Newsfeed" && <Newsfeed />}
+                     {currentComponent === "Newsfeed" && <Newsfeed posts={posts}/>}
                      {currentComponent === "Chat" && "Chat coming soon"}
                   </div>
                </div>
