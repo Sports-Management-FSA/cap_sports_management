@@ -1,55 +1,77 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages, updatePlayer, updateTeam } from '../../store';
+import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages, updatePlayer, updateTeam, updateRequest } from '../../store';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 const Inbox = () => {
-
+    const {auth} = useSelector(state=>state);
     const dispatch = useDispatch();
     const [selectedMessage, setSelectedMessage] = useState(null);
-    const allMessages = useSelector(state => state.joinRequests.messagesList);
-    const activeMessages = allMessages.filter(message => message.isActive == true);
-    const userLeagueIds = useSelector(state => state.auth.leagues.map(league => league.id));
-    const matchedMessages = activeMessages.filter(message => userLeagueIds.includes(message.leagueId));
-    console.log(matchedMessages);
-
-    const leagues = useSelector((state) => state.leagues.leaguesList);
+    const leagueRequests = [];
+    const teamRequests = [];
+    auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
+    auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
+    const allMessages = [...leagueRequests, ...teamRequests, ...auth.receivedRequests];
+    const [activeMessages, setActiveMessages] = useState(leagueRequests);
+    const [activeTab, setActiveTab] = useState("league");
 
     useEffect(() => {
         
-    }, [allMessages, userLeagueIds, matchedMessages])
+    }, [activeMessages, leagueRequests, teamRequests, auth.receivedRequests])
 
-    if (!allMessages || !userLeagueIds || !matchedMessages) {
+    if (!allMessages) {
         return <div>loading</div>
     }
 
     const handleApprove = (message) => {
-        console.log(message)
-        if (message.desiredTeam == null) {
-            const team = {
-                name: message.teamName,
-                email: message.teamEmail,
-                leagueId: message.leagueId,
-                teamId: message.teamId,
-            }
-            console.log('this is a team, sent from handleapprove');
-            dispatch(updateTeam(team));
-        } else {
-            console.log('this is a player request')
-            const desiredTeam = leagues.find(league=>league.id == message.leagueId).teams.find(team=>team.name == message.desiredTeam);
-            const role = {
-                teamId: desiredTeam.id,
-                teamRoleId: 1,
-            }
-            dispatch(updatePlayer({id: message.userId, role: role}));
+        let role= {};
+        switch(message.to){
+            case 'player':
+                //add auth user to team
+                role = {teamId: message.teams[0].id, roleId: 1};
+                dispatch(updatePlayer({id: auth.id, role}));
+                break;
+            case 'team':
+                // add player to team
+                role = {teamId: message.teams[0].id, roleId: 1};
+                dispatch(updatePlayer({id: message.senderId, role}));
+                break;
+            case 'league':
+                if(message.from === 'player'){
+                    //if desired team selected add to team, else assign to selected team
+                    if(message.teams.length > 0){
+                        role = {teamId: message.teams[0].id, roleId: 1};
+                        dispatch(updatePlayer({id: message.senderId, role}));
+                    } else{
+                        //choose team from selection and assign to
+                        console.log('need to create selector to assign player to team if no desired team')
+                    }
+                }else{
+                    //add team to league
+                    const teamUpdated = {...message.teams[0]};
+                    teamUpdated.leagueId = message.leagues[0].id;
+                    dispatch(updateTeam(teamUpdated));
+                }
+                break;
+            default:
         }
+    
         //do something with message, delete or archive?
+        const updatedMessage = {...message};
+        updatedMessage.isActive = false;
+        console.log(updatedMessage);
+        dispatch(updateRequest(updatedMessage));
     }
 
     const handleDecline = (id) => {
         dispatch(deleteMessage(id));
     }
+
+    const handleClick = (messageArray, category) => {
+        setActiveMessages(messageArray.filter(message=>message.isActive));
+        setActiveTab(category);
+    };
 
     if (selectedMessage) {
         return (
@@ -83,43 +105,48 @@ const Inbox = () => {
                 <h4>Recent Messages</h4>
                 <div className="inbox__header-requests">
                     <p>Total requests:</p>
-                    <p>{matchedMessages.length}</p>
+                    <p>{activeMessages.length}</p>
                 </div>
             </div>
-            <table className="inbox__table">
-                <thead>
-                    <tr className="inbox__row">
-                        <th className="inbox-col-name">Name</th>
-                        <th className="inbox-col-name">Type</th>
-                        <th className="inbox-col-content">Subject</th>
-                        <th className="inbox-col-content">Description</th>
-                        <th className="inbox-col-content">Decision</th>
-                    </tr>
-                </thead>
-                {matchedMessages.map(message => (
-                    <tbody key={message.id}>
-                        <tr className="inbox__row" >
-                            <td className="inbox-col-name" onClick={() => setSelectedMessage(message)}>{message.name}</td>
-                            <td 
-                                className="inbox-col-name"
-                                onClick={() => setSelectedMessage(message)}
-                            >{message.desiredTeam !== null ? 'Player' : 'Team'}
-                            </td>
-                            <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
-                                <p>{message.subjectLine}</p>
-                            </td>
-                            <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
-                                <p>{message.description}</p>
-                            </td>
-                            <td className="inbox-col-content">
-                                <button onClick={() => handleApprove(message)}>Accept</button>
-                                <button onClick={() => handleDecline(message.id)}>Decline</button>   
-                            </td>
+            <ul className="stats--navbar-items">
+                    <a onClick={() => handleClick(leagueRequests, 'league')} className={activeTab === 'league' ? 'active' : ''}>League Requets</a>
+                    <a onClick={() => handleClick(teamRequests, 'team')} className={activeTab === 'players' ? 'active' : ''}>Team Requests</a>
+                    <a onClick={() => handleClick(auth.receivedRequests, 'you')} className={activeTab === 'you' ? 'active' : ''} >Your Requests</a>
+                </ul> 
+                <table className="inbox__table">
+                    <thead>
+                        <tr className="inbox__row">
+                            <th className="inbox-col-name">Name</th>
+                            <th className="inbox-col-name">Type</th>
+                            <th className="inbox-col-content">Subject</th>
+                            <th className="inbox-col-content">Description</th>
+                            <th className="inbox-col-content">Decision</th>
                         </tr>
-                    </tbody>
-                    ))
-                }
-        </table>
+                    </thead>
+                    {activeMessages.map(message => (
+                        <tbody key={message.id}>
+                            <tr className="inbox__row" >
+                                <td className="inbox-col-name" onClick={() => setSelectedMessage(message)}>{message.sender.firstName}</td>
+                                <td 
+                                    className="inbox-col-name"
+                                    onClick={() => setSelectedMessage(message)}
+                                >{message.desiredTeam !== null ? 'Player' : 'Team'}
+                                </td>
+                                <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                                    <p>{message.subjectLine}</p>
+                                </td>
+                                <td onClick={() => setSelectedMessage(message)} className="inbox-col-content">
+                                    <p>{message.description}</p>
+                                </td>
+                                <td className="inbox-col-content">
+                                    <button onClick={() => handleApprove(message)}>Accept</button>
+                                    <button onClick={() => handleDecline(message.id)}>Decline</button>   
+                                </td>
+                            </tr>
+                        </tbody>
+                        ))
+                    }
+            </table>
         </div>
     );
 };

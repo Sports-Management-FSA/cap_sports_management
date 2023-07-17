@@ -37,18 +37,31 @@ export const addTeam = createAsyncThunk("addTeam", async (team, { rejectWithValu
 
 export const updateTeam = createAsyncThunk("updateTeam", async (formData, { rejectWithValue }) => {
    const { id } = formData;
+   console.log(formData);
    try {
-      const response = await axios.put(`/api/teams/${id}`, formData);
+      console.log('making it in thunk')
+      const token = window.localStorage.getItem("token");
+      const response = await axios.put(`/api/teams/${id}`, formData, {
+         headers: {
+            authorization: token
+         }
+      });
+      console.log(response)
       return response.data;
    } catch (err) {
-      return rejectWithValue('Not authorized to update league.');
+      return rejectWithValue('Not authorized to update team.');
    }
 });
 
 export const deleteTeam = createAsyncThunk('deleteTeam', async(teamId, {rejectWithValue}) => {
 
     try{
-        await axios.delete(`/api/teams/${teamId}`);
+         const token = window.localStorage.getItem("token");
+         await axios.delete(`/api/teams/${teamId}`, {
+         headers: {
+            authorization: token
+         }
+      });
         return(teamId);
     }catch(err){
         return rejectWithValue('Not authorized to delete league.');

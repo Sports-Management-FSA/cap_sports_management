@@ -22,6 +22,8 @@ import {
    fetchAllAnnouncements,
    fetchAllCategories,
    fetchAllMessages,
+   fetchAllScorekeepers,
+   fetchAllRequests,
    fetchAllPosts
 } from "./store";
 import { Link, Routes, Route } from "react-router-dom";
@@ -50,6 +52,8 @@ const App = () => {
       dispatch(loginWithToken());
       dispatch(fetchAllAnnouncements());
       dispatch(fetchAllMessages());
+      dispatch(fetchAllRequests());
+      dispatch(fetchAllScorekeepers());
       dispatch(fetchAllPosts())
    }, []);
    // console.log(auth);

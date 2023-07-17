@@ -13,6 +13,7 @@ const League = require("./League");
 const User_LeagueRoles = require("./User_LeagueRoles");
 const Scorekeeper = require("./Scorekeeper");
 const TeamRoles = require("./TeamRoles");
+const Requests = require('./Requests');
 const JWT = process.env.JWT;
 
 const User = conn.define("user", {
@@ -184,11 +185,19 @@ User.findByToken = async function (token) {
       const user = await this.findByPk(id, {
          include: [
             conn.models.teamRoles,
-            conn.models.team,
             conn.models.leagueRoles,
-            conn.models.league,
-            { model: User_LeagueRoles, include: [League, LeagueRoles] },
-            { model: User_TeamRoles, include: [Team, TeamRoles] },
+            Team,
+            League,
+           { model: Requests, as: "receivedRequests",include: [Team,
+            {model: User, as: "sender", attributes: ['firstName', 'lastName']}] },
+            { model: User_LeagueRoles, include: [
+               { model: League, include:[
+                  { model: Requests, include:[ Team, League,
+                     {model: User, as: "sender", attributes: ['firstName', 'lastName']}
+                  ]}
+               ]}
+               , LeagueRoles] },
+            { model: User_TeamRoles, include: [{model: Team, include:[Requests]},TeamRoles] },
             { model: Scorekeeper, include: [Actions, Team, Match] },
             { model: Post, include: [Comment] }
          ]
