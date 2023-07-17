@@ -48,14 +48,14 @@ const Login = () => {
    const invalidCredentials = credentials.username === "" || credentials.password === "";
 
    const google = () => {
-      window.open("https://podium.onrender.com/auth/google", "_self");
+      window.open("https://sportmgmt.onrender.com/auth/google", "_self");
    };
    const facebook = () => {
-      window.open("https://podium.onrender.com/auth/facebook", "_self");
+      window.open("https://sportmgmt.onrender.com/auth/facebook", "_self");
    };
 
    const twitter = () => {
-      window.open("https://podium.onrender.com/auth/twitter");
+      window.open("https://sportmgmt.onrender.com/auth/twitter");
    };
 
    return (
