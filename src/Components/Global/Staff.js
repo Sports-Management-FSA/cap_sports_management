@@ -1,8 +1,9 @@
+import { Margin } from "@mui/icons-material";
 import React from "react";
 
 const Staff = () => {
    return (
-      <div className="container p-5">
+      <div className="container p-5 staff-container">
          <h2 className="text-uppercase text-center fst-italic mb-3">Podium Team</h2>
          <div className="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-3">
             <div className="col">

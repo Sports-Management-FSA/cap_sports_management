@@ -103,7 +103,7 @@ const UserProfileAccountDetail = () => {
          <div className="col-xl-4">
             <div className="card mb-4 mb-xl-0">
                <div className="card-header">Profile Picture</div>
-               <div className="card-body text-center">
+               <div className="card-body text-center align-items-center">
                   <img
                      src={formData.avatar ? formData.avatar : "static/images/camera.svg"}
                      alt="profile-picture"
