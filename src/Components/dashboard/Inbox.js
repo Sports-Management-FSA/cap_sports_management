@@ -8,17 +8,17 @@ const Inbox = () => {
     const {auth} = useSelector(state=>state);
     const dispatch = useDispatch();
     const [selectedMessage, setSelectedMessage] = useState(null);
-    const leagueRequests = [];
-    const teamRequests = [];
-    auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
-    auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
+   
     const allMessages = [...leagueRequests, ...teamRequests, ...auth.receivedRequests];
-    const activeMessages = allMessages.filter(message => message.isActive == true);
-    const leagues = useSelector((state) => state.leagues.leaguesList);
+    const [activeMessages, setActiveMessages] = useState(leagueRequests);
+    const [activeTab, setActiveTab] = useState("league");
 
     useEffect(() => {
-        
-    }, [allMessages, activeMessages])
+        const leagueRequests = [];
+        const teamRequests = [];
+        auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
+        auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
+    }, [activeMessages, leagueRequests, teamRequests, auth.receivedRequests])
 
     if (!allMessages) {
         return <div>loading</div>
@@ -68,6 +68,11 @@ const Inbox = () => {
         dispatch(deleteMessage(id));
     }
 
+    const handleClick = (messageArray, category) => {
+        setActiveMessages(messageArray.filter(message=>message.isActive));
+        setActiveTab(category);
+    };
+
     if (selectedMessage) {
         return (
             <section className="inbox__container">
@@ -103,6 +108,11 @@ const Inbox = () => {
                     <p>{activeMessages.length}</p>
                 </div>
             </div>
+            <ul className="stats--navbar-items">
+                    <a onClick={() => handleClick(leagueRequests, 'league')} className={activeTab === 'league' ? 'active' : ''}>League Requets</a>
+                    <a onClick={() => handleClick(teamRequests, 'team')} className={activeTab === 'players' ? 'active' : ''}>Team Requests</a>
+                    <a onClick={() => handleClick(auth.receivedRequests, 'you')} className={activeTab === 'you' ? 'active' : ''} >Your Requests</a>
+                </ul> 
                 <table className="inbox__table">
                     <thead>
                         <tr className="inbox__row">
