@@ -775,16 +775,23 @@ a {
 .social-icon:hover {
   font-size: 20px;
   transition: 0.3s;
+  color: white;
 }
 @media (max-width: 400px) {
   .forgot-password {
     font-size: 10px;
   }
 }
+.login-page {
+  background-color: #112222;
+}
 /* ---------- Register Customization ---------- */
+.register-page {
+  background-color: #112222;
+}
 .register-login {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .register-login-here:hover {
   text-decoration: underline;
@@ -792,7 +799,7 @@ a {
   transition: 0.3s;
 }
 .register-login-here {
-  color: black;
+  color: white;
   letter-spacing: 0;
   font-size: 14px;
 }
