@@ -1764,7 +1764,7 @@ p {
 .scoreboards-container {
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  width: 75%;
   padding: 1rem;
   margin: 1rem;
   background-color: #2a5262;
@@ -1864,6 +1864,92 @@ p {
   border: none;
   margin-top: 1rem;
   font-size: 1.2rem;
+}
+@media (max-width: 1000px) {
+  .scorekeeper-container {
+    margin: 0;
+  }
+  .scoreboards-container {
+    margin: 5rem;
+    width: 100%;
+    height: 60%;
+  }
+  .team-scoreboard-container {
+    padding: 1rem;
+  }
+}
+@media (max-width: 560px) {
+  .scoreboard-footer {
+    position: absolute;
+    bottom: 5px;
+    left: 60%;
+    right: 40%;
+    width: 13rem;
+  }
+  .scoreboard-footer button {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+  }
+}
+@media (max-width: 460px) {
+  .scoreboards-container {
+    margin: 5rem;
+    width: 100%;
+    height: 65%;
+  }
+  .scoreboard-footer {
+    position: absolute;
+    bottom: 5px;
+    left: 30%;
+    right: 70%;
+    width: 13rem;
+  }
+  .scoreboard-footer button {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+  }
+}
+@media (max-width: 350px) {
+  .scorekeeper-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    height: 190vh;
+  }
+  .scoreboards-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+  }
+  .team-scoreboard-container {
+    padding: 3rem;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 100%;
+  }
+  .playerScores-container {
+    height: 20rem;
+    width: 100%;
+    background-color: #386e84;
+    padding-top: 1rem;
+    border-radius: 8px;
+    overflow-y: scroll;
+  }
+  .score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem 1rem 1.5rem;
+    position: relative;
+    width: 50%;
+    margin: 0;
+  }
+  .scorekeeper-lower-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 .teamsTable__container {
   margin-top: 2rem;

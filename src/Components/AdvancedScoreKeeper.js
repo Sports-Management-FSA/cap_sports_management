@@ -78,7 +78,7 @@ const AdvancedScoreKeeper = () => {
                                         <p>
                                             {score.user.firstName} {score.user.lastName} scored: {score.action.name}
                                         </p>
-                                        {/* <button onClick={() => handleRemoveAction(score.id)}>delete</button> */}
+
                                         <RemoveCircleOutlineIcon onClick={() => handleRemoveAction(score.id)} className="scorekeeper-icon"/>
                                     </div>
                                 )
@@ -99,7 +99,7 @@ const AdvancedScoreKeeper = () => {
                         </h4>
                     </div>
                     <div className="scorekeeper-lower-actions">
-                        {/* <h5>{match?.teams[0].name} players:</h5> */}
+
                         <select
                             name="team1"
                             id="team1"
@@ -130,23 +130,7 @@ const AdvancedScoreKeeper = () => {
                         </select>
                         <button onClick={handleTeam1Action}>Add Action</button>
                     </div>
-                    {/* <div className="scorekeeper-lower-actions">
-                        <h5>Actions:</h5>
-                        <select
-                            name="actions"
-                            id="actions"
-                            onChange={(e) => setAction1(e.target.value)}
-                        >
-                            <option value="">--Choose Action--</option>
-                            {actions?.map((action) => {
-                                return (
-                                    <option key={action.id} value={action.id}>
-                                        {action.name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div> */}
+
                     </section>
                 </div>
                 <div className="team-scoreboard-container">
@@ -180,7 +164,7 @@ const AdvancedScoreKeeper = () => {
                             </h4>
                         </div>
                     <div className="scorekeeper-lower-actions">
-                        {/* <h5>{match?.teams[1].name} players:</h5> */}
+
                         <select
                             name="actions"
                             id="actions"
@@ -212,24 +196,7 @@ const AdvancedScoreKeeper = () => {
                         </select>
                         <button onClick={handleTeam2Action}>Add Action</button>
                     </div>
-                    {/* <div className="scorekeeper-lower-actions">
-                        <h5>Actions:</h5>
-                        <select
-                            name="actions"
-                            id="actions"
-                            onChange={(e) => setAction2(e.target.value)}
-                        >
-                            <option value="">--Choose Action--</option>
-                            {actions?.map((action) => {
 
-                                return (
-                                    <option key={action.id} value={action.id}>
-                                        {action.name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div> */}
                 </section>
             </div>
             <div className="scoreboard-footer">
