@@ -1689,6 +1689,39 @@ p {
 .teams__table {
   width: 100%;
 }
+.scorekeeper-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #112222;
+  color: white;
+}
+.scoreboards-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  padding: 1rem;
+}
+.team-scoreboard-container {
+  background-color: #2a5262;
+  padding: 3rem;
+  border-radius: 8px;
+  width: 50rem;
+}
+.playerScores-container {
+  height: 20rem;
+  width: 100%;
+  background-color: #386e84;
+  padding: 2rem;
+  border-radius: 8px;
+  overflow-y: scroll;
+}
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+=======
 .editleague__container {
   background-color: #2a5262;
   width: 45rem;

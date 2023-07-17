@@ -50,11 +50,14 @@ router.post('/', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const user = await User.findByToken(req.headers.authorization);
+        const scorekeeper = await Scorekeeper.findByPk(req.params.id)
+        console.log(scorekeeper)
         if (user) {
-            await Scorekeeper.destroy({ where: { id: req.params.id } });
-            res.sendStatus(204);
+            scorekeeper.destroy();
+            console.log(scorekeeper)
+            res.send(scorekeeper);
         }
-        res.status(401).send('Unauthorizated Access')
+        // res.status(401).send('Unauthorizated Access')
     } catch (ex) {
         next(ex);
     }
