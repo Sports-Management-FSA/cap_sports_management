@@ -33,6 +33,8 @@ router.post('/', async (req, res, next) => {
         const user = await User.findByToken(req.headers.authorization);
         if (user) {
             const request = await Requests.create(req.body)
+            console.log(req.body.desiredTeam)
+            await User_Requests.create({senderId: user.id, leagueId: req.body.leagueId, requestId: request.id, teamId: req.body.desiredTeam}),
             res.send(request)
         }
     } catch (ex) {

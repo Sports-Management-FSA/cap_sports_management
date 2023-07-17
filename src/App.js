@@ -41,7 +41,7 @@ import Home4 from "./Components/Home4";
 
 
 const App = () => {
-   const { auth } = useSelector((state) => state);
+   const { auth, leagues, teams, user } = useSelector((state) => state);
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(fetchAllCategories());
@@ -56,6 +56,7 @@ const App = () => {
       dispatch(fetchAllScorekeepers());
       dispatch(fetchAllPosts())
    }, []);
+
    // console.log(auth);
    return (
       <div className="app">
