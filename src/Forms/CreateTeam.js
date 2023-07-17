@@ -13,7 +13,7 @@ const CreateTeam = () => {
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
    const players = useSelector((state) => state.players.playerList);
-   const teams = useSelector(state=>state.teams.teamsList);
+   const teams = useSelector((state) => state.teams.teamsList);
 
    const [teamName, setTeamName] = useState("");
    const [teamEmail, setTeamEmail] = useState("");
@@ -25,9 +25,9 @@ const CreateTeam = () => {
    const [playerEmailError, setPlayerEmailError] = useState("");
    const [addedPlayers, setAddedPlayers] = useState([]);
 
-   useEffect(()=>{
+   useEffect(() => {
       dispatch(fetchAllTeams());
-   }, [dispatch])
+   }, [dispatch]);
 
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
@@ -77,16 +77,16 @@ const CreateTeam = () => {
       return errors;
    };
 
-   const handleSubmit = async(e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log('making it in here')
+      console.log("making it in here");
       const validationErrors = validateForm();
       //validation causing errors, even when all reqs are met won't allow submission
       //if (Object.keys(validationErrors).length > 0) {
-         // Form has errors, prevent form submission
-        // setFormErrors(validationErrors);
-        // return;
-     // }
+      // Form has errors, prevent form submission
+      // setFormErrors(validationErrors);
+      // return;
+      // }
 
       const newTeamData = {
          name: teamName,
@@ -96,23 +96,22 @@ const CreateTeam = () => {
          description: teamDescription
       };
       await dispatch(addTeam(newTeamData));
- 
+
       setTeamEmail("");
       setTeamLogo("");
       setTeamDescription("");
-      
+
       addRoles();
-      
    };
 
-   const addRoles = () =>{
-      console.log(teams)
-      const team = teams.find(team=>team.name == teamName);
-      const role = {teamId: team.id, teamRoleId: 1}
-      addedPlayers.forEach(dispatch(updatePlayer(role)))
+   const addRoles = () => {
+      console.log(teams);
+      const team = teams.find((team) => team.name == teamName);
+      const role = { teamId: team.id, teamRoleId: 1 };
+      addedPlayers.forEach(dispatch(updatePlayer(role)));
       setTeamName("");
       navigate(`/home`);
-   }
+   };
 
    const handleAddPlayer = (ev) => {
       ev.preventDefault();
@@ -259,8 +258,7 @@ const CreateTeam = () => {
                         </div>
                         <hr className="mt-5" />
                         <div className="text-center">
-//                            <button className="btn btn-light mt-4">Create</button>
-                           <input type="submit" className="btn btn-light mt-4" value="Create"/>
+                           <input type="submit" className="btn btn-light mt-4" value="Create" />
                         </div>
                      </div>
                   </div>
