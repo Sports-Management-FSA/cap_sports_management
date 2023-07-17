@@ -105,9 +105,26 @@ export const updatePassword = createAsyncThunk(
    }
 );
 
+export const deleteUser = createAsyncThunk("deleteUser", async (user, { rejectWithValue }) => {
+   try {
+      const token = window.localStorage.getItem("token");
+      if (token) {
+         const response = await axios.delete(`/api/users/${user.id}`, {
+            headers: {
+               authorization: token
+            }
+         });
+
+         return response.data;
+      }
+   } catch (err) {
+      rejectWithValue(err.response.data);
+   }
+});
+
 const authSlice = createSlice({
    name: "auth",
-   initialState: { loggedIn: false },
+   initialState: { loggedIn: false, users: [] },
    reducers: {
       logout: (state) => {
          window.localStorage.removeItem("token");
@@ -132,6 +149,9 @@ const authSlice = createSlice({
       });
       builder.addCase(updatePassword.fulfilled, (state, action) => {
          return { ...state, ...action.payload };
+      });
+      builder.addCase(deleteUser.fulfilled, (state, action) => {
+         return state.users.filter((user) => user.id !== action.payload.id);
       });
    }
 });

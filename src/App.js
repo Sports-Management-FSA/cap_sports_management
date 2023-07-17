@@ -36,13 +36,13 @@ import UserProfile from "./Components/User/UserProfile";
 import RequestJoin2 from "./Forms/RequestJoin2";
 import Scorekeeper from "./Components/Scorekeeper";
 import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
-import Home2 from './Components/Home2';
+import Home2 from "./Components/Home2";
 import Home4 from "./Components/Home4";
 
-
 const App = () => {
-   const { auth } = useSelector((state) => state);
+   const { loggedIn } = useSelector((state) => state.auth);
    const dispatch = useDispatch();
+
    useEffect(() => {
       dispatch(fetchAllCategories());
       dispatch(fetchAllLeagues());
@@ -54,8 +54,8 @@ const App = () => {
       dispatch(fetchAllMessages());
       dispatch(fetchAllRequests());
       dispatch(fetchAllScorekeepers());
-      dispatch(fetchAllPosts())
-   }, []);
+      dispatch(fetchAllPosts());
+   }, [dispatch]);
    // console.log(auth);
    return (
       <div className="app">

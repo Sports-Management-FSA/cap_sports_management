@@ -1,18 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store";
+import { logout, fetchAllPlayers } from "../../store";
 import { Avatar } from "@mui/material";
 
 const Nav = () => {
    const user = useSelector((state) => state.auth);
-   const { auth, leagues } = useSelector((state) => state);
+   const { loggedIn, username } = user;
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
    const handleLogout = () => {
       dispatch(logout());
-      const logoutToken = window.localStorage.getItem("token");
       navigate("/");
    };
 
@@ -37,10 +36,10 @@ const Nav = () => {
             </button>
             <div className="collapse navbar-collapse me-4" id="navbarToggler">
                <ul className="navbar-nav ms-auto mb-2 mb-lg-0 mt-2 align-items-center">
-                  {auth?.username ? (
+                  {loggedIn ? (
                      <>
                         <span className="text-white align-middle" style={{ letterSpacing: "0", fontSize: "14px" }}>
-                           Welcome! {auth.username}
+                           Welcome! {username}
                         </span>
                         <li className="nav-item dropdown">
                            <a
@@ -51,7 +50,7 @@ const Nav = () => {
                               data-bs-toggle="dropdown"
                               aria-expanded="false">
                               <Avatar
-                                 alt={auth.username}
+                                 alt={username}
                                  src={user.firstName ? user.firstName.slice(0, 1) : null}
                                  className="text-uppercase bg-white text-dark"
                                  sx={{
@@ -75,7 +74,7 @@ const Nav = () => {
                                     Profile
                                  </span>
                               </Link>
-                             
+
                               <Link to="/home" className="mb-2 dropdown-item" role="button">
                                  <i className="bi bi-person-square"></i>
                                  <span className="d-inline text-white ps-3 text-decoration-none navbar-tab">

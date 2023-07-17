@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { updatePassword } from "../../store";
+import { updatePassword, deleteUser, loginWithToken } from "../../store";
 import toast, { Toaster } from "react-hot-toast";
 
 const UserProfileSecurity = () => {
@@ -60,6 +60,12 @@ const UserProfileSecurity = () => {
                toast.error("Password change failed"); // Show error toast
             });
       }
+   };
+
+   // Delete User Function
+   const handleDeleteUser = () => {
+      dispatch(deleteUser(auth));
+      navigate(0);
    };
 
    return (
@@ -135,7 +141,7 @@ const UserProfileSecurity = () => {
                      Deleting your account is a permanent action and cannot be undone. If you are sure you want to
                      delete your account, select the button below.
                   </p>
-                  <button className="btn btn-danger" type="button">
+                  <button className="btn btn-danger" type="button" onClick={() => handleDeleteUser(auth)}>
                      Delete
                   </button>
                </div>
