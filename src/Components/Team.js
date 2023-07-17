@@ -12,8 +12,8 @@ import Newsfeed from "./Newsfeed";
 
 const Team = () => {
    const { id } = useParams();
-   const [currentComponent, setCurrentComponent] = useState("Announcements");
-   const [activeTab, setActiveTab] = useState("Announcements");
+   const [currentComponent, setCurrentComponent] = useState("Newsfeed");
+   const [activeTab, setActiveTab] = useState("Newsfeed");
    const today = new Date();
    const teams = useSelector((state) => state.teams.teamsList);
    const team = teams.find((team) => team.id == id);
@@ -75,7 +75,7 @@ const Team = () => {
                </div>
                <div className="league__content">
                   <div className="league__content--body">
-                     {currentComponent === "Stats" && <Stats />}
+                     {currentComponent === "Stats" && <TeamStats team={team}/>}
                      {currentComponent === "Announcements" && <Announcements />}
                      {currentComponent === "Newsfeed" && <Newsfeed posts={posts}/>}
                   </div>

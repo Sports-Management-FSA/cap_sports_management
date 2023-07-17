@@ -15,8 +15,8 @@ const League = () => {
    const { id } = useParams();
    const auth = useSelector(state => state.auth.id);
    const navigate = useNavigate();
-   const [currentComponent, setCurrentComponent] = useState("Announcements");
-   const [activeTab, setActiveTab] = useState("Announcements");
+   const [currentComponent, setCurrentComponent] = useState("Stats");
+   const [activeTab, setActiveTab] = useState("Stats");
 
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id == id);

@@ -2096,3 +2096,37 @@ p {
   font-size: 0.75rem;
   color: #717171;
 }
+.roster__container {
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
+}
+.roster__container .roster__table {
+  margin-top: 0.5rem;
+}
+.roster__table {
+  width: 100%;
+}
+.personnel__container {
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
+}
+.personnel__container .personnel__table {
+  margin-top: 0.5rem;
+}
+.personnel__table {
+  width: 100%;
+}
+.teaminfo__container {
+  margin-top: 2rem;
+  padding: 2rem;
+  height: 60vh;
+  background-color: #386e84;
+  border-radius: 8px;
+  box-shadow: 0px 5px 3px 3px #131313;
+}
