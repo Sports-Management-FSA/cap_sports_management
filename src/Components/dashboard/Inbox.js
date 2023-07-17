@@ -8,16 +8,16 @@ const Inbox = () => {
     const {auth} = useSelector(state=>state);
     const dispatch = useDispatch();
     const [selectedMessage, setSelectedMessage] = useState(null);
-   
+    const leagueRequests = [];
+    const teamRequests = [];
+    auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
+    auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
     const allMessages = [...leagueRequests, ...teamRequests, ...auth.receivedRequests];
     const [activeMessages, setActiveMessages] = useState(leagueRequests);
     const [activeTab, setActiveTab] = useState("league");
 
     useEffect(() => {
-        const leagueRequests = [];
-        const teamRequests = [];
-        auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
-        auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
+        
     }, [activeMessages, leagueRequests, teamRequests, auth.receivedRequests])
 
     if (!allMessages) {
