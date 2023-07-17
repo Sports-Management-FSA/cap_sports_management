@@ -5,8 +5,8 @@ export const fetchAllPosts = createAsyncThunk("getPosts", async (_, { rejectWith
    try {
       const response = await axios.get("/api/posts");
       return response.data;
-   } catch (ex) {
-      return rejectWithValue(ex.response.data);
+   } catch (err) {
+      return rejectWithValue
    }
 });
 
