@@ -10,7 +10,7 @@ passport.use(
       {
          clientID: process.env.GOOGLE_CLIENT_ID,
          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-         callbackURL: "https://podium.onrender.com/auth/google/callback",
+         callbackURL: "https://sportmgmt.onrender.com/auth/google/callback",
          passReqToCallback: true
       },
       async (req, accessToken, refreshToken, profile, cb) => {
@@ -56,7 +56,7 @@ passport.use(
       {
          clientID: process.env.FACEBOOK_APP_ID,
          clientSecret: process.env.FACEBOOK_APP_SECRET,
-         callbackURL: "https://podium.onrender.com/auth/facebook/callback",
+         callbackURL: "https://sportmgmt.onrender.com/auth/facebook/callback",
          passReqToCallback: true,
          profileFields: ["id", "displayName", "photos", "email"]
       },
@@ -102,7 +102,7 @@ passport.use(
       {
          consumerKey: process.env.TWITTER_CONSUMER_KEY,
          consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-         callbackURL: "https://podium.onrender.com/auth/twitter/callback",
+         callbackURL: "https://sportmgmt.onrender.com/twitter/callback",
          includeEmail: true
       },
       async function (token, tokenSecret, refreshToken, profile, cb) {

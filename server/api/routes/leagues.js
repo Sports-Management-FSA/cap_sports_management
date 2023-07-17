@@ -1,7 +1,8 @@
 
 const router = require('express').Router();
-const { User, Team, Match, Post, Comment, User_TeamRoles, User_LeagueRoles } = require('../../db');
+const { User, Team, Match, Post, Comment, User_TeamRoles, User_LeagueRoles, Category, Actions } = require('../../db');
 const { League, Announcements, Messages, Requests } = require('../../db');
+
 const LeagueRoles = require('../../db/models/LeagueRoles');
 const TeamRoles = require('../../db/models/TeamRoles');
 
@@ -19,6 +20,7 @@ router.get("/", async (req, res, next) => {
         ]}, 
         { model: Post, include: [Comment] },
         { model: Match, include: [Team] },
+        { model: Category, include: [Actions]},
         { model: User_LeagueRoles, include: [
             {model: User, attributes: ['firstName', 'lastName']}, 
             {model: LeagueRoles, attributes: ['name']}

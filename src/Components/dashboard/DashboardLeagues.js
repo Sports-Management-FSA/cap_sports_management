@@ -162,9 +162,6 @@ const DashboardLeagues = () => {
                     ))}
                 </tbody>
             </table>
-            <div className="leagues-bottom">
-                <p>View All</p>
-            </div>
         </div>
     );
 };

@@ -5,20 +5,26 @@ import { addPost, updatePost } from '../store';
 
 const Newsfeed = (props) => {
     const { posts } = props;
+    console.log(props)
     const dispatch = useDispatch();
     const [post, setPost] = useState('');
     let postTeamId;
+    
     if (posts && posts.length > 0){
         postTeamId = posts[0].teamId;
+    } 
+
+    if (!posts){
+        return ( 
+            <section className="newsfeed__nodata">
+                <h3>no posts yet</h3>
+            </section>    
+        )
     }
+
     const sortedPosts = posts.slice().sort((a, b) => b.id - a.id);
-    
-
     const auth = useSelector(state => state.auth);
-    console.log(auth);
     const players = useSelector(state => state.players.playerList);
-
-    
     const handlePostSubmit = (e) => {
         e.preventDefault();
         const postMessage = {
@@ -54,11 +60,17 @@ const Newsfeed = (props) => {
             <div className="newsfeed__posts">
                 {sortedPosts.map(post => {
                     const player = players.find(player => player.id == post.userId);
+                    console.log(player)
                     return (
                     <div className="newsfeed__post" key={post.id}>
                         <div className="newsfeed__post-upper">
-                            <span>{player.firstName} {player.lastName}</span>
-                            <i>@{player.username} posted yesterday</i>
+                            <div className="post-upper-group">
+                                <img src={player.avatar} alt="Image" />
+                                <div className="upper-group-names">
+                                    <span>{player.firstName} {player.lastName}<i>@{player.username}</i></span><br />
+                                    <i>posted Yesterday</i>
+                                </div>
+                            </div>
                         </div>
                         <div className="newsfeed__post-content">
                             <article>{post.message} </article>
@@ -69,21 +81,6 @@ const Newsfeed = (props) => {
                         </div>
                 </div>            
                 )})}
-                {/* {posts.map(data => (
-                    <div className="newsfeed__post" key={data.id}>
-                        <div className="newsfeed__post-upper">
-                            <span>{data.id}</span>
-                            <i>yesterday</i>
-                        </div>
-                        <div className="newsfeed__post-content">
-                            <article>{data.message} </article>
-                        </div>
-                        <div className="newsfeed__post-lower">
-                            <span>Like</span>
-                            <span>comments</span>
-                        </div>
-                </div>            
-                ))} */}
                     
             </div>
         </div>

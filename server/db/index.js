@@ -454,14 +454,16 @@ const syncAndSeed = async () => {
         firstName: 'jack',
         lastName: 'smith',
         email: 'jack@g.com',
+        avatar: "/static/images/avatars/jacksmith1.png"
       })
   
       const julissa = await User.create({ 
-        username: 'julissa', 
-        password: '123', 
-        firstName: 'julissa',
-        lastName: 'smith',
-        email: 'julissa@g.com',
+        username: 'juls27', 
+        password: '123',
+        firstName: 'Julissa',
+        lastName: 'Mendoza',
+        email: 'julissaM@g.com',
+        avatar: "/static/images/avatars/julissa1.png"
       })
   
       const julia = await User.create({ 
@@ -492,9 +494,10 @@ const syncAndSeed = async () => {
       const lump = await User.create({ 
         username: 'lump', 
         password: '123', 
-        firstName: 'lump',
-        lastName: 'smith',
+        firstName: 'lumpy73',
+        lastName: 'Smith',
         email: 'lump@g.com',
+        avatar: "/static/images/avatars/lump1.png"
       })
   
       const lala = await User.create({ 

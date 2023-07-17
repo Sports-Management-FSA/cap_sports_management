@@ -4,6 +4,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Inbox from './Inbox';
 import DashboardLeagues from './DashboardLeagues';
+import DashboardTeam from './DashboardTeam';
+import Standings from '../Standings';
+import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
+import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
+import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
 
 const Dashboard = () => {
 
@@ -38,7 +43,7 @@ const Dashboard = () => {
                     {currentComponent === 'Home' && <Home league={league} />}
                     {currentComponent === 'Leagues' && <DashboardLeagues />}
                     {currentComponent === 'Inbox' && <Inbox requests={requests} leagues={leagues} players={players}/>}
-                    {currentComponent === 'Teams' && "Teams coming soon"}
+                    {currentComponent === 'Teams' && <DashboardTeam />}
                     {currentComponent === 'Personal' && "Personal coming soon"}
                 </div>
             </div>

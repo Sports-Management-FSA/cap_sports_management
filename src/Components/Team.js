@@ -18,12 +18,10 @@ const Team = () => {
    const today = new Date();
    const teams = useSelector((state) => state.teams.teamsList);
    const leagues = useSelector((state) => state.leagues.leaguesList);
-   console.log("leagues", leagues)
+  
    const team = teams.find((team) => team.id == id);
-   console.log("team", team?.leagueId)
    const league = leagues.find(league => league.id == team?.leagueId);
-   console.log(league)
- 
+   console.log(team)
    
 
    const handleClick = (componentAndTab) => {

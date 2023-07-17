@@ -31,7 +31,7 @@ export const updateScorekeeper = createAsyncThunk("updateScorekeeper", async (fo
     const { id } = formData;
     try {
       const token = window.localStorage.getItem('token');
-      const response = await axios.put(`/api/Scorekeepers/${id}`, formData, {
+      const response = await axios.put(`/api/scorekeepers/${id}`, formData, {
         headers: {
             authorization: token
         }
@@ -44,8 +44,10 @@ export const updateScorekeeper = createAsyncThunk("updateScorekeeper", async (fo
 );
 
 export const deleteScorekeeper = createAsyncThunk('deleteScorekeeper', async(id, {rejectWithValue}) => {
+    console.log(id);
     try{
-        await axios.delete(`/api/Scorekeepers/${id}`, {
+        const token = window.localStorage.getItem('token');
+        await axios.delete(`/api/scorekeepers/${id}`, {
             headers: {
                 authorization: token
             }
