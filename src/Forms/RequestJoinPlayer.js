@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addMessage } from "../store";
+import { addMessage, addRequest, fetchAllTeams } from "../store";
 import validator from "validator";
 
 const RequestJoinPlayer = () => {
@@ -16,7 +16,7 @@ const RequestJoinPlayer = () => {
    const [playerMessageEmail, setPlayerMessageEmail] = useState("");
    const [playerMessageSubject, setPlayerMessageSubject] = useState("");
    const [playerMessageSummary, setPlayerMessageSummary] = useState("");
-   const [selectedTeam, setSelectedTeam] = useState('none');
+   const [selectedTeam, setSelectedTeam] = useState("none");
    const [formErrors, setFormErrors] = useState({});
 
    const handleTeamChange = (e) => {
@@ -55,16 +55,16 @@ const RequestJoinPlayer = () => {
       }
 
       const newMessageData = {
-         name: playerMessageUserName,
+         from: 'player',
+         to: 'league',
          subjectLine: playerMessageSubject,
          description: playerMessageSummary,
-         playerEmail: playerMessageEmail,
-         leagueId: id,
          userId: auth.id,
-         desiredTeam: selectedTeam
+         desiredTeam: selectedTeam,
+         leagueId: id,
       };
-
-      dispatch(addMessage(newMessageData));
+      console.log(selectedTeam)
+      dispatch(addRequest(newMessageData));
 
       setPlayerMessageEmail("");
       setPlayerMessageSubject("");
@@ -112,7 +112,7 @@ const RequestJoinPlayer = () => {
                                  onChange={handleTeamChange}>
                                  <option value="none">None</option>
                                  {league?.teams?.map((team) => (
-                                    <option value={team.name} key={team.id}>
+                                    <option value={team.id} key={team.id}>
                                        {team.name}
                                     </option>
                                  ))}

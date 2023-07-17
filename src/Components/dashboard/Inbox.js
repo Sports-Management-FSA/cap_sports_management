@@ -1,48 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages, updatePlayer, updateTeam, updateRequest } from '../../store';
+import { addTeam, addPlayer, deleteMessage, fetchAllLeagues, fetchAllMessages, updatePlayer, updateTeam, updateRequest, deleteRequest } from '../../store';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const Inbox = () => {
-    const {auth} = useSelector(state=>state);
+const Inbox = (props) => {
+    const {auth, requests, players} = useSelector(state=>state);
+    const user = players.playerList.find(player=>player.id == auth.id);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [selectedMessage, setSelectedMessage] = useState(null);
-    const leagueRequests = [];
-    const teamRequests = [];
-    auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
-    auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
+    const [leagueRequests, setLeagueRequests] = useState(requests.requestsList.filter(request=>request.to =='league' && 
+    user.user_leagueRoles.find(role=>role.leagueRole.name == 'director' && role.leagueId == request.leagues[0].id)));
+    const [teamRequests, setTeamRequests] = useState(requests.requestsList.filter(request=>request.to == 'team' && 
+    user.user_teamRoles.find(role=>role.teamRole.name == 'manager' && teamId == request.teams[0].id)));
     const allMessages = [...leagueRequests, ...teamRequests, ...auth.receivedRequests];
     const [activeMessages, setActiveMessages] = useState(leagueRequests);
     const [activeTab, setActiveTab] = useState("league");
 
-    useEffect(() => {
-        
-    }, [activeMessages, leagueRequests, teamRequests, auth.receivedRequests])
 
     if (!allMessages) {
         return <div>loading</div>
     }
 
-    const handleApprove = (message) => {
+    const handleApprove = async(message) => {
         let role= {};
         switch(message.to){
             case 'player':
                 //add auth user to team
                 role = {teamId: message.teams[0].id, roleId: 1};
-                dispatch(updatePlayer({id: auth.id, role}));
+                await dispatch(updatePlayer({id: auth.id, role}));
                 break;
             case 'team':
                 // add player to team
                 role = {teamId: message.teams[0].id, roleId: 1};
-                dispatch(updatePlayer({id: message.senderId, role}));
+                await dispatch(updatePlayer({id: message.senderId, role}));
                 break;
             case 'league':
                 if(message.from === 'player'){
                     //if desired team selected add to team, else assign to selected team
                     if(message.teams.length > 0){
                         role = {teamId: message.teams[0].id, roleId: 1};
-                        dispatch(updatePlayer({id: message.senderId, role}));
+                        await dispatch(updatePlayer({id: message.senderId, role}));
                     } else{
                         //choose team from selection and assign to
                         console.log('need to create selector to assign player to team if no desired team')
@@ -51,17 +51,24 @@ const Inbox = () => {
                     //add team to league
                     const teamUpdated = {...message.teams[0]};
                     teamUpdated.leagueId = message.leagues[0].id;
-                    dispatch(updateTeam(teamUpdated));
+                    await dispatch(updateTeam(teamUpdated));
                 }
                 break;
             default:
         }
-    
-        //do something with message, delete or archive?
-        const updatedMessage = {...message};
-        updatedMessage.isActive = false;
-        console.log(updatedMessage);
-        dispatch(updateRequest(updatedMessage));
+
+        await dispatch(deleteRequest(message.id));
+
+        setLeagueRequests([...requests.requestsList.filter(request=>request.to =='league' && 
+            user.user_leagueRoles.find(role=>role.leagueRole.name == 'director' && role.leagueId == request.leagues[0].id) &&
+            request.isActive == true)])
+       // auth.user_leagueRoles.filter(role=>role.leagueRole.name==='director').forEach(leagueRole=> leagueRequests.push(...leagueRole.league.requests));
+        //auth.user_teamRoles.filter(role=>role.teamRole.name==='manager').forEach(teamRole=> teamRequests.push(...teamRole.team.requests));
+        setTeamRequests([...requests.requestsList.filter(request=>request.to == 'team' && 
+            user.user_teamRoles.find(role=>role.teamRole.name == 'manager' && teamId == request.teams[0].id) &&
+            request.isActive == true)])
+        
+            
     }
 
     const handleDecline = (id) => {
@@ -69,7 +76,7 @@ const Inbox = () => {
     }
 
     const handleClick = (messageArray, category) => {
-        setActiveMessages(messageArray.filter(message=>message.isActive));
+        setActiveMessages(messageArray);
         setActiveTab(category);
     };
 
