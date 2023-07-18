@@ -38,8 +38,9 @@ import Scorekeeper from "./Components/Scorekeeper";
 import AdvancedScoreKeeper from "./Components/AdvancedScoreKeeper";
 import Home2 from './Components/Home2';
 import { stepButtonClasses } from "@mui/material";
-
 import Home4 from "./Components/Home4";
+import { ToastContainer } from 'react-toastify';
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
 const App = () => {
    const { loggedIn } = useSelector((state) => state.auth);
@@ -73,7 +74,7 @@ const App = () => {
                <div>
                   <Routes>
                      <Route path="/" element={<Landing3 />} />
-                     <Route path="/home" element={<Home2 />} />
+                     <Route path="/home" element={<Home4 />} />
                      <Route path="/players/:id" element={<Player />} />
                      <Route path="/league/:id" element={<League />} />
                      <Route path="/scorekeeper/:id" element={<AdvancedScoreKeeper />} />
@@ -95,6 +96,7 @@ const App = () => {
                <Footer />
             </>
             : null}
+            <ToastContainer />
       </div>
 
    );

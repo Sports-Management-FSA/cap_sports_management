@@ -208,14 +208,59 @@ const syncAndSeed = async () => {
     logo: "/static/images/baseball5.png",
     categoryId: 4,
   });
+  // Hockey
   await League.create({
-    name: "Hockey League",
-    season: "Winter",
-    email: "hockey01@gmail.com",
-    logo: "/static/images/nhl.png",
+    name: "LA Womens League",
+    season: "Fall",
+    email: "hockey02@gmail.com",
+    logo: "/static/images/hockey7women.png",
     categoryId: 2,
   }),
-
+  await League.create({
+    name: "Beer League 40+",
+    season: "Winter",
+    email: "hockey01@gmail.com",
+    logo: "/static/images/hockey1.png",
+    categoryId: 2,
+  }),
+  await League.create({
+    name: "Beginners Only",
+    season: "Fall",
+    email: "hockey02@gmail.com",
+    logo: "/static/images/hockey2.png",
+    categoryId: 2,
+  }),
+  await League.create({
+    name: "The Other Leauge",
+    season: "Fall",
+    email: "hockey04@gmail.com",
+    logo: "/static/images/hockey3.png",
+    categoryId: 2,
+  }),
+  
+  await League.create({
+    name: "Empty Netters",
+    season: "Fall",
+    email: "hockey03@gmail.com",
+    logo: "/static/images/hockey4.png",
+    categoryId: 2,
+  }),
+  await League.create({
+    name: "Top Cheese",
+    season: "Fall",
+    email: "hockey02@gmail.com",
+    logo: "/static/images/hockey9.png",
+    categoryId: 2,
+  }),
+  
+  await League.create({
+    name: "Power Play",
+    season: "Fall",
+    email: "hockey04@gmail.com",
+    logo: "/static/images/hockey5.png",
+    categoryId: 2,
+  }),
+  
     // ESPORTS 
   await League.create({
     name: "CSGO Wild",
@@ -410,6 +455,36 @@ const syncAndSeed = async () => {
       email: 'doves@gmail.com',
       leagueId: 3,
       logo: '/static/images/team2.png'
+    })
+    const team10 = await Team.create({
+      name: "2Wins",
+      email: "2wins@email.com",
+      leagueId: 5
+    })
+    const team11 = await Team.create({
+      name: "Ice Queens",
+      email: "IceQueens@email.com",
+      leagueId: 5
+    })
+    const team12 = await Team.create({
+      name: "Power Puckettes",
+      email: "powerpuckettes@email.com",
+      leagueId: 5
+    })
+    const team13 = await Team.create({
+      name: "Aurora Blades",
+      email: "Aurorablades@email.com",
+      leagueId: 5
+    })
+    const team14 = await Team.create({
+      name: "Frostbite Furies",
+      email: "Frostbitefuries@email.com",
+      leagueId: 5
+    })
+    const team15 = await Team.create({
+      name: "Thundering Divas",
+      email: "Thunderingdivas@email.com",
+      leagueId: 5
     })
   
     const match1 = await Match.create({

@@ -22,17 +22,60 @@ const Standings = (props) => {
                 </tr>
                 </thead>
                 <tbody className="table__body-container">
-                {teams.map((team, idx) => (
-                    <tr key={team.id}>    
-                        <td className="table__cell">{idx+1}</td>
-                        <td className="table__cell"><Link className="table_link" to={`/teams/${team.id}`}> {team.name} </Link></td>
-                        <td className="table__cell">{team.gamesWon || 'no data'}</td>
-                        <td className="table__cell">{team.gamesLost || 'no data'}</td>
-                        <td className="table__cell">{team.gamesLost || 'no data'}</td>
-                        <td className="table__cell">{team.gamesLost || 'no data'}</td>
-                        <td className="table__cell">{team.gamesLost || 'no data'}</td>
-                    </tr>
-                ))}
+                    <tr>    
+                         <td className="table__cell">1</td>
+                         <td className="table__cell">Thundering Divas</td>
+                         <td className="table__cell">13</td>
+                         <td className="table__cell">13</td>
+                         <td className="table__cell">13</td>
+                         <td className="table__cell">0</td>
+                         <td className="table__cell">0</td>
+                     </tr>
+                     <tr>    
+                         <td className="table__cell">2</td>
+                         <td className="table__cell">Frostbite Furies</td>
+                         <td className="table__cell">13</td>
+                         <td className="table__cell">11</td>
+                         <td className="table__cell">10</td>
+                         <td className="table__cell">1</td>
+                         <td className="table__cell">0</td>
+                     </tr>
+                     <tr>    
+                         <td className="table__cell">3</td>
+                         <td className="table__cell">Power Puckettes</td>
+                         <td className="table__cell">12</td>
+                         <td className="table__cell">9</td>
+                         <td className="table__cell">7</td>
+                         <td className="table__cell">3</td>
+                         <td className="table__cell">2</td>
+                     </tr>
+                     <tr>    
+                         <td className="table__cell">4</td>
+                         <td className="table__cell">Ice Queens</td>
+                         <td className="table__cell">12</td>
+                         <td className="table__cell">6</td>
+                         <td className="table__cell">6</td>
+                         <td className="table__cell">6</td>
+                         <td className="table__cell">0</td>
+                     </tr>
+                     <tr>    
+                         <td className="table__cell">5</td>
+                         <td className="table__cell">2Wins</td>
+                         <td className="table__cell">12</td>
+                         <td className="table__cell">6</td>
+                         <td className="table__cell">8</td>
+                         <td className="table__cell">2</td>
+                         <td className="table__cell">1</td>
+                     </tr>
+                     <tr>    
+                         <td className="table__cell">6</td>
+                         <td className="table__cell">Aurora Blades</td>
+                         <td className="table__cell">13</td>
+                         <td className="table__cell">5</td>
+                         <td className="table__cell">5</td>
+                         <td className="table__cell">8</td>
+                         <td className="table__cell">0</td>
+                     </tr>
                 </tbody>
             </table> 
             :
@@ -43,3 +86,19 @@ const Standings = (props) => {
 };
 
 export default Standings;
+
+// {teams.map((team, idx) => (
+                
+//     <tr key={team.id}>    
+//         <td className="table__cell">{idx+1}</td>
+//         <td className="table__cell"><Link className="table_link" to={`/teams/${team.id}`}> {team.name} </Link></td>
+//         <td className="table__cell">{team.gamesWon || 'no data'}</td>
+//         <td className="table__cell">{team.gamesLost || 'no data'}</td>
+//         <td className="table__cell">{team.gamesLost || 'no data'}</td>
+//         <td className="table__cell">{team.gamesLost || 'no data'}</td>
+//         <td className="table__cell">{team.gamesLost || 'no data'}</td>
+//     </tr>
+    
+    
+// ))}
+

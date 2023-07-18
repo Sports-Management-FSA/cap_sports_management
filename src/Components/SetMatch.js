@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addMatch } from "../store";
+import { toast } from 'react-toastify';
 
 //Props require teams = leagueTeams league = league
 const SetMatch = (props) => {
@@ -44,6 +45,18 @@ const SetMatch = (props) => {
       return false;
     }
   };
+
+  const notify = () => toast("Saved!",{
+    className: 'custom-toast',
+    position: "top-center",
+    autoClose: 2000,
+    // hideProgressBar: false,
+    // closeOnClick: true,
+    // pauseOnHover: true,
+    // draggable: true,
+    // progress: undefined,
+    theme: "light",
+});
 
   return (
     <div className="setmatch__container">
@@ -131,7 +144,7 @@ const SetMatch = (props) => {
           </div>
         </div>
         <div>
-          <button type="submit">Save Changes</button>
+          <button type="submit" onClick={notify}>Save Changes</button>
         </div>
       </form>
     </div>

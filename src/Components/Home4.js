@@ -11,7 +11,7 @@ const Home4 = () => {
    const {categories} = useSelector((state) => state);
    console.log(categories)
    const [category, setCategory] = useState('');
-   const topCategories = categories.categoriesList.toSorted((a, b) => a.leagues.length > b.leagues.length ? -1: 0).slice(0, 3);
+   const topCategories = categories.categoriesList.toSorted((a, b) => a.leagues.length > b.leagues.length ? -1: 0).slice(0, 5);
 
    if(category !== ''){
       leaguesList = categories.categoriesList.find(el=>el.name === category).leagues;
@@ -125,9 +125,6 @@ const Home4 = () => {
                   </div>
                ))}
             </div> */}
-         </div>
-         <div className="home-footer">
-            <p onClick={scrollToTop} >Back to the top</p>
          </div>
       </div>
    );

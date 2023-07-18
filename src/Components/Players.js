@@ -24,7 +24,7 @@ const Players = (props) => {
     //     return 0;
     //   });
 
-
+    console.log(players)
     return (
         <div className="players__container">
             {players.length > 0 ?
@@ -44,8 +44,8 @@ const Players = (props) => {
                 players.map(member=>{
                     return(
                     <tr key={member.id} >
+                        <td className="table__cell">{member.user.firstName}</td>
                         <td className="table__cell">{teams.find(team=>team.id==member.teamId).name}</td>
-                        <td className="table__cell">The Bobcats</td>
                         <td className="table__cell">8</td>
                         <td className="table__cell">17</td>
                         <td className="table__cell">6</td>

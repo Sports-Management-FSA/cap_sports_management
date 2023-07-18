@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #112222;
+  background-color: #152c2c;
   overflow-y: scroll;
   margin: 0;
 }
@@ -11,7 +11,7 @@ p {
   color: #ffffff;
 }
 .league__content {
-  background-color: #112222;
+  background-color: #152c2c;
 }
 .league-main {
   display: flex;
@@ -402,6 +402,7 @@ a {
 .table__cell {
   padding: 1rem;
   color: #ffffff;
+  cursor: pointer;
 }
 .table__body-container tr:hover {
   background-color: #2a5262;
@@ -621,7 +622,7 @@ a {
   position: sticky;
   top: 0px;
   height: 100vh;
-  background-color: #112222;
+  background-color: #152c2c;
   color: black;
   margin-left: 0;
   width: 20%;
@@ -1030,7 +1031,7 @@ h1 {
   height: 200vh;
   display: flex;
   flex-direction: row;
-  background-color: #112222;
+  background-color: #152c2c;
 }
 .dashboard__navbar {
   display: flex;
@@ -1095,7 +1096,7 @@ h1 {
   font-weight: 600;
 }
 .dashboard__main-header p {
-  font-weight: 300;
+  font-weight: 600;
 }
 .main-body-upper {
   display: flex;
@@ -1222,7 +1223,7 @@ span {
     height: 250vh;
     display: flex;
     flex-direction: column;
-    background-color: #112222;
+    background-color: #152c2c;
   }
   .dashboard__navbar-items a {
     color: #fffff0;
@@ -1520,7 +1521,7 @@ p {
   margin-left: 0.5rem;
 }
 .dash-button {
-  background-color: #112222;
+  background-color: #152c2c;
   padding: 0rem 1.5rem 0rem 1.5rem;
   color: #ffffff;
   border: none;
@@ -1798,7 +1799,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #112222;
+  background-color: #152c2c;
   color: white;
   height: 100vh;
 }
@@ -2083,7 +2084,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: #112222;
+  background-color: #152c2c;
 }
 .home-container h1 {
   color: black;
@@ -2131,7 +2132,7 @@ p {
 .home-leagues {
   display: flex;
   flex-direction: column;
-  background-color: #112222;
+  background-color: #152c2c;
   margin: 5rem;
 }
 .home-leagues-header {
@@ -2139,7 +2140,7 @@ p {
   flex-direction: row;
   justify-content: space-between;
   margin: 20 15 30 15;
-  background-color: #112222;
+  background-color: #152c2c;
 }
 .home-leagues-header-left h1 {
   color: #ffffff;
@@ -2190,7 +2191,7 @@ p {
   width: 10px;
 }
 .landing__body-browse-leagues::-webkit-scrollbar-track {
-  background-color: #112222;
+  background-color: #152c2c;
 }
 .landing__body-browse-leagues::-webkit-scrollbar-thumb {
   background-color: #88d2ef;
@@ -2291,4 +2292,7 @@ p {
   background-color: #386e84;
   border-radius: 8px;
   box-shadow: 0px 5px 3px 3px #131313;
+}
+.custom-toast {
+  background-color: #152c2c;
 }
