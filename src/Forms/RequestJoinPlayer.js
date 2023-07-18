@@ -62,6 +62,7 @@ const RequestJoinPlayer = () => {
          userId: auth.id,
          desiredTeam: selectedTeam,
          leagueId: id,
+         senderId: auth.id,
       };
       console.log(selectedTeam)
       dispatch(addRequest(newMessageData));

@@ -27,7 +27,7 @@ const CreateTeam = () => {
 
    useEffect(()=>{
       dispatch(fetchAllTeams());
-   }, [dispatch])
+   }, [dispatch, teams])
 
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
@@ -107,6 +107,7 @@ const CreateTeam = () => {
 
    const addRoles = () =>{
       console.log(teams)
+      dispatch(fetchAllTeams());
       const team = teams.find(team=>team.name == teamName);
       const role = {teamId: team.id, teamRoleId: 1}
       addedPlayers.forEach(dispatch(updatePlayer(role)))
