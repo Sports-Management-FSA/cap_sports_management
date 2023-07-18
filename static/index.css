@@ -1803,10 +1803,11 @@ p {
 }
 .players__container {
   margin-top: 2rem;
-  height: 60vh;
+  height: 80vh;
   background-color: #386e84;
   border-radius: 8px;
   box-shadow: 0px 5px 3px 3px #131313;
+  overflow-y: scroll;
 }
 .players__container .players__table {
   margin-top: 0.5rem;

@@ -700,7 +700,148 @@ const syncAndSeed = async () => {
         lastName: 'smith',
         email: 'har@g.com',
       });
-    
+
+      // Data Seeding for Demo
+
+      // Aurora Blades Users
+      const tina2 = await User.create({ 
+        username: 'tinaf121', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Tina',
+        lastName: 'Johnson',
+        email: 'har333@g.com',
+      });
+      await tina2.addTeamRole(player, {through: {teamId: 18}})
+      const brianna = await User.create({ 
+        username: 'brianna111', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Brianna',
+        lastName: 'Hernandez',
+        email: 'bhern1@g.com',
+      });
+      await brianna.addTeamRole(player, {through: {teamId: 18}})
+      const kristy = await User.create({ 
+        username: 'kpop662', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Kristy',
+        lastName: 'Smith',
+        email: 'ksmithy@g.com',
+      });
+      await brianna.addTeamRole(player, {through: {teamId: 18}})
+      const ashton = await User.create({ 
+        username: 'ashtonn2', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Ashton',
+        lastName: 'Jackson',
+        email: 'ajackson@g.com',
+      });
+      await ashton.addTeamRole(player, {through: {teamId: 18}})
+      const victoria = await User.create({ 
+        username: 'victoria', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Ashton',
+        lastName: 'Jackson',
+        email: 'vj1233@g.com',
+      });
+      await victoria.addTeamRole(player, {through: {teamId: 18}})
+      const carla = await User.create({ 
+        username: 'carla32', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Carla',
+        lastName: 'Glass',
+        email: 'carla8200@g.com',
+      });
+      await carla.addTeamRole(player, {through: {teamId: 18}})
+      const brittney = await User.create({ 
+        username: 'brittney32', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Brittney',
+        lastName: 'Portello',
+        email: 'brittney8200@g.com',
+      });
+      await brittney.addTeamRole(player, {through: {teamId: 18}})
+      const lauren = await User.create({ 
+        username: 'laruen93', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Lauren',
+        lastName: 'Foghorn',
+        email: 'laurenfog@g.com',
+      });
+      await lauren.addTeamRole(player, {through: {teamId: 18}})
+
+      //Ice Queens
+      const emma1 = await User.create({ 
+        username: 'emsmif', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Emma',
+        lastName: 'Smith',
+        email: 'esmith@g.com',
+      });
+      await emma1.addTeamRole(player, {through: {teamId: 16}})
+      const olivia = await User.create({ 
+        username: 'ov1232', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Olivia',
+        lastName: 'Johnson',
+        email: 'ojohnson@g.com',
+      });
+      await olivia.addTeamRole(player, {through: {teamId: 16}})
+      const ava = await User.create({ 
+        username: 'ava020', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Ava',
+        lastName: 'Williams',
+        email: 'avawills@g.com',
+      });
+      await ava.addTeamRole(player, {through: {teamId: 16}})
+      const sophia = await User.create({ 
+        username: 'sophia3423', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Sophia',
+        lastName: 'Brown',
+        email: 'soph32@g.com',
+      });
+      await sophia.addTeamRole(player, {through: {teamId: 16}})
+      const charlotte = await User.create({ 
+        username: 'charlotte33', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Charlotte',
+        lastName: 'Davis',
+        email: 'charld@g.com',
+      });
+      await charlotte.addTeamRole(player, {through: {teamId: 16}})
+      const harper = await User.create({ 
+        username: 'harper22', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Harper',
+        lastName: 'Rodriguez',
+        email: 'harperrod@g.com',
+      });
+      await harper.addTeamRole(player, {through: {teamId: 16}})
+      const avery = await User.create({ 
+        username: 'Avery2', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Avery',
+        lastName: 'Anderson',
+        email: 'avanderson@g.com',
+      });
+      await avery.addTeamRole(player, {through: {teamId: 16}})
+
     //add director roles to users
     await larry.addLeagueRole(leagueDirector, {through: {leagueId: 1}});
     await User_LeagueRoles.create({userId: 5, leagueId: 1, leagueRoleId: 1});
@@ -733,6 +874,7 @@ const syncAndSeed = async () => {
     await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 7});
     await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 4});
     await User_TeamRoles.create({userId: 1, teamRoleId: 1, teamId: 3});
+    
     
     //add teams to matches
     await match1.addTeam([team1, team2]); //league 1
