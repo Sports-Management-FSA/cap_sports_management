@@ -62,16 +62,8 @@ const Matches = (props) => {
 
                                     </div>
                                 </div>
-<<<<<<< HEAD
                             )
                         }
-=======
-                                <div className="match-lower">
-                                <Link className="match-score-link" to={`/scorekeeper/${id}`}>Score this Match</Link>
-                                 </div>
-                            </div>
-                        )}
->>>>>>> 5418169bf5837f629655000fe501a31ec7a0c8b4
                         )}
                     </div>
                     :
