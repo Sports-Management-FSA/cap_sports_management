@@ -143,7 +143,7 @@ const AdvancedScoreKeeper = () => {
                                         <p>
                                             {score.user.firstName} {score.user.lastName} scored: {score.action.name}
                                         </p>
-                                        <button onClick={() => handleRemoveAction(score.id)}>delete</button>
+                                        <RemoveCircleOutlineIcon onClick={() => handleRemoveAction(score.id)} className="scorekeeper-icon"/>
                                     </div>
                                 )
                             }
