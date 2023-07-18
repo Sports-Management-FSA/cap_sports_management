@@ -566,6 +566,7 @@ const syncAndSeed = async () => {
         firstName: 'larry',
         lastName: 'smith',
         email: 'larry@g.com',
+        avatar: "/static/images/avatars/avataaars.png"
       })
   
       const lump = await User.create({ 
