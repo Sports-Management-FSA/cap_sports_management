@@ -407,6 +407,9 @@ a {
 .table__body-container tr:hover {
   background-color: #2a5262;
 }
+.standings-link {
+  text-decoration: none;
+}
 @media (max-width: 1185px) {
   .table-header-container:last-child {
     display: none;
@@ -1814,6 +1817,19 @@ p {
 }
 .players__table {
   width: 100%;
+}
+.players__container::-webkit-scrollbar {
+  width: 10px;
+}
+.players__container::-webkit-scrollbar-track {
+  background-color: #2a5262;
+}
+.players__container::-webkit-scrollbar-thumb {
+  background-color: #88d2ef;
+  border-radius: 5px;
+}
+.players__container::-webkit-scrollbar-thumb:hover {
+  background-color: #386e84;
 }
 .teamsTable__container {
   margin-top: 2rem;
