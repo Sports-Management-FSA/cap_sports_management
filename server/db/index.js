@@ -159,9 +159,24 @@ const syncAndSeed = async () => {
     value: 1,
     categoryId: 1,
   });
+  const basehit = await Actions.create({
+    name: "Basehit",
+    value: 1,
+    categoryId: 4,
+  });
   const homerun = await Actions.create({
     name: "Homerun",
-    value: 5,
+    value: 4,
+    categoryId: 4,
+  });
+  const strike = await Actions.create({
+    name: "Strike",
+    value: 0,
+    categoryId: 4,
+  });
+  const ball = await Actions.create({
+    name: "Ball",
+    value: 0,
     categoryId: 4,
   });
   const goal = await Actions.create({
@@ -566,6 +581,7 @@ const syncAndSeed = async () => {
         firstName: 'larry',
         lastName: 'smith',
         email: 'larry@g.com',
+        avatar: "/static/images/avatars/larry1.png"
       })
   
       const lump = await User.create({ 
@@ -702,7 +718,51 @@ const syncAndSeed = async () => {
         lastName: 'smith',
         email: 'har@g.com',
       });
-
+      const bob = await User.create({ 
+        username: 'bobby', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Bob',
+        lastName: 'Johnson',
+        email: 'bobby1@g.com',
+      });
+      await bob.addTeamRole(player, {through: {teamId: 6}})
+      const tommy = await User.create({ 
+        username: 'Tommy1', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Tom',
+        lastName: 'Marquette',
+        email: 'tommy1@g.com',
+      });
+      await tommy.addTeamRole(player, {through: {teamId: 6}})
+      const calvin = await User.create({ 
+        username: 'calvin3', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Calvin',
+        lastName: 'Harrison',
+        email: 'cavlinh@g.com',
+      });
+      await calvin.addTeamRole(player, {through: {teamId: 6}})
+      const sean = await User.create({ 
+        username: 'seanjohn', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'Sean',
+        lastName: 'Nolan',
+        email: 'seannolan1@g.com',
+      });
+      await sean.addTeamRole(player, {through: {teamId: 6}})
+      const george = await User.create({ 
+        username: 'gw', 
+        password: '123', 
+        isPlayer: true, 
+        firstName: 'George',
+        lastName: 'Washington',
+        email: 'gwgousa1@g.com',
+      });
+      await george.addTeamRole(player, {through: {teamId: 6}})
       // Data Seeding for Demo
 
       // Aurora Blades Users
