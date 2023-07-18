@@ -24,7 +24,7 @@ const Standings = (props) => {
                 <tbody className="table__body-container">
                     <tr>    
                          <td className="table__cell">1</td>
-                         <td className="table__cell">Thundering Divas</td>
+                         <td className="table__cell"> <Link className="standings-link" to={`/teams/16`}>Ice Queens</Link> </td>
                          <td className="table__cell">13</td>
                          <td className="table__cell">13</td>
                          <td className="table__cell">13</td>
@@ -51,7 +51,7 @@ const Standings = (props) => {
                      </tr>
                      <tr>    
                          <td className="table__cell">4</td>
-                         <td className="table__cell">Ice Queens</td>
+                         <td className="table__cell">Thundering Queens</td>
                          <td className="table__cell">12</td>
                          <td className="table__cell">6</td>
                          <td className="table__cell">6</td>

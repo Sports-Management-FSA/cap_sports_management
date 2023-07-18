@@ -464,12 +464,14 @@ const syncAndSeed = async () => {
     const team11 = await Team.create({
       name: "Ice Queens",
       email: "IceQueens@email.com",
-      leagueId: 5
+      leagueId: 5,
+      logo: "/static/images/hteam1.jpeg"
     })
     const team12 = await Team.create({
       name: "Power Puckettes",
       email: "powerpuckettes@email.com",
-      leagueId: 5
+      leagueId: 5,
+      logo: "/static/images/hteam1.jpeg"
     })
     const team13 = await Team.create({
       name: "Aurora Blades",
