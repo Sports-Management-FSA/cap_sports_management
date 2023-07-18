@@ -1,5 +1,5 @@
-.createleague {
-   background-color: @background-primary;
+.create-league-form {
+   background-color: #112222;
 }
 
 .createleague label {
@@ -9,13 +9,19 @@
 .league-logo {
    width: 8rem;
    height: 8rem;
-   border: 2px solid grey;
+   border: 2px solid #112222;
+   border-radius: 50% !important;
+   background-color: white;
 }
 
 .league-logo:hover {
    transform: scale(1.1);
    transition: 0.3s;
    cursor: pointer;
+}
+
+.create-league-title {
+   font-size: 10rem;
 }
 
 @media (max-width: 770px) {
@@ -29,5 +35,27 @@
 @media (max-width: 990px) {
    * {
       font-size: 12px;
+   }
+}
+
+@media (max-width: 450px) {
+   .create-league-form {
+      margin-top: 150px;
+      margin-bottom: 150px;
+   }
+   .league-logo {
+      font-size: 12px;
+      width: 6rem;
+      height: 6rem;
+   }
+   .create-league-upload-text {
+      font-size: 6px;
+   }
+}
+
+@media (max-width: 1100px) {
+   .create-league-form {
+      margin-top: 100px;
+      margin-bottom: 100px;
    }
 }

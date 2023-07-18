@@ -13,7 +13,7 @@ const CreateTeam = () => {
    const leagues = useSelector((state) => state.leagues.leaguesList);
    const league = leagues.find((league) => league.id === parseInt(id));
    const players = useSelector((state) => state.players.playerList);
-   const teams = useSelector(state=>state.teams.teamsList);
+   const teams = useSelector((state) => state.teams.teamsList);
 
    const [teamName, setTeamName] = useState("");
    const [teamEmail, setTeamEmail] = useState("");
@@ -25,9 +25,9 @@ const CreateTeam = () => {
    const [playerEmailError, setPlayerEmailError] = useState("");
    const [addedPlayers, setAddedPlayers] = useState([]);
 
-   useEffect(()=>{
+   useEffect(() => {
       dispatch(fetchAllTeams());
-   }, [dispatch, teams])
+   }, [dispatch]);
 
    const handleTeamNameChange = (e) => setTeamName(e.target.value);
    const handleTeamEmailChange = (e) => setTeamEmail(e.target.value);
@@ -77,16 +77,16 @@ const CreateTeam = () => {
       return errors;
    };
 
-   const handleSubmit = async(e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log('making it in here')
+      console.log("making it in here");
       const validationErrors = validateForm();
       //validation causing errors, even when all reqs are met won't allow submission
       //if (Object.keys(validationErrors).length > 0) {
-         // Form has errors, prevent form submission
-        // setFormErrors(validationErrors);
-        // return;
-     // }
+      // Form has errors, prevent form submission
+      // setFormErrors(validationErrors);
+      // return;
+      // }
 
       const newTeamData = {
          name: teamName,
@@ -96,13 +96,12 @@ const CreateTeam = () => {
          description: teamDescription
       };
       await dispatch(addTeam(newTeamData));
- 
+
       setTeamEmail("");
       setTeamLogo("");
       setTeamDescription("");
-      
+
       addRoles();
-      
    };
 
    const addRoles = () =>{
@@ -113,7 +112,7 @@ const CreateTeam = () => {
       addedPlayers.forEach(dispatch(updatePlayer(role)))
       setTeamName("");
       navigate(`/home`);
-   }
+   };
 
    const handleAddPlayer = (ev) => {
       ev.preventDefault();
@@ -133,15 +132,19 @@ const CreateTeam = () => {
    };
 
    return (
-      <div className="container create-team-form p-5">
+      <div className="container create-team-form p-5" style={{ backgroundColor: "#112222" }}>
          <form onSubmit={handleSubmit}>
             <div className="row d-flex justify-content-center align-items-center opacity-90 vh-100">
                <div className="col-11">
-                  <div className="card create-team-card">
-                     <h1 className="text-center mt-4 text-uppercase">Create Team</h1>
-                     <p className="mb-3 create-team-title text-center">Assemble Your Winning Team Today!</p>
+                  <div
+                     className="card create-team-card"
+                     style={{
+                        backgroundColor: "#2a5262"
+                     }}>
+                     <h1 className="text-center text-light mt-4 text-uppercase">Create Team</h1>
+                     <p className="mb-3 create-team-title text-center text-light">Assemble Your Winning Team Today!</p>
                      <div className="row-col-2 d-flex justify-content-center"></div>
-                     <hr />
+                     <hr className="text-white" />
                      <div className="card-body">
                         <div className="row justify-content-around">
                            <div className="col-lg-6 col-sm-5 my-auto text-center">
@@ -150,11 +153,8 @@ const CreateTeam = () => {
                                  src={previewLogo || "static/images/camera.svg"}
                                  alt="teamLogo"
                               />
-                              <div className="small font-italic text-muted mb-3">JPG or PNG no larger than 5 MB</div>
-                              <button
-                                 className="btn btn-outline-secondary"
-                                 type="button"
-                                 onClick={handleUploadButtonClick}>
+                              <div className="small font-italic text-light mb-3">JPG or PNG no larger than 5 MB</div>
+                              <button className="btn btn-light" type="button" onClick={handleUploadButtonClick}>
                                  Upload
                               </button>
                               <input
@@ -166,7 +166,7 @@ const CreateTeam = () => {
                               />
                            </div>
                            <div className="col-lg-4 col-sm-7">
-                              <label htmlFor="teamName" className="form-label text-dark mt-2">
+                              <label htmlFor="teamName" className="form-label text-light mt-2">
                                  Team Name
                               </label>
                               <input
@@ -177,7 +177,7 @@ const CreateTeam = () => {
                                  onChange={handleTeamNameChange}
                               />
                               {formErrors && <div className="invalid-feedback">{formErrors.teamName}</div>}
-                              <label htmlFor="email" className="form-label text-dark mt-2">
+                              <label htmlFor="email" className="form-label text-light mt-2">
                                  Contact Email
                               </label>
                               <input
@@ -188,7 +188,7 @@ const CreateTeam = () => {
                                  onChange={handleTeamEmailChange}
                               />
                               {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
-                              <label className="form-label mt-2" htmlFor="teamDescription">
+                              <label className="form-label mt-2 text-light" htmlFor="teamDescription">
                                  Team Description
                               </label>
                               <textarea
@@ -202,7 +202,7 @@ const CreateTeam = () => {
 
                         <div className="row mt-3">
                            <div className="col-sm-4">
-                              <h2 className="text-start ms-4 mt-4 text-uppercase">Invite Players</h2>
+                              <h2 className="text-start text-light ms-4 mt-4 text-uppercase">Invite Players</h2>
                            </div>
                            <div className="col-sm-8 d-flex justify-content-end align-items-end">
                               <div className="position-relative">
@@ -216,9 +216,7 @@ const CreateTeam = () => {
                                        value={playerInput}
                                        onChange={handlePlayerInputChange}
                                     />
-                                    <button
-                                       className="btn btn-outline-secondary add-player-button"
-                                       onClick={handleAddPlayer}>
+                                    <button className="btn btn-light add-player-button" onClick={handleAddPlayer}>
                                        Add
                                     </button>
                                     {playerEmailError && <div className="invalid-tooltip">{playerEmailError}</div>}
@@ -256,12 +254,12 @@ const CreateTeam = () => {
                                  </tbody>
                               </table>
                            ) : (
-                              <p className="text-center text-dark mt-5">No players added yet.</p>
+                              <p className="text-center text-light mt-5">No players added yet.</p>
                            )}
                         </div>
                         <hr className="mt-5" />
                         <div className="text-center">
-                           <input type="submit" className="btn btn-outline-secondary mt-4" value="Create"/>
+                           <input type="submit" className="btn btn-light mt-4" value="Create" />
                         </div>
                      </div>
                   </div>
