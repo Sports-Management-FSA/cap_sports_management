@@ -100,25 +100,29 @@ const CreateLeague = () => {
    console.log(leagues);
 
    return (
-      <section className="vh-100">
+      <section
+         className="vh-100 create-league-form"
+         style={{
+            background: "#112222"
+         }}>
          <div className="d-flex align-items-center h-100">
             <div className="container py-5">
                <form onSubmit={handleSubmit}>
                   <div className="row d-flex justify-content-center align-items-center opacity-90 h-100">
-                     <div className="col-9">
+                     <div className="col-11">
                         <div
                            className="card"
                            style={{
                               borderRadius: "1rem",
-                              backgroundColor: "#fdfffc"
+                              backgroundColor: "#2a5262"
                            }}>
-                           <div className="card-body p-5 text-center">
+                           <div className="card-body p-3 text-center">
                               <div>
-                                 <h2 className="mb-1">Create Your League</h2>
+                                 <h2 className="mb-1 text-light create-league-title">Create Your League</h2>
                                  <p className="fst-italic">Get your league started now!</p>
                                  <div className="row g-3">
-                                    <div className="col-6 col-xl-7 col-md-7 col-sm-9 text-start">
-                                       <label htmlFor="selectCategory" className="form-label text-dark">
+                                    <div className="col-6 col-xl-7 col-md-7 col-sm-12 text-start">
+                                       <label htmlFor="selectCategory" className="form-label text-light">
                                           Choose Category
                                        </label>
                                        <select
@@ -134,8 +138,8 @@ const CreateLeague = () => {
                                              </option>
                                           ))}
                                        </select>
-                                       <div className="col-lg-8 col-md-7 col-xl-7 col-sm-9">
-                                          <label className="text-dark mb-2">League Access</label>
+                                       <div className="col-lg-8 col-md-7 col-xl-7 col-sm-12">
+                                          <label className="text-light mb-2">League Access</label>
                                           <div>
                                              <div className="form-check-inline">
                                                 <input
@@ -146,7 +150,7 @@ const CreateLeague = () => {
                                                    defaultChecked
                                                 />
                                                 <label
-                                                   className="form-check-label text-dark"
+                                                   className="form-check-label text-light"
                                                    htmlFor="leagueAccessPublic">
                                                    Public
                                                 </label>
@@ -159,7 +163,7 @@ const CreateLeague = () => {
                                                    id="leagueAccessPrivate"
                                                 />
                                                 <label
-                                                   className="form-check-label text-dark"
+                                                   className="form-check-label text-light"
                                                    htmlFor="leagueAccessPrivate">
                                                    Private
                                                 </label>
@@ -172,14 +176,14 @@ const CreateLeague = () => {
                                                    id="leagueAccessOther"
                                                 />
                                                 <label
-                                                   className="form-check-label text-dark"
+                                                   className="form-check-label text-light"
                                                    htmlFor="leagueAccessOther">
                                                    Other
                                                 </label>
                                              </div>
                                           </div>
                                        </div>
-                                       <label htmlFor="leageName" className="form-label text-dark mt-2">
+                                       <label htmlFor="leageName" className="form-label text-light mt-2">
                                           League Name
                                        </label>
                                        <input
@@ -192,7 +196,7 @@ const CreateLeague = () => {
                                        {formErrors.leagueName && (
                                           <div className="invalid-feedback">{formErrors.leagueName}</div>
                                        )}
-                                       <label htmlFor="email" className="form-label text-dark">
+                                       <label htmlFor="email" className="form-label text-light">
                                           Email
                                        </label>
                                        <input
@@ -206,15 +210,15 @@ const CreateLeague = () => {
                                     </div>
                                     <div className="col-6 col-xl-5 col-sm-3 col-md-5 text-center my-auto align-items-center justify-content-center">
                                        <img
-                                          className="rounded-circle mb-2 league-logo"
+                                          className="mb-2 league-logo"
                                           src={previewLogo || "static/images/camera.svg"}
                                           alt="leagueLogo"
                                        />
-                                       <div className="small font-italic text-muted mb-3">
+                                       <div className="small font-italic text-light mb-3 create-league-upload-text">
                                           JPG or PNG no larger than 5 MB
                                        </div>
                                        <button
-                                          className="btn btn-outline-secondary"
+                                          className="btn btn-light"
                                           type="button"
                                           onClick={handleUploadButtonClick}>
                                           Upload
@@ -230,7 +234,7 @@ const CreateLeague = () => {
                                  </div>
                                  <div className="row g-3 my-auto" id="league-access">
                                     <div className="col-lg-6 col-sm-12 col-md-12 text-start">
-                                       <label htmlFor="seasonName" className="form-label text-dark">
+                                       <label htmlFor="seasonName" className="form-label text-light">
                                           Season Name
                                        </label>
                                        <input
@@ -242,7 +246,7 @@ const CreateLeague = () => {
                                        />
                                     </div>
                                     <div className="col-sm-6 col-lg-3 col-md-6 text-start">
-                                       <label htmlFor="startDate" className="text-dark mb-2">
+                                       <label htmlFor="startDate" className="text-light mb-2">
                                           Start
                                        </label>
                                        <input
@@ -254,7 +258,7 @@ const CreateLeague = () => {
                                        />
                                     </div>
                                     <div className="col-sm-6 col-lg-3 col-md-6 text-start">
-                                       <label htmlFor="endDate" className="text-dark mb-2">
+                                       <label htmlFor="endDate" className="text-light mb-2">
                                           End
                                        </label>
                                        <input
@@ -267,7 +271,9 @@ const CreateLeague = () => {
                                     </div>
                                  </div>
                               </div>
-                              <button className="btn btn-outline-secondary mt-3">Create</button>
+                              <div>
+                                 <button className="btn btn-light mt-4">Create</button>
+                              </div>
                            </div>
                         </div>
                      </div>

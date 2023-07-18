@@ -1,8 +1,8 @@
 .dashboard__container {
     height: 200vh;
     display: flex;
-    flex-direction: flex;
-    background-color: #112222;
+    flex-direction: row;
+    background-color: @dark-background-primary;
 }
 
 //  Navbar
@@ -10,7 +10,7 @@
     display: flex;
     flex-basis: 13%;
     height: 100vh;
-    background-color: #203e4a;
+    background-color: @dark-background-secondary;
     width: 100%;
     position: sticky;
     left:0;
@@ -83,7 +83,7 @@
     font-weight: 600;
 }
 .dashboard__main-header p {
-    font-weight: 300;
+    font-weight: 600;
 }
 
 .main-body-upper {
@@ -205,4 +205,56 @@
 }
 .post__card-content p, span{
     color: @dark-font-primary;
+}
+
+
+@media (max-width: 1500px){
+    .dashboard__home-body{
+        margin-left: 0rem;
+        width: auto;
+    }
+    .main-body-upper {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 2rem;
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 700px){
+    .dashboard__navbar {
+        position: sticky;
+        display: flex;
+        flex-direction: row;
+        background-color: @dark-background-secondary;
+        width: 100%;
+        top: 0;
+    }
+    .dashboard__navbar-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+       /// align-items: center;
+        //margin-top: 2rem;
+        width: 100%;
+        height: 1px;
+        padding: 0;
+    }
+
+    .dashboard__container {
+        height: 250vh;
+        display: flex;
+        flex-direction: column;
+        background-color: @dark-background-primary;
+    }
+
+    .dashboard__navbar-items a {
+
+        color: rgb(255, 255, 240);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.5s ease-in-out;
+       
+    }
+    
 }

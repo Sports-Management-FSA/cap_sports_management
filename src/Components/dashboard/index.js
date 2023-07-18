@@ -1,9 +1,8 @@
 import { Home } from './Home';
 import { DashboardSidebar } from './DashboardSidebar';
 import React, { useState } from 'react';
-import { useSelector, useDispatch, Link } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Inbox from './Inbox';
-import DashboardLeaguesWidget from './DashboardLeaguesWidget';
 import DashboardLeagues from './DashboardLeagues';
 import DashboardTeam from './DashboardTeam';
 import Standings from '../Standings';
@@ -14,6 +13,7 @@ import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
 const Dashboard = () => {
 
     const auth = useSelector(state => state.auth)
+    const {teams, leagues, players, requests} = useSelector(state=>state);
     const league = auth.leagues;
 
     const [currentComponent, setCurrentComponent] = useState('Home');
@@ -42,7 +42,7 @@ const Dashboard = () => {
                 <div className="dashboard__main-content">
                     {currentComponent === 'Home' && <Home league={league} />}
                     {currentComponent === 'Leagues' && <DashboardLeagues />}
-                    {currentComponent === 'Inbox' && <Inbox />}
+                    {currentComponent === 'Inbox' && <Inbox requests={requests} leagues={leagues} players={players}/>}
                     {currentComponent === 'Teams' && <DashboardTeam />}
                     {currentComponent === 'Personal' && "Personal coming soon"}
                 </div>

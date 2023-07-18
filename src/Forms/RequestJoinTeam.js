@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addMessage } from "../store";
+import { addMessage, addRequest, addTeam } from "../store";
 import validator from "validator";
 
 const RequestJoinTeam = () => {
@@ -51,11 +51,12 @@ const RequestJoinTeam = () => {
       e.preventDefault();
       const validationErrors = validateForm();
 
-      if (Object.keys(validationErrors).length > 0) {
+      //validation preventing submission even when all fields are filled in properly
+      //if (Object.keys(validationErrors).length > 0) {
          // Form has errors, prevent form submission
-         setFormErrors(validationErrors);
-         return;
-      }
+       //  setFormErrors(validationErrors);
+       //  return;
+      //}
 
       const newMessageData = {
          name: teamMessageUserName,
@@ -65,10 +66,10 @@ const RequestJoinTeam = () => {
          teamEmail: teamMessageEmail,
          leagueId: id,
          teamId: team.id,
+         senderId: auth.id,
       };
 
-      console.log(newMessageData);
-      dispatch(addMessage(newMessageData));
+      dispatch(addRequest(newMessageData));
       setTeamMessageEmail("");
       setTeamMessageSubject("");
       setTeamMessageSummary("");

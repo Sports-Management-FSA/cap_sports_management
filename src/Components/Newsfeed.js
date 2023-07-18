@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addPost, updatePost } from '../store';
+import { toast } from 'react-toastify';
 
 const Newsfeed = (props) => {
     const { posts } = props;
@@ -36,12 +37,18 @@ const Newsfeed = (props) => {
        setPost('');
     }
     
-    // useEffect(() => {
-    //     if (posts && posts.length > 0) {
-    //       setPost(posts[0].message);
-    //     }
-    //   }, [posts]);
-    
+    const notify = () => toast("Posted!",{
+        className: 'custom-toast',
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
 
     return (
         <div className="newsfeed__container">
@@ -54,8 +61,8 @@ const Newsfeed = (props) => {
                         value={post}
                         onChange={(e) => setPost(e.target.value)}
                     />
-                    <button>Post</button>
-                </form>
+                    <button onClick={notify}>Post</button>
+                </form>                    
             </div>
             <div className="newsfeed__posts">
                 {sortedPosts.map(post => {

@@ -10,6 +10,10 @@ module.exports = {
                presets: ["@babel/preset-react"]
             }
          },
+         { 
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'] 
+          },   
          {
             test: /\.(png|jpe?g|gif)$/i,
             use: [
@@ -23,6 +27,7 @@ module.exports = {
                },
             ],
          },
+         
       ],
    },
 };

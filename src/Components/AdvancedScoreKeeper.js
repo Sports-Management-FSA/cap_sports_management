@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addScorekeeper, deleteScorekeeper } from "../store";
 import { useNavigate, useParams } from "react-router-dom";
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 const AdvancedScoreKeeper = () => {
     const dispatch = useDispatch();
@@ -51,11 +52,18 @@ const AdvancedScoreKeeper = () => {
         navigate(0);
     };
 
+    const handleComplete = () => {
+        console.log('The')
+    }
+
     const handleRemoveAction = (id) => {
         console.log('THE ID:', id)
         dispatch(deleteScorekeeper(id))
         navigate(0);
     }
+    
+    
+
 
     return (
         <div className="scorekeeper-container">
@@ -70,14 +78,16 @@ const AdvancedScoreKeeper = () => {
                                         <p>
                                             {score.user.firstName} {score.user.lastName} scored: {score.action.name}
                                         </p>
-                                        <button onClick={() => handleRemoveAction(score.id)}>delete</button>
+
+                                        <RemoveCircleOutlineIcon onClick={() => handleRemoveAction(score.id)} className="scorekeeper-icon"/>
                                     </div>
                                 )
                             }
                         })}
                     </div>
+                    <section className="scorekeeper-lower">
                     <div>
-                        <h3>
+                        <h4>
                             Total Score:{" "}
                             {match?.scorekeepers.reduce((acc, score) => {
                                 if (score.team.id == match?.teams[0].id && score.action.countPoint) {
@@ -86,10 +96,9 @@ const AdvancedScoreKeeper = () => {
                                     return acc;
                                 }
                             }, 0)}
-                        </h3>
+                        </h4>
                     </div>
-                    <div>
-                        <h3>{match?.teams[0].name} players:</h3>
+                    <div className="scorekeeper-lower-actions">
                         <select
                             name="team1"
                             id="team1"
@@ -104,10 +113,6 @@ const AdvancedScoreKeeper = () => {
                                 );
                             })}
                         </select>
-                        <button onClick={handleTeam1Action}>Add Action</button>
-                    </div>
-                    <div>
-                        <h3>Actions:</h3>
                         <select
                             name="actions"
                             id="actions"
@@ -122,9 +127,11 @@ const AdvancedScoreKeeper = () => {
                                 );
                             })}
                         </select>
+                        <button onClick={handleTeam1Action}>Add Action</button>
                     </div>
-                </div>
 
+                    </section>
+                </div>
                 <div className="team-scoreboard-container">
                     <h3>{match?.teams[1].name} Scoreboard</h3>
 
@@ -142,20 +149,21 @@ const AdvancedScoreKeeper = () => {
                             }
                         })}
                     </div>
-                    <div>
-                        <h3>
-                            Total Score:{" "}
-                            {match?.scorekeepers.reduce((acc, score) => {
-                                if (score.team.id == match?.teams[1].id && score.action.countPoint) {
-                                    return acc + score.action.value;
-                                } else {
-                                    return acc;
-                                }
-                            }, 0)}
-                        </h3>
-                    </div>
-                    <div>
-                        <h3>{match?.teams[1].name} players:</h3>
+                    <section className="scorekeeper-lower">
+                        <div>
+                            <h4>
+                                Total Score:{" "}
+                                {match?.scorekeepers.reduce((acc, score) => {
+                                    if (score.team.id == match?.teams[1].id && score.action.countPoint) {
+                                        return acc + score.action.value;
+                                    } else {
+                                        return acc;
+                                    }
+                                }, 0)}
+                            </h4>
+                        </div>
+                    <div className="scorekeeper-lower-actions">
+
                         <select
                             name="actions"
                             id="actions"
@@ -170,9 +178,6 @@ const AdvancedScoreKeeper = () => {
                                 );
                             })}
                         </select>
-                        <button onClick={handleTeam2Action}>Add Action</button>
-
-                        <h3>Actions:</h3>
                         <select
                             name="actions"
                             id="actions"
@@ -188,11 +193,15 @@ const AdvancedScoreKeeper = () => {
                                 );
                             })}
                         </select>
+                        <button onClick={handleTeam2Action}>Add Action</button>
                     </div>
-                </div>
+
+                </section>
             </div>
-
-
+            <div className="scoreboard-footer">
+                <button onClick={() => navigate(`/league/${league.id}`)}>End Match</button>
+            </div>
+            </div>
         </div>
     );
 };
