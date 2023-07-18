@@ -86,9 +86,7 @@ const League = () => {
                         <a onClick={() => handleClick("Newsfeed")} className={activeTab === "Newsfeed" ? "active" : ""}>
                            Newsfeed
                         </a>
-                        <a onClick={() => handleClick("Chat")} className={activeTab === "Chat" ? "active" : ""}>
-                           Chat
-                        </a>
+                        
                      </ul>
                   </div>
                </div>
@@ -97,7 +95,7 @@ const League = () => {
                      {currentComponent === "Announcements" && <Announcements />}
                      {currentComponent === "Stats" && <Stats />}
                      {currentComponent === "Newsfeed" && <Newsfeed posts={posts}/>}
-                     {currentComponent === "Chat" && "Chat coming soon"}
+                     
                   </div>
                </div>
             </div>
