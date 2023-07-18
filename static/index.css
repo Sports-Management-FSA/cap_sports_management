@@ -217,7 +217,7 @@ p {
 }
 * {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -226,7 +226,7 @@ form {
   flex-direction: column;
 }
 body {
-  background-color: #f6f3f3;
+  background-color: #112222;
   min-height: 400px;
   margin-bottom: 100px;
   clear: both;
@@ -446,8 +446,8 @@ a {
     margin-bottom: 100px;
   }
 }
-.createleague {
-  background-color: #f5f7fb;
+.create-league-form {
+  background-color: #112222;
 }
 .createleague label {
   color: black;
@@ -455,12 +455,17 @@ a {
 .league-logo {
   width: 8rem;
   height: 8rem;
-  border: 2px solid grey;
+  border: 2px solid #112222;
+  border-radius: 50% !important;
+  background-color: white;
 }
 .league-logo:hover {
   transform: scale(1.1);
   transition: 0.3s;
   cursor: pointer;
+}
+.create-league-title {
+  font-size: 10rem;
 }
 @media (max-width: 770px) {
   * {
@@ -473,6 +478,26 @@ a {
 @media (max-width: 990px) {
   * {
     font-size: 12px;
+  }
+}
+@media (max-width: 450px) {
+  .create-league-form {
+    margin-top: 150px;
+    margin-bottom: 150px;
+  }
+  .league-logo {
+    font-size: 12px;
+    width: 6rem;
+    height: 6rem;
+  }
+  .create-league-upload-text {
+    font-size: 6px;
+  }
+}
+@media (max-width: 1100px) {
+  .create-league-form {
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 }
 .typography.text-secondary {
@@ -817,16 +842,23 @@ a {
 .social-icon:hover {
   font-size: 20px;
   transition: 0.3s;
+  color: white;
 }
 @media (max-width: 400px) {
   .forgot-password {
     font-size: 10px;
   }
 }
+.login-page {
+  background-color: #112222;
+}
 /* ---------- Register Customization ---------- */
+.register-page {
+  background-color: #112222;
+}
 .register-login {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .register-login-here:hover {
   text-decoration: underline;
@@ -834,7 +866,7 @@ a {
   transition: 0.3s;
 }
 .register-login-here {
-  color: black;
+  color: white;
   letter-spacing: 0;
   font-size: 14px;
 }
@@ -958,12 +990,14 @@ h1 {
   width: 8rem;
   height: 8rem;
   border-radius: 50% !important;
+  background-color: white;
 }
 .card {
   box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
 }
 .card .card-header {
   font-weight: 500;
+  color: white;
 }
 .card-header:first-child {
   border-radius: 0.35rem 0.35rem 0 0;
@@ -972,7 +1006,7 @@ h1 {
   padding: 1rem 1.35rem;
   margin-bottom: 0;
   background-color: rgba(33, 40, 50, 0.03);
-  border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+  border-bottom: 1px solid white;
 }
 .form-control,
 .dataTable-input {
@@ -993,8 +1027,7 @@ h1 {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .nav-borders .nav-link.active {
-  color: #000000;
-  border-bottom-color: #000000;
+  border-bottom-color: white;
 }
 .nav-borders .nav-link {
   color: #69707a;

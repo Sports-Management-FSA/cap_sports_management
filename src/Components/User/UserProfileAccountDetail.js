@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginWithToken, updateUser } from "../../store";
 import validator from "validator";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const UserProfileAccountDetail = () => {
@@ -71,27 +72,46 @@ const UserProfileAccountDetail = () => {
    const handleSubmit = (ev) => {
       ev.preventDefault();
 
+      // Check for empty fields
+      if (formData.username.trim() === "") {
+         toast.error("Username cannot be empty");
+         return;
+      }
+
+      if (formData.firstName.trim() === "") {
+         toast.error("First Name cannot be empty");
+         return;
+      }
+
+      if (formData.lastName.trim() === "") {
+         toast.error("Last Name cannot be empty");
+         return;
+      }
+
+      if (formData.email.trim() === "") {
+         toast.error("Email cannot be empty");
+         return;
+      }
+
       const validateErrors = validateForm();
       if (Object.keys(validateErrors).length > 0) {
          // Form has errors, prevent form submission
          setFormErrors(validateErrors);
          return;
+      } else {
+         dispatch(updateUser(formData))
+            .then(() => {
+               toast.success("Profile changed successfully!");
+               setTimeout(() => {
+                  window.location.reload(); // Refresh the page
+               }, 1000); // Delay in milliseconds (optional)
+            })
+            .catch((error) => {
+               // Handle error
+               setFormErrors({ general: error.message });
+               toast.error("Profile change failed"); // Show error toast
+            });
       }
-
-      setShowConfirmation(true);
-   };
-
-   const handleConfirmChanges = () => {
-      dispatch(updateUser(formData));
-      setShowConfirmation(false);
-      // Close the modal and backdrop after user confirm
-      const modal = document.getElementById("confirmModal");
-      const backdrop = document.getElementsByClassName("modal-backdrop")[0];
-      modal.classList.remove("show");
-      modal.setAttribute("aria-hidden", "true");
-      backdrop.parentNode.removeChild(backdrop);
-      // Refresh Page after user confirm
-      navigate("/");
    };
 
    useEffect(() => {
@@ -101,16 +121,21 @@ const UserProfileAccountDetail = () => {
    return (
       <div className="row profile-account-details">
          <div className="col-xl-4">
-            <div className="card mb-4 mb-xl-0">
-               <div className="card-header">Profile Picture</div>
+            <Toaster position="top-center" reverseOrder={false} />
+            <div
+               className="card mb-4 mb-xl-0"
+               style={{
+                  backgroundColor: "#2a5262"
+               }}>
+               <div className="card-header text-white">Profile Picture</div>
                <div className="card-body text-center align-items-center">
                   <img
                      src={formData.avatar ? formData.avatar : "static/images/camera.svg"}
                      alt="profile-picture"
                      className="img-account-profile rounded-circle mb-2"
                   />
-                  <div className="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                  <button className="btn btn-outline-secondary" onClick={handleUploadButtonClick}>
+                  <div className="small font-italic text-light mb-4">JPG or PNG no larger than 5 MB</div>
+                  <button className="btn btn-light" onClick={handleUploadButtonClick}>
                      Upload new image
                   </button>
                   <input
@@ -124,13 +149,17 @@ const UserProfileAccountDetail = () => {
             </div>
          </div>
          <div className="col-xl-8">
-            <div className="card mb-4">
+            <div
+               className="card mb-4"
+               style={{
+                  backgroundColor: "#2a5262"
+               }}>
                <div className="card-header">Account Details</div>
                <div className="card-body">
                   <form onSubmit={handleSubmit}>
                      <div className="row">
                         <div className="mb-1">
-                           <label className="small mb-1" htmlFor="username">
+                           <label className="small mb-1 text-white" htmlFor="username">
                               Username
                            </label>
                            <input
@@ -146,7 +175,7 @@ const UserProfileAccountDetail = () => {
                      </div>
                      <div className="row gx-3 mb-3">
                         <div className="col-md-6">
-                           <label className="small mb-1" htmlFor="firstName">
+                           <label className="small mb-1 text-white" htmlFor="firstName">
                               First Name
                            </label>
                            <input
@@ -159,7 +188,7 @@ const UserProfileAccountDetail = () => {
                            />
                         </div>
                         <div className="col-md-6">
-                           <label className="small mb-1" htmlFor="lastName">
+                           <label className="small mb-1 text-white" htmlFor="lastName">
                               Last Name
                            </label>
                            <input
@@ -174,7 +203,7 @@ const UserProfileAccountDetail = () => {
                      </div>
                      <div className="row">
                         <div className="mb-1">
-                           <label className="small mb-1" htmlFor="email">
+                           <label className="small mb-1 text-white" htmlFor="email">
                               Email
                            </label>
                            <input
@@ -186,6 +215,11 @@ const UserProfileAccountDetail = () => {
                               onChange={handleInputChange}
                            />
                            {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
+                        </div>
+                        <div>
+                           <button className="btn btn-light mt-4" onClick={handleSubmit}>
+                              Save
+                           </button>
                         </div>
                      </div>
                   </form>

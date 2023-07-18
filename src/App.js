@@ -61,6 +61,7 @@ const App = () => {
       dispatch(fetchAllPosts())
       setload(true)
    }, []);
+
    // console.log(auth);
    return (
       <div className="app">

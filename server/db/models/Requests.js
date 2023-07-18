@@ -13,11 +13,14 @@ const Requests = conn.define("requests", {
       defaultValue: true,
    },
    from: {
-    type: STRING,
+      type: STRING,
    },
    to: {
-    type: STRING,
+      type: STRING,
    },
+   desiredTeam: {
+      type: STRING,
+   }
 });
 
 module.exports = Requests;

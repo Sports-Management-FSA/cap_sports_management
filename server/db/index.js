@@ -832,7 +832,7 @@ const syncAndSeed = async () => {
     await User_Requests.bulkCreate([
       {senderId: 1, leagueId: 2, requestId: 1, teamId: 6},
       {senderId: 1, leagueId: 1, requestId: 2, teamId: 2},
-      {senderId: 1, leagueId: 2, requestId: 3, teamId: 4},
+      {senderId: 1, leagueId: 6, requestId: 3, teamId: 4},
       {senderId: 1, leagueId: 7, requestId: 4, teamId: 15}, //team to league works
       {senderId: 3, leagueId: 7, requestId: 5, teamId: 15}, //player to league
       {senderId: 4, leagueId: 7, requestId: 6, teamId: 16},
