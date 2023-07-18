@@ -102,9 +102,9 @@ const UserProfileAccountDetail = () => {
          dispatch(updateUser(formData))
             .then(() => {
                toast.success("Profile changed successfully!");
-               setTimeout(() => {
-                  window.location.reload(); // Refresh the page
-               }, 1000); // Delay in milliseconds (optional)
+               //    setTimeout(() => {
+               //       window.location.reload(); // Refresh the page
+               //    }, 1000); // Delay in milliseconds (optional)
             })
             .catch((error) => {
                // Handle error

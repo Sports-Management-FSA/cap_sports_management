@@ -64,8 +64,12 @@ const UserProfileSecurity = () => {
 
    // Delete User Function
    const handleDeleteUser = () => {
-      dispatch(deleteUser(auth));
-      navigate(0);
+      const confirmDelete = window.confirm("Are you sure you want to delete your account? ");
+      if (confirmDelete) {
+         window.localStorage.removeItem("token");
+         dispatch(deleteUser(auth));
+         navigate(0);
+      }
    };
 
    return (
