@@ -31,7 +31,7 @@ const Newsfeed = (props) => {
         const postMessage = {
            message: post,
            teamId: postTeamId,
-           userId: 1
+           userId: 5
         }
        dispatch(addPost(postMessage))
        setPost('');
