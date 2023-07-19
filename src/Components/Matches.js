@@ -56,7 +56,7 @@ const Matches = (props) => {
                                     </div>
                                     <div className="match-lower">
                                         {false ? <MatchResults match={upcomingMatch} /> :
-                                            <Link className="match-score-link" to={`scorekeeper/${id}`}
+                                            <Link className="match-score-link" to={`/scorekeeper/${id}`}
                                             >Score this Match</Link>}
 
 

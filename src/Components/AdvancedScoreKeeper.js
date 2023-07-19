@@ -61,9 +61,6 @@ const AdvancedScoreKeeper = () => {
         dispatch(deleteScorekeeper(id))
         navigate(0);
     }
-    
-    
-
 
     return (
         <div className="scorekeeper-container">
