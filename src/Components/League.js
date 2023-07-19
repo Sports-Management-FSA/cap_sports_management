@@ -22,14 +22,14 @@ const League = () => {
    const league = leagues.find((league) => league.id == id);
    const today = new Date();
 
-   if (!league) {
-      return navigate("/notfound");
-   }
+   // if (!league) {
+   //    return navigate("/notfound");
+   // }
 
-   const matches = league.matches;
-   const teams = league.teams;
+   const matches = league?.matches;
+   const teams = league?.teams;
 
-   const posts = league.posts;
+   const posts = league?.posts;
 
    const upcomingMatch = matches?.find((match) => {
       const matchDate = new Date(match.date);
@@ -54,12 +54,12 @@ const League = () => {
                   <div className="league-head">
                      <div className="head-left">
                         <div className="head-left-img">
-                           <img src={league.logo} alt="Image" /> 
+                           <img src={league?.logo} alt="Image" /> 
                            {/* before was this width="70" height="60" */}
                         </div>
                         <div className="head-left-content">
-                           <h2>{league.name}</h2>
-                           <p>{league.season}</p>
+                           <h2>{league?.name}</h2>
+                           <p>{league?.season}</p>
                         </div>
                      </div>
                      <div className="head-right">
@@ -71,7 +71,7 @@ const League = () => {
                         <h5>About us</h5>
                      </div>
                      <article className="head__about-content">
-                        {league.description}
+                        {league?.description}
                      
                      </article>
                   </section>
@@ -94,7 +94,7 @@ const League = () => {
                   <div className="league__content--body">
                      {currentComponent === "Announcements" && <Announcements />}
                      {currentComponent === "Stats" && <Stats />}
-                     {currentComponent === "Newsfeed" && <Newsfeed posts={posts}/>}
+                     {currentComponent === "Newsfeed" && <Newsfeed posts={posts} league={league}/>}
                      
                   </div>
                </div>

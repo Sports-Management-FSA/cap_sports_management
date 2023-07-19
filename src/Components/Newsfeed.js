@@ -1,25 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addPost, updatePost } from '../store';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Newsfeed = (props) => {
+    const navigate = useNavigate();
     const { posts } = props;
     console.log(props)
     const dispatch = useDispatch();
     const [post, setPost] = useState('');
-    let postTeamId;
-    
-    if (posts && posts.length > 0){
-        postTeamId = posts[0].teamId;
-    } 
+    let postLeagueId = null
+    let postTeamId = null
 
-    if (!posts){
-        return ( 
+    if (props.league?.id !== undefined) {
+        postLeagueId = props.league.id;
+    } else {
+        postTeamId = props.team.id;
+    }
+
+    if (!posts) {
+        return (
             <section className="newsfeed__nodata">
                 <h3>no posts yet</h3>
-            </section>    
+            </section>
         )
     }
 
@@ -29,15 +34,17 @@ const Newsfeed = (props) => {
     const handlePostSubmit = (e) => {
         e.preventDefault();
         const postMessage = {
-           message: post,
-           teamId: postTeamId,
-           userId: 5
+            message: post,
+            teamId: postTeamId,
+            leagueId: postLeagueId,
+            userId: 5
         }
-       dispatch(addPost(postMessage))
-       setPost('');
+        dispatch(addPost(postMessage))
+        setPost('');
+        navigate(0);
     }
-    
-    const notify = () => toast("Posted!",{
+
+    const notify = () => toast("Posted!", {
         className: 'custom-toast',
         position: "top-center",
         autoClose: 2000,
@@ -54,7 +61,7 @@ const Newsfeed = (props) => {
         <div className="newsfeed__container">
             <div className="newsfeed__createpost">
                 <form className="newsfeed__createpost-form" onSubmit={handlePostSubmit}>
-                    <input 
+                    <input
                         id="post"
                         name="post"
                         placeholder='Start a conversation with your team'
@@ -62,33 +69,34 @@ const Newsfeed = (props) => {
                         onChange={(e) => setPost(e.target.value)}
                     />
                     <button onClick={notify}>Post</button>
-                </form>                    
+                </form>
             </div>
             <div className="newsfeed__posts">
                 {sortedPosts.map(post => {
                     const player = players.find(player => player.id == post.userId);
                     console.log(player)
                     return (
-                    <div className="newsfeed__post" key={post.id}>
-                        <div className="newsfeed__post-upper">
-                            <div className="post-upper-group">
-                                <img src={player.avatar} alt="Image" />
-                                <div className="upper-group-names">
-                                    <span>{player.firstName} {player.lastName}<i>@{player.username}</i></span><br />
-                                    <i>posted Yesterday</i>
+                        <div className="newsfeed__post" key={post.id}>
+                            <div className="newsfeed__post-upper">
+                                <div className="post-upper-group">
+                                    <img src={player.avatar} alt="Image" />
+                                    <div className="upper-group-names">
+                                        <span>{player.firstName} {player.lastName}<i>@{player.username}</i></span><br />
+                                        <i>posted Yesterday</i>
+                                    </div>
                                 </div>
                             </div>
+                            <div className="newsfeed__post-content">
+                                <article>{post.message} </article>
+                            </div>
+                            <div className="newsfeed__post-lower">
+                                <span onClick={() => dispatch(updatePost())}>Like</span>
+                                <span>comments</span>
+                            </div>
                         </div>
-                        <div className="newsfeed__post-content">
-                            <article>{post.message} </article>
-                        </div>
-                        <div className="newsfeed__post-lower">
-                            <span onClick={() => dispatch(updatePost())}>Like</span>
-                            <span>comments</span>
-                        </div>
-                </div>            
-                )})}
-                    
+                    )
+                })}
+
             </div>
         </div>
     );

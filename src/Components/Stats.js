@@ -44,7 +44,7 @@ const Stats = (props) => {
                 </ul>   
                 <div className="stats-content">
                     <div className="stats-content-body">
-                        {currentComponent === 'Matches' && <Matches matches={leagueMatches} />}
+                        {currentComponent === 'Matches' && <Matches matches={leagueMatches} league={league}/>}
                         {currentComponent === 'Standings' && <Standings teams={teams}/>}
                         {currentComponent === 'Players' && <Players players={players} teams={teams}/>}
                         {currentComponent === 'Teams' && <Teams teams={teams}/>}

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addScorekeeper, deleteScorekeeper, updateMatch } from "../store";
 import { useNavigate, useParams } from "react-router-dom";
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 const AdvancedScoreKeeper = () => {
     const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const AdvancedScoreKeeper = () => {
                 completion: true
             })
         )
-        navigate(`/league/${league.id}`)
+        navigate(`/league/${league?.id}`)
     }
 
     const handleRemoveAction = (id) => {

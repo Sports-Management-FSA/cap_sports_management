@@ -23,7 +23,7 @@ const Matches = (props) => {
         const matchDate = new Date(match.date);
         return matchDate > today;
     })
-    console.log(upcomingMatches);
+    // console.log(upcomingMatches);
     const previousMatches = matches.filter((match) => {
         const matchDate = new Date(match.date);
         return matchDate < today;
@@ -34,7 +34,7 @@ const Matches = (props) => {
         return matchDate === today;
     })
 
-    if (auth.username || auth.loggedIn) {
+    if (props.league.user_leagueRoles.filter((role) => role.userId === auth.id).length > 0) {
         return (
             <div className='matches-container'>
                 {matches.length > 0 ?
@@ -58,8 +58,6 @@ const Matches = (props) => {
                                         {upcomingMatch.completion ? <MatchResults match={upcomingMatch} /> :
                                             <Link className="match-score-link" to={`/scorekeeper/${upcomingMatch.id}`}
                                             >Score this Match</Link>}
-
-
                                     </div>
                                 </div>
                             )
