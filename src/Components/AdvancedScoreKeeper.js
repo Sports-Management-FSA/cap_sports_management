@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addScorekeeper, deleteScorekeeper } from "../store";
+import { addScorekeeper, deleteScorekeeper, updateMatch } from "../store";
 import { useNavigate, useParams } from "react-router-dom";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
@@ -53,7 +53,13 @@ const AdvancedScoreKeeper = () => {
     };
 
     const handleComplete = () => {
-        console.log('The')
+        dispatch(
+            updateMatch({
+                id: match.id,
+                completion: true
+            })
+        )
+        navigate(`/league/${league.id}`)
     }
 
     const handleRemoveAction = (id) => {
@@ -76,7 +82,7 @@ const AdvancedScoreKeeper = () => {
                                             {score.user.firstName} {score.user.lastName} scored: {score.action.name}
                                         </p>
 
-                                        <RemoveCircleOutlineIcon onClick={() => handleRemoveAction(score.id)} className="scorekeeper-icon"/>
+                                        <button onClick={() => handleRemoveAction(score.id)} className="scorekeeper-icon"/>
                                     </div>
                                 )
                             }
@@ -140,7 +146,7 @@ const AdvancedScoreKeeper = () => {
                                         <p>
                                             {score.user.firstName} {score.user.lastName} scored: {score.action.name}
                                         </p>
-                                        <button onClick={() => handleRemoveAction(score.id)}>delete</button>
+                                        <button onClick={() => handleRemoveAction(score.id)} className="scorekeeper-icon"/>
                                     </div>
                                 )
                             }
@@ -196,7 +202,7 @@ const AdvancedScoreKeeper = () => {
                 </section>
             </div>
             <div className="scoreboard-footer">
-                <button onClick={() => navigate(`/league/${league.id}`)}>End Match</button>
+                <button onClick={() => handleComplete()}>End Match</button>
             </div>
             </div>
         </div>
