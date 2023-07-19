@@ -161,12 +161,12 @@ const syncAndSeed = async () => {
   });
   const basehit = await Actions.create({
     name: "Basehit",
-    value: 1,
+    value: 0,
     categoryId: 4,
   });
   const homerun = await Actions.create({
-    name: "Homerun",
-    value: 4,
+    name: "Run",
+    value: 1,
     categoryId: 4,
   });
   const strike = await Actions.create({

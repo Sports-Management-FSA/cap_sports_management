@@ -82,7 +82,7 @@ const Team = () => {
                   <div className="league__content--body">
                      {currentComponent === "Stats" && <TeamStats team={team}/>}
                      {currentComponent === "Announcements" && <Announcements />}
-                     {currentComponent === "Newsfeed" && <Newsfeed posts={posts}/>}
+                     {currentComponent === "Newsfeed" && <Newsfeed posts={posts} team={team}/>}
                   </div>
                </div>
             </div>
