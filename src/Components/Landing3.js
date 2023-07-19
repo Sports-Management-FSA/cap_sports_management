@@ -88,13 +88,13 @@ const Landing3 = () => {
                      </Link>
                   </div>
                </div>
-               <div className="scorekeeper_photo">
+               {/* <div className="scorekeeper_photo">
                   <div className="photo-overlay">
                      <Link to="/scorekeeper" className="photo-caption">
                         Keep track of the game with Scorekeeper{" "}
                      </Link>
                   </div>
-               </div>
+               </div> */}
             </div>
          </section>
       </div>
