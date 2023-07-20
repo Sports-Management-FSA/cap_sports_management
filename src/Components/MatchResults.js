@@ -23,27 +23,29 @@ const MatchResults = (props) => {
     const team2Actions = match.scorekeepers.filter((score) => score.team.id === match.teams[1].id)
 
     return (
-        <div>
-            <div>
-                <p>{match.teams[0].name}</p>
-                <p>{team1Score}</p>
-                {team1Actions.map((score) => {
-                    return (
-                        <p>{score.user.firstName.toUpperCase()} {score.user.lastName.toUpperCase()}---{score.action.name}</p>
-                    )
-                })}
+        <>
+            <div className="final-results-container">
+                <div className="team1-results-container">
+                    <p>{match.teams[0].name}</p>
+                    <p className="results-scores">{team1Score}</p>
+                    {team1Actions.map((score) => {
+                        return (
+                            <p>{score.user.firstName.toUpperCase()} {score.user.lastName.toUpperCase()}---{score.action.name}</p>
+                        )
+                    })}
+                </div>
+                <div className="final-results-title"><h3>Final Score</h3></div>
+                <div className="team2-results-container">
+                    <p>{match.teams[1].name}</p>
+                    <p className="results-scores">{team2Score}</p>
+                    {team2Actions.map((score) => {
+                        return (
+                            <p>{score.user.firstName.toUpperCase()} {score.user.lastName.toUpperCase()}---{score.action.name}</p>
+                        )
+                    })}
+                </div>
             </div>
-            <div><h3>Final Score</h3></div>
-            <div>
-                <p>{match.teams[1].name}</p>
-                <p>{team2Score}</p>
-                {team2Actions.map((score) => {
-                    return (
-                        <p>{score.user.firstName} {score.user.lastName}---{score.action.name}</p>
-                    )
-                })}
-            </div>
-        </div>
+        </>
     )
 }
 
