@@ -1,19 +1,5 @@
-# cap_sports_management
+# Podium Sports Management
 
-APIs
+1. Run npm install
 
-localhost:3000/api/
-
-POST /api/leagues
-
-GET /api/leagues
-
-GET /api/leagues/:id/teams
-
-POST /api/teams/
-
-GET /api/teams/
-
-/api/matches/
-
-/api/users/
+2. Run npm run start
