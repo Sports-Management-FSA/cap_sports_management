@@ -35,5 +35,5 @@ Getting Started
 3. Install dependencies:
    - npm install
 5. Start the development server:
-   - npm start
+   - npm start:dev
 7. Open your browser and visit http://localhost:3000 to view the app.
