@@ -31,6 +31,9 @@ Technologies Used
 Getting Started
 --------------------
 1. Clone the repository:
-2. Install dependencies:
-3. Start the development server:
-4. Open your browser and visit http://localhost:3000 to view the app.
+   - git@github.com:Sports-Management-FSA/cap_sports_management.git
+3. Install dependencies:
+   - npm install
+5. Start the development server:
+   - npm start
+7. Open your browser and visit http://localhost:3000 to view the app.
